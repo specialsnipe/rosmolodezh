@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genders', function (Blueprint $table) {
+        Schema::create('setting_emails', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('email');
+            $table->foreignId('setting_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
-
-        \App\Models\Role::factory();
     }
 
     /**
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genders');
+        Schema::dropIfExists('setting_emails');
     }
 };

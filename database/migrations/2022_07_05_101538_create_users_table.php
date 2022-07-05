@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('tg_url')->nullable();
             $table->string('vk_url')->nullable();
             $table->rememberToken();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
