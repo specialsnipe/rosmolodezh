@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Occupation;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class OccupationSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Occupation::create([
+            'name' => 'студент'
+        ]);
+        Occupation::create([
+            'name' => 'школьник'
+        ]);
+        Occupation::create([
+            'name' => 'работаю'
+        ]);
+        Occupation::create([
+            'name' => 'безработный'
+        ]);
+    }
+}
