@@ -11,4 +11,14 @@ class Post extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = false;
+
+    public function images()
+    {
+        $this->hasMany(PostImage::class);
+    }
+
+    public function links()
+    {
+        $this->hasMany(PostLink::class);
+    }
 }

@@ -11,4 +11,9 @@ class PostLink extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = false;
+
+    public function post()
+    {
+        $this->belongsTo(Post::class);
+    }
 }

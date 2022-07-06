@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PostImage extends Model
 {
     use HasFactory, SoftDeletes;
-
+    
     protected $guarded = false;
+
+    public function post()
+    {
+        $this->belongsTo(Post::class);
+    }
 }
