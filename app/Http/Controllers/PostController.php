@@ -23,7 +23,7 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        $data = $this->validated()
+        $data = $this->validated();
     }
 
     /**

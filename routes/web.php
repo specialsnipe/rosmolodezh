@@ -24,4 +24,20 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
 // TODO: Регистрацонные дела
 
+Route::group(['as' => 'auth.'], function () {
+
+    // Авторизация пользователя
+    Route::group(['as'=> 'login.', 'prefix' => 'login'], function () {
+        Route::get('/', [\App\Http\Controllers\LoginController::class, 'index'])->name('show');
+        Route::post('/', [\App\Http\Controllers\LoginController::class, 'store'])->name('store');
+    });
+
+    // Регистрация пользователя
+    Route::group(['as'=> 'register.', 'prefix' => 'register'], function () {
+        Route::get('/', [\App\Http\Controllers\RegisterController::class, 'index'])->name('show');
+        Route::post('/', [\App\Http\Controllers\RegisterController::class, 'store'])->name('store');
+    });
+});
+//Route::get('/login', [Re]);
+
 // TODO: Студенческие дела
