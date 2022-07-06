@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // TODO: админ панельные дела
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
-    Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
+    Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
     Route::resource('settings', \App\Http\Controllers\SettingController::class);
     Route::resource('posts', \App\Http\Controllers\PostController::class);
     Route::resource('users', \App\Http\Controllers\UserController::class);
