@@ -11,4 +11,9 @@ class SettingPhone extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = false;
+
+    public function setting()
+    {
+        return $this->belongsTo(Setting::class);
+    }
 }
