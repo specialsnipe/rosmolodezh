@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 // TODO: админ панельные дела
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
-    Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
-    Route::resource('settings', \App\Http\Controllers\SettingController::class);
-    Route::resource('posts', \App\Http\Controllers\PostController::class);
-    Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('main.index');
+    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
 
 // TODO: Регистрацонные дела
