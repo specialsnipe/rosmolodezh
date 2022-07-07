@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('vk_url')->nullable();
             $table->rememberToken();
             $table->softDeletes();
+
+
+
             $table->timestamps();
         });
     }
