@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Главная страница и побочные главной.
 
-Route::get('/', function ( ) {
-    return view('welcome');
-})->name('home');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // TODO: админ панельные дела
 
@@ -26,6 +24,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
+    });
 });
 
 // TODO: Регистрацонные дела
@@ -47,7 +48,7 @@ Route::group(['as' => 'auth.'], function () {
     });
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout'])->name('logout');
+        Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
     });
 });
 
