@@ -81,12 +81,4 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * @return RedirectResponse
-     */
-    public function logout(): RedirectResponse
-    {
-        auth()->logout();
-        return redirect()->route('home');
-    }
 }
