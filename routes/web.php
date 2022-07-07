@@ -25,7 +25,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, ''])->name('index');
+        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
 });
 
