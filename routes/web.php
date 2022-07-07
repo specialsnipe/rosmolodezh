@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Главная страница и побочные главной.
 
-Route::get('/', function ( ) {
-    return view('welcome');
-})->name('home');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // TODO: админ панельные дела
 
