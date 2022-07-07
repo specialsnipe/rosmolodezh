@@ -6,15 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +15,18 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'login' => ['required','exists:users', 'regex:/^[a-z]+$/i'],
+            'password' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'login.required' => 'Укажите ваш логин для входа в аккаунт.',
+            'login.exists' => 'Пользователя с таким логином не существует.',
+            'login.regex' => 'Логин должен состоять только из латиницы.',
+            'password.required' => 'Укажите пароль для входа в аккаунт.',
         ];
     }
 }

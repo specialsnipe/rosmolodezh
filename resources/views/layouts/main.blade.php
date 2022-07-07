@@ -22,7 +22,14 @@
 </head>
 <body>
 <header>
-
+<div class="menu">
+    @auth
+        <a href="{{ route('auth.logout') }}">Выйти</a>
+    @else
+        <a href="{{ route('auth.login.show') }}">Войти</a>
+        <a href="{{ route('auth.register.show') }}">Зарегистрироваться</a>
+    @endauth
+</div>
 </header>
 
 <main>

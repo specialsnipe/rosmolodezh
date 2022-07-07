@@ -165,7 +165,11 @@
                                             <span class="invalid-feedback d-block"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <input class="btn btn-primary btn-lg" type="submit" value="Регистрация" />
+                                </div>
+
+                                <div class="row d-flex align-items-center">
+                                    <a href="{{ route('auth.login.show') }}" class="col-sm d-inline" > Уже зарегистрированы? Войдите.  </a>
+                                    <input class=" btn btn-primary btn-lg col-sm" type="submit" value="Регистрация"/>
                                 </div>
 
                             </form>
