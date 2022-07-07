@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+<<<<<<< Updated upstream
 use Illuminate\Http\RedirectResponse;
+=======
+>>>>>>> Stashed changes
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,7 +15,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -36,15 +40,18 @@ class UserController extends Controller
         //
     }
 
+<<<<<<< Updated upstream
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+=======
+>>>>>>> Stashed changes
     public function show(User $user)
     {
-        //
+        return view('admin.users.show',compact('user'));
     }
 
     /**
