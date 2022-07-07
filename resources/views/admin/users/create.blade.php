@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item active">Новости</li>
+                            <li class="breadcrumb-item active">Создание пользователя</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -29,22 +29,37 @@
                         @csrf
                         <div class="form-group w-50">
                             <input type="text" class="form-control " name="login" placeholder="Логин" value="{{old('login')}}">
-                            @error('title')
+                            @error('login')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group w-50">
-                            <input type="text" class="form-control " name="title" placeholder="Название" value="{{old('title')}}">
-                            @error('title')
+                            <input type="text" class="form-control " name="first_name" placeholder="Имя" value="{{old('first_name')}}">
+                            @error('first_name')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group w-50">
-                            <input type="text" class="form-control " name="title" placeholder="Название" value="{{old('title')}}">
-                            @error('title')
+                            <input type="text" class="form-control " name="last_name" placeholder="Название" value="{{old('last_name')}}">
+                            @error('last_name')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>
+                        <div class="form-group w-50">
+                            <input type="text" class="form-control " name="father_name" placeholder="Название" value="{{old('father_name')}}">
+                            @error('father_name')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+
+
+
+                        <select class="form-control" name="role_id">
+                            @foreach($roles as $role)
+                            <option value="{{$role->id}}
+                            {{$role->id==old('role_id') ?'selected':''}}">{{$role->title}}</option>
+                            @endforeach
+                        </select>
                         <input type="submit" class="btn btn-primary" value="Добавить">
                     </form>
                     </div>
