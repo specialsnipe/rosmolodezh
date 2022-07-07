@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Главная страница и побочные главной.
+
+Route::get('/', function ( ) {
+    return view('welcome');
+})->name('home');
+
 // TODO: админ панельные дела
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
@@ -25,17 +31,16 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 // TODO: Регистрацонные дела
 
 Route::group(['as' => 'auth.'], function () {
-
     // Авторизация пользователя
     Route::group(['as'=> 'login.', 'prefix' => 'login'], function () {
-        Route::get('/', [\App\Http\Controllers\LoginController::class, 'index'])->name('show');
-        Route::post('/', [\App\Http\Controllers\LoginController::class, 'store'])->name('store');
+        Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'index'])->name('show');
+        Route::post('/', [\App\Http\Controllers\Auth\LoginController::class, 'store'])->name('store');
     });
 
     // Регистрация пользователя
     Route::group(['as'=> 'register.', 'prefix' => 'register'], function () {
-        Route::get('/', [\App\Http\Controllers\RegisterController::class, 'index'])->name('show');
-        Route::post('/', [\App\Http\Controllers\RegisterController::class, 'store'])->name('store');
+        Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('show');
+        Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('store');
     });
 });
 //Route::get('/login', [Re]);

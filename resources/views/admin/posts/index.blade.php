@@ -54,7 +54,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($posts as $post)
+                            @forelse($posts as $post)
                             <tr>
                                 <td>{{$post->id}}</td>
                                 <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
@@ -62,7 +62,12 @@
                                 <td>{{$post->body}}</td>
                                 <td>Картинки</td>
                             </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td></td>
+                                    <td>Постов нет</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

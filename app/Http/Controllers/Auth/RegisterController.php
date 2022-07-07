@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\RegisterRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Gender;
 use App\Models\Occupation;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -36,8 +38,12 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         // TODO: Доделать создание записи в общей таблице users_tracks
-        $user = User::create($request->validated());
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
 
         auth()->login($user);
+
+        return redirect()->route('home');
     }
 }
