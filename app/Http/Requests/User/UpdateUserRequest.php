@@ -38,7 +38,6 @@ class UpdateUserRequest extends FormRequest
             'age' => ['nullable','numeric'],
             'file'=>['required','image', 'mimes:jpg,jpeg,png', 'max:2048']
             //'track_id' => ['required', 'min:1']
-
         ];
     }
     public function messages()
