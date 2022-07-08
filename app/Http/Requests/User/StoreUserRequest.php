@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,9 +30,11 @@ class StoreUserRequest extends FormRequest
             'gender_id' => ['required', 'min:1'],
             'email' => ['required', 'unique:users', 'email:dns'],
             'login' => ['required', 'unique:users'],
-            'password' => ['required', 'confirmed','min:6'],
-            'password_confirmation' => 'required',
+            'password' => ['required','min:6'],
             'occupation_id' => ['required', 'min:1'],
+            'role_id' => ['required', 'min:1'],
+            'age' => 'numeric',
+            'file'=>'file'
             //'track_id' => ['required', 'min:1']
 
         ];
@@ -43,7 +45,7 @@ class StoreUserRequest extends FormRequest
             'first_name.required' => 'Поле имя обязательно.',
             'last_name.required' => 'Поле фамилия обязательно.',
             'father_name.required' => 'Поле отчество обязательно.',
-            'gender_id.required' => 'Выберите ваш пол.',
+            'gender_id.required' => 'Выберите пол.',
             'gender_id.min' => 'Выберанный пол не верный.',
             'email.required' => 'Выберите ваш пол.',
             'email.unique' => 'Такая почта уже зарегестрирована.',
@@ -52,12 +54,13 @@ class StoreUserRequest extends FormRequest
             'login.unique' => 'Такой логин уже занят.',
             'login.regex' => 'Логин должен состоять только из латиницы.',
             'password.required' => 'Поле пароль обязательно.',
-            'password.confirmed' => 'Пароль и подтвержение пароля не совпадают.',
             'password.min' => 'Поле пароль должно состоять миниум из 6 символов.',
             'password_confirmation.required' => 'Поле подтвержение пароля обязательно.',
-            'occupation_id.required' => 'Поле занятость обязательно.',
+            'occupation_id.required' => 'Выберите занятость.',
             'occupation_id.min' => 'Выберанная занятость не верная.',
-            'track_id.required' => 'Поле направление обязательно.',
+            'role_id.required' => 'Выберите роль.',
+            'role_id.min' => 'Выберанная роль не верная.',
+            //'track_id.required' => 'Поле направление обязательно.',
             //'track_id.min' => 'Выберанное направление не верное.',
         ];
     }

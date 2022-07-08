@@ -9883,7 +9883,7 @@
         dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
         ordinal: function (number, period) {
             switch (period) {
-                // Words with masculine grammatical gender: mois, trimestre, jour
+                // Words with masculine grammatical genders: mois, trimestre, jour
                 default:
                 case 'M':
                 case 'Q':
@@ -9892,7 +9892,7 @@
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
 
-                // Words with feminine grammatical gender: semaine
+                // Words with feminine grammatical genders: semaine
                 case 'w':
                 case 'W':
                     return number + (number === 1 ? 're' : 'e');
@@ -9949,7 +9949,7 @@
         dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
         ordinal: function (number, period) {
             switch (period) {
-                // Words with masculine grammatical gender: mois, trimestre, jour
+                // Words with masculine grammatical genders: mois, trimestre, jour
                 default:
                 case 'M':
                 case 'Q':
@@ -9958,7 +9958,7 @@
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
 
-                // Words with feminine grammatical gender: semaine
+                // Words with feminine grammatical genders: semaine
                 case 'w':
                 case 'W':
                     return number + (number === 1 ? 're' : 'e');
@@ -10051,7 +10051,7 @@
                 case 'D':
                     return number + (number === 1 ? 'er' : '');
 
-                // Words with masculine grammatical gender: mois, trimestre, jour
+                // Words with masculine grammatical genders: mois, trimestre, jour
                 default:
                 case 'M':
                 case 'Q':
@@ -10059,7 +10059,7 @@
                 case 'd':
                     return number + (number === 1 ? 'er' : 'e');
 
-                // Words with feminine grammatical gender: semaine
+                // Words with feminine grammatical genders: semaine
                 case 'w':
                 case 'W':
                     return number + (number === 1 ? 're' : 'e');

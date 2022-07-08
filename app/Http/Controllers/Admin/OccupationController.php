@@ -9,14 +9,14 @@ use App\Models\Occupation;
 
 class OccupationController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $occupations = Occupation::all();
+        return view('admin.occupations.index', compact('occupations'));
     }
 
     /**

@@ -23,10 +23,16 @@ class User extends Authenticatable
         'last_name',
         'father_name',
         'gender_id',
+        'role_id',
+        'avatar',
+        'about',
+        'age',
         'email',
         'login',
         'password',
         'occupation_id',
+        'tg_url',
+        'vk_url',
     ];
 
     /**

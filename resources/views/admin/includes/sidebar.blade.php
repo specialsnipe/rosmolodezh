@@ -45,6 +45,31 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.genders.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-mars-and-venus"></i>
+                        <p>
+                            Пол
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.roles.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-address-book"></i>
+                        <p>
+                            Роли
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.occupations.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-tie"></i>
+
+                        <p>
+                            Занятость
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
