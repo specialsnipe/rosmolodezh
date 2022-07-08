@@ -27,7 +27,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
-
+    Route::match(['put', 'patch'], 'users/{user}/change_password', [\App\Http\Controllers\Admin\UserController::class, 'change_password'])->name('users.change_password');
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
