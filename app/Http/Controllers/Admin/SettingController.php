@@ -56,17 +56,17 @@ class SettingController extends Controller
         return view('admin.settings.edit', compact('setting'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Setting\UpdateSettingRequest  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param UpdateSettingRequest $request
+     * @param Setting $setting
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
         $data = $request->validated();
-        dd($data);
+        $setting->update($data);
+        return redirect()->route('admin.settings.index');
     }
 
     /**
