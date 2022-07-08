@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ChangePasswordUserRequest;
 use App\Services\ResizeImage;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -103,9 +104,8 @@ class UserController extends Controller
         try {
 
             if (!$request->hasFile('file')) {
-
                 $user->updateOrFail($request->validated());
-
+                return redirect()->route('admin.users.show', $user->id);
             }
             $filename = ResizeImage::make($request->file('file'), 'users/avatars', 150, 150);
             $data['avatar'] = $filename;
@@ -130,7 +130,23 @@ class UserController extends Controller
             return redirect()->route('admin.users.index');
         } catch (\Exception $exception) {
             return dd($exception);
+        }
+    }
 
+    public function change_password(ChangePasswordUserRequest $request, User $user)
+    {
+        try {
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+        } catch (\Exception $exception) {
+            return back()->withErrors([
+                'password' => 'Что то пошло не так... :('
+            ]);
+        }
+        return back()->withInput([
+            'success_change_password' => 'Пароль успешно изменён'
+        ]);
     }
 
 }
