@@ -32,11 +32,13 @@ class UpdateUserRequest extends FormRequest
             'gender_id' => ['required', 'min:1'],
             'email' => ['required',  'unique:users,email,'.$this->user->id, 'email:dns'],
             'login' => ['required',  'unique:users,login,'.$this->user->id],
+            'password' => ['nullable','min:6'],
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => ['nullable','numeric'],
-            'file'=>['nullable','image', 'mimes:jpg,jpeg,png', 'max:2048']
+            'file'=>['required','image', 'mimes:jpg,jpeg,png', 'max:2048']
             //'track_id' => ['required', 'min:1']
+
         ];
     }
     public function messages()

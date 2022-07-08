@@ -25,8 +25,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{route('admin.users.update', $user->id)}}" method="post"
-                              enctype="multipart/form-data">
+                        <form action="{{route('admin.users.update', $user->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="form-group w-25">
@@ -37,14 +36,12 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group w-25">
-                                <label for="exampleInputFile">Добавить файл</label>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file" id="exampleInputFile"
-                                               value="">
-                                        <label class="custom-file-label" for="exampleInputFile">Выберите
-                                            картинку</label>
+                                        <input type="file" class="custom-file-input" name="file" id="exampleInputFile" value="">
+                                        <label class="custom-file-label" for="exampleInputFile">Выберите картинку</label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
@@ -90,6 +87,14 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group w-25">
+                                <input type="text" class="form-control " name="password" placeholder="Пароль"
+                                       value="">
+                                @error('password')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+
                             <div class="w-25 mb-3">
                                 <select class="form-control " name="gender_id">
                                     <option value="0" disabled selected>пол</option>
@@ -130,23 +135,6 @@
                             </div>
 
                             <input type="submit" class="btn btn-primary mb-3" value="Добавить">
-                        </form>
-                        <form action="{{ route('admin.users.change_password', $user->id) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <h3>Изменить пароль</h3>
-                            <div class="form-group w-25">
-                                <input type="text" class="form-control " name="password" placeholder="Пароль"
-                                       value="">
-                                @error('password')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-
-                                @if( old('success_change_password') !== null )
-                                    <div class="text-success">{{ old('success_change_password') }}</div>
-                                @endif
-                            </div>
-                            <input type="submit" class="btn btn-primary mb-3" value="Изменить пароль">
                         </form>
                     </div>
                 </div>
