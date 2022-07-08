@@ -24,7 +24,9 @@ class StoreSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tg_url'=>'required',
+            'vk_url'=>'required',
+            'ok_url'=>'required',
         ];
     }
 }
