@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SettingPhone;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,13 @@ class SettingPhoneSeeder extends Seeder
      */
     public function run()
     {
-        //
+        SettingPhone::create([
+            'phone' => '8 800 555 35 35',
+            'setting_id' => '1',
+        ]);
+        SettingPhone::create([
+            'phone' => '8 900 555 35 35',
+            'setting_id' => '1',
+        ]);
     }
 }

@@ -13,7 +13,7 @@ class UpdateSettingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tg_url'=>'required',
+            'vk_url'=>'required',
+            'ok_url'=>'required',
         ];
     }
 }

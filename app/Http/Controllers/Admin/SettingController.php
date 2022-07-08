@@ -12,7 +12,8 @@ class SettingController extends Controller
 
     public function index()
     {
-        return view('admin.settings.index');
+        $settings = Setting::first();
+        return view('admin.settings.index', compact('settings'));
     }
 
     /**
@@ -36,26 +37,23 @@ class SettingController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function show()
+    {
+
+    }
+
+
+    /**
+     * @param Setting $setting
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Setting $setting)
     {
-        //
+        return view('admin.settings.edit', compact('setting'));
     }
 
     /**
@@ -67,7 +65,8 @@ class SettingController extends Controller
      */
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
-        //
+        $data = $request->validated();
+        dd($data);
     }
 
     /**
