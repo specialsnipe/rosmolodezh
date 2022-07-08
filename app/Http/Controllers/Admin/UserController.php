@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\ResizeImage;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Models\Gender;
 use App\Models\Occupation;
@@ -12,7 +13,6 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -45,11 +45,10 @@ class UserController extends Controller
         $data = $request->validated();
 
         $data['password'] = Hash::make($data['password']);
-        $file = $data['file'];
-        unset($data['file']);
-        $file = Storage::disk('public')->put('/images', $file);
-        $data['avatar'] = Storage::url($file);
+//        dd($request->file('file'));
+        $filename = ResizeImage::make($request->file('file'), 'users/avatars', 150, 150);
 
+        $data['avatar'] =  $filename;
 
         $user = User::firstOrCreate($data);
         return redirect()->route('admin.users.index')->withInput(['user' => $user]);

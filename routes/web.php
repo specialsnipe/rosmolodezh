@@ -19,7 +19,7 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 
 // TODO: админ панельные дела
 
-Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('main.index');
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);

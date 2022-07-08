@@ -44,7 +44,8 @@
                     <div class="card">
                         <div class="card-header" role="tab" id="headingOne">
                             <h5 class="mb-0">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true"
                                    aria-controls="collapseOne">
                                     Фильтр по пользователям
                                 </a>
@@ -119,17 +120,18 @@
                             <tr>
                                 <td>{{$user->id}}</td>
                                 <td><a href="{{route('admin.users.show', $user->id)}}">{{$user->login}}</a></td>
-                                <td><img src="{{url($user->avatar)}}" width=50px height=50px alt="image"></td>
+                                <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
+                                         alt="image"></td>
                                 <td style="display: flex; flex-direction: column">
-                                        <span>
-                                            {{$user->last_name}}
-                                        </span>
                                     <span>
-                                            {{$user->first_name}}
-                                        </span>
+                                        {{$user->last_name}}
+                                    </span>
                                     <span>
-                                            {{$user->father_name}}
-                                        </span>
+                                        {{$user->first_name}}
+                                    </span>
+                                    <span>
+                                        {{$user->father_name}}
+                                    </span>
                                 </td>
                                 <td>{{$user->occupation->name}}</td>
                                 <td>{{$user->gender->name}}</td>

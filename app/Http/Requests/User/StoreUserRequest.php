@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -34,7 +34,7 @@ class StoreUserRequest extends FormRequest
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => 'numeric',
-            'file'=>'file'
+            'file'=>['required','image', 'mimes:jpg,jpeg,png', 'max:2048']
             //'track_id' => ['required', 'min:1']
 
         ];

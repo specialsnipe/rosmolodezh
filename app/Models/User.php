@@ -35,6 +35,20 @@ class User extends Authenticatable
         'vk_url',
     ];
 
+    protected $appends = [
+        'avatar_original_path',
+        'avatar_thumbnail_path'
+    ];
+
+    public function getAvatarOriginalPathAttribute()
+    {
+        return 'storage/users/avatars/originals/'. $this->avatar;
+    }
+    public function getAvatarThumbnailPathAttribute()
+    {
+        return 'storage/users/avatars/thumbnail/'. $this->avatar;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
