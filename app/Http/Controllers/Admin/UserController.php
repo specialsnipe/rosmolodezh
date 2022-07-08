@@ -103,7 +103,6 @@ class UserController extends Controller
         try {
 
             if (!$request->hasFile('file')) {
-
                 $user->updateOrFail($request->validated());
 
             }
