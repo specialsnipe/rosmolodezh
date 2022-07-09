@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
+            $table->string('icon');
             $table->text('body');
             $table->string('tg_url');
             $table->foreignId('curator_id')->constrained('users')->cascadeOnDelete();
