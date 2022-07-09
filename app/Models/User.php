@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,16 +70,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function gender()
+
+    /**
+     * Relation with gender (one to many)
+     *
+     * @return BelongsTo
+     */
+    public function gender(): BelongsTo
     {
         return $this->belongsTo(Gender::class);
     }
-    public function occupation()
+
+    /**
+     * Relation with occupations (one to many)
+     *
+     * @return BelongsTo
+     */
+    public function occupation(): BelongsTo
     {
         return $this->belongsTo(Occupation::class);
     }
-    public function role()
+
+    /**
+     * Relation with role table (one to many)
+     *
+     * @return BelongsTo
+     */
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Relation with tracks (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function tracks(): BelongsToMany
+    {
+        return $this->belongsToMany(Track::class)->withTimestamps();
     }
 }

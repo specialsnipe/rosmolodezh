@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingSeeder::class);
         $this->call(SettingEmailSeeder::class);
         $this->call(SettingPhoneSeeder::class);
+        $this->call(TrackSeeder::class);
 
 
         // \App\Models\User::factory()->create([
