@@ -54,8 +54,8 @@
                             <tr>
                                 <td>{{$post->id}}</td>
                                 <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
-                                <td>Автор</td>
-                                <td>{{$post->body}}</td>
+                                <td>{{$post->user->login}}</td>
+                                <td>{!!$post->body!!}</td>
                                 <td>Картинки</td>
                             </tr>
                             @empty

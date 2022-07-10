@@ -25,6 +25,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
         Post::firstOrCreate($data);
         return redirect()->route('admin.posts.index');
     }

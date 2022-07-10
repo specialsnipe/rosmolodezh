@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -13,13 +15,30 @@ class Post extends Model
 
     protected $guarded = false;
 
-    public function images()
+    /**
+     * Relation with images (many to many)
+     * @return HasMany
+     */
+    public function images(): HasMany
     {
-        $this->hasMany(PostImage::class);
+        return $this->hasMany(PostImage::class);
     }
 
-    public function links()
+    /**
+     * Relation with links (many to many)
+     * @return HasMany
+     */
+    public function links(): HasMany
     {
-        $this->hasMany(PostLink::class);
+        return $this->hasMany(PostLink::class);
+    }
+
+    /**
+     * Relation with users (many to many)
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -21,6 +21,7 @@ class TrackSeeder extends Seeder
             'icon' => 'design_icon.svg',
             'body' => 'Это направление дизайна, здесь вы обучитесь основам как графического дизайна так и дизайна веб-страниц и сделаете свои первые шаги в этом не простом направлении',
             'tg_url' => 'https://t.me/+zkLRoaZN43JmN2Uy',
+            'curator_id' => 1,
         ]);
         Track::create([
             'title' => 'Программирование',
@@ -28,6 +29,7 @@ class TrackSeeder extends Seeder
             'icon' => 'dev_icon.svg',
             'body' => 'Это направление программирования, здесь вы обучитесь основам объектно ориентированного программирования и сделаете свои первые шаги в этом не простом направлении',
             'tg_url' => 'https://t.me/+CHIKjy7S41hiZWQy',
+            'curator_id' => 1,
         ]);
         Track::create([
             'title' => 'Вёрстка',
@@ -35,6 +37,7 @@ class TrackSeeder extends Seeder
             'icon' => 'layout_icon.svg',
             'body' => 'Это направление вёрстки, здесь вы обучитесь основам разметки веб-страниц и сделаете свои первые шаги в этом не простом направлении',
             'tg_url' => 'https://t.me/+ZFz_rliEJNk5ZWFi',
+            'curator_id' => 1,
         ]);
     }
 }
