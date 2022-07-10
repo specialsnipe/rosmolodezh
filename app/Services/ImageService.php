@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -18,12 +19,26 @@ class ImageService
     {
         $filename = $file->hashName();
         // Сохраняет оригинал сюда
-        $destinationPath = Storage::path('public/'.$path) . '/originals';
-        $file->move($destinationPath, $filename);
+        $destinationPath = Storage::disk('public')->path($path) . '/originals'; ;
+        $file = $file->move($destinationPath, $filename);
 
-        self::resize($file, $path . '/thumbnail', 150, 150);
-        self::resize($file, $path . '/medium', 500, 500);
+        // Сохраняет миниатюру сюда
+        $destinationPath = Storage::disk('public')->path($path) . '/thumbnail' ;
+//        dd($destinationPath);
+        $imgFile = Image::make($file->getRealPath());
+//        dd($imgFile);mkdir
+        if (!is_dir($destinationPath)) mkdir($destinationPath);
+        $imgFile->resize(150, 150, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath . '/' .$filename);
 
+        // Сохраняет среднее изображение сюда
+        $destinationPath = Storage::disk('public')->path($path) . '/medium' ;
+        if (!is_dir($destinationPath)) mkdir($destinationPath);
+        $imgFile = Image::make($file->getRealPath());
+        $imgFile->resize(500, 500, function ($constraint) {
+            $constraint->aspectRatio();})
+            ->save($destinationPath.'/'.$filename);
         return $filename;
     }
 
@@ -36,16 +51,9 @@ class ImageService
      * @param $height
      * @return bool
      */
-    public static function resize($file, $path, $width, $height): bool
+    public static function deleteOld($filename, $path): bool
     {
-        $filename = $file->hashName();
-        $destinationPath = Storage::path('public/'.$path);
-        // Сохраняет миниатюру сюда
-        $imgFile = Image::make($file->getRealPath());
-        $imgFile->resize($width, $height, function ($constraint) {
-            $constraint->aspectRatio();})
-            ->save($destinationPath.'/'.$filename);
-
+        Storage::disk('public')->delete([$path .'/originals/' . $filename, $path .'/thumbnail/' . $filename, $path .'/medium/' . $filename]);
         return true;
     }
 }

@@ -153,9 +153,10 @@
 
                                         <select class="select form-control-lg" name="track_id">
                                             <option value="0" disabled selected>Выберите направление</option>
+
                                             @foreach($tracks as $track)
-                                                <option value="{{ $track['id'] }}"
-                                                        @if(old('track_id') == $track['id']) selected @endif>{{ $track['name'] }}</option>
+                                                <option value="{{ $track->id }}"
+                                                        @if(old('track_id') == $track->id) selected @endif>{{ $track->title }}</option>
                                             @endforeach
                                         </select>
                                         <label class="form-label select-label">Направление</label>

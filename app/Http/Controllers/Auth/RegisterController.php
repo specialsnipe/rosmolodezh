@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Gender;
 use App\Models\Occupation;
+use App\Models\Track;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,25 +14,11 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        $tracks = [
-            [
-                'id' => '1',
-                'name' => 'Дизайн',
-            ],
-            [
-                'id' => '2',
-                'name' => 'Программирование',
-            ],
-            [
-                'id' => '3',
-                'name' => 'Верстка',
-            ],
-        ];
 
         return view('auth.register.index', [
             'genders' => Gender::latest()->get(),
             'occupations' => Occupation::latest()->get(),
-            'tracks' => $tracks
+            'tracks' => Track::latest()->get()
         ]);
     }
 

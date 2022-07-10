@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ChangePasswordUserRequest;
-use App\Services\ResizeImage;
+use App\Services\ImageService;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\Gender;
@@ -55,15 +55,12 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-
-        $data['password'] = Hash::make($data['password']);
-//        dd($request->file('file'));
-        $filename = ResizeImage::make($request->file('file'), 'users/avatars', 150, 150);
-
+        $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;
+        $data['password'] = Hash::make($data['password']);
 
         $user = User::firstOrCreate($data);
-        return redirect()->route('admin.users.index')->withInput(['user' => $user]);
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -96,23 +93,30 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return RedirectResponse
+     * @return \Exception|RedirectResponse
      */
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-        try {
 
-            if (!$request->hasFile('file')) {
+        if (!$request->hasFile('file')) {
+            try {
                 $user->updateOrFail($request->validated());
                 return redirect()->route('admin.users.show', $user->id);
+            } catch (\Exception $exception) {
+                return dd($exception);
             }
-            $filename = ResizeImage::make($request->file('file'), 'users/avatars', 150, 150);
-            $data['avatar'] = $filename;
+        }
+        ImageService::deleteOld($user->avatar, 'users/avatars');
+        $filename = ImageService::make($request->file('file'), 'users/avatars');
+        $data['avatar'] = $filename;
+
+        try {
             $user->updateOrFail($data);
         } catch (\Exception $exception) {
             return dd($exception);
         }
+
         return redirect()->route('admin.users.show', $user->id);
     }
 
