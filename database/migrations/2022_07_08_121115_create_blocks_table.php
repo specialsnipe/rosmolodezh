@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('date_start');
             $table->dateTime('date_end');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

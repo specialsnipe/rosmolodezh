@@ -21,18 +21,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'login',
         'first_name',
         'last_name',
         'father_name',
-        'gender_id',
-        'role_id',
         'avatar',
-        'about',
         'age',
-        'email',
-        'login',
-        'password',
+        'about',
+        'gender_id',
         'occupation_id',
+        'role_id',
+        'email',
+        'password',
         'tg_url',
         'vk_url',
     ];
@@ -110,4 +110,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Track::class)->withTimestamps();
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function block()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

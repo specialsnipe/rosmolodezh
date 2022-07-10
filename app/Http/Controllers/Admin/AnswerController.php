@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Block;
-use App\Http\Requests\StoreBlockRequest;
-use App\Http\Requests\UpdateBlockRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAnswerRequest;
+use App\Http\Requests\UpdateAnswerRequest;
+use App\Models\Answer;
 
-class BlockController extends Controller
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class BlockController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBlockRequest  $request
+     * @param  \App\Http\Requests\StoreAnswerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlockRequest $request)
+    public function store(StoreAnswerRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class BlockController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Block  $block
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Block $block)
+    public function show(Answer $answer)
     {
         //
     }
@@ -53,10 +54,10 @@ class BlockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Block  $block
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Block $block)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -64,11 +65,11 @@ class BlockController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBlockRequest  $request
-     * @param  \App\Models\Block  $block
+     * @param  \App\Http\Requests\UpdateAnswerRequest  $request
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBlockRequest $request, Block $block)
+    public function update(UpdateAnswerRequest $request, Answer $answer)
     {
         //
     }
@@ -76,10 +77,10 @@ class BlockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Block  $block
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Block $block)
+    public function destroy(Answer $answer)
     {
         //
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer;
-use App\Http\Requests\StoreAnswerRequest;
-use App\Http\Requests\UpdateAnswerRequest;
+use App\Models\AnswerFile;
+use App\Http\Requests\StoreAnswerFileRequest;
+use App\Http\Requests\UpdateAnswerFileRequest;
 
-class AnswerController extends Controller
+class AnswerFileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAnswerRequest  $request
+     * @param  \App\Http\Requests\StoreAnswerFileRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAnswerRequest $request)
+    public function store(StoreAnswerFileRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\AnswerFile  $answerFile
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
+    public function show(AnswerFile $answerFile)
     {
         //
     }
@@ -53,10 +53,10 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\AnswerFile  $answerFile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(AnswerFile $answerFile)
     {
         //
     }
@@ -64,11 +64,11 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnswerRequest  $request
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Http\Requests\UpdateAnswerFileRequest  $request
+     * @param  \App\Models\AnswerFile  $answerFile
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAnswerRequest $request, Answer $answer)
+    public function update(UpdateAnswerFileRequest $request, AnswerFile $answerFile)
     {
         //
     }
@@ -76,10 +76,10 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\AnswerFile  $answerFile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy(AnswerFile $answerFile)
     {
         //
     }

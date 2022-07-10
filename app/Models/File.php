@@ -5,27 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Answer extends Model
+class File extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'files';
     protected $fillable = [
         'title',
+        'url',
         'body',
+        'file_name',
+        'file_type',
+        'user_id',
+        'track_id',
+        'block_id',
         'exercise_id',
-        'user_id'
     ];
-
 
     /**
      * Relation with users (one to many)
      * @return BelongsTo
      */
-    public function user(): BelongsTo
+    public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -34,17 +37,26 @@ class Answer extends Model
      * Relation with exercises (one to many)
      * @return BelongsTo
      */
-    public function exercise(): BelongsTo
+    public function exercise():BelongsTo
     {
         return $this->belongsTo(Exercise::class);
     }
+
     /**
-     *  Relation with answer_files (one to many)
-     * @return HasMany
+     * Relation with blocks (one to many)
+     * @return BelongsTo
      */
-    public function answerFiles(): HasMany
+    public function block():BelongsTo
     {
-        return $this->hasMany(AnswerFile::class);
+        return $this->belongsTo(Block::class);
     }
 
+    /**
+     * Relation with tracks (one to many)
+     * @return BelongsTo
+     */
+    public function track():BelongsTo
+    {
+        return $this->belongsTo(Track::class);
+    }
 }
