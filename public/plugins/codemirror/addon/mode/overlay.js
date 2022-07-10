@@ -7,7 +7,7 @@
 // can override the style of text. Both modes get to parse all of the
 // text, but when both assign a non-null style to a piece of code, the
 // overlay wins, unless the combine argument was true and not overridden,
-// or state.overlay.combineTokens was true, in which case the styles are
+// or state.overlay.combineTokens was true, in which case the css are
 // combined.
 
 (function(mod) {

@@ -130,7 +130,7 @@
 /*
 Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
-These styles only apply when the standard-theme is activated.
+These css only apply when the standard-theme is activated.
 When it's NOT activated, the fc-button classes won't even be in the DOM.
 */
 .fc {

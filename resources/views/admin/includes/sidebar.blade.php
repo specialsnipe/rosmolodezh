@@ -10,10 +10,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2 bg-cyan" alt="User Image">
+                <img src="{{ asset(auth()->user()->avatar_thumbnail_path) }}" class="img-circle elevation-2 bg-cyan" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Администратор сайта</a>
+                <a href="#" class="d-block">{{ auth()->user()->first_and_last_names }}</a>
             </div>
         </div>
 
@@ -37,17 +37,24 @@
                         </p>
                     </a>
                 </li>
+                <li class="flag-icon-hr">
+                    <hr>
+                </li>
+
                 <li class="nav-item">
-                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-wrench "></i>
+                    <a href="{{ route('admin.tracks.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>
-                            Настройки
+                            Направления
                         </p>
                     </a>
                 </li>
+                <li class="flag-icon-hr">
+                    <hr>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.genders.index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-mars-and-venus"></i>
+                        <i class="nav-icon fa fa-child"></i>
                         <p>
                             Пол
                         </p>
@@ -67,6 +74,19 @@
 
                         <p>
                             Занятость
+                        </p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <hr>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-wrench "></i>
+                        <p>
+                            Настройки
                         </p>
                     </a>
                 </li>

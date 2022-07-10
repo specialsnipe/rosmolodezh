@@ -53,7 +53,7 @@
 
 .cm-s-liquibyte .CodeMirror-activeline-background { background-color: rgba(0, 255, 0, 0.15); }
 
-/* Default styles for common addons */
+/* Default css for common addons */
 .cm-s-liquibyte .CodeMirror span.CodeMirror-matchingbracket { color: #0f0; font-weight: bold; }
 .cm-s-liquibyte .CodeMirror span.CodeMirror-nonmatchingbracket { color: #f00; font-weight: bold; }
 .CodeMirror-matchingtag { background-color: rgba(150, 255, 0, .3); }

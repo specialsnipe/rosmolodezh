@@ -1064,10 +1064,10 @@
   // style strings), which is used to highlight the tokens on the
   // line.
   function highlightLine(cm, line, context, forceToEnd) {
-    // A styles array always starts with a number identifying the
+    // A css array always starts with a number identifying the
     // mode/overlays that it is based on (for easy invalidation).
     var st = [cm.state.modeGen], lineClasses = {};
-    // Compute the base array of styles
+    // Compute the base array of css
     runMode(cm, line.text, cm.doc.mode, context, function (end, style) { return st.push(end, style); },
             lineClasses, forceToEnd);
     var state = context.state;
@@ -1685,7 +1685,7 @@
   // LINE DATA STRUCTURE
 
   // Line objects. These hold state related to a line, including
-  // highlighting info (the styles array).
+  // highlighting info (the css array).
   var Line = function(text, markedSpans, estimateHeight) {
     this.text = text;
     attachMarkedSpans(this, markedSpans);
@@ -1716,8 +1716,8 @@
   }
 
   // Convert a style as returned by a mode (either null, or a string
-  // containing one or more styles) to a CSS style. This is cached,
-  // and also looks for line-wide styles.
+  // containing one or more css) to a CSS style. This is cached,
+  // and also looks for line-wide css.
   var styleToClassCache = {}, styleToClassCacheWithMode = {};
   function interpretTokenStyle(style, options) {
     if (!style || /^\s*$/.test(style)) { return null }
@@ -1730,7 +1730,7 @@
   // up a 'line map', which points at the DOM nodes that represent
   // specific stretches of text, and is used by the measuring code.
   // The returned object contains the DOM node, this map, and
-  // information about line-wide styles that were set by the mode.
+  // information about line-wide css that were set by the mode.
   function buildLineContent(cm, lineView) {
     // The padding-right forces the element to have a 'border', which
     // is needed on Webkit to be able to get line-level bounding

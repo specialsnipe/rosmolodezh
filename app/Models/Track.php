@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,10 +13,34 @@ class Track extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // TODO: заполнить :fillable в этой модели
     protected $fillable = [
         'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'
     ];
+
+//    protected $withCount = [
+//        'blocks_count',
+//    ];
+
+    protected $appends = [
+        'image_original',
+        'image_medium',
+        'image_thumbnail'
+    ];
+
+    public function getImageOriginalAttribute()
+    {
+        return 'storage/tracks/originals/'. $this->image;
+    }
+
+    public function getImageMediumAttribute()
+    {
+        return 'storage/tracks/medium/'. $this->image;
+    }
+
+    public function getImageThumbnailAttribute()
+    {
+        return 'storage/tracks/thumbnail/'. $this->image;
+    }
 
     /**
      * Relation with users (many to many)
@@ -25,6 +50,16 @@ class Track extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    /**
+     * Relation with users (many to one)
+     *
+     * @return BelongsTo
+     */
+    public function curator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'curator_id');
     }
 
     /**

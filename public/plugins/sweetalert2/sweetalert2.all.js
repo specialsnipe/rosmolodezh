@@ -1881,7 +1881,7 @@
 
   const SHOW_CLASS_TIMEOUT = 10;
   /**
-   * Open popup, add necessary classes and styles, fix scrollbar
+   * Open popup, add necessary classes and css, fix scrollbar
    *
    * @param params
    */

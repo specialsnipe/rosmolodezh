@@ -4302,7 +4302,7 @@
     /**
      * dom - Document Object Manipulator
      * Usage:
-     *   dom('<tag>'|<node>[, ...{<attributes>|<$styles>}|<child-node>|'<text>'])
+     *   dom('<tag>'|<node>[, ...{<attributes>|<$css>}|<child-node>|'<text>'])
      * Examples:
      *   dom('div', {id:'xyz'}, dom('p', 'CM rocks!', {$color:'red'}))
      *   dom(document.head, dom('script', 'alert("hello!")'))

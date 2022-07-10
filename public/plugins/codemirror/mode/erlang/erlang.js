@@ -6,7 +6,7 @@
 /*global CodeMirror:true */
 
 // erlang mode.
-// tokenizer -> token types -> CodeMirror styles
+// tokenizer -> token types -> CodeMirror css
 // tokenizer maintains a parse stack
 // indenter uses the parse stack
 

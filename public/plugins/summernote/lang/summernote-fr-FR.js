@@ -1,5 +1,5 @@
 /*!
- * 
+ *
  * Super simple WYSIWYG editor v0.8.20
  * https://summernote.org
  *
@@ -148,7 +148,7 @@ var __webpack_exports__ = {};
         'italic': 'Mettre en italique',
         'underline': 'Mettre en souligné',
         'strikethrough': 'Mettre en texte barré',
-        'removeFormat': 'Nettoyer les styles',
+        'removeFormat': 'Nettoyer les css',
         'justifyLeft': 'Aligner à gauche',
         'justifyCenter': 'Centrer',
         'justifyRight': 'Aligner à droite',

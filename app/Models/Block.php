@@ -21,6 +21,8 @@ class Block extends Model
         'image',
         'track_id',
         'user_id',
+        'date_start',
+        'date_end',
     ];
 
     /**

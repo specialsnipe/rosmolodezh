@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'first_name' => 'Alex',
-            'last_name' => 'Alex',
+            'last_name' => 'Симонов',
+            'first_name' => 'Алексей',
             'father_name' => 'Alex',
             'role_id' => 4,
             'gender_id' => 2,
@@ -28,9 +28,9 @@ class UserSeeder extends Seeder
             'email' => 'alex@mail.ru',
         ]);
         User::create([
-            'first_name' => 'Nikita',
-            'last_name' => 'Nikita',
-            'father_name' => 'Nikita',
+            'last_name' => 'Муругов',
+            'first_name' => 'Никита',
+            'father_name' => 'Сергеевич',
             'role_id' => 4,
             'gender_id' => 2,
             'occupation_id' => 1,

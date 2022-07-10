@@ -39,16 +39,31 @@ class User extends Authenticatable
 
     protected $appends = [
         'avatar_original_path',
-        'avatar_thumbnail_path'
+        'avatar_thumbnail_path',
+        'avatar_medium_path',
+        'first_and_last_names',
+        'all_names'
     ];
 
     public function getAvatarOriginalPathAttribute()
     {
         return 'storage/users/avatars/originals/'. $this->avatar;
     }
+    public function getAvatarMediumPathAttribute()
+    {
+        return 'storage/users/avatars/medium/'. $this->avatar;
+    }
     public function getAvatarThumbnailPathAttribute()
     {
         return 'storage/users/avatars/thumbnail/'. $this->avatar;
+    }
+    public function getFirstAndLastNamesAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+    public function getAllNamesAttribute()
+    {
+        return $this->last_name . ' ' . $this->first_name . ' ' . $this->father_name;
     }
 
     /**

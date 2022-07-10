@@ -31,6 +31,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
+
+    Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
 });
 
 // TODO: Регистрацонные дела

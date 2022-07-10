@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingEmailSeeder::class);
         $this->call(SettingPhoneSeeder::class);
         $this->call(TrackSeeder::class);
+        $this->call(BlockSeeder::class);
 
 
         // \App\Models\User::factory()->create([

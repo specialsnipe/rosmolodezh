@@ -572,8 +572,8 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
 
 
       // Return undefined for verilog tokenizing, or style for TLV token (null not used).
-      // Standard CM styles are used for most formatting, but some TL-Verilog-specific highlighting
-      // can be enabled with the definition of cm-tlv-* styles, including highlighting for:
+      // Standard CM css are used for most formatting, but some TL-Verilog-specific highlighting
+      // can be enabled with the definition of cm-tlv-* css, including highlighting for:
       //   - M4 tokens
       //   - TLV scope indentation
       //   - Statement delimitation (enabled by tlvTrackStatements)
@@ -601,7 +601,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
 
           // Compute indentation state:
           //   o Auto indentation on next line
-          //   o Indentation scope styles
+          //   o Indentation scope css
           var indented = state.indented;
           var depth = indented / tlvIndentUnit;
           if (depth <= state.tlvIndentationStyle.length) {
