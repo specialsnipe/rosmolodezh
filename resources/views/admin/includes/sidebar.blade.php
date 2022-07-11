@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset(auth()->user()->avatar_thumbnail_path) }}" class="img-circle elevation-2 bg-cyan" alt="User Image">
+                <img src="{{ asset(auth()->user()->avatar_thumbnail_path) }}" class="img-circle" alt="Миниатюра">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ auth()->user()->first_and_last_names }}</a>

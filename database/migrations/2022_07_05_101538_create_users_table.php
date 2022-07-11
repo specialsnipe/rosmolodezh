@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('father_name');
-            $table->string('avatar')->default('default_avatar.jpg');
+            $table->string('avatar')->default('medium_default_avatar.jpg');
             $table->integer('age')->nullable();
             $table->text('about')->nullable();
             $table->foreignId('gender_id')->nullable()->constrained()->cascadeOnDelete();

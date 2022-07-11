@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
     public function getAvatarThumbnailPathAttribute()
     {
-        return 'storage/users/avatars/thumbnail/medium_'. $this->avatar;
+        return 'storage/users/avatars/thumbnail/thumbnail_'. $this->avatar;
     }
     public function getFirstAndLastNamesAttribute()
     {
