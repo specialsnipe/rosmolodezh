@@ -39,8 +39,10 @@
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file" id="exampleInputFile" value="{{old('file')}}">
-                                        <label class="custom-file-label" for="exampleInputFile">Выберите картинку</label>
+                                        <input type="file" class="custom-file-input" name="file" id="exampleInputFile"
+                                               value="{{old('file')}}">
+                                        <label class="custom-file-label" for="exampleInputFile">Выберите
+                                            картинку</label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>

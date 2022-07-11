@@ -56,7 +56,9 @@
                                 <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
                                 <td>{{$post->user->login}}</td>
                                 <td>{!!$post->body!!}</td>
-                                <td>Картинки</td>
+                                <td>@foreach($post->images as $image)
+                                        <img src="{{ $image->url }}" alt="" width="100px">
+                                    @endforeach</td>
                             </tr>
                             @empty
                                 <tr>

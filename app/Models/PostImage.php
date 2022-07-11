@@ -12,6 +12,30 @@ class PostImage extends Model
 
     protected $guarded = false;
 
+    protected $appends = [
+        'original_image',
+        'medium_image',
+        'thumbnail_image',
+        'get_filename',
+    ];
+
+    public function getOriginalImageAttribute()
+    {
+        return asset('storage/posts/images/originals/' . $this->name);
+    }
+    public function getThumbnailImageAttribute()
+    {
+        return asset('storage/posts/images/thumbnail/thumbnail_' . $this->name);
+    }
+    public function getMediumImageAttribute()
+    {
+        return asset('storage/posts/images/medium/medium_' . $this->name);
+    }
+    public function getGetFilenameAttribute()
+    {
+        return $this->name;
+    }
+
     public function post()
     {
         return $this->belongsTo(Post::class);

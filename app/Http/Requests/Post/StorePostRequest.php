@@ -24,9 +24,21 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => '',
-            'user_id' => '',
-            'body' => '',
+            'title' => 'required',
+            'file' => ['required', 'array'],
+            'file.*'=>['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'body' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required'=> 'Поле название обязательно',
+            'file.required'=>'Загрузите картинки',
+            'file.*.required'=> 'Загрузите картинки',
+            'file.*.image' => 'Файл должен быть картинкой',
+            'file.*.memes:jpg,jpeg,png' => 'Возможные форматы файлов:jpg,jpeg,png',
+            'body.required' => 'Поле текст статьи обязательно'
         ];
     }
 }
