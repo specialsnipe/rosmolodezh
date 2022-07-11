@@ -55,14 +55,11 @@
                         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-block pt-2 pl-3">
                                 <form action="{{route('admin.users.index')}}" method="get">
-                                    @csrf
-                                    <div style="display: flex">
                                         <div class="form-group mr-3">
-
                                             <div style="display: flex;">
                                                 <div class="mr-3">
                                                     <label for="last_name">Фамилия</label>
-                                                    <input value="" type="text"
+                                                    <input value="{{request()->last_name}}"
                                                            name="last_name"
                                                            class="form-control mb-2"
                                                            id="last_name"
@@ -71,7 +68,7 @@
 
                                                 <div class="mr-3">
                                                     <label for="first_name">Имя</label>
-                                                    <input value="" type="text"
+                                                    <input value="{{request()->first_name}}"
                                                            name="first_name"
                                                            class="form-control mb-2"
                                                            id="first_name"
@@ -79,26 +76,25 @@
                                                 </div>
                                                 <div class="mr-3">
                                                     <label for="father_name">Отчество</label>
-                                                    <input value="" type="text"
+                                                    <input value="{{request()->father_name}}"
                                                            name="father_name"
                                                            class="form-control mb-2"
                                                            id="father_name"
                                                            placeholder="Отчество">
                                                 </div>
-                                                <div class=" col-6 form-group mt-3">
-                                                    <select class="select2" name="roles_id[]" multiple="multiple"
+
+                                                <div class="mr-3">
+                                                    <label>Роль</label>
+                                                    <select class="select2" name="role_id[]" multiple="multiple"
                                                             data-placeholder="Выберете роль" style="width: 100%;">
                                                         @foreach($roles as $role)
                                                             <option
-                                                                {{is_array(request()->roles_id)&& in_array($role->id,request()->roles_id)?'selected':''}} value="{{$role->id}}">{{$role->name}}</option>
+                                                                {{is_array(request()->role_id)&& in_array($role->id,request()->role_id)?'selected':''}} value="{{$role->id}}">{{$role->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-
-
                                             </div>
                                         </div>
-                                    </div>
 
                                     <button type="submit" class="btn btn-info mb-5">Применить фильтр</button>
                                 </form>
@@ -162,6 +158,7 @@
                         @endforelse
                     </table>
                 </div>
+
                 <div class="col-2 mt-3">
                     <a href="{{route('admin.users.create')}}"
                        class="btn btn-block btn-primary">Добавить пользователя</a>

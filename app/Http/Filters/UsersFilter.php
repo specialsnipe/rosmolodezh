@@ -34,7 +34,7 @@ class UsersFilter extends AbstractFilter
 
     public function firstName(Builder $builder, $value)
     {
-        dd($value);
+
         $builder->where('first_name', 'like', "%{$value}%");
     }
 
