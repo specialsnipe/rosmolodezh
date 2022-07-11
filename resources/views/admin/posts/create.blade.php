@@ -38,11 +38,10 @@
                             <div class="form-group">
                                 <label for="image">Картинки для новости</label>
                                 <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file[]" id="image"
-                                               value="{{old('file')}}" multiple>
-                                        <label class="custom-file-label" for="exampleInputFile">Выберите
-                                            картинку</label>
+                                    <div class="dropzone" id="my-dropzone" name="mainFileUploader">
+                                        <div class="fallback">
+                                            <input type="file" class="custom-file-input" name="file[]" id="image" multiple>
+                                        </div>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
@@ -92,3 +91,51 @@
     </div>
 
 @endsection
+
+@push('script')
+    <script>
+        Dropzone.options.myDropzone = {
+            url: @js(route('admin.posts.store')),
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 100,
+            acceptedFiles: "image/*",
+
+            init: function () {
+
+                var submitButton = document.querySelector("#submit-all");
+                var wrapperThis = this;
+
+                submitButton.addEventListener("click", function () {
+                    wrapperThis.processQueue();
+                });
+
+                this.on("addedfile", function (file) {
+
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button class='btn btn-lg dark'>Remove File</button>");
+
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        // Remove the file preview.
+                        wrapperThis.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+
+                this.on('sendingmultiple', function (data, xhr, formData) {
+                    formData.append("Username", $("#Username").val());
+                });
+            }
+        };
+    </script>
+@endpush

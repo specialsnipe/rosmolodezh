@@ -12,7 +12,6 @@ class Exercise extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'exercise';
     protected $fillable = [
         'title',
         'body',
@@ -20,6 +19,14 @@ class Exercise extends Model
         'block_id'
     ];
 
+    /**
+     *  Relation with users (one to many)
+     * @return BelongsTo
+     */
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      *  Relation with users (one to many)
      * @return HasMany

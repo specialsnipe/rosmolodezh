@@ -13,7 +13,7 @@ class StoreTrackRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -24,7 +24,33 @@ class StoreTrackRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required','unique:tracks'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'icon' => '',
+            'body' => ['required'],
+            'tg_url' => ['required','url'],
+            'curator_id' => ['required'],
+        ];
+    }
+
+    /**
+     * Validation messages
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'Название направления обязательно',
+            'title.unique' => 'Направление с таким названием уже существует',
+            'image.required' => 'Изображение направления обязательно',
+            'image.image' => 'Здесь должно быть изображение',
+            'image.mimes' => 'Изображение должно быть такого формата: .jpg .jpeg .png',
+            'image.max' => 'Изображение не должно весить больше 2мб',
+            'body.required' => 'Описание направления обязательно',
+            'tg_url.required' => 'Ссылка на телеграмм чат направления обязательна',
+            'tg_url.url' => 'Это поле должно быть ссылкой',
+            'curator_id.required' => 'Выберите куратора направления',
         ];
     }
 }

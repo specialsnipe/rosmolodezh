@@ -56,7 +56,10 @@ class ImageService
      */
     public static function deleteOld($filename, $path): bool
     {
-        Storage::disk('public')->delete([$path .'/originals/' . $filename, $path .'/thumbnail/' . $filename, $path .'/medium/' . $filename]);
-        return true;
+        if(Storage::disk('public')->exists($path .'/originals/' . $filename)) {
+            Storage::disk('public')->delete([$path .'/originals/' . $filename, $path .'/thumbnail/' . $filename, $path .'/medium/' . $filename]);
+            return true;
+        }
+        return false;
     }
 }

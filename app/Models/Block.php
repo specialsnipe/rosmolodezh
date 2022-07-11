@@ -14,7 +14,6 @@ class Block extends Model
 
     protected $table = 'blocks';
 
-    // TODO: заполнить :fillable в этой модели
     protected $fillable = [
         'title',
         'body',
@@ -23,6 +22,10 @@ class Block extends Model
         'user_id',
         'date_start',
         'date_end',
+    ];
+
+    protected $withCount = [
+        'exercises'
     ];
 
     /**

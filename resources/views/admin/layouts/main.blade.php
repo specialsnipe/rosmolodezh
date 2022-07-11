@@ -26,6 +26,8 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
 
+    <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
+
     @stack('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -133,8 +135,8 @@
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
+
+<script src="{{asset('js/dropzone.js')}}" ></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{--<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>--}}
 <script>

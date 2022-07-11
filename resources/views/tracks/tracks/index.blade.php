@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Все направления</h1>
+                        <h1 class="m-0">Траектории</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                            <li class="breadcrumb-item active">Направления</li>
+                            <li class="breadcrumb-item active">Траектории</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,13 +33,7 @@
                         @forelse($tracks as $track)
                         <div class="track_container">
                             <div class="tack_header">
-                                <h2><a href="{{ route('admin.tracks.show', $track->id) }}"> Направление "{{ $track->title }}" </a></h2>
-                                <div class="track_manage_tab">
-                                    <a href="{{ route('admin.tracks.show', $track->id) }}"> <i class="fa fa-eye"></i></a>
-                                    <a href="{{ route('admin.tracks.edit', $track->id) }}">Изменить <i class="fa fa-pen"></i></a>
-                                    {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
-                                    <a href="#">Удалить <i class="fa fa-trash"></i></a>
-                                </div>
+                                <h2>Направление "{{ $track->title }}"</h2>
                             </div>
                             <div class="tack_info">
                                 <div class="track_image">
@@ -109,7 +103,7 @@
                                     </div>
                                 @endforelse
                                 {{-- TODO: Сделать сслыку на добавление блока--}}
-                                        <a class="btn btn-success" style="width: 100%; height: 40px;">  <i class="fa fa-plus"></i> Добавить новый блок </a>
+                                        <a class="btn btn-success" style="width: 100%; height: 50px;">  <i class="fa fa-plus"></i> Добавить новый блок </a>
 
                             </div>
 
