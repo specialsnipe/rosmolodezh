@@ -30,7 +30,7 @@ class ImageService
 
         $imgFile->resize(150, 150, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath . '/thumb_' .$filename);
+        })->save($destinationPath . '/thumbnail_' .$filename);
 
         // Сохраняет среднее изображение сюда
         $destinationPath = Storage::disk('public')->path($path) . '/medium' ;
