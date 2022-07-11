@@ -25,6 +25,14 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
+                        @if($errors->all())
+                            <ul>
+                            @foreach($errors->all() as $error)
+
+                                    <li> {{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        @endif
                         <form action="{{route('admin.posts.update', $post->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
@@ -77,6 +85,10 @@
                             <div class="form-group">
                                 <label for="excerpt">Краткое описание</label>
                                 <textarea class="form-control" id="excerpt" name="excerpt">{{$post->excerpt}}</textarea>
+
+                                @error('excerpt')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="summernote">Основной текст статьи</label>
