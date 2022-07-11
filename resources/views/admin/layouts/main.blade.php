@@ -32,7 +32,7 @@
     @stack('style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
 
     <!-- Navbar -->
@@ -159,7 +159,7 @@
     });
     $('.select2').select2()
 </script>
-
+@vite("resources/js/app.js")
 
 @stack('script')
 </body>

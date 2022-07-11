@@ -3,7 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    base: command === 'serve' ? '' : '/build/',
+    // base: command === 'serve' ? '' : '/build/',
     publicDir: 'fake_dir_so_nothing_gets_copied',
     build: {
         manifest: true,

@@ -25,7 +25,10 @@ class Track extends Model
     protected $appends = [
         'image_original',
         'image_medium',
-        'image_thumbnail'
+        'image_thumbnail',
+        'url_image_original',
+        'url_image_medium',
+        'url_image_thumbnail'
     ];
 
     public function getImageOriginalAttribute()
@@ -41,6 +44,21 @@ class Track extends Model
     public function getImageThumbnailAttribute()
     {
         return 'storage/tracks/thumbnail/'. $this->image;
+    }
+
+    public function getUrlImageOriginalAttribute()
+    {
+        return asset('storage/tracks/originals/'. $this->image);
+    }
+
+    public function getUrlImageMediumAttribute()
+    {
+        return asset('storage/tracks/medium/'. $this->image);
+    }
+
+    public function getUrlImageThumbnailAttribute()
+    {
+        return asset('storage/tracks/thumbnail/'. $this->image);
     }
 
     /**

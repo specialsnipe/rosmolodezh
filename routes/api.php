@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => 'admin', 'prefix'=> 'admin'], function () {
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::apiResource('tracks', \App\Http\Controllers\Api\TrackController::class);
+    Route::get('/tracks/{track}/blocks',[\App\Http\Controllers\Api\TrackController::class, 'allBlocks']);
 });
