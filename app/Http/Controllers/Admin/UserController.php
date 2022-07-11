@@ -104,9 +104,10 @@ class UserController extends Controller
                 $user->updateOrFail($request->validated());
                 return redirect()->route('admin.users.show', $user->id);
             } catch (\Exception $exception) {
-                return dd($exception);
+                return abort(501, $exception);
             }
         }
+
         ImageService::deleteOld($user->avatar, 'users/avatars');
         $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;

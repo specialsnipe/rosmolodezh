@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         User::create([
             'last_name' => 'Симонов',
             'first_name' => 'Алексей',
-            'father_name' => 'Alex',
+            'father_name' => 'Всеволодович',
             'role_id' => 4,
             'gender_id' => 2,
             'occupation_id' => 1,

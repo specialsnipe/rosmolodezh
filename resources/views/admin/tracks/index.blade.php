@@ -63,50 +63,97 @@
                                 </table>
                             </div>
                             <div class="track_blocks hidden" style="display: none;">
-                                <div class="track_block">
-                                    <div class="block_image">
-                                        <img src="" alt="" width="100%">
-                                    </div>
-                                    <div class="block_info">
-                                        <div class="block_header">
-                                            <h5> Начальные знания в дизайне. Изучение форм, размеров и цвета</h5>
-
-                                            <div class="block_text">
-                                                <table>
-                                                    <tr>
-                                                        <td>Состояние:</td>
-                                                        <td><b>Открыт</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Количество заданий:</td>
-                                                        <td><b>15 заданий</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Дата открытия:</td>
-                                                        <td><b>10.07.2022</b></td>
-                                                    </tr>
-                                                </table>
-                                                <table>
-                                                    <tr>
-                                                        <td>Уровень освоения:</td>
-                                                        <td><b>Простой</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Дата закрытия:</td>
-                                                        <td><b>11.07.2022</b></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                @forelse($track->blocks as $block)
+                                    <div class="track_block">
+                                        <div class="block_image">
+                                            <img src="" alt="" width="100%">
                                         </div>
-                                        <a href="#" class="block_all">
-                                            Посмотреть все задания этого блока
-                                        </a>
+                                        <div class="block_info">
+                                            <div class="block_header">
+                                                <h5> {{ $block->title }}</h5>
+
+                                                <div class="block_text">
+                                                    <table>
+                                                        <tr>
+                                                            <td>Состояние:</td>
+                                                            <td><b>Открыт</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Количество заданий:</td>
+                                                            <td><b>15 заданий</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Дата открытия:</td>
+                                                            <td><b>{{ $block->date_start }}</b></td>
+                                                        </tr>
+                                                    </table>
+                                                    <table>
+                                                        <tr>
+                                                            <td>Уровень освоения:</td>
+                                                            <td><b>Простой</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Дата закрытия:</td>
+                                                            <td><b>{{ $block->date_end }}</b></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="block_all">
+                                                Посмотреть все задания этого блока
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                                @empty
+                                    <div class="track_block">
+                                        <div class="block_image">
+                                            <img src="" alt="" width="100%">
+                                        </div>
+                                        <div class="block_info">
+                                            <div class="block_header">
+                                                <h5> Начальные знания в дизайне. Изучение форм, размеров и цвета</h5>
+
+                                                <div class="block_text">
+                                                    <table>
+                                                        <tr>
+                                                            <td>Состояние:</td>
+                                                            <td><b>Открыт</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Количество заданий:</td>
+                                                            <td><b>15 заданий</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Дата открытия:</td>
+                                                            <td><b>10.07.2022</b></td>
+                                                        </tr>
+                                                    </table>
+                                                    <table>
+                                                        <tr>
+                                                            <td>Уровень освоения:</td>
+                                                            <td><b>Простой</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Дата закрытия:</td>
+                                                            <td><b>11.07.2022</b></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="block_all">
+                                                Посмотреть все задания этого блока
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforelse
                             </div>
 
                             <div class="open_blocks"><img src="{{ asset('images/arrow.png') }}" alt="Открыть блок" width="30px"></div>

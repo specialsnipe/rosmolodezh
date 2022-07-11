@@ -51,11 +51,11 @@ class User extends Authenticatable
     }
     public function getAvatarMediumPathAttribute()
     {
-        return 'storage/users/avatars/medium/'. $this->avatar;
+        return 'storage/users/avatars/medium/medium_'. $this->avatar;
     }
     public function getAvatarThumbnailPathAttribute()
     {
-        return 'storage/users/avatars/thumbnail/'. $this->avatar;
+        return 'storage/users/avatars/thumbnail/medium_'. $this->avatar;
     }
     public function getFirstAndLastNamesAttribute()
     {

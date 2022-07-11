@@ -19,26 +19,29 @@ class ImageService
     {
         $filename = $file->hashName();
         // Сохраняет оригинал сюда
-        $destinationPath = Storage::disk('public')->path($path) . '/originals'; ;
+        $destinationPath = Storage::disk('public')->path($path) . '/originals';
         $file = $file->move($destinationPath, $filename);
 
         // Сохраняет миниатюру сюда
         $destinationPath = Storage::disk('public')->path($path) . '/thumbnail' ;
-//        dd($destinationPath);
         $imgFile = Image::make($file->getRealPath());
-//        dd($imgFile);mkdir
+
         if (!is_dir($destinationPath)) mkdir($destinationPath);
+
         $imgFile->resize(150, 150, function ($constraint) {
             $constraint->aspectRatio();
-        })->save($destinationPath . '/' .$filename);
+        })->save($destinationPath . '/thumb_' .$filename);
 
         // Сохраняет среднее изображение сюда
         $destinationPath = Storage::disk('public')->path($path) . '/medium' ;
-        if (!is_dir($destinationPath)) mkdir($destinationPath);
         $imgFile = Image::make($file->getRealPath());
+
+        if (!is_dir($destinationPath)) mkdir($destinationPath);
+
         $imgFile->resize(500, 500, function ($constraint) {
             $constraint->aspectRatio();})
-            ->save($destinationPath.'/'.$filename);
+            ->save($destinationPath.'/medium_'.$filename);
+
         return $filename;
     }
 

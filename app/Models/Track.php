@@ -17,9 +17,9 @@ class Track extends Model
         'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'
     ];
 
-//    protected $withCount = [
-//        'blocks_count',
-//    ];
+    protected $withCount = [
+        'blocks',
+    ];
 
     protected $appends = [
         'image_original',

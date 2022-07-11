@@ -20,7 +20,7 @@ class TrackController extends Controller
     public function index(): View|Factory|Application
     {
         return view('admin.tracks.index', [
-            'tracks' => Track::all()
+            'tracks' => Track::all(),
         ]);
     }
 

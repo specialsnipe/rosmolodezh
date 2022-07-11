@@ -37,7 +37,7 @@
                             <label for="exampleInputFile">Preview image</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="file" id="exampleInputFile" value="{{old('file')}}">
+                                    <input type="file" class="custom-file-input" name="file" id="exampleInputFile" value="{{old('file')}}" multiple>
                                     @error('file')
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
