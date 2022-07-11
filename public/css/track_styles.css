@@ -23,6 +23,7 @@ h2, h3, h4, h5 {
 .track_blocks {
     box-sizing: content-box;
     display: grid;
+    grid-template-columns: repeat(2, auto);
     background: #444444;
     padding: 20px;
     border-radius: 10px;
@@ -32,7 +33,9 @@ h2, h3, h4, h5 {
 
 .track_block {
     box-sizing: content-box;
-    width: auto;
+    width: 85%;
+    display: grid;
+    grid-template-columns: auto;
     background: white;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -43,12 +46,6 @@ h2, h3, h4, h5 {
     margin-bottom: 0;
 }
 
-.block_image {
-    width: 150px;
-    height: 150px;
-    border-radius: 4px;
-    background: linear-gradient(195deg, #6fea8c, #5aa181);
-}
 
 .tack_info {
     display: grid;
@@ -80,18 +77,14 @@ h2, h3, h4, h5 {
     transform: rotate(180deg);
 }
 
-table tr {
+table.track_table tr {
     height: 25px;
 }
 
-table tr td:first-child {
+table.track_table tr td:first-child {
     text-align: right;
 }
 
-.track_block {
-    display: grid;
-    grid-template-columns: 180px auto;
-}
 
 .block_info {
     display: flex;
@@ -111,7 +104,7 @@ table tr td:first-child {
     text-decoration: none;
     color: white;
     background: #444444;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     text-align: center;
     border-radius: 5px;

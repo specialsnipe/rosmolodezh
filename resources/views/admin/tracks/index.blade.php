@@ -39,25 +39,25 @@
                                 <div class="track_image">
                                     <img src="{{ asset($track->image_original) }}" alt="дизайн" height="150px">
                                 </div>
-                                <table class="tack_text">
+                                <table class="tack_text track_table">
                                     <tr>
-                                        <td>Куратор направления:</td>
-                                        <td>{{ $track->curator->all_names }}</td>
+                                        <td>Куратор направления: </td>
+                                        <td><a href="{{ route('admin.users.show', $track->curator_id) }}">{{ $track->curator->all_names }}</a></td>
                                     </tr>
                                     <tr>
-                                        <td>Количество блоков:</td>
-                                        <td>12 блоков</td>
+                                        <td>Количество блоков: </td>
+                                        <td>{{ $track->blocks_count }} блоков</td>
                                     </tr>
                                     <tr>
-                                        <td>Всего обучающихся:</td>
-                                        <td>56 человек</td>
+                                        <td>Всего обучающихся: </td>
+                                        <td>{{ $track->users_count }} человек</td>
                                     </tr>
                                     <tr>
-                                        <td>Успеваемость:</td>
+                                        <td>Успеваемость:  </td>
                                         <td><span class="status_block status_success">100%</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Средний балл:</td>
+                                        <td>Средний балл: </td>
                                         <td><span class="status_block status_success">4.7</span></td>
                                     </tr>
                                 </table>
@@ -65,12 +65,9 @@
                             <div class="track_blocks hidden" style="display: none;">
                                 @forelse($track->blocks as $block)
                                     <div class="track_block">
-                                        <div class="block_image">
-                                            <img src="" alt="" width="100%">
-                                        </div>
                                         <div class="block_info">
                                             <div class="block_header">
-                                                <h5> {{ $block->title }}</h5>
+                                                <h5>{{ $block->id }} | {{ $block->title }}</h5>
 
                                                 <div class="block_text">
                                                     <table>
@@ -83,28 +80,19 @@
                                                             <td><b>15 заданий</b></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Дата открытия:</td>
-                                                            <td><b>{{ $block->date_start }}</b></td>
-                                                        </tr>
-                                                    </table>
-                                                    <table>
-                                                        <tr>
                                                             <td>Уровень освоения:</td>
                                                             <td><b>Простой</b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Дата закрытия:</td>
-                                                            <td><b>{{ $block->date_end }}</b></td>
                                                         </tr>
                                                     </table>
                                                 </div>
                                             </div>
+                                            {{-- TODO: Сделать сслыку на block.tasks.show  ? --}}
                                             <a href="#" class="block_all">
-                                                Посмотреть все задания этого блока
+                                                Задания
+                                            </a>
+                                            {{-- TODO: Сделать сслыку на block.show --}}
+                                            <a href="#" class="block_all">
+                                                Управление блоком
                                             </a>
                                         </div>
                                     </div>
@@ -154,16 +142,14 @@
                                         </div>
                                     </div>
                                 @endforelse
+                                {{-- TODO: Сделать сслыку на добавление блока--}}
+                                <a class="btn btn-success">  <i class="fa fa-plus"></i> Добавить новый блок </a>
                             </div>
 
                             <div class="open_blocks"><img src="{{ asset('images/arrow.png') }}" alt="Открыть блок" width="30px"></div>
                         </div>
-                            @empty
-                                <tr>
-                                    <td></td>
-                                    <td>Постов нет</td>
-                                </tr>
-                            </tbody>
+                        @empty
+                        <h2>Направления ещё не созданы</h2>
                         @endforelse
                 </div>
             </div>

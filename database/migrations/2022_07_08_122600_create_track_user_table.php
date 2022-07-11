@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_track', function (Blueprint $table) {
+        Schema::create('track_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('track_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_track');
+        Schema::dropIfExists('track_user');
     }
 };

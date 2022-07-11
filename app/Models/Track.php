@@ -19,6 +19,7 @@ class Track extends Model
 
     protected $withCount = [
         'blocks',
+        'users',
     ];
 
     protected $appends = [

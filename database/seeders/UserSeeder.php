@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Track;
 use App\Models\User;
+use App\Models\TrackUser;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
