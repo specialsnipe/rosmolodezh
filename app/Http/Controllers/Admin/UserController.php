@@ -58,6 +58,7 @@ class UserController extends Controller
         $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;
         $data['password'] = Hash::make($data['password']);
+        unset($data['file']);
 
         $user = User::firstOrCreate($data);
         return redirect()->route('admin.users.index');
@@ -104,7 +105,7 @@ class UserController extends Controller
                 $user->updateOrFail($request->validated());
                 return redirect()->route('admin.users.show', $user->id);
             } catch (\Exception $exception) {
-                return abort(501, $exception);
+                return abort(501);
             }
         }
 
@@ -116,7 +117,7 @@ class UserController extends Controller
         try {
             $user->updateOrFail($data);
         } catch (\Exception $exception) {
-            return dd($exception);
+            return abort(501);
         }
 
         return redirect()->route('admin.users.show', $user->id);
