@@ -29,7 +29,7 @@
                             @csrf
                             @method('put')
                             <div class="form-group w-50">
-                                <label for="name" >Название новости</label>
+                                <label for="name" >Изменить название новости</label>
                                 <input type="text" class="form-control " name="title" placeholder="Название" id="name"
                                        value="{{$post->title}}">
                                 @error('title')
@@ -37,7 +37,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="image">Картинки для новости</label>
+                                <label for="image">Добавить другие картинки или оставить прежние</label>
                                 <td>
                                     <div class="image_container m-3">
                                         @foreach($post->images as $image)
@@ -75,17 +75,17 @@
                                 {{--                                @endif--}}
                             </div>
                             <div class="form-group">
-                                <label for="excerpt">Краткое описание</label>
+                                <label for="excerpt">Изменить краткое описание</label>
                                 <textarea class="form-control" id="excerpt" name="excerpt">{{$post->excerpt}}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="summernote">Основной текст статьи</label>
+                                <label for="summernote">Изменить основной текст статьи</label>
                                 <textarea id="summernote" name="body">{{$post->body}}</textarea>
                             </div>
                             @error('body')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
-                            <input type="submit" class="btn btn-primary" value="Добавить">
+                            <input type="submit" class="btn btn-primary" value="Изменить новость">
                             {{--                            @dd($errors->all())--}}
                         </form>
                     </div>
