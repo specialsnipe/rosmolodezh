@@ -42,23 +42,39 @@
                                                value="{{old('file')}}" multiple>
                                         <label class="custom-file-label" for="exampleInputFile">Выберите
                                             картинку</label>
-
-                                        @error('file[]')
-                                        <div class="text-danger">{{$message}}</div>
-                                        @enderror
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+
+                                @error('file')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                                @if($errors->has('file.*'))
+                                    @foreach($errors->get('file.*') as $error)
+                                        @foreach($error as $message)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @endforeach
+                                    @endforeach
+                                @endif
+{{--                                @if($errors->all())--}}
+{{--                                    {{ print_r($errors->all()) }}--}}
+{{--                                    @foreach($errors->all() as $error)--}}
+{{--                                        <div class="text-danger">{{$error}}</div>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
                             </div>
                             <div class="form-group">
                                 <textarea id="summernote" name="body">{{old('body')}}</textarea>
+
+
                             </div>
                             @error('body')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                             <input type="submit" class="btn btn-primary" value="Добавить">
+{{--                            @dd($errors->all())--}}
                         </form>
                     </div>
 

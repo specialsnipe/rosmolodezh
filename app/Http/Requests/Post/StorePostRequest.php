@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -37,7 +37,8 @@ class StorePostRequest extends FormRequest
             'file.required'=>'Загрузите картинки',
             'file.*.required'=> 'Загрузите картинки',
             'file.*.image' => 'Файл должен быть картинкой',
-            'file.*.memes:jpg,jpeg,png' => 'Возможные форматы файлов:jpg,jpeg,png',
+            'file.*.mimes' => 'Возможные форматы файлов:jpg,jpeg,png',
+            'file.*.max' => 'Файл слишком много весит! (не более 2мб)',
             'body.required' => 'Поле текст статьи обязательно'
         ];
     }

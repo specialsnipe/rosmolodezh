@@ -47,7 +47,11 @@ class User extends Authenticatable
 
     public function getAvatarOriginalPathAttribute()
     {
-        return 'storage/users/avatars/originals/'. $this->avatar;
+        return 'storage/users/avatars/originals/' . $this->avatar;
+    }
+    public function getCheckStudentIsAttribute()
+    {
+        return  $this->role_id == 1;
     }
     public function getAvatarMediumPathAttribute()
     {
