@@ -13,7 +13,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -24,7 +24,21 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'excerpt' => 'required',
+            'file' => 'array',
+            'file.*'=>['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'body' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required'=> 'Поле название обязательно',
+            'file.*.image' => 'Файл должен быть картинкой',
+            'file.*.mimes' => 'Возможные форматы файлов:jpg,jpeg,png',
+            'file.*.max' => 'Файл слишком много весит! (не более 2мб)',
+            'body.required' => 'Поле текст статьи обязательно'
         ];
     }
 }

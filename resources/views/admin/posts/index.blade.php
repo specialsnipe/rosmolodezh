@@ -55,10 +55,16 @@
                                 <td>{{$post->id}}</td>
                                 <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
                                 <td>{{$post->user->login}}</td>
-                                <td>{!!$post->body!!}</td>
-                                <td>@foreach($post->images as $image)
+                                <td>
+                                    <span style="">{!!   Str::limit($post->excerpt, 20, '...') !!}  </span>
+                                </td>
+                                <td>
+                                    <div class="image_container">
+                                    @foreach($post->images as $image)
                                         <img src="{{ $image->url }}" alt="" width="100px">
-                                    @endforeach</td>
+                                    @endforeach</div>
+
+                                </td>
                             </tr>
                             @empty
                                 <tr>

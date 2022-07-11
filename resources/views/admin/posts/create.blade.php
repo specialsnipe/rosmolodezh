@@ -28,17 +28,18 @@
                         <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group w-50">
-                                <input type="text" class="form-control " name="title" placeholder="Название"
+                                <label for="name" >Название новости</label>
+                                <input type="text" class="form-control " name="title" placeholder="Название" id="name"
                                        value="{{old('title')}}">
                                 @error('title')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Preview image</label>
+                                <label for="image">Картинки для новости</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file[]" id="exampleInputFile"
+                                        <input type="file" class="custom-file-input" name="file[]" id="image"
                                                value="{{old('file')}}" multiple>
                                         <label class="custom-file-label" for="exampleInputFile">Выберите
                                             картинку</label>
@@ -66,9 +67,12 @@
 {{--                                @endif--}}
                             </div>
                             <div class="form-group">
+                                <label for="excerpt">Краткое описание</label>
+                                <textarea class="form-control" id="excerpt" name="excerpt">{{old('excerpt')}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="summernote">Основной текст статьи</label>
                                 <textarea id="summernote" name="body">{{old('body')}}</textarea>
-
-
                             </div>
                             @error('body')
                             <div class="text-danger">{{$message}}</div>

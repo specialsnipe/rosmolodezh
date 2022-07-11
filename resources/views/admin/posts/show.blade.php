@@ -18,42 +18,62 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <tbody>
+                            <tr>
+                                <td>ID</td>
+                                <td>{{$post->id}}</td>
+                            </tr>
+                            <tr>
+                                <td>Название</td>
+                                <td>{{$post->title}}</td>
+                            </tr>
+                            <tr>
+                                <td>Краткое описание</td>
+                                <td>{!!$post->excerpt!!}</td>
+                            </tr>
+                            <tr>
+                                <td>Основной текст статьи</td>
+                                <td>{!!$post->body!!}</td>
+                            </tr>
+                            <tr>
+                                <td>Картинки</td>
+                                @foreach($post->images as $image)
+                                    <td style="display: flex; flex-direction: column">
+                                        <span>
+                                            <img src="{{ $image->url }}" alt="" width="100px">
+                                        </span>
+                                    </td>
+                                @endforeach
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-1 mt-3">
+                        <a href="{{route('admin.posts.edit',$post->id)}}"
+                           class="btn btn-warning ">Изменить</a>
+                    </div>
+                    <div class="col-1 mt-3">
+                        <form action="{{route('admin.posts.destroy',$post->id)}}"
+                              method="POST">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" class="btn btn-danger " value="Удалить">
+                        </form>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card-body table-responsive p-0 w-50">
-                <table class="table table-hover text-nowrap">
-                    <tbody>
-                    <tr>
-                        <td>ID</td>
-                        <td>{{$post->id}}</td>
-                    </tr>
-                    <tr>
-                        <td>Название</td>
-                        <td>{{$post->title}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
 
-        </div>
-        <div class="row">
-            <div class="col-1 mt-3">
-                <a href="{{route('admin.posts.edit',$post->id)}}"
-                   class="btn btn-warning ">Изменить</a>
-            </div>
-            <div class="col-1 mt-3">
-                <form action="{{route('admin.posts.destroy',$post->id)}}"
-                      method="POST">
-                    @csrf
-                    @method('delete')
-                    <input type="submit" class="btn btn-danger " value="Удалить">
-                </form>
-            </div>
-        </div>
-    </section>
 
 
 

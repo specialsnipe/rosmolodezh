@@ -60,8 +60,34 @@ class PostController extends Controller
 
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+        $images = $data['file']??null;
+        unset($data['file']);
+        if (!$images) {
+            try {
+                $post->updateOrFail($data);
+                return redirect()->route('admin.posts.show', $post->id);
+            } catch (\Exception $exception) {
+                return abort(501);
+            }
+        }
+        foreach ($post->images as $image) {
+            ImageService::deleteOld($image->name, 'posts/images');
+        }
+        foreach ($images as $image) {
+            $filename = ImageService::make($image, 'posts/images');
+            $imageData = [
+                'name' => $filename,
+                'post_id' => $post->id,
+            ];
+            $post_image = PostImage::create($imageData);
+            $post_image->update([
+                'url' => $post_image->original_image,
+            ]);
+        }
+        return redirect()->route('admin.posts.show', $post->id);
     }
+//
 
 
     public function destroy(Post $post)
