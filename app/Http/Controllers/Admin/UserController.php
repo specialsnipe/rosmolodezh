@@ -111,6 +111,7 @@ class UserController extends Controller
         ImageService::deleteOld($user->avatar, 'users/avatars');
         $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;
+        unset($data['file']);
 
         try {
             $user->updateOrFail($data);
