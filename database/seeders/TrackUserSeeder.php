@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Track;
 use App\Models\TrackUser;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,14 +17,23 @@ class TrackUserSeeder extends Seeder
      */
     public function run()
     {
+        $users = User::all();
+        $tracks = Track::all();
+        $tracks_ids = [];
+        foreach ($tracks as $track) {
+            $tracks_ids[] = $track->id;
+        }
 
-        TrackUser::create([
-            'user_id' => 1,
-            'track_id' => 1,
-        ]);
-        TrackUser::create([
-            'user_id' => 2,
-            'track_id' => 1,
-        ]);
+        foreach ($users as $user) {
+            TrackUser::create([
+                'user_id' => $user->id,
+                'track_id' => $tracks_ids[array_rand($tracks_ids)],
+            ]);
+        }
+//        TrackUser::create([
+//            'user_id' => 2,
+//            'track_id' => 1,
+//        ]);
+
     }
 }
