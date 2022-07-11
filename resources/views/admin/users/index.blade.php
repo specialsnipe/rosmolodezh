@@ -54,14 +54,14 @@
 
                         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-block pt-2 pl-3">
-                                <form action="" method="get">
+                                <form action="{{route('admin.users.index')}}" method="get">
+                                    @csrf
                                     <div style="display: flex">
-                                        @csrf
                                         <div class="form-group mr-3">
 
                                             <div style="display: flex;">
                                                 <div class="mr-3">
-                                                    <label for="name">Фамилия</label>
+                                                    <label for="last_name">Фамилия</label>
                                                     <input value="" type="text"
                                                            name="last_name"
                                                            class="form-control mb-2"
@@ -70,21 +70,32 @@
                                                 </div>
 
                                                 <div class="mr-3">
-                                                    <label for="region">Имя</label>
+                                                    <label for="first_name">Имя</label>
                                                     <input value="" type="text"
                                                            name="first_name"
                                                            class="form-control mb-2"
                                                            id="first_name"
-                                                           placeholder="Регион">
+                                                           placeholder="Имя">
                                                 </div>
                                                 <div class="mr-3">
-                                                    <label for="region">Отчество</label>
+                                                    <label for="father_name">Отчество</label>
                                                     <input value="" type="text"
                                                            name="father_name"
                                                            class="form-control mb-2"
                                                            id="father_name"
-                                                           placeholder="Регион">
+                                                           placeholder="Отчество">
                                                 </div>
+                                                <div class=" col-6 form-group mt-3">
+                                                    <select class="select2" name="roles_id[]" multiple="multiple"
+                                                            data-placeholder="Выберете роль" style="width: 100%;">
+                                                        @foreach($roles as $role)
+                                                            <option
+                                                                {{is_array(request()->roles_id)&& in_array($role->id,request()->roles_id)?'selected':''}} value="{{$role->id}}">{{$role->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +156,7 @@
                             @empty
                                 <tr>
                                     <td></td>
-                                    <td>Постов нет</td>
+                                    <td>Пользователе нет</td>
                                 </tr>
                             </tbody>
                         @endforelse

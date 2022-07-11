@@ -8,72 +8,63 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UsersFilter extends AbstractFilter
 {
-    public const TITLE = 'title';
-    public const DATE_FROM = 'date_From';
-    public const DATE_TO = 'date_To';
-    public const PRICE_FROM = 'price_From';
-    public const PRICE_TO = 'price_To';
-    public const REGION = 'region';
-    public const ORDER_BY_TITLE = 'order_By_Title';
-    public const ORDER_BY_PRICE = 'order_By_Price';
+    public const FIRST_NAME = 'first_name';
+    public const LAST_NAME = 'last_name';
+    public const FATHER_NAME = 'father_name';
+    public const AGE = 'age';
+    public const OCCUPATION_ID = 'occupation_id';
+    public const TRACK_ID = 'track_id';
+    public const ROLE_ID = 'role_id';
 
 
     protected function getCallbacks(): array
     {
         return [
-            self::TITLE => [$this, 'title'],
-            self::DATE_FROM => [$this, 'dateFrom'],
-            self::DATE_TO => [$this, 'dateTo'],
-            self::PRICE_FROM => [$this, 'priceFrom'],
-            self::PRICE_TO => [$this, 'priceTo'],
-            self::REGION => [$this, 'region'],
-            self::ORDER_BY_TITLE => [$this, 'orderByTitle'],
-            self::ORDER_BY_PRICE => [$this, 'orderByPrice'],
-
+            self::FIRST_NAME => [$this, 'firstName'],
+            self::LAST_NAME => [$this, 'lastName'],
+            self::FATHER_NAME => [$this, 'fatherName'],
+            self::AGE => [$this, 'age'],
+            self::OCCUPATION_ID => [$this, 'occupationId'],
+            self::TRACK_ID => [$this, 'trackId'],
+            self::ROLE_ID => [$this, 'roleId'],
         ];
 
     }
 
 
-    public function title(Builder $builder, $value)
+    public function firstName(Builder $builder, $value)
     {
-        $builder->where('title', 'like', "%{$value}%");
+        dd($value);
+        $builder->where('first_name', 'like', "%{$value}%");
     }
 
-    public function dateFrom(Builder $builder, $from)
+    public function lastName(Builder $builder, $value)
     {
-        $fromFormat = date("Y-m-d", strtotime($from));
-        $builder->where('date', '>', $fromFormat);
+        $builder->where('last_name', 'like', "%{$value}%");
     }
 
-    public function dateTo(Builder $builder, $to)
+    public function fatherName(Builder $builder, $value)
     {
-        $toFormat = date("Y-m-d", strtotime($to));
-        $builder->where('date', '<', $toFormat);
+        $builder->where('father_name', 'like', "%{$value}%");
     }
 
-    public function priceFrom(Builder $builder, $from)
+    public function age(Builder $builder, $value)
     {
-        $builder->where('price', '>', $from);
+        $builder->where('age', '=', $value);
     }
 
-    public function priceTo(Builder $builder, $to)
+    public function occupationId(Builder $builder, $value)
     {
-        $builder->where('price', '<', $to);
+        $builder->whereIn('occupation_id', $value);
     }
 
-    public function region(Builder $builder, $value)
+    public function roleId(Builder $builder, $value)
+    {
+        $builder->whereIn('role_id', $value);
+    }
+//TODO придумать реализацию фильтра по значению многие ко многим
+    public function trackId(Builder $builder, $value)
     {
         $builder->whereIn('region', $value);
-    }
-
-    public function OrderByTitle(Builder $builder, $value)
-    {
-        $builder->orderBy('title', $value);
-    }
-
-    public function OrderByPrice(Builder $builder, $value)
-    {
-        $builder->orderBy('price', $value);
     }
 }

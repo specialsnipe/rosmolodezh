@@ -24,13 +24,13 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'string|nullable',
-            'last_name' => 'string|nullable',
-            'father_name' => 'string|nullable',
-            'age' => 'numeric|nullable',
-            'occupation_id' => 'numeric|nullable',
-            'track_id' => 'numeric|nullable',
+            'first_name' => ['string', 'nullable'],
+            'last_name' => ['string', 'nullable'],
+            'father_name' => ['string', 'nullable'],
+            'age' => ['numeric', 'nullable'],
+            'occupation_id' => ['array', 'nullable'],
+            'track_id' => ['array', 'nullable'],
+            'roles_id'=> ['array', 'nullable']
         ];
     }
-
 }
