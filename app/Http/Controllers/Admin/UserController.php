@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Filters\UsersFilter;
 use App\Http\Requests\User\ChangePasswordUserRequest;
 use App\Http\Requests\User\FilterRequest;
+use App\Models\Track;
 use App\Services\ImageService;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -39,6 +40,7 @@ class UserController extends Controller
 
         $user = User::all();
         $roles = Role::all();
+
         return view('admin.users.index', compact('users', 'roles'));
     }
 

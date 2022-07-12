@@ -57,7 +57,6 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post'));
     }
 
-
     public function update(UpdatePostRequest $request, Post $post)
     {
         $data = $request->validated();

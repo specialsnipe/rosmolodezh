@@ -28,7 +28,8 @@ class Track extends Model
         'image_thumbnail',
         'url_image_original',
         'url_image_medium',
-        'url_image_thumbnail'
+        'url_image_thumbnail',
+        'icon_thumbnail',
     ];
 
     public function getImageOriginalAttribute()
@@ -59,6 +60,10 @@ class Track extends Model
     public function getUrlImageThumbnailAttribute()
     {
         return asset('storage/tracks/thumbnail/'. $this->image);
+    }
+    public function getIconThumbnailAttribute()
+    {
+        return 'storage/tracks/thumbnail/thumbnail_'. $this->icon;
     }
 
     /**

@@ -145,6 +145,7 @@
                                 <td>{{$user->age}}</td>
                                 <td>{{$user->role->name}}</td>
                                 <td>{{$user->email}}</td>
+                                <td>@forelse($user->tracks as $track) <a href="" style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a> @empty <span>Нет траектории</span> @endforelse</td>
                                 <td>{{$user->tg_url}}</td>
                                 <td>{{$user->vk_url}}</td>
                                 <td>{{$user->about}}</td>

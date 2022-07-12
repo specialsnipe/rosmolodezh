@@ -34,7 +34,6 @@ class UsersFilter extends AbstractFilter
 
     public function firstName(Builder $builder, $value)
     {
-
         $builder->where('first_name', 'like', "%{$value}%");
     }
 
@@ -65,6 +64,11 @@ class UsersFilter extends AbstractFilter
 //TODO придумать реализацию фильтра по значению многие ко многим
     public function trackId(Builder $builder, $value)
     {
-        $builder->whereIn('region', $value);
+        $builder->whereExists(
+            function($query) {
+                $query->select('track.user.id')
+                    ->from('track_user')
+                    ->where('position_id', $job->position_id);
+            })->get();
     }
 }
