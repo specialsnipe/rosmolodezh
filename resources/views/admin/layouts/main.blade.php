@@ -27,7 +27,6 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('css/dropzone.css')}}">
 
     @stack('style')
 </head>
@@ -145,7 +144,6 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
-<script src="{{asset('js/dropzone.js')}}" ></script>
 
 
 {{--<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>--}}
@@ -159,7 +157,6 @@
     });
     $('.select2').select2()
 </script>
-@vite("resources/js/app.js")
 
 @stack('script')
 </body>
