@@ -71,7 +71,7 @@ class TrackController extends Controller
     {
         return view('admin.tracks.show', [
             'track' => $track,
-            'blocks' => Block::where('track_id', $track->id)->latest()->get(),
+            'blocks' => Block::where('track_id', $track->id)->get(),
         ]);
     }
 
