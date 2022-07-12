@@ -65,6 +65,7 @@ class UsersFilter extends AbstractFilter
     public function trackId(Builder $builder, $value)
     {
 
-        $builder->join('track_user', 'users.id', '=', 'track_user.user_id')->whereIn('track_id', $value)->get();
+        $builder->join('track_user', 'users.id', '=', 'track_user.user_id')
+            ->whereIn('track_id', $value)->get();
     }
 }

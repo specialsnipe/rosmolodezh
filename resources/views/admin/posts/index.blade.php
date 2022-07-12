@@ -61,7 +61,7 @@
                                 <td>
                                     <div class="image_container">
                                     @foreach($post->images as $image)
-                                        <img src="{{ $image->url }}" alt="" width="100px">
+                                        <img src="{{ asset($image->thumbnail_image) }}" alt="" width="100px">
                                     @endforeach</div>
 
                                 </td>
