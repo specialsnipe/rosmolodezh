@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlockRequest;
 use App\Http\Requests\UpdateBlockRequest;
 use App\Models\Block;
+use App\Models\Track;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class BlockController extends Controller
 {
@@ -14,7 +19,7 @@ class BlockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Track $track)
     {
         //
     }
@@ -22,11 +27,14 @@ class BlockController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(Track $track)
     {
-        //
+        return view('admin.blocks.create', [
+            'track' => $track,
+            'users' => User::where('role_id', 2)->orWhere('role_id', 3)->get(),
+        ]);
     }
 
     /**
@@ -35,7 +43,7 @@ class BlockController extends Controller
      * @param  \App\Http\Requests\StoreBlockRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlockRequest $request)
+    public function store(StoreBlockRequest $request, Track $track)
     {
         //
     }
@@ -46,7 +54,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function show(Block $block)
+    public function show(Track $track,Block $block)
     {
         //
     }
@@ -57,7 +65,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function edit(Block $block)
+    public function edit(Track $track, Block $block)
     {
         //
     }
@@ -69,7 +77,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBlockRequest $request, Block $block)
+    public function update(UpdateBlockRequest $request,Track $track, Block $block)
     {
         //
     }
@@ -80,7 +88,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Block $block)
+    public function destroy(Track $track, Block $block)
     {
         //
     }

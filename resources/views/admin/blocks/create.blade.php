@@ -8,13 +8,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Изменение направления</h1>
+                        <h1 class="m-0">Добавление нового блока</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.tracks.index')}}">Направления</a></li>
-                            <li class="breadcrumb-item active">Изменение направления</li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tracks.show', $track->id)}}">{{ $track->title }}</a></li>
+                            <li class="breadcrumb-item active">Добавление нового блока к {{  $track->title }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -26,25 +27,16 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{route('admin.tracks.update', $track->id)}}" method="post"
-                              enctype="multipart/form-data">
+                        <form action="{{route('admin.tracks.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            @method('patch')
                             <div class="form-group w-50">
                                 <label for="title">Название направление</label>
-                                <input type="text" class="form-control " id="title" name="title" placeholder="Название"
-                                       value="{{ $track->title}}">
+                                <input type="text" class="form-control " id="title" name="title" placeholder="Название" value="{{old('title')}}">
                                 @error('title')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            {{-- TODO: Сделать миниатюру загруженного изображения --}}
-
-                            <div>
-                                <img src="{{ asset($track->image_original) }}" alt="дизайн" height="150px">
-                            </div>
                             <div class="form-group w-50">
-
                                 <label for="exampleInputFile">Загрузите изображение направления</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -61,10 +53,6 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <div>
-                                <img src="{{ asset($track->icon_thumbnail) }}" alt="" width="100px">
-                            </div>
-                            {{-- TODO: Сделать миниатюру загруженного изображения --}}
                             <div class="form-group w-50">
                                 <label for="exampleInputFile2">Загрузите иконку направления</label>
                                 <div class="input-group">
@@ -81,16 +69,14 @@
                             </div>
                             <div class="form-group w-50">
                                 <label for="body">Описание направления</label>
-                                <textarea type="text" class="form-control" id="body" name="body"
-                                          placeholder="Название"> {{ $track->body}} </textarea>
+                                <textarea type="text" class="form-control" id="body" name="body" placeholder="Название"> {{old('body')}} </textarea>
                                 @error('body')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-50 ">
                                 <label for="tg_url">Ссылка на телеграм чат</label>
-                                <input type="text" class="form-control " name="tg_url" id='tg_url'
-                                       placeholder="Телеграмм чат" value="{{$track->tg_url}}">
+                                <input type="text" class="form-control " name="tg_url" id='tg_url' placeholder="Телеграмм чат" value="{{old('tg_url')}}">
                                 @error('tg_url')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
@@ -100,8 +86,7 @@
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option disabled selected> Выберите куратора</option>
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}"
-                                                @if($track->curator_id == $user->id) selected @endif> {{ $user->first_and_last_names }}</option>
+                                        <option value="{{ $user->id }}" @if(old('curator_id') == $user->id) selected @endif> {{ $user->first_and_last_names }}</option>
                                     @endforeach
                                 </select>
                                 @error('curator_id')

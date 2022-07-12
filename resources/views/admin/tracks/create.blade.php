@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Направления</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tracks.index')}}">Направления</a></li>
                             <li class="breadcrumb-item active">Добавление нового направления</li>
                         </ol>
                     </div><!-- /.col -->

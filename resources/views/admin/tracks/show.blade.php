@@ -74,17 +74,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="col-4 mt-3 mb-3">
-                    <a href="{{route('admin.blocks.create')}}"
+                    <a href="{{ route('admin.blocks.create', $track->id)}}"
                        class="btn btn-block btn-primary">Добавить новый блок</a>
                 </div>
                 <div class="card-body table-responsive p-3">
-
 
                     @forelse($blocks as $block)
                     <div id="accordion" role="tablist" aria-multiselectable="true">
 
                         <div class="card">
-                            <div class="card-header" role="tab">
+                            <div class="header-of-card" role="tab" style="padding:20px; display: flex; justify-content: space-between">
                                 <h5 class="mb-0">
                                     <span data-toggle="collapse" data-parent="#accordion"
                                        aria-expanded="true"
@@ -92,6 +91,13 @@
                                        {{ $loop->index + 1 }} | Блок - "{{ $block->title }}" (id:{{$block->id}})
                                     </span>
                                 </h5>
+
+                                <span class="track_manage_tab">
+                                    <a href="{{ route('admin.blocks.show', [$track->id, $block->id]) }}"> <i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('admin.blocks.edit', [$track->id, $block->id]) }}">Изменить <i class="fa fa-pen"></i></a>
+                                    {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
+                                    <a href="#">Удалить <i class="fa fa-trash"></i></a>
+                                </span>
                             </div>
 
                             <div class="collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -159,7 +165,7 @@
 @push('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".card-header").each(function () {
+            $(".header-of-card").each(function () {
                 $(this).click(function () {
                     $(this).parent().children('.collapse').slideToggle("fast");
                 })

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreExerciseRequest;
 use App\Http\Requests\UpdateExerciseRequest;
+use App\Models\Block;
 use App\Models\Exercise;
 
 class ExerciseController extends Controller
@@ -35,7 +36,7 @@ class ExerciseController extends Controller
      * @param  \App\Http\Requests\StoreExerciseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExerciseRequest $request)
+    public function store(StoreExerciseRequest $request, )
     {
         //
     }
@@ -46,7 +47,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show(Exercise $exercise)
+    public function show( Exercise $exercise)
     {
         //
     }
@@ -57,7 +58,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exercise $exercise)
+    public function edit( Exercise $exercise)
     {
         //
     }
@@ -80,7 +81,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exercise $exercise)
+    public function destroy( Exercise $exercise)
     {
         //
     }
