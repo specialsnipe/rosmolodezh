@@ -64,11 +64,7 @@ class UsersFilter extends AbstractFilter
 //TODO придумать реализацию фильтра по значению многие ко многим
     public function trackId(Builder $builder, $value)
     {
-        $builder->whereExists(
-            function($query) {
-                $query->select('track.user.id')
-                    ->from('track_user')
-                    ->where('position_id', $job->position_id);
-            })->get();
+
+        $builder->join('track_user', 'users.id', '=', 'track_user.user_id')->whereIn('track_id', $value)->get();
     }
 }

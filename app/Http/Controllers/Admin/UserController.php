@@ -20,6 +20,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -32,16 +33,13 @@ class UserController extends Controller
      */
     public function index(FilterRequest $request)
     {
-
         $data = $request->validated();
 
         $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
         $users = User::filter($filter)->get();
-
-        $user = User::all();
         $roles = Role::all();
-
-        return view('admin.users.index', compact('users', 'roles'));
+        $tracks = Track::all();
+        return view('admin.users.index', compact('users', 'roles', 'tracks'));
     }
 
 

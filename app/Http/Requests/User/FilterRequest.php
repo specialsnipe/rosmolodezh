@@ -27,10 +27,10 @@ class FilterRequest extends FormRequest
             'first_name' => ['string', 'nullable'],
             'last_name' => ['string', 'nullable'],
             'father_name' => ['string', 'nullable'],
-            'role_id'=> ['array', 'nullable']
-//            'age' => ['numeric', 'nullable'],
+            'role_id'=> ['array', 'nullable'],
+            'track_id' => ['array', 'nullable']
 //            'occupation_id' => ['array', 'nullable'],
-//            'track_id' => ['array', 'nullable'],
+//            'age' => ['numeric', 'nullable'],
         ];
     }
 }

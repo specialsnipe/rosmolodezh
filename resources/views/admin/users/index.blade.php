@@ -93,6 +93,16 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <div class="mr-3">
+                                                    <label>Траектория</label>
+                                                    <select class="select2" name="track_id[]" multiple="multiple"
+                                                            data-placeholder="Выберете траекторию" style="width: 100%;">
+                                                        @foreach($tracks as $track)
+                                                            <option
+                                                                {{is_array(request()->track_id)&& in_array($track->id,request()->track_id)?'selected':''}} value="{{$track->id}}">{{$track->title}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -143,9 +153,9 @@
                                 <td>{{$user->occupation->name}}</td>
                                 <td>{{$user->gender->name}}</td>
                                 <td>{{$user->age}}</td>
-                                <td>{{$user->role->name}}</td>
+                                <td><span style="padding: 5px 10px; background: #72c07d; border-radius: 5px">{{$user->role->name}}</span></td>
                                 <td>{{$user->email}}</td>
-                                <td>@forelse($user->tracks as $track) <a href="" style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a> @empty <span>Нет траектории</span> @endforelse</td>
+                                <td>@forelse($user->tracks as $track) <a href="{{route('admin.tracks.show', $track->id)}}" style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a> @empty <span>Нет траектории</span> @endforelse</td>
                                 <td>{{$user->tg_url}}</td>
                                 <td>{{$user->vk_url}}</td>
                                 <td>{{$user->about}}</td>
