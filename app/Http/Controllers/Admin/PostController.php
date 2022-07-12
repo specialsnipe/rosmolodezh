@@ -71,6 +71,10 @@ class PostController extends Controller
             }
         }
         foreach ($post->images as $image) {
+            $post_images = PostImage::where('post_id', $post->id)->get();
+            foreach ($post_images as $post_image) {
+                $post_image->delete();
+            }
             ImageService::deleteOld($image->name, 'posts/images');
         }
         foreach ($images as $image) {
@@ -91,6 +95,11 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        //
+        try {
+            $post->deleteOrFail();
+        } catch (\Exception $e) {
+            abort(501);
+        }
+        return redirect()->route('admin.posts.index');
     }
 }
