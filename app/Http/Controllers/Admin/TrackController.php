@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTrackRequest;
-use App\Http\Requests\UpdateTrackRequest;
+use App\Http\Requests\Track\StoreTrackRequest;
+use App\Http\Requests\Track\UpdateTrackRequest;
 use App\Models\Block;
 use App\Models\Track;
 use App\Models\User;
@@ -12,7 +12,6 @@ use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Hash;
 
 class TrackController extends Controller
 {
@@ -43,7 +42,7 @@ class TrackController extends Controller
     /**
      * Store a track in storage.
      *
-     * @param  \App\Http\Requests\StoreTrackRequest  $request
+     * @param  \App\Http\Requests\Track\StoreTrackRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreTrackRequest $request)
@@ -92,7 +91,7 @@ class TrackController extends Controller
     /**
      * Update the track.
      *
-     * @param  \App\Http\Requests\UpdateTrackRequest  $request
+     * @param  \App\Http\Requests\Track\UpdateTrackRequest  $request
      * @param  \App\Models\Track  $track
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -116,14 +115,19 @@ class TrackController extends Controller
         return redirect()->route('admin.tracks.show', $track->id);
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Track  $track
-     * @return \Illuminate\Http\Response
+     * @param Track $track
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     * @throws \Throwable
      */
     public function destroy(Track $track)
     {
-        //
+        try {
+            $track->deleteOrFail();
+            return redirect('admin.tracks.index');
+        } catch (\Exception $exception) {
+            abort(501);
+        }
     }
 }

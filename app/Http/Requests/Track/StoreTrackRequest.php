@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Track;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTrackRequest extends FormRequest
+class StoreTrackRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class UpdateTrackRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['nullable', 'unique:tracks,title,' . $this->track->id],
-            'image' => ['nullable', 'required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'title' => ['required','unique:tracks'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'icon' => '',
             'body' => ['required'],
             'tg_url' => ['required','url'],

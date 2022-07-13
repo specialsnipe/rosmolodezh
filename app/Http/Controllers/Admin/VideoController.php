@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVideoRequest;
-use App\Http\Requests\UpdateVideoRequest;
+use App\Http\Requests\Video\StoreVideoRequest;
+use App\Http\Requests\Video\UpdateVideoRequest;
 use App\Models\Video;
 
 class VideoController extends Controller
@@ -32,7 +32,7 @@ class VideoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVideoRequest  $request
+     * @param  \App\Http\Requests\Video\StoreVideoRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreVideoRequest $request)
@@ -65,7 +65,7 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVideoRequest  $request
+     * @param  \App\Http\Requests\Video\UpdateVideoRequest  $request
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */

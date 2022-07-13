@@ -96,7 +96,7 @@
                                     <a href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i class="fa fa-eye"></i></a>
                                     <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i class="fa fa-pen"></i></a>
                                     {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
-                                    <a href="#">Удалить <i class="fa fa-trash"></i></a>
+                                    <a href="{{route('admin.tracks.blocks.destroy',[$track->id, $block->id]) }}">Удалить <i class="fa fa-trash"></i></a>
                                 </span>
                             </div>
 

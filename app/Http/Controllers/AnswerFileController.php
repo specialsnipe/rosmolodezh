@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AnswerFile\StoreAnswerFileRequest;
+use App\Http\Requests\AnswerFile\UpdateAnswerFileRequest;
 use App\Models\AnswerFile;
-use App\Http\Requests\StoreAnswerFileRequest;
-use App\Http\Requests\UpdateAnswerFileRequest;
 
 class AnswerFileController extends Controller
 {
@@ -31,7 +31,7 @@ class AnswerFileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAnswerFileRequest  $request
+     * @param  \App\Http\Requests\AnswerFile\StoreAnswerFileRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAnswerFileRequest $request)
@@ -64,7 +64,7 @@ class AnswerFileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnswerFileRequest  $request
+     * @param  \App\Http\Requests\AnswerFile\UpdateAnswerFileRequest  $request
      * @param  \App\Models\AnswerFile  $answerFile
      * @return \Illuminate\Http\Response
      */

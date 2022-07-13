@@ -29,6 +29,7 @@
                     <div class="col-12">
                         <form action="{{route('admin.tracks.blocks.update',[$track->id, $block->id])}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                             <div class="form-group w-50">
                                 <label for="title">Название блока</label>
                                 <input type="text" class="form-control " id="title" name="title" placeholder="Название" value="{{$block->title}}">
@@ -58,6 +59,20 @@
                                 <label for="summernote">Текст блока</label>
                                 <textarea id="summernote" name="body">{{$block->body}}</textarea>
                                 @error('body')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group w-25">
+                                <label for="date_begin">Дата начала блока</label>
+                                <input type="date" class="form-control  mt-3" name="date_begin" value="{{$block->date_start}}">
+                                @error('date')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group w-25">
+                                <label for="date_end">Дата окончания блока</label>
+                                <input type="date" class="form-control  mt-3" name="date_end" value="{{$block->date_end}}">
+                                @error('date')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
