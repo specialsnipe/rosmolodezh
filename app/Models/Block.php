@@ -33,7 +33,7 @@ class Block extends Model
 
     public function getImageThumbnailAttribute()
     {
-        return 'storage/blocks/thumbnail/thumbnail_'. $this->image;
+        return 'storage/blocks/images/thumbnail/thumbnail_'. $this->image;
     }
 
     /**

@@ -36,7 +36,6 @@ class BlockController extends Controller
             'track' => $track,
             'users' => User::where('role_id', 2)->orWhere('role_id', 3)->get(),
         ]);
-
     }
 
     /**
@@ -50,11 +49,9 @@ class BlockController extends Controller
         $data = $request->validated();
         $data['track_id'] = $track->id;
         $data['user_id'] = auth()->user()->id;
-        $data['date_start'] = now();
-        $data['date_end'] = now();
-        $data['image'] = ImageService::make($request->file('image'), 'blocks');
+        $data['image'] = ImageService::make($request->file('image'), 'blocks/images');
         $block = Block::create($data);
-        return redirect()->route('admin.blocks.show', [$track->id, $block->id]);
+        return redirect()->route('admin.tracks.blocks.show', [$track->id, $block->id]);
     }
 
     /**
@@ -78,33 +75,53 @@ class BlockController extends Controller
         return view('admin.blocks.edit', compact('track', 'block'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\Block\UpdateBlockRequest $request
-     * @param \App\Models\Block $block
-     * @return \Illuminate\Http\Response
+     * @param UpdateBlockRequest $request
+     * @param Track $track
+     * @param Block $block
+     * @return \Illuminate\Http\RedirectResponse|never
+     * @throws \Throwable
      */
     public function update(UpdateBlockRequest $request, Track $track, Block $block)
     {
         $data = $request->validated();
-        $data['track_id'] = $track->id;
-        $data['user_id'] = auth()->user()->id;
-        $data['date_start'] = now();
-        $data['date_end'] = now();
-        $data['image'] = ImageService::make($request->file('image'), 'blocks');
-        $block = Block::create($data);
-        return redirect()->route('admin.blocks.show', [$track->id, $block->id]);
+
+        $image = $data['image']??null;
+        unset($data['file']);
+        if (!$image) {
+            try {
+                $block->updateOrFail($data);
+                return redirect()->route('admin.tracks.blocks.show', [$track->id, $block->id]);
+            } catch (\Exception $exception) {
+                return abort(501);
+            }
+        }
+
+        ImageService::deleteOld($block->image, 'blocks/images');
+        $data['image'] = ImageService::make($image, 'posts/images');
+        try {
+            $block->updateOrFail($data);
+            return redirect()->route('admin.tracks.blocks.show');
+        } catch (\Exception $exception) {
+            return abort(501);
+        }
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Block $block
-     * @return \Illuminate\Http\Response
+     * @param Track $track
+     * @param Block $block
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \Throwable
      */
     public function destroy(Track $track, Block $block)
     {
-        //
+        try {
+            $block->deleteOrFail();
+            return redirect()->route('admin.tracks.blocks.index');
+        } catch (\Exception $exception) {
+            abort(501);
+        }
     }
 }

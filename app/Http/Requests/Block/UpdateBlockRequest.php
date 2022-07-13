@@ -13,7 +13,7 @@ class UpdateBlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'teacher' || auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -26,7 +26,9 @@ class UpdateBlockRequest extends FormRequest
         return [
             'title' => ['required'],
             'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
-            'body' => ['required']
+            'body' => ['required'],
+            'date_start' => ['required', 'date'],
+            'date_end' => ['required', 'date'],
         ];
     }
 
@@ -38,7 +40,11 @@ class UpdateBlockRequest extends FormRequest
             'image.file' => 'Загрузите файл',
             'image.mimes'=> 'Возможные форматы файлов:jpg,jpeg,png',
             'image.max' => 'Превышен формат файла,максимум 2мб ',
-            'body.required'=> 'Поле: текст блока обязательно'
+            'body.required'=> 'Поле: текст блока обязательно',
+            'date_start.required' => 'Заполните поле: Дата начала блока',
+            'date_start.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
+            'date_end.required' => 'Заполните поле: Дата окончания блока',
+            'date_end.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
         ];
     }
 }

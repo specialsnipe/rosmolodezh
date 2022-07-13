@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAnswerRequest;
-use App\Http\Requests\UpdateAnswerRequest;
+use App\Http\Requests\Answer\StoreAnswerRequest;
+use App\Http\Requests\Answer\UpdateAnswerRequest;
 use App\Models\Answer;
 
 class AnswerController extends Controller
@@ -32,7 +32,7 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreAnswerRequest  $request
+     * @param  \App\Http\Requests\Answer\StoreAnswerRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAnswerRequest $request)
@@ -65,7 +65,7 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAnswerRequest  $request
+     * @param  \App\Http\Requests\Answer\UpdateAnswerRequest  $request
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */

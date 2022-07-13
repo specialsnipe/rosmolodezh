@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreLinkRequest;
-use App\Http\Requests\UpdateLinkRequest;
+use App\Http\Requests\Link\StoreLinkRequest;
+use App\Http\Requests\Link\UpdateLinkRequest;
 use App\Models\Link;
 
 class LinkController extends Controller
@@ -32,7 +32,7 @@ class LinkController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLinkRequest  $request
+     * @param  \App\Http\Requests\Link\StoreLinkRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreLinkRequest $request)
@@ -65,7 +65,7 @@ class LinkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLinkRequest  $request
+     * @param  \App\Http\Requests\Link\UpdateLinkRequest  $request
      * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */

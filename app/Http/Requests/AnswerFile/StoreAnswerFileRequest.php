@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\AnswerFile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateFileRequest extends FormRequest
+class StoreAnswerFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
