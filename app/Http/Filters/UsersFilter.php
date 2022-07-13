@@ -61,7 +61,7 @@ class UsersFilter extends AbstractFilter
     {
         $builder->whereIn('role_id', $value);
     }
-//TODO придумать реализацию фильтра по значению многие ко многим
+
     public function trackId(Builder $builder, $value)
     {
 
