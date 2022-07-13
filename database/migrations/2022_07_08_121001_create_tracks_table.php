@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('tg_url');
             $table->foreignId('curator_id')->constrained('users')->cascadeOnDelete();
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

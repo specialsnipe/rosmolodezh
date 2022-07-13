@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('tg_url')->nullable();
             $table->string('vk_url')->nullable();
+            $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

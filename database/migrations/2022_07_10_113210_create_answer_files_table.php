@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('answer_id')->constrained()->cascadeOnDelete();
             $table->string('file_name');
             $table->string('type');
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

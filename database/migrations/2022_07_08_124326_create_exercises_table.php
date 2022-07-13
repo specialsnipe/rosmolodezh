@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('block_id')->constrained()->cascadeOnDelete();
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
