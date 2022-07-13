@@ -1,6 +1,7 @@
 <div>
     @if (session()->has('message'))
-        <div class="alert alert-success m-2">
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             {{ session('message') }}
         </div>
     @endif
@@ -8,8 +9,8 @@
     @if ($stepFrame == 1)
         <section class="content">
 
-            <div class="container-fluid">
-                <div class="col-12">
+            <div class="container-fluid row">
+                <div class="col-6">
                     {{-- ? Create a exercise --}}
                     <form action="#" wire:submit.prevent="toStageTwo" method="post" enctype="multipart/form-data">
                         @csrf
@@ -43,17 +44,22 @@
                         @enderror
 
                         <div class="row">
-                            <span class="text-secondary ml-2 mb-2">После добавления нужно будет добавить ссылки, файлы и
-                                видео к
-                                данному заданию</span>
+                            <span class="text-secondary ml-2 mb-2">После добавления нужно будет добавить ссылки, файлы и видео к данному заданию</span>
                         </div>
                         <div class="row">
                             <input type="submit" class="btn ml-2 btn-primary" value="Создать и продолжить">
                         </div>
                     </form>
                 </div>
+                <div class="col-6">
+                    <h2>Предпросмотр задания</h2>
+                    <div class="card p-2 exercise-preview">
+                        <h1>{{ $exercise_title }}</h1>
+                        <div>{!! $exercise_body !!}</d>
+                    </div>
+                </div>
         </section>
-        {{-- Settings summerNote for this setup --}}
+        {{-- * Settings summerNote for this setup --}}
         <script>
             $('#summernote').summernote({
                 tabsize: 2,
@@ -145,10 +151,10 @@
                         <div class="row">
                             {{-- * Link name --}}
                             <div class="form-group col-4">
-                                <label for="title">Название сслыки </label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    id="title" wire:model="title" placeholder="Название">
-                                @error('title')
+                                <label for="link_name">Название сслыки </label>
+                                <input type="text" class="form-control @error('link_name') is-invalid @enderror"
+                                    id="link_name" wire:model="link_name" placeholder="Название">
+                                @error('link_name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -156,10 +162,10 @@
 
                             {{-- * URL to link --}}
                             <div class="form-group  col-8">
-                                <label for="title">url</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                    id="title" wire:model="title" placeholder="Название">
-                                @error('title')
+                                <label for="link_url">url</label>
+                                <input type="text" class="form-control @error('link_url') is-invalid @enderror"
+                                    id="link_url" wire:model="link_url" placeholder="Название">
+                                @error('link_url')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -169,22 +175,24 @@
                         </div>
                     </form>
                     <hr>
+                    {{-- TODO: Привести это в нормальный вид и добавить везде! --}}
                     <div class="row">
-
-                        {{-- TODO: Привести это в нормальный вид и добавить везде! --}}
-                        @for ($i = 1; $i <= 10; $i++)
-
-                        <div class="card col col-2 m-2">
+                    @forelse ($links as $link)
+                        <div class="card col-2">
                             <div class="text">
-                                <h5 class="my-0 font-weight-normal">Название ссылки {{ $i }}</h5>
+                                <h5 class="my-0 font-weight-normal">{{ $link->name }}</h5>
                             </div>
-                            <div class="card-body">
-                                <button type="button"
-                                    class="btn btn-lg btn-block btn-outline-primary">Перейти</button>
+                            <div class="card-body row">
+                                <a target="_blank" href="{{ $link->url }}" class="btn btn-lg btn-block btn-outline-primary">Перейти</a>
+                                <a wire:click="deleteLink({{ $link->id }})" class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
                             </div>
                         </div>
-                        @endfor
-                    </div>
+                    @empty
+                        <div class="row m-1">
+                            <h5> Ссылки пока ещё не добавлены</h5>
+                        </div>
+                    @endforelse
+                </div>
                 </div>
 
             </div>

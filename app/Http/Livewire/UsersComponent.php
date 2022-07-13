@@ -38,6 +38,6 @@ class UsersComponent extends Component
         $this->roles = Role::all();
         $this->tracks = Track::all();
 
-        return view('livewire.users-component');
+        return view('livewire.admin.users.users-component');
     }
 }

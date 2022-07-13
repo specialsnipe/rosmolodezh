@@ -26,7 +26,7 @@ class Exercise extends Model
      */
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
     /**
      *  Relation with users (one to many)

@@ -25,6 +25,11 @@
 <div class="menu">
     @auth
         <a href="{{ route('auth.logout') }}">Выйти</a>
+        @if (auth()->user()->role->name === 'admin')
+
+        <a href="{{ route('admin.main.index') }}">Админ панель</a>
+
+        @endif
     @else
         <a href="{{ route('auth.login.show') }}">Войти</a>
         <a href="{{ route('auth.register.show') }}">Зарегистрироваться</a>

@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 @push('style')
     @livewireScripts
+    <link rel="stylesheet" href="{{  asset('css/exercise-styles.css') }}">
 @endpush
 
 @section('content')
