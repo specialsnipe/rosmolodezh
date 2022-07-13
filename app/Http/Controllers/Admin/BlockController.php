@@ -119,7 +119,7 @@ class BlockController extends Controller
     {
         try {
             $block->deleteOrFail();
-            return redirect()->route('admin.tracks.blocks.index');
+            return redirect()->route('admin.tracks.index');
         } catch (\Exception $exception) {
             abort(501);
         }

@@ -13,6 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                            <li class="breadcrumb-item active">{{$track->title}}</li>
                             <li class="breadcrumb-item active">{{$block->title}}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -106,7 +107,7 @@
                                             <a class="text-decoration-none link-dark me-2"
                                                href="/courses/layout-designer-basics/lessons/intro/theory_unit">{{ $block->title }}</a>
                                         </h3>
-                                        <div class="mt-3 text-muted">{{$block->body}}
+                                        <div class="mt-3 text-muted">{!! $block->body !!}
                                         </div>
                                     </div>
                                     <div class="w-100 d-lg-none"></div>

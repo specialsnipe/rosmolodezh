@@ -64,7 +64,7 @@
                             </div>
                             <div class="form-group w-25">
                                 <label for="date_start">Дата начала блока</label>
-                                <input type="date" class="form-control  mt-3" name="date_start" value="{{$block->date_start->format('d.m.Y')}}">
+                                <input type="date" class="form-control  mt-3" name="date_start" value="{{$block->date_start}}">
                                 @error('date_start')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
