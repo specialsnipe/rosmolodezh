@@ -52,10 +52,9 @@
                             <div class="mr-3">
                                 <label>Роль</label>
                                 <ul>
-
                                     @foreach($roles as $role)
                                         <li>
-                                            <input type="checkbox" wire:model="role_id"value="{{$role->id}}">
+                                            <input type="checkbox" wire:model="role_id" value="{{$role->id}}">
                                             <span>{{$role->name}}</span>
                                         </li>
                                     @endforeach

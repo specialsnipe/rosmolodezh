@@ -14,6 +14,7 @@ class Exercise extends Model
 
     protected $fillable = [
         'title',
+        'excerpt',
         'body',
         'user_id',
         'block_id'

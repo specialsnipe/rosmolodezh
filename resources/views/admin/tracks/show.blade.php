@@ -96,7 +96,11 @@
                                     <a href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i class="fa fa-eye"></i></a>
                                     <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i class="fa fa-pen"></i></a>
                                     {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
-                                    <a href="{{route('admin.tracks.blocks.destroy',[$track->id, $block->id]) }}">Удалить <i class="fa fa-trash"></i></a>
+                                    <form action="{{route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}" style="display: inline-block" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type='submit' class="btn btn-danger">Удалить <i class="fa fa-trash"></i></button>
+                                    </form>
                                 </span>
                             </div>
 
@@ -147,7 +151,7 @@
                                         </table>
                                         @endif
                                     @empty
-                                        <p>В данном блоке пока что нет заданий :(</p> <div class="btn btn-success mb-3"> Добавить задание </div>
+                                        <p>В данном блоке пока что нет заданий :( </p> <a href="{{  route('admin.blocks.exercises.create', $block->id) }}" class="btn btn-success mb-3"> Добавить задание </a>
                                     @endforelse
                                 </div>
                             </div>
