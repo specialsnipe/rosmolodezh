@@ -15,7 +15,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'login' => ['required','exists:users', 'regex:/^[a-z]+$/i'],
+            'login' => ['required','exists:users', /*, 'regex:/^[a-z0-9]+$/i' */],
             'password' => 'required',
         ];
     }
