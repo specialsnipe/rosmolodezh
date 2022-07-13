@@ -109,7 +109,7 @@
                                     </div>
                                 @endforelse
                                 {{-- TODO: Сделать сслыку на добавление блока--}}
-                                        <a class="btn btn-success" style="width: 100%; height: 40px;">  <i class="fa fa-plus"></i> Добавить новый блок </a>
+                                        <a href="{{route('admin.tracks.blocks.create',$track->id)}}" class="btn btn-success" style="width: 100%; height: 40px;">  <i class="fa fa-plus"></i> Добавить новый блок </a>
 
                             </div>
 

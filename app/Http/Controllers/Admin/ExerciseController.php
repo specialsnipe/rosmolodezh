@@ -15,7 +15,7 @@ class ExerciseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Block $block)
     {
         //
     }
@@ -25,7 +25,7 @@ class ExerciseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Block $block)
     {
         //
     }
@@ -36,9 +36,9 @@ class ExerciseController extends Controller
      * @param  \App\Http\Requests\StoreExerciseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExerciseRequest $request, )
+    public function store(StoreExerciseRequest $request, Block $block)
     {
-        //
+        $track_id = $block->track_id;
     }
 
     /**
@@ -47,7 +47,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show( Exercise $exercise)
+    public function show( Block $block, Exercise $exercise)
     {
         //
     }
@@ -58,7 +58,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function edit( Exercise $exercise)
+    public function edit(Block $block, Exercise $exercise)
     {
         //
     }
@@ -70,7 +70,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateExerciseRequest $request, Exercise $exercise)
+    public function update(UpdateExerciseRequest $request, Block $block, Exercise $exercise)
     {
         //
     }
@@ -81,7 +81,7 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Exercise $exercise)
+    public function destroy(Block $block, Exercise $exercise)
     {
         //
     }

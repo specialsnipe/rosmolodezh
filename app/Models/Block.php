@@ -27,6 +27,14 @@ class Block extends Model
     protected $withCount = [
         'exercises'
     ];
+    protected $appends = [
+        'image_thumbnail',
+    ];
+
+    public function getImageThumbnailAttribute()
+    {
+        return 'storage/blocks/thumbnail/thumbnail_'. $this->image;
+    }
 
     /**
      *  Relation with users (one to many)

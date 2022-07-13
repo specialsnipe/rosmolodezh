@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="col-4 mt-3 mb-3">
-                    <a href="{{ route('admin.blocks.create', $track->id)}}"
+                    <a href="{{ route('admin.tracks.blocks.create', $track->id)}}"
                        class="btn btn-block btn-primary">Добавить новый блок</a>
                 </div>
                 <div class="card-body table-responsive p-3">
@@ -93,8 +93,8 @@
                                 </h5>
 
                                 <span class="track_manage_tab">
-                                    <a href="{{ route('admin.blocks.show', [$track->id, $block->id]) }}"> <i class="fa fa-eye"></i></a>
-                                    <a href="{{ route('admin.blocks.edit', [$track->id, $block->id]) }}">Изменить <i class="fa fa-pen"></i></a>
+                                    <a href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i class="fa fa-pen"></i></a>
                                     {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
                                     <a href="#">Удалить <i class="fa fa-trash"></i></a>
                                 </span>

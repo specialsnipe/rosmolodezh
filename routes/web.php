@@ -33,8 +33,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     });
 
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
-    Route::resource('tracks/{track}/blocks', \App\Http\Controllers\Admin\BlockController::class);
-    Route::resource('blocks/{block}/exercises', \App\Http\Controllers\Admin\ExerciseController::class);
+    Route::resource('tracks.blocks', \App\Http\Controllers\Admin\BlockController::class);
+    Route::resource('blocks.exercises', \App\Http\Controllers\Admin\ExerciseController::class);
 });
 
 // TODO: Регистрацонные дела
