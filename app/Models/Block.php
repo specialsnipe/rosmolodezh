@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,6 +32,13 @@ class Block extends Model
     protected $appends = [
         'image_thumbnail',
     ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'date_end',
+        'date_start',
+    ];
+
 
     public function getImageThumbnailAttribute()
     {

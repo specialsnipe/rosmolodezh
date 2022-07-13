@@ -63,16 +63,16 @@
                                 @enderror
                             </div>
                             <div class="form-group w-25">
-                                <label for="date_begin">Дата начала блока</label>
-                                <input type="date" class="form-control  mt-3" name="date_begin" value="{{$block->date_start}}">
-                                @error('date')
+                                <label for="date_start">Дата начала блока</label>
+                                <input type="date" class="form-control  mt-3" name="date_start" value="{{$block->date_start->format('d.m.Y')}}">
+                                @error('date_start')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-25">
                                 <label for="date_end">Дата окончания блока</label>
                                 <input type="date" class="form-control  mt-3" name="date_end" value="{{$block->date_end}}">
-                                @error('date')
+                                @error('date_end')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>

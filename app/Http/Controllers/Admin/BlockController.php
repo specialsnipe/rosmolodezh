@@ -102,9 +102,9 @@ class BlockController extends Controller
         $data['image'] = ImageService::make($image, 'posts/images');
         try {
             $block->updateOrFail($data);
-            return redirect()->route('admin.tracks.blocks.show');
+            return redirect()->route('admin.tracks.blocks.show', [$track->id, $block->id]);
         } catch (\Exception $exception) {
-            return abort(501);
+            return abort(501, $exception);
         }
     }
 
