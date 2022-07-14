@@ -173,7 +173,7 @@
                         @endforelse
                     </table>
                 </div> --}}
-                @livewire('users-component', ['users'=> $users])
+                @livewire('users-component')
                 <div class="col-2 mt-3">
                     <a href="{{route('admin.users.create')}}"
                        class="btn btn-block btn-primary">Добавить пользователя</a>

@@ -1,4 +1,5 @@
 <div>
+    {{-- * Filter block --}}
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
         <div class="card">
@@ -12,15 +13,12 @@
                 </h5>
             </div>
 
-
-            {{ $first_name }} <br>
-            {{ $last_name }}<br>
-            {{ implode(' - ', $role_id) }}
-            {{ implode(' - ', $track_id) }}
+            {{-- * Inputs filter --}}
             <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                 <div class="card-block pt-2 pl-3">
                     <div class="form-group mr-3">
                         <div style="display: flex;">
+                            {{-- ? input last name --}}
                             <div class="mr-3">
                                 <label for="last_name">Фамилия</label>
                                 <input type="text"
@@ -30,6 +28,7 @@
                                         placeholder="Фамилия">
                             </div>
 
+                            {{-- ? input first name --}}
                             <div class="mr-3">
                                 <label for="first_name">Имя</label>
                                 <input value="{{request()->first_name}}"
@@ -39,6 +38,8 @@
                                         id="first_name"
                                         placeholder="Имя">
                             </div>
+
+                            {{-- ? input father name --}}
                             <div class="mr-3">
                                 <label for="father_name">Отчество</label>
                                 <input value="{{request()->father_name}}"
@@ -49,6 +50,7 @@
                                         placeholder="Отчество">
                             </div>
 
+                            {{-- ? input roles --}}
                             <div class="mr-3">
                                 <label>Роль</label>
                                 <ul>
@@ -60,6 +62,8 @@
                                     @endforeach
                                 </ul>
                             </div>
+
+                            {{-- ? input tracks --}}
                             <div class="mr-3">
                                 <label>Траектория</label>
                                 <ul>
@@ -98,9 +102,8 @@
             </tr>
             </thead>
             <tbody>
-                {{-- {{  $users }} --}}
-            @forelse ($users as $user)
-
+            @forelse ($users->items() as $user)
+                {{-- @dd($user) --}}
                 <tr>
                     <td>{{$user->id}}</td>
                     <td><a href="{{route('admin.users.show', $user->id)}}">{{$user->login}}</a></td>
@@ -135,5 +138,7 @@
             @endforelse
             </tbody>
         </table>
+
+        {{ $links->links() }}
     </div>
 </div>

@@ -10,7 +10,7 @@ class ExerciseCreateComponent extends Component
 {
     public $block;
     public $exercise;
-    public $stepFrame = 2;
+    public $stepFrame = 1;
     public $exercise_title;
     public $exercise_excerpt;
     public $exercise_body;
@@ -34,7 +34,7 @@ class ExerciseCreateComponent extends Component
             'exercise_excerpt.required' => 'Краткое описание обязательно',
             'exercise_body.required' => 'Описание задания обязательно',
         ]);
-        $this->validatedData['user_id'] = auth()->user()->id;
+
         $this->exercise = Exercise::create([
             'title' => $this->exercise_title,
             'excerpt' => $this->exercise_excerpt,
@@ -68,6 +68,9 @@ class ExerciseCreateComponent extends Component
             'block_id' => $this->block->id,
             'track_id' => $this->block->track_id,
         ]);
+
+        $this->link_name = '';
+        $this->link_url = '';
 
         $this->links = Link::where('exercise_id', $this->exercise->id)->get();
         // foreach($this->links as $link) {
@@ -123,7 +126,6 @@ class ExerciseCreateComponent extends Component
     // }
     public function render()
     {
-        $this->exercise =  Exercise::find(1);
         return view('livewire.admin.exercises.exercise-create-component');
     }
 }

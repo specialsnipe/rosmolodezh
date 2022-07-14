@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Track;
@@ -10,6 +11,11 @@ use App\Http\Filters\UsersFilter;
 
 class UsersComponent extends Component
 {
+
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $first_name = '';
     public $last_name = '';
     public $father_name = '';
@@ -30,14 +36,35 @@ class UsersComponent extends Component
         ];
 
         $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
-        $this->users = User::filter($filter)->get();
+        $this->users = collect(User::filter($filter)->paginate(10)->items());
+        dd($this->users);
 
     }
-    public function render()
+
+    public function mount()
     {
         $this->roles = Role::all();
         $this->tracks = Track::all();
+        // dd($this->users);
+        // dd($this->users->paginate(12));
+    }
 
-        return view('livewire.admin.users.users-component');
+    public function render()
+    {
+        $this->users = User::paginate(10);
+        $links =  $this->users;
+        $this->users =  collect($this->users);
+        // dd($this->users, $links);
+
+        // $this->users = $this->users->latest()->paginate('10');
+        // dd($this->users->links());
+        // foreach ($this->users as $user) {
+        //     dd($user->id);
+        // }
+        return view('livewire.admin.users.users-component', [
+            'users' => $this->users,
+            'links' => $links,
+        ]);
+
     }
 }
