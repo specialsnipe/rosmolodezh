@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TrackSeeder::class);
         $this->call(BlockSeeder::class);
         $this->call(TrackUserSeeder::class);
+        $this->call(ComplexitySeeder::class);
 
 
         // \App\Models\User::factory()->create([

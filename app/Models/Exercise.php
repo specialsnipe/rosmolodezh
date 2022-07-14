@@ -17,9 +17,35 @@ class Exercise extends Model
         'excerpt',
         'body',
         'user_id',
-        'block_id'
+        'block_id',
+        'complexity_id',
+        'active',
+        'time',
     ];
 
+    protected $appends = [
+        'name_minute_count'
+    ];
+
+
+    public function getNameMinuteCountAttribute()
+    {
+
+        $finished = $this->time % 10;
+        $last = 'минут';
+
+        if ($finished === 1 ) {
+            $last = 'минута';
+        }
+        if ($finished === 2 || $finished === 3 || $finished === 4) {
+            $last = 'минуты';
+        }
+        if($this->time == 11 ||$this->time == 12 ||$this->time == 13 ||$this->time == 14 ) {
+            $last = 'минут';
+        }
+
+        return $last;
+    }
     /**
      *  Relation with users (one to many)
      * @return BelongsTo
@@ -35,6 +61,16 @@ class Exercise extends Model
     public function users(): hasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * Get the complexity that owns the Exercise
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function complexity(): BelongsTo
+    {
+        return $this->belongsTo(Complexity::class);
     }
 
     /**

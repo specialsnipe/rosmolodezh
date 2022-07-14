@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->number('time');
+            $table->foreignId('complexity_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('block_id')->constrained()->cascadeOnDelete();
             $table->boolean('active')->default(true);

@@ -23,6 +23,7 @@ class Track extends Model
     ];
 
     protected $appends = [
+        'name_users_count',
         'image_original',
         'image_medium',
         'image_thumbnail',
@@ -31,6 +32,19 @@ class Track extends Model
         'url_image_thumbnail',
         'icon_thumbnail',
     ];
+
+
+    public function getNameUsersCountAttribute()
+    {
+
+        $last = $this->users_count % 10;
+
+        if ($last === 2 || $last === 3 || $last === 4) {
+            return 'человека';
+        } else {
+            return 'человек';
+        }
+    }
 
     public function getImageOriginalAttribute()
     {

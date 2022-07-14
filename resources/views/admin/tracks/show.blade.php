@@ -149,6 +149,7 @@
                                         @if($loop->last)
                                             </tbody>
                                         </table>
+                                        <a href="{{  route('admin.blocks.exercises.create', $block->id) }}" class="btn btn-success mb-3"> Добавить ещё одно задание </a>
                                         @endif
                                     @empty
                                         <p>В данном блоке пока что нет заданий :( </p> <a href="{{  route('admin.blocks.exercises.create', $block->id) }}" class="btn btn-success mb-3"> Добавить задание </a>
