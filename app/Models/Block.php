@@ -31,6 +31,7 @@ class Block extends Model
     ];
     protected $appends = [
         'image_thumbnail',
+        'name_exercises_count'
     ];
     protected $dates = [
         'created_at',
@@ -39,6 +40,16 @@ class Block extends Model
         'date_start',
     ];
 
+    public function getNameExercisesCountAttribute()
+    {
+        if ($this->exercises_count === 1 ) {
+            return 'упражнение';
+        } elseif ($this->exercises_count === 2 || $this->exercises_count === 3 || $this->exercises_count === 4) {
+            return 'упражнения';
+        } else {
+            return 'упражнений';
+        }
+    }
 
     public function getImageThumbnailAttribute()
     {

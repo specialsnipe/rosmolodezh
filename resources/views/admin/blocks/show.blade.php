@@ -36,7 +36,7 @@
                                     </tr>
                                     <tr>
                                         <td>Количество упражнений:</td>
-                                        <td>{{ $block->exercises_count }} упражнений</td>
+                                        <td>{{ $block->exercises_count }} {{ $block->name_exercises_count }}</td>
                                     </tr>
                                     <tr>
                                         <td>Всего обучающихся:</td>
@@ -80,14 +80,7 @@
                                             <x-slot name="info">{{$message}}</x-slot>
                                         </x-modal>
                                     @enderror
-                                    <div class="col-1 mt-3">
-                                        <form action="{{route('admin.tracks.blocks.destroy',[$track->id, $block->id])}}"
-                                              method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <input type="submit" class="btn btn-danger " value="Удалить">
-                                        </form>
-                                    </div>
+
                                 </div>
                             </section>
                         </div>
@@ -109,16 +102,18 @@
                             <li class="list-group-item">
                                 <div class="row my-2">
                                     <div class="col-1 text-center">
-                                        <div class="h3 fw-light">1</div>
                                        <div class="h3 fw-light">{{ $loop->index + 1 }}</div>
                                     </div>
                                     <div class="col">
                                         <h3 class="h5">
                                             <a class="text-decoration-none link-dark me-2"
-                                               href="/courses/layout-designer-basics/lessons/intro/theory_unit">{{ $block->title }}</a>
+                                               href="/courses/layout-designer-basics/lessons/intro/theory_unit">{{ $exercise->title }}</a>
                                         </h3>
-                                        <div class="mt-3 text-muted">{!! $block->body !!}
+                                        <div class="mt-3 text-muted">{!! $exercise->body !!}
                                         </div>
+                                    </div>
+                                    <div>
+
                                     </div>
                                     <div class="w-100 d-lg-none"></div>
                                     <div class="col-1 d-lg-none"></div>
@@ -126,9 +121,6 @@
                                         class="col col-lg-auto d-flex flex-lg-column flex-wrap flex-lg-nowrap align-items-lg-end justify-content-lg-center mt-2 mt-lg-0">
                                         <div class="small me-2 me-lg-0">
                                             <span aria-hidden="true" class="far fa-check text-success"></span>
-                                            <span class="sr-only">Теория пройдена</span>
-                                            <a class="text-decoration-none link-success"
-                                               href="/courses/layout-designer-basics/lessons/intro/theory_unit">теория</a>
                                         </div>
 
                                     </div>
