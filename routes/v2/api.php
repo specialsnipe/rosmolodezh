@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware' => 'admin', 'prefix'=> 'admin'], function () {
-    Route::apiResource('tracks', \App\Http\Controllers\Api\V1\TrackController::class);
-    Route::get('/tracks/{track}/blocks',[\App\Http\Controllers\Api\V1\TrackController::class, 'allBlocks']);
+    Route::apiResource('tracks', \App\Http\Controllers\Api\V2\TrackController::class);
+    Route::get('/tracks/{track}/blocks',[\App\Http\Controllers\Api\V2\TrackController::class, 'allBlocks']);
 });

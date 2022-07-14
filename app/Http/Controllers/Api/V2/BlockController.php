@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TrackResource;
 use App\Models\Block;
+use App\Models\Track;
 use Illuminate\Http\Request;
 
 class BlockController extends Controller
@@ -37,7 +39,6 @@ class BlockController extends Controller
      */
     public function show(Block $block)
     {
-        //
     }
 
     /**

@@ -12,6 +12,9 @@ use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BlockController extends Controller
 {
@@ -42,7 +45,7 @@ class BlockController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\Block\StoreBlockRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StoreBlockRequest $request, Track $track)
     {
@@ -80,7 +83,7 @@ class BlockController extends Controller
      * @param UpdateBlockRequest $request
      * @param Track $track
      * @param Block $block
-     * @return \Illuminate\Http\RedirectResponse|never
+     * @return RedirectResponse|never
      * @throws \Throwable
      */
     public function update(UpdateBlockRequest $request, Track $track, Block $block)
@@ -112,11 +115,16 @@ class BlockController extends Controller
     /**
      * @param Track $track
      * @param Block $block
-     * @return \Illuminate\Http\RedirectResponse|void
+     * @return RedirectResponse|void
      * @throws \Throwable
      */
-    public function destroy(Track $track, Block $block)
+    public function destroy(Request $request, Track $track, Block $block)
     {
+
+        if(!Hash::check($request->input('password'), auth()->user()->password) ) {
+            return back()->withErrors(['modal_password' => 'Неверный пароль']);
+        }
+
         try {
             $block->deleteOrFail();
             return redirect()->route('admin.tracks.show', [$track->id]);

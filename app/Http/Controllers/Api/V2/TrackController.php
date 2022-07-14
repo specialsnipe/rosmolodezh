@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TrackResource;
@@ -13,11 +13,22 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return TrackResource::collection(Track::all());
+//        return TrackResource::collection(Track::all());
+        $data = [
+            'title' => "Unprocessable content",
+            'code' => 422,
+            'errors' => [
+                [
+                    'page'=> 1,
+                    'data'=> Track::start(1)->limit(12)->get(),
+                ],
+            ],
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -38,7 +49,7 @@ class TrackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

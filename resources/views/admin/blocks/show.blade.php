@@ -70,6 +70,16 @@
                                         <a href="{{route('admin.tracks.blocks.edit',[$track->id, $block->id])}}"
                                            class="btn btn-warning ">Изменить</a>
                                     </div>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" >Удалить</button>
+
+                                    <x-modal name="Вы уверены что хотите удалить?" type="delete" action="{{ route('admin.tracks.blocks.destroy', [$block->track->id,$block->id]) }}">
+
+                                    </x-modal>
+                                    @error('modal_password')
+                                        <x-modal show="true" name="Ошибка" type="error">
+                                            <x-slot name="info">{{$message}}</x-slot>
+                                        </x-modal>
+                                    @enderror
                                     <div class="col-1 mt-3">
                                         <form action="{{route('admin.tracks.blocks.destroy',[$track->id, $block->id])}}"
                                               method="POST">
