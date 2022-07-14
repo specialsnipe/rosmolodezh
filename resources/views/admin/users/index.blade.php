@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div id="accordion" role="tablist" aria-multiselectable="true">
 
                     <div class="card">
                         <div class="card-header" role="tab" id="headingOne">
@@ -172,12 +172,16 @@
                             </tbody>
                         @endforelse
                     </table>
-                </div> --}}
-                @livewire('users-component')
+                </div>
+                {{-- * Filter block --}}
+
+                {{-- @livewire('users-component') --}}
+
                 <div class="col-2 mt-3">
                     <a href="{{route('admin.users.create')}}"
-                       class="btn btn-block btn-primary">Добавить пользователя</a>
+                    class="btn btn-block btn-primary">Добавить пользователя</a>
                 </div>
+                {{  $users->withQueryString()->links() }}
             </div>
         </div>
     </div>

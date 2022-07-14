@@ -33,11 +33,10 @@ class UserController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        // $data = $request->validated();
+        $data = $request->validated();
 
-        // $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
-        // $users = User::filter($filter)->get();
-        $users = User::all();
+        $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
+        $users = User::filter($filter)->paginate(15);
         $roles = Role::all();
         $tracks = Track::all();
         return view('admin.users.index', compact('users', 'roles', 'tracks'));
