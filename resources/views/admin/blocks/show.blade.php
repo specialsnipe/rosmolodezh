@@ -100,17 +100,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="col-4 mt-3 mb-3">
-                        <a href="{{ route('admin.tracks.blocks.create', $track->id)}}"
+                        <a href="{{ route('admin.blocks.exercises.create', $block->id)}}"
                            class="btn btn-block btn-primary">Добавить новое упражнение</a>
                     </div>
                     <div class="card-body table-responsive p-3">
                         <ul class="list-group">
-{{--                        @forelse($exercises as $exercise)--}}
+                       @forelse($block->exercises as $exercise)
                             <li class="list-group-item">
                                 <div class="row my-2">
                                     <div class="col-1 text-center">
                                         <div class="h3 fw-light">1</div>
-{{--                                        <div class="h3 fw-light">{{ $loop->index + 1 }}</div>--}}
+                                       <div class="h3 fw-light">{{ $loop->index + 1 }}</div>
                                     </div>
                                     <div class="col">
                                         <h3 class="h5">
@@ -134,9 +134,9 @@
                                     </div>
                                 </div>
                             </li>
-{{--                        @empty--}}
+                       @empty
 
-{{--                        @endforelse--}}
+                       @endforelse
                         </ul>
                     </div>
                 </div>
