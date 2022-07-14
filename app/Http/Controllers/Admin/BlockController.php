@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Block\StoreBlockRequest;
 use App\Http\Requests\Block\UpdateBlockRequest;
 use App\Models\Block;
+use App\Models\Exercise;
 use App\Models\Track;
 use App\Models\User;
 use App\Services\ImageService;
@@ -65,7 +66,8 @@ class BlockController extends Controller
      */
     public function show(Track $track, Block $block)
     {
-        return view('admin.blocks.show', compact('track', 'block'));
+        $exercises = Exercise::where('block_id', $block->id)->get();
+        return view('admin.blocks.show', compact('track', 'block', 'exercises'));
     }
 
     /**
