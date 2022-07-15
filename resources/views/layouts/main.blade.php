@@ -34,7 +34,7 @@
         <a href="{{ route('auth.login.show') }}">Войти</a>
         <a href="{{ route('auth.register.show') }}">Зарегистрироваться</a>
     @endauth
-</div>
+</div>git
 </header>
 
 <main>
