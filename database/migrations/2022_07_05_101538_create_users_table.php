@@ -28,7 +28,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('tg_url')->nullable();
+            $table->string('tg_name')->nullable();
+            $table->string('tg_id')->nullable();
             $table->string('vk_url')->nullable();
             $table->boolean('active')->default(true);
             $table->rememberToken();
