@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @push('style')
-    @LivewireScripts
+    @livewireScripts
 @endpush
 
 @section('content')
@@ -26,5 +26,5 @@
     </div>
 @endsection
 @push('script')
-    @LivewireScripts
+    @livewireScripts
 @endpush
