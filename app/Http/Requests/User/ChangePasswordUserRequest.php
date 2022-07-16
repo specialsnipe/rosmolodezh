@@ -26,7 +26,8 @@ class ChangePasswordUserRequest extends FormRequest
 
 
         return [
-            'password' => ['required', 'min:6'],
+            'password' => ['required', 'min:6', 'confirmed'],
+            'password_confirmation' => ['required'],
         ];
     }
     public function messages()
@@ -34,6 +35,8 @@ class ChangePasswordUserRequest extends FormRequest
         return [
             'password.required' => 'Поле пароль обязательно.',
             'password.min' => 'Поле пароль должно состоять миниум из 6 символов.',
+            'password.confirmed' => 'Пароли не совпадают.',
+            'password_confirmation.required' => 'Поле повтор пароля.',
         ];
     }
 }

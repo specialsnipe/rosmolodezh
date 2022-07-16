@@ -53,18 +53,6 @@ class SettingsEditComponent extends Component
         $this->email = '';
         $this->setting = Setting::first();
     }
-    public function UpdateEmail(SettingEmail $email)
-    {
-        $email->update([
-            'email'=>$this->email->email,
-            'setting_id' => $this->setting->id
-        ]);
-    }
-    public function DeleteEmail($email)
-    {
-        SettingEmail::find($email)->delete();
-        $this->setting = Setting::first();
-    }
 
     public function AddPhone()
     {

@@ -15,6 +15,19 @@ class Role extends Model
         'name'
     ];
 
+    protected $appends = [
+        'rus_name'
+    ];
+
+    public function getRusNameAttribute()
+    {
+        if ($this->name == 'admin') return 'Администратор';
+        if ($this->name == 'teacher') return 'Учитель';
+        if ($this->name == 'tutor') return 'Куратор';
+        if ($this->name == 'student') return 'Студент';
+    }
+
+
     public function users()
     {
         return $this->hasMany(User::class);

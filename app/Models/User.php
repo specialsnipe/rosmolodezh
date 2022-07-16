@@ -34,6 +34,8 @@ class User extends Authenticatable
         'role_id',
         'email',
         'password',
+        'tg_name',
+        'tg_id',
         'tg_url',
         'vk_url',
     ];

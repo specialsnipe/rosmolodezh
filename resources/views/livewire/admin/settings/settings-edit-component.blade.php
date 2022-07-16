@@ -19,14 +19,7 @@
 
                     <div class="mb-5">
                         @foreach($setting->emails as $email)
-                            <div class="row form-group w-50">
-                                <div class="col-8">
-                                    @livewire('email-edit-component', ['email'=> $email, 'setting'=> $setting],
-                                    key($email->email))
-                                </div>
-                                <span class="btn btn-info col-2" wire:click.prevent="UpdateEmail({{$email->id}})">Изменить</span>
-                                <span class="btn btn-danger col-2" wire:click.prevent="DeleteEmail({{$email->id}})">Удалить</span>
-                            </div>
+                            @livewire('email-edit-component', ['email'=> $email, 'setting'=> $setting])
                         @endforeach
                     </div>
                     <form action="#" wire:submit.prevent="AddPhone" method="post">
