@@ -61,10 +61,3 @@ Route::group(['as' => 'auth.'], function () {
 });
 
 // TODO: Студенческие дела
-
-
-// Служебные ссылки
-
-Route::get('/some/random/words/and/it/create/symbol/link/', function() {
-    Artisan::call('storage:link');
-});
