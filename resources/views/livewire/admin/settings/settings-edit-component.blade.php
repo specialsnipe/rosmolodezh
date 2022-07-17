@@ -7,8 +7,8 @@
                     <div>
                         <form action="" wire:submit.prevent="AddEmail" method="post">
                             @csrf
-                            <div class="form-group row w-50 mb-5 mt-3">
-                                <input type="text" class="col-8 form-control " wire:model="email" placeholder="Email">
+                            <div class="form-group row w-50 ml-1 mb-3 mt-3">
+                                <input type="text" class="col-6 form-control " wire:model="email" placeholder="Email">
                                 <button type="submit" class="col-4 btn btn-default ">Добавить новую почту</button>
                                 @error('email')
                                 <div class="text-danger">{{$message}}</div>
@@ -19,51 +19,32 @@
 
                     <div class="mb-5">
                         @foreach($setting->emails as $email)
-                            @livewire('email-edit-component', ['email'=> $email, 'setting'=> $setting])
+                            <div class="row form-group w-50 ml-5">
+                                <span class="col-6 form-control ml-1 mr-1">{{$email->email}} </span>
+                                <span class="btn btn-danger col-2" wire:click.prevent="DeleteEmail({{$email->id}})">Удалить</span>
+                            </div>
                         @endforeach
                     </div>
                     <form action="#" wire:submit.prevent="AddPhone" method="post">
-                        <div class="row w-50 mb-3">
-                            <input type="text" class="col-8 form-control " wire:model="phone" placeholder="Название"
+                        @csrf
+                        <div class="form-group row w-50 mb-3 ml-1">
+                            <input  type="text" class="col-6 form-control " wire:model="phone" placeholder="Телефон"
                                    value="">
                             <button type="submit" class="col-4 btn btn-default ">Добавить новый телефон</button>
+                            @error('phone')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
                     </form>
                     <div class="mb-5">
                         @foreach($setting->phones as $phone)
-                            <div class="row form-group w-50">
-                                <span class="form-control col-10">{{$phone->phone}}</span>
-                                <span class="btn btn-info col-1">Изменить</span>
-                                <span class="btn btn-danger col-1">Удалить</span>
+                            <div class="row form-group w-50 ml-5">
+                                <span class="form-control col-6 ml-1 mr-1">{{$phone->phone}}</span>
+                                <span class="btn btn-danger col-2" wire:click.prevent ="DeletePhone({{$phone->id}})">Удалить</span>
                             </div>
                         @endforeach
                     </div>
 
-                </div>
-                <div class="col-12">
-                    <form action="#" wire:submit.prevent="Update" method="post">
-                        @csrf
-                        <div class="form-group w-50">
-                            <input type="text" class="form-control " wire:model="vk_url" value="{{$setting->vk_url}}"
-                                   placeholder="Название">
-                            @error('vk_url')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group w-50">
-                            <input type="text" class="form-control " wire:model="tg_url" value="{{$setting->tg_url}}">
-                            @error('tg_url')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group w-50 mb-5">
-                            <input type="text" class="form-control " wire:model="ok_url" value="{{$setting->ok_url}}">
-                            @error('ok_url')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Изменить">
-                    </form>
                 </div>
 
 

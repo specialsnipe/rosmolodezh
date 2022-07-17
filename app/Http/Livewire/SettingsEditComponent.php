@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Setting;
 use App\Models\SettingEmail;
+use App\Models\SettingPhone;
 use Livewire\Component;
 
 class SettingsEditComponent extends Component
@@ -38,6 +39,19 @@ class SettingsEditComponent extends Component
     }
 
 
+
+    public function DeleteEmail($email)
+    {
+        SettingEmail::find($email)->delete();
+        $this->setting = Setting::first();
+    }
+    public function DeletePhone($phone)
+    {
+        SettingPhone::find($phone)->delete();
+        $this->setting = Setting::first();
+    }
+
+
     public function AddEmail()
     {
         $this->validate([
@@ -56,6 +70,16 @@ class SettingsEditComponent extends Component
 
     public function AddPhone()
     {
-
+        $this->validate([
+            'phone' => ['required']
+        ], [
+            'email.required' => 'Поле обязательно для заполнения',
+        ]);
+        SettingPhone::create([
+            'phone' => $this->phone,
+            'setting_id' => $this->setting->id
+        ]);
+        $this->phone = '';
+        $this->setting = Setting::first();
     }
 }

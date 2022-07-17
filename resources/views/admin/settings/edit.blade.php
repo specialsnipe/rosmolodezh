@@ -23,6 +23,32 @@
             </div><!-- /.container-fluid -->
         </div>
         @livewire('settings-edit-component', ['setting' => $setting])
+        <div class="col-12">
+            <form action="{{route('admin.settings.update',$setting->id )}}"  method="post">
+                @method('put')
+                @csrf
+                <div class="form-group w-50">
+                    <input type="text" class="form-control " name="vk_url" value="{{$setting->vk_url}}"
+                           placeholder="Название">
+                    @error('vk_url')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group w-50">
+                    <input type="text" class="form-control " name="tg_url" value="{{$setting->tg_url}}">
+                    @error('tg_url')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group w-50 mb-5">
+                    <input type="text" class="form-control " name="ok_url" value="{{$setting->ok_url}}">
+                    @error('ok_url')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <input type="submit" class="btn btn-primary" value="Изменить">
+            </form>
+        </div>
     </div>
 @endsection
 @push('script')

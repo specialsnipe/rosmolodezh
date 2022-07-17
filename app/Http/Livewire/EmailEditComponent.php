@@ -17,20 +17,6 @@ class EmailEditComponent extends Component
         $this->email = $email;
     }
 
-    public function UpdateEmail(SettingEmail $email)
-    {
-        $this->validate([
-            'email' => ['required', 'email', "unique:setting_emails,email," . $email->id]
-        ]);
-        $email->email = $this->email->email;
-        $email->save();
-    }
-
-    public function DeleteEmail($email)
-    {
-        SettingEmail::find($email)->delete();
-        $this->setting = Setting::first();
-    }
 
     public function render()
     {
