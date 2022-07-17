@@ -123,13 +123,12 @@
                 });
             }
             for (var i = 0; i < imgInp.files.length; i++) {
-                console.log('as' + i);
                 let file = imgInp.files[i];
                 let reader = new FileReader();
                 reader.onload = (e)=>{
                     let preview = document.createElement('img');
                     // preview.height = '200px';
-                    preview.alt = 'Превью ' + i;
+                    preview.alt = 'Превью изображения';
                     preview.classList.add('preview-img');
                     preview.classList.add('rounded');
                     preview.classList.add('mr-3');
