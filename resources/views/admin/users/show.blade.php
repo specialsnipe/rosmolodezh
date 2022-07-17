@@ -27,7 +27,7 @@
                 <div class="col-sm-12 col-md-4 col-xl-2">
                     <img class="card-img-top" src="{{ asset($user->avatar_original_path) }}" alt="Аватарка пользователя">
                 </div>
-                <table class="table-head-fixed text-nowrap col-sm-12 col-md-8 col-xl-10">
+                <table class="table table-head-fixed text-nowrap col-sm-12 col-md-8 col-xl-10">
                     <tbody>
                         <tr>
                             <th class="col-sm-4 col-md-2">ID</th>

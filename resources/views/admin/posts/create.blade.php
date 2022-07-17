@@ -2,50 +2,52 @@
 
 
 @section('content')
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Новости</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item active">Новости</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Cоздание новой публикации</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                        <li class="breadcrumb-item active">Новости</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
 
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                <div class="row">
-                    <div class="col-12">
-                        <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group w-50">
-                                <label for="name" >Название новости</label>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="card row">
+                <div class="card-header">
+                    <h3>Создание новости</h3>
+                </div>
+                <div class="card-body col-12">
+                    <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="name">Название новости</label>
                                 <input type="text" class="form-control " name="title" placeholder="Название" id="name"
-                                       value="{{old('title')}}">
+                                    value="{{old('title')}}">
                                 @error('title')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+
+                            <div class="col-sm-12 col-md-6">
                                 <label for="image">Картинки для новости</label>
                                 <div class="input-group">
-                                    <div class="dropzone" id="my-dropzone" name="mainFileUploader">
-                                        <div class="fallback">
-                                            <input type="file" class="custom-file-input" name="file[]" id="image" multiple>
-                                        </div>
+                                    <div class="fallback">
+                                        <input type="file" class="custom-file-input" name="file[]" id="image" multiple>
                                     </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
+                                    <label class="custom-file-label" for="image">Выберите
+                                        картинку</label>
                                 </div>
 
                                 @error('file')
@@ -54,88 +56,93 @@
                                 @if($errors->has('file.*'))
                                     @foreach($errors->get('file.*') as $error)
                                         @foreach($error as $message)
-                                            <div class="text-danger">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                         @endforeach
                                     @endforeach
                                 @endif
-{{--                                @if($errors->all())--}}
-{{--                                    {{ print_r($errors->all()) }}--}}
-{{--                                    @foreach($errors->all() as $error)--}}
-{{--                                        <div class="text-danger">{{$error}}</div>--}}
-{{--                                    @endforeach--}}
-{{--                                @endif--}}
                             </div>
-                            <div class="form-group">
-                                <label for="excerpt">Краткое описание</label>
-                                <textarea class="form-control" id="excerpt" name="excerpt">{{old('excerpt')}}</textarea>
+                            {{-- @if($errors->all())--}}
+                            {{-- {{ print_r($errors->all()) }}--}}
+                            {{-- @foreach($errors->all() as $error)--}}
+                            {{-- <div class="text-danger">{{$error}}</div>--}}
+                            {{-- @endforeach--}}
+                            {{-- @endif--}}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="">Превью загруженной картинки</label>
+                                <div class="row ml-1 previews-container">
+
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="summernote">Основной текст статьи</label>
-                                <textarea id="summernote" name="body">{{old('body')}}</textarea>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="excerpt">Краткое описание</label>
+                            <textarea class="form-control" id="excerpt" name="excerpt">{{old('excerpt')}}</textarea>
+
+                            @error('excerpt')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="summernote">Основной текст статьи</label>
+                            <textarea id="summernote" name="body">{{old('body')}}</textarea>
+
                             @error('body')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
-                            <input type="submit" class="btn btn-primary" value="Добавить">
-{{--                            @dd($errors->all())--}}
-                        </form>
-                    </div>
-
-
+                        </div>
+                        <input type="submit" class="col-sm-12 col-md-6 col-lg-3 btn btn-primary" value="Добавить">
+                        {{-- @dd($errors->all())--}}
+                    </form>
                 </div>
-                <!-- /.row -->
 
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-        </section>
-    </div>
+
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+</div>
 
 @endsection
 
 @push('script')
-    <script>
-        Dropzone.options.myDropzone = {
-            url: @js(route('admin.posts.store')),
-            autoProcessQueue: false,
-            uploadMultiple: true,
-            parallelUploads: 100,
-            maxFiles: 100,
-            acceptedFiles: "image/*",
-
-            init: function () {
-
-                var submitButton = document.querySelector("#submit-all");
-                var wrapperThis = this;
-
-                submitButton.addEventListener("click", function () {
-                    wrapperThis.processQueue();
-                });
-
-                this.on("addedfile", function (file) {
-
-                    // Create the remove button
-                    var removeButton = Dropzone.createElement("<button class='btn btn-lg dark'>Remove File</button>");
-
-                    // Listen to the click event
-                    removeButton.addEventListener("click", function (e) {
-                        // Make sure the button click doesn't submit the form:
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        // Remove the file preview.
-                        wrapperThis.removeFile(file);
-                        // If you want to the delete the file on the server as well,
-                        // you can do the AJAX request here.
-                    });
-
-                    // Add the button to the file preview element.
-                    file.previewElement.appendChild(removeButton);
-                });
-
-                this.on('sendingmultiple', function (data, xhr, formData) {
-                    formData.append("Username", $("#Username").val());
+<script>
+    let imgInp = document.querySelector('#image')
+    let previewContainer = document.querySelector('.previews-container')
+    imgInp.onchange = evt => {
+        const [files] = imgInp.files;
+        if (files) {
+            let oldImages = document.querySelectorAll('.preview-img');
+            if(oldImages) {
+                oldImages.forEach(element => {
+                    element.parentNode.removeChild(element);
                 });
             }
-        };
-    </script>
+            for (var i = 0; i < imgInp.files.length; i++) {
+                console.log('as' + i);
+                let file = imgInp.files[i];
+                let reader = new FileReader();
+                reader.onload = (e)=>{
+                    let preview = document.createElement('img');
+                    // preview.height = '200px';
+                    preview.alt = 'Превью ' + i;
+                    preview.classList.add('preview-img');
+                    preview.classList.add('rounded');
+                    preview.classList.add('mr-3');
+                    preview.id = 'imagePrev';
+                    preview.src = e.target.result;
+                    // preview.classList.add('rounded');
+                    previewContainer.appendChild(preview);
+                    preview.height ='200';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+    }
+</script>
 @endpush

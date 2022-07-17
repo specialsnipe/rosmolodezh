@@ -24,12 +24,13 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <div class="card p-3">
-                    <div class="row">
-                        <div class="col-12">
-                            <form action="{{route('admin.users.store')}}" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <form action="{{route('admin.users.store')}}" method="post" enctype="multipart/form-data" class="col-12">
                                 @csrf
-                                <div class="dorm-group row">
+                                <div class="form-group row">
+                                    {{-- Login --}}
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="login">Логин <span class="text-muted">(используется для входа на сайт)</span></label>
                                         <input type="text" class="form-control " name="login" placeholder="Логин" id="login"
@@ -38,7 +39,7 @@
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
-
+                                    {{-- avatar image --}}
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="avatar">Аватар пользователя</label>
                                         <div class="input-group">

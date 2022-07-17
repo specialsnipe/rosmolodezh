@@ -1,54 +1,54 @@
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-items-center justify-content-between">
+    <nav class="d-flex justify-items-center justify-content-center">
         <div class="d-flex justify-content-between flex-fill d-sm-none">
-            <ul class="pagination">
+            <ul class="pagination m-0">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
                     <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.previous')</span>
+                        <span class="page-link">Назад</span>
                     </li>
                 @else
                     <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a>
+                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">Назад</a>
                     </li>
                 @endif
 
                 {{-- Next Page Link --}}
                 @if ($paginator->hasMorePages())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
+                        <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">Далее</a>
                     </li>
                 @else
                     <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.next')</span>
+                        <span class="page-link">Далее</span>
                     </li>
                 @endif
             </ul>
         </div>
 
-        <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-            <div>
-                <p class="small text-muted">
-                    {!! __('Showing') !!}
+        <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between ">
+            <div class="text-center" style="display: flex; justify-content:center;  ">
+                <p class="small text-muted m-0">
+                    На странице с
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                    {!! __('to') !!}
+                    по
                     <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                    {!! __('of') !!}
+                    запись, из
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('results') !!}
+                    записей
                 </p>
             </div>
 
             <div>
-                <ul class="pagination">
+                <ul class="pagination m-0">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
-                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                        <li class="page-item disabled" aria-disabled="true" aria-label="Назад">
                             <span class="page-link" aria-hidden="true">&lsaquo;</span>
                         </li>
                     @else
                         <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="Назад">&lsaquo;</a>
                         </li>
                     @endif
 
@@ -74,10 +74,10 @@
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
                         <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                            <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="Далее">&rsaquo;</a>
                         </li>
                     @else
-                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                        <li class="page-item disabled" aria-disabled="true" aria-label="Далее">
                             <span class="page-link" aria-hidden="true">&rsaquo;</span>
                         </li>
                     @endif
