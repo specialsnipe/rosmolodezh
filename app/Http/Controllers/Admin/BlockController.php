@@ -91,7 +91,7 @@ class BlockController extends Controller
     {
         $data = $request->validated();
 
-        $image = $data['image']??null;
+        $image = $data['image'] ?? null;
         unset($data['file']);
         if (!$image) {
             try {
@@ -122,7 +122,7 @@ class BlockController extends Controller
     public function destroy(Request $request, Track $track, Block $block)
     {
 
-        if(!Hash::check($request->input('password'), auth()->user()->password) ) {
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
             session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
             return back();
         }

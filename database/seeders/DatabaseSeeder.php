@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
 
         Exercise::factory(30)->create();
-        Answer::factory(10)->create();
+        Answer::factory(30)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
