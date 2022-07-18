@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 // Главная страница и побочные главной.
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // TODO: админ панельные дела
 
@@ -56,10 +55,15 @@ Route::group(['as' => 'auth.'], function () {
     });
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+        Route::get('logout', [\App\Http\Controllers\Client\UserController::class, 'logout'])->name('logout');
     });
 });
 
 
 
 // TODO: Студенческие дела
+
+Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
+Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
+
+Route::resource('posts', \App\Http\Controllers\Client\PostController::class);

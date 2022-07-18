@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class RegisterRequest extends FormRequest
 {
@@ -51,5 +53,10 @@ class RegisterRequest extends FormRequest
             'allowed.required' => 'Вы должны согласиться с условиями.',
             'allowed.in' => 'Вы должны согласиться с условиями.',
         ];
+    }
+
+    public function failedValidation(Validator $validator) {
+        session()->flash('error', 'Вы допустили ошибки при регистрации.');
+        return redirect()->back()->withErrors($this->validator)->withInput(Request::except('_token'));
     }
 }
