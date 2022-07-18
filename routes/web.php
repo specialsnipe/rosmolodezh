@@ -67,3 +67,6 @@ Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->
 Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
+Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
+Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
+Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);

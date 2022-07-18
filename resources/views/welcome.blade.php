@@ -86,10 +86,9 @@
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
                         <div class="row d-flex justify-content-evenly">
-
-                            <a href=""
-                                class="direction col-md-3 d-flex align-items-center justify-content-center">Направление
-                                1</a>
+                            @foreach ($tracks as $track)
+                                <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -117,12 +116,12 @@
 <section>
     <div class="news-block container-fluid">
         <h2 class="mt-4 mb-4"> Последние новости</h2>
-        <x-index-post></x-index-post>
-        <a class="btn mb-2">Все новости</ф>
+        {{-- <x-index-post></x-index-post> --}}
+        <a href="{{ route('posts.index') }}" class="btn mb-2">Все новости</ф>
     </div>
 </section>
 @guest
-<x-registration-form></x-registration-form>
+{{-- <x-registration-form></x-registration-form> --}}
 @endguest
 @endsection
 
