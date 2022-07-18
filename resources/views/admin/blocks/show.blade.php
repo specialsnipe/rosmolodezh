@@ -115,7 +115,7 @@
                                             <h4>
                                                 <a class="text-decoration-none link-dark me-2"
                                                     href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{ $exercise->title }}</a>
-                                                </h3>
+                                                </h4>
                                                 <div class="">
                                                     <span>Уровень освоения: </span>
                                                     <h5 style="display: inline"><span

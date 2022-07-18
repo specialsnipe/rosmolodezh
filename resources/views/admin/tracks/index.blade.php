@@ -52,11 +52,11 @@
                                     </tr>
                                     <tr>
                                         <td>Количество блоков: </td>
-                                        <td>{{ $track->blocks_count }} блоков</td>
+                                        <td>{{ $track->blocks_count }} {{$track->name_blocks_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>Всего обучающихся: </td>
-                                        <td>{{ $track->users_count }} человек</td>
+                                        <td>{{ $track->users_count }} {{$track->name_users_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>Успеваемость:  </td>

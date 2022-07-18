@@ -46,6 +46,18 @@ class Track extends Model
         }
     }
 
+    public function getNameBlocksCountAttribute()
+    {
+
+        if ($this->blocks_count === 1 ) {
+            return 'блок';
+        } elseif ($this->blocks_count === 2 || $this->blocks_count === 3 || $this->blocks_count === 4) {
+            return 'блока';
+        } else {
+            return 'блоков';
+        }
+    }
+
     public function getImageOriginalAttribute()
     {
         return 'storage/tracks/originals/'. $this->image;
