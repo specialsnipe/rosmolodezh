@@ -23,7 +23,7 @@ class ExerciseController extends Controller
      * Show the form for creating a new resource.
      *
      */
-    public function create( Block $block)
+    public function create(Block $block)
     {
         return view('admin.exercise.create', ['block' => $block]);
     }

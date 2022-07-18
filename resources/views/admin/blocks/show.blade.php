@@ -99,7 +99,7 @@
                 <div class="col-12">
                     {{-- Add new blokc button --}}
                     <div class="col-4 ml-2 mb-3">
-                        <a href="{{ route('admin.blocks.exercises.create', $block->id) }}"
+                        <a href="{{ route('admin.blocks.exercises.create', [$block->id]) }}"
                             class="btn btn-block btn-primary">Добавить новое упражнение</a>
                     </div>
                     {{-- All exercises of this block --}}
@@ -114,7 +114,7 @@
                                         <div class="col-11">
                                             <h4>
                                                 <a class="text-decoration-none link-dark me-2"
-                                                    href="{{ route() }}">{{ $exercise->title }}</a>
+                                                    href="{{ route('admin.blocks.exercise.show', [$block->id, $exercse->id]) }}">{{ $exercise->title }}</a>
                                                 </h3>
                                                 <div class="">
                                                     <span>Уровень освоения: </span>
@@ -161,6 +161,7 @@
                                     </div>
                                 </li>
                             @empty
+                            Нета заданиеф
                             @endforelse
                         </ul>
                     </div>
