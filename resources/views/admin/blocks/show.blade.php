@@ -114,7 +114,7 @@
                                         <div class="col-11">
                                             <h4>
                                                 <a class="text-decoration-none link-dark me-2"
-                                                    href="{{ route('admin.blocks.exercise.show', [$block->id, $exercse->id]) }}">{{ $exercise->title }}</a>
+                                                    href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{ $exercise->title }}</a>
                                                 </h3>
                                                 <div class="">
                                                     <span>Уровень освоения: </span>
