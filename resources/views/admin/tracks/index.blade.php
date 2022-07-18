@@ -22,6 +22,12 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+        @if(session()->has('error'))
+            <div class="m-3 alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <div class="col-4 mt-3 mb-3">
@@ -30,15 +36,24 @@
                 </div>
                 <div class="card-body table-responsive p-3">
 
-                        @forelse($tracks as $track)
+                    @forelse($tracks as $track)
                         <div class="track_container">
                             <div class="tack_header">
-                                <h2><a href="{{ route('admin.tracks.show', $track->id) }}"> Направление "{{ $track->title }}" </a></h2>
+                                <h2><a href="{{ route('admin.tracks.show', $track->id) }}"> Направление
+                                        "{{ $track->title }}" </a></h2>
                                 <div class="track_manage_tab">
-                                    <a href="{{ route('admin.tracks.show', $track->id) }}"> <i class="fa fa-eye"></i></a>
-                                    <a href="{{ route('admin.tracks.edit', $track->id) }}">Изменить <i class="fa fa-pen"></i></a>
-                                    {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
-                                    <a href="#">Удалить <i class="fa fa-trash"></i></a>
+                                    <a href="{{ route('admin.tracks.show', $track->id) }}"> <i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="{{ route('admin.tracks.edit', $track->id) }}">Изменить <i
+                                            class="fa fa-pen"></i></a>
+
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModal">Удалить
+                                    </button>
+
+                                    <x-modal name="Вы уверены что хотите удалить?" type="delete"
+                                             action="{{ route('admin.tracks.destroy', [$track->id]) }}">
+                                    </x-modal>
                                 </div>
                             </div>
                             <div class="tack_info">
@@ -47,23 +62,25 @@
                                 </div>
                                 <table class="tack_text track_table">
                                     <tr>
-                                        <td>Куратор направления: </td>
-                                        <td><a href="{{ route('admin.users.show', $track->curator_id) }}">{{ $track->curator->all_names }}</a></td>
+                                        <td>Куратор направления:</td>
+                                        <td>
+                                            <a href="{{ route('admin.users.show', $track->curator_id) }}">{{ $track->curator->all_names }}</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Количество блоков: </td>
+                                        <td>Количество блоков:</td>
                                         <td>{{ $track->blocks_count }} {{$track->name_blocks_count}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Всего обучающихся: </td>
+                                        <td>Всего обучающихся:</td>
                                         <td>{{ $track->users_count }} {{$track->name_users_count}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Успеваемость:  </td>
+                                        <td>Успеваемость:</td>
                                         <td><span class="status_block status_success">100%</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Средний балл: </td>
+                                        <td>Средний балл:</td>
                                         <td><span class="status_block status_success">4.7</span></td>
                                     </tr>
                                 </table>
@@ -97,7 +114,8 @@
                                                 Задания
                                             </a>
 
-                                            <a href="{{route('admin.tracks.blocks.show', [$track->id, $block->id])}}" class="block_all">
+                                            <a href="{{route('admin.tracks.blocks.show', [$track->id, $block->id])}}"
+                                               class="block_all">
                                                 Управление блоком
                                             </a>
                                         </div>
@@ -109,15 +127,18 @@
                                     </div>
                                 @endforelse
                                 {{-- TODO: Сделать сслыку на добавление блока--}}
-                                        <a href="{{route('admin.tracks.blocks.create',$track->id)}}" class="btn btn-success" style="width: 100%; height: 40px;">  <i class="fa fa-plus"></i> Добавить новый блок </a>
+                                <a href="{{route('admin.tracks.blocks.create',$track->id)}}" class="btn btn-success"
+                                   style="width: 100%; height: 40px;"> <i class="fa fa-plus"></i> Добавить новый блок
+                                </a>
 
                             </div>
 
-                            <div class="open_blocks"><img src="{{ asset('images/arrow.png') }}" alt="Открыть блок" width="30px"></div>
+                            <div class="open_blocks"><img src="{{ asset('images/arrow.png') }}" alt="Открыть блок"
+                                                          width="30px"></div>
                         </div>
-                        @empty
+                    @empty
                         <h2>Направления ещё не созданы</h2>
-                        @endforelse
+                    @endforelse
                 </div>
             </div>
         </div>

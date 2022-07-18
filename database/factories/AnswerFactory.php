@@ -17,7 +17,11 @@ class AnswerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->name,
+            'body' => $this->faker->sentence(rand(10, 20), true),
+            'exercise_id' => 10,
+            'user_id' => rand(1,4),
+            'active' => true,
         ];
     }
 }

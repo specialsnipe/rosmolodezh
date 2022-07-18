@@ -22,6 +22,13 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
             {{-- Block info --}}
+            @if(session()->has('error'))
+                <div class="m-3 alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-12 m-3">
                     <div class="card w-75">
@@ -80,13 +87,7 @@
 
                                     <x-modal name="Вы уверены что хотите удалить?" type="delete"
                                         action="{{ route('admin.tracks.blocks.destroy', [$block->track->id, $block->id]) }}">
-
                                     </x-modal>
-                                    @error('modal_password')
-                                        <x-modal show="true" name="Ошибка" type="error">
-                                            <x-slot name="info">{{ $message }}</x-slot>
-                                        </x-modal>
-                                    @enderror
 
                                 </div>
                             </section>

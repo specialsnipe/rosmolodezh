@@ -123,7 +123,8 @@ class BlockController extends Controller
     {
 
         if(!Hash::check($request->input('password'), auth()->user()->password) ) {
-            return back()->withErrors(['modal_password' => 'Неверный пароль']);
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
         }
 
         try {

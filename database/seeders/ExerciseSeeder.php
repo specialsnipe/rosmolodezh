@@ -14,6 +14,6 @@ class ExerciseSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
 }

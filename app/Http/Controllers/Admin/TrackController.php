@@ -12,6 +12,8 @@ use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TrackController extends Controller
 {
@@ -121,11 +123,16 @@ class TrackController extends Controller
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
      * @throws \Throwable
      */
-    public function destroy(Track $track)
+    public function destroy(Request $request, Track $track)
     {
+        if(!Hash::check($request->input('password'), auth()->user()->password)) {
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
+        }
+
         try {
             $track->deleteOrFail();
-            return redirect('admin.tracks.index');
+            return redirect()->route('admin.tracks.index');
         } catch (\Exception $exception) {
             abort(501);
         }

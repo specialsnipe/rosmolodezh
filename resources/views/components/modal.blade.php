@@ -1,10 +1,11 @@
-@props(['show','name', 'type', 'action'])
+@props(['show','name', 'type', 'action', 'targetid'])
 
-<div class="modal fade @if(isset($show)) show @endif" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  @if(isset($show)) style="display: block" @endif>
+
+<div class="modal fade @if(isset($show)) show @endif" id="@if(isset($targetid)){{ $targetid }}@endif" tabindex="-1" role="dialog" aria-labelledby="@if(isset($targetid)){{ $targetid . 'Label' }}@endif" aria-hidden="true"  @if(isset($show)) style="display: block" @endif>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@if(isset($name)) {{ $name }}@endif</h5>
+                <h5 class="modal-title" id="@if(isset($targetid)){{ $targetid .'Label'}}@endif @if(isset($id)) {{$id}} @endif">@if(isset($name)) {{ $name }}@endif</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,7 +22,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                                <button type="submit" class="btn btn-primary">Удалить</button>
+                                <button type="submit" class="btn btn-danger">Удалить</button>
                             </div>
                         </form>
                     @endif

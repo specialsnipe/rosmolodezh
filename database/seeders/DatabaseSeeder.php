@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Answer;
+use App\Models\Exercise;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TrackUserSeeder::class);
         $this->call(ComplexitySeeder::class);
 
+
+        Exercise::factory(30)->create();
+        Answer::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
