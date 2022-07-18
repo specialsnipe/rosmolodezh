@@ -19,7 +19,7 @@ class AnswerFactory extends Factory
         return [
             'title' => $this->faker->name,
             'body' => $this->faker->sentence(rand(10, 20), true),
-            'exercise_id' => 10,
+            'exercise_id' => rand(8,10),
             'user_id' => rand(1,4),
             'active' => true,
         ];

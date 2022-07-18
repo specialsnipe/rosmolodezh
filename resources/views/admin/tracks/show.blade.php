@@ -32,10 +32,7 @@
         @endif
         <div class="row">
             <div class="col-12 m-3">
-                <div class="card w-75">
-                    <div class="card-header">
-                        Направление {{ $track->title }}
-                    </div>
+                <div class="card mr-4">
                     <div class="card-body">
                         <div class="tack_header">
                             <h1>Направление "{{ $track->title }}"</h1>
@@ -95,13 +92,13 @@
                        class="btn btn-block btn-primary">Добавить новый блок</a>
                 </div>
                 <div class="card-body table-responsive p-3">
-
                     @forelse($blocks as $block)
                         <div id="{{'accordion'. $block->id }}" role="tablist" aria-multiselectable="true">
 
-                            <div class="card">
-                                <div class="header-of-card" role="tab"
+                            <div class="card ">
+                                <div class="header-of-card " role="tab"
                                      style="padding:20px; display: flex; justify-content: space-between">
+
                                     <h5 class="mb-0">
                                     <span data-toggle="collapse" data-parent="{{'#accordion'. $block->id }}"
                                           aria-expanded="true"
@@ -109,13 +106,11 @@
                                        {{ $loop->index + 1 }} | Блок - "{{ $block->title }}" (id:{{$block->id}})
                                     </span>
                                     </h5>
-
                                     <span class="track_manage_tab">
                                     <a href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i
                                             class="fa fa-eye"></i></a>
                                     <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i
                                             class="fa fa-pen"></i></a>
-                                    {{-- TODO: Сделать модальное окно подтверждения об удалении с подтвержением пароля пользователя --}}
 
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#modalBlock">Удалить</button>
@@ -124,14 +119,7 @@
                                              action="{{ route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"
                                              targetid="modalBlock">
                                     </x-modal>
-
-{{--                                    <form action="{{route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"--}}
-{{--                                          style="display: inline-block" method="post">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('delete')--}}
-{{--                                        <button type='submit' class="btn btn-danger">Удалить <i class="fa fa-trash"></i></button>--}}
-{{--                                    </form>--}}
-                                </span>
+                                    </span>
                                 </div>
 
                                 <div class="collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -200,6 +188,8 @@
                     @empty
 
                     @endforelse
+
+
                 </div>
             </div>
         </div>
