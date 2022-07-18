@@ -34,19 +34,19 @@
                             <td class="col-sm-8  col-md-10">{{$user->id}}</td>
                         </tr>
                         <tr>
-                            <th>Логин</td>
+                            <th>Логин</th>
                             <td>{{$user->login}}</td>
                         </tr>
                         <tr>
-                            <th>ФИО</td>
-                            <td>{{$user->last_name}}{{$user->first_name}}{{$user->father_name}} </td>
+                            <th>ФИО</th>
+                            <td>{{$user->last_name}} {{$user->first_name}} {{$user->father_name}} </td>
                         </tr>
                         <tr>
-                            <th>Возраст</td>
+                            <th>Возраст</th>
                             <td>{{$user->age}}</td>
                         </tr>
                         <tr>
-                            <th>Пол</td>
+                            <th>Пол</th>
                             <td>{{$user->gender->title}}</td>
                         </tr>
                         <tr>
@@ -54,23 +54,23 @@
                             <td>{{$user->occupation->name}}</td>
                         </tr>
                         <tr>
-                            <th>Роль</td>
+                            <th>Роль</th>
                             <td>{{$user->role->name}}</td>
                         </tr>
                         <tr>
-                            <td>Почта</td>
+                            <th>Почта</th>
                             <td>{{$user->email}}</td>
                         </tr>
                         <tr>
-                            <td>Телеграм</td>
+                            <th>Телеграм</th>
                             <td>{{$user->tg_name}}</td>
                         </tr>
                         <tr>
-                            <td>Вконтакте</td>
+                            <th>Вконтакте</th>
                             <td>{{$user->vk_rul}}</td>
                         </tr>
                         <tr>
-                            <td>Комментарий</td>
+                            <th>Комментарий</th>
                             <td>{{$user->about}}</td>
                         </tr>
                     </tbody>

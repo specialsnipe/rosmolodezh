@@ -117,8 +117,9 @@
                                     <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                             alt="image">
                                     </td>
-                                    <td style="display: flex; flex-direction: column">
-                                        <a href="{{route('admin.users.show', $user->id)}}">
+                                    <td>
+{{--                                    <td style="display: flex; flex-direction: column">--}}
+{{--                                        <a href="{{route('admin.users.show', $user->id)}}">--}}
                                             <span>
                                                 {{$user->last_name}}
                                             </span>
@@ -128,7 +129,7 @@
                                             <span>
                                                 {{$user->father_name}}
                                             </span>
-                                        </a>
+
                                     </td>
                                     <td>{{$user->occupation->name}}</td>
                                     <td><span

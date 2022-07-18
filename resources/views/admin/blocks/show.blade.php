@@ -71,7 +71,7 @@
                             {{-- Settings buttons --}}
                             <section class="content">
                                 <div class="row">
-                                    <div class="col-1 mr-3">
+                                    <div class="col-1 mr-5">
                                         <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}"
                                             class="btn btn-warning ">Изменить</a>
                                     </div>

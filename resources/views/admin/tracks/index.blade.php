@@ -96,8 +96,8 @@
                                             <a href="#" class="block_all">
                                                 Задания
                                             </a>
-                                            {{-- TODO: Сделать сслыку на block.show --}}
-                                            <a href="#" class="block_all">
+
+                                            <a href="{{route('admin.tracks.blocks.show', [$track->id, $block->id])}}" class="block_all">
                                                 Управление блоком
                                             </a>
                                         </div>
