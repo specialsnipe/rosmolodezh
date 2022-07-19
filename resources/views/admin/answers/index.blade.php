@@ -51,13 +51,15 @@
                             </x-modal>
                         </div>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="block_name col-sm-12 col-md-6 col-lg-12">
-                                <h4>Траектория: "{{$track->title}}"</h4>
-                            </div>
-                            <div class="block_name col-sm-12 col-md-6 ">
-                               <h5>Блок:         "{{$block->title}}"</h5>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="block_name ">
+                                    <h4>Траектория: "{{$track->title}}"</h4>
+                                </div>
+                                <div class="block_name  ">
+                                <h5>Блок:         "{{$block->title}}"</h5>
+                                </div>
                             </div>
                             <table class="tack_text track_table">
                                 <tr>

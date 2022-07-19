@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\TrackUser;
-use App\Models\Gender;
-use App\Models\Occupation;
-use App\Models\Track;
 use App\Models\User;
+use App\Models\Track;
+use App\Models\Gender;
+use App\Models\TrackUser;
+use App\Models\Occupation;
+use App\Mail\RegistrationMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -35,7 +37,13 @@ class RegisterController extends Controller
         ]);
 
         auth()->login($user);
+        $emailData = [
+            'title' => 'Успешная регистрация!',
+            'track' => $user->track->title,
+            'login' => $user->login,
+        ];
 
+        Mail::to($data['email'])->send(new RegistrationMail($emailData));
         return redirect()->route('home');
     }
 }
