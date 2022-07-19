@@ -1,0 +1,175 @@
+@media (min-width:320px) and (max-width: 720px) {
+    .nav-item a{
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    .card-text-main{
+        width: 100%;
+    }
+    .card-form {
+        display: flex;
+        justify-content: center;
+    }
+    .news-block .card {
+        width: 100%;
+    }
+    .accordion-item{
+        width: 100%;
+    }
+    
+    .directions-block {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+    }
+    .news-blocks p{
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+       
+    }
+    .form-check-label {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .reg-btn{
+        width: 100%;
+        margin-top: 1.6rem;
+    }
+    .registr-form input.input{
+        width: 100%;
+    }
+    .select select {
+        width: 100%;
+    }
+    .reg-form{
+        width: 95%;
+    }
+    .registr-form {
+        display: flex;
+        justify-content: center;
+    }
+    .select-options {
+        flex-direction: column;
+        width: 100%;
+    }
+    .registr-form form{
+        width: 95%;
+    }
+
+    .footer-block {
+        flex-direction: column-reverse;
+        width: 100%;
+    }
+    .registr-form .line-top, .auth-form .line-top, .registr-form .line-down, .auth-form .line-down {
+        width: 100%;
+    }
+    footer{
+        height: auto;
+    }
+    .icons {
+        display: flex;
+        height:auto;
+        flex-direction: row;
+        margin: 1rem 0;
+        width: 60%;
+    }
+    .logo {
+        margin-bottom:  1rem; 
+    }
+    footer .line-top {
+        margin-bottom: 1rem;
+    }
+    .auth-form form {
+        width: 95%;
+    }
+    .news-block{
+        width: 95%;
+    }
+    .block{
+        width: 95%;
+    }
+}
+
+@media (min-width:720px) and (max-width: 1280px) {
+    .card-text-main{
+        width: 90%;
+        margin-left: 1.5rem;
+        
+    }
+    .cards-with-text{
+        display: flex;
+        justify-content: center;
+    }
+    .registr-form .line-top, .auth-form .line-top, .registr-form .line-down, .auth-form .line-down {
+        width: 95%;
+    }
+    .block{
+        width: 95%;
+    }
+    .news-block {
+        width: 100%;
+    }
+   
+}   
+
+@media (min-width:720px) and (max-width: 1024px){
+    .registr-form .input-child input:nth-child(1), 
+    .registr-form .input-child input:nth-child(2) {
+        width: 100%;
+    }
+    .select-options {
+        width: 100%;
+        flex-direction: column;
+    }
+    .select select {
+        width: 100%;
+    }
+    .registr-form form .row{
+        flex-direction: column;
+    }
+    .registr-form input.input {
+        width: 100%;
+    }
+    .footer-block {
+        width: 95%;
+    }
+    .nav-item a{
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    .card-text-main{
+        font-size: 18px;
+    }
+    .news-blocks p {
+        width: 95%;
+    }
+    .registr-form form{
+        width: 95%;
+    }
+    .news-block .card {
+        width: 45%;
+    }
+    .direction {
+        width: 45%;
+    }
+    .select::after {
+        left: 96%;
+    }
+    .nav-item {
+        padding: 0;
+    }
+    .auth-form form {
+        width: 95%;
+    }
+    .auth-form {
+        height: 580px;
+    }
+    .news-block{
+        width: 95%;
+    }
+    .block{
+        width: 95%;
+    }
+}

@@ -1,0 +1,75 @@
+.cards-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.card img {
+	max-width: 100%;
+	height: 400px;
+	object-fit: cover;
+	border-radius: 15px 15px 0 0;
+}
+
+.card {
+	margin: 0 0.5em;
+	width: 350px;
+	height: 650px;
+	border: none;
+	border-radius: 15px;
+
+}
+
+.carousel-inner {
+	padding: 1em;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	background-color: #e1e1e1;
+	width: 5vh;
+	height: 5vh;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@media (min-width: 768px) {
+	.card img {
+		height: 400px;
+	}
+}
+
+.carousel-inner p {
+	height: 120px;
+}
+
+
+.carousel {
+	width: 1300px;
+	margin: 0 auto;
+
+}
+
+@media (max-width: 768px) {
+	.card img {
+		height: 300px;
+	}
+	.carousel {
+		width: auto;
+	}
+	.card {
+		width: 65%;
+	
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+	.carousel {
+		width: auto;
+		margin: 0;
+	}
+	.card {
+		width: 85%;
+	
+	}
+}
