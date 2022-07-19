@@ -19,7 +19,7 @@
     <div class="carousel-inner">
         @foreach ($posts as $post)
             <div class="carousel-item @if($loop->first) active @endif">
-                <img src="{{ asset($post->images['0']->original_image) }}" class="d-block w-100 " alt="...">
+                <img src="{{ asset($post->images['0']->original_image) }}" class="d-block w-100" height="500" alt="...">
                 <div class="carousel-caption d-none d-md-block transparent-elem">
                     <h5>{{ $post->title }}</h5>
                     <p>{{ $post->excerpt }}</p>
@@ -116,12 +116,12 @@
 <section>
     <div class="news-block container-fluid">
         <h2 class="mt-4 mb-4"> Последние новости</h2>
-        {{-- <x-index-post></x-index-post> --}}
-        <a href="{{ route('posts.index') }}" class="btn mb-2">Все новости</ф>
+        <x-index-post></x-index-post>
+        <a href="{{ route('posts.index') }}" class="btn mb-5">Все новости</a>
     </div>
 </section>
 @guest
-{{-- <x-registration-form></x-registration-form> --}}
+<x-registration-form></x-registration-form>
 @endguest
 @endsection
 

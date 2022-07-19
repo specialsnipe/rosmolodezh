@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Client;
 
 use App\Models\Post;
 use App\Models\Track;
-use Illuminate\Contracts\View\View;
+use App\Models\Gender;
+use App\Models\Occupation;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
@@ -12,23 +13,38 @@ use Illuminate\Contracts\Foundation\Application;
 class HomeController extends Controller
 {
     /**
-     * @return Factory|View|Application
+     * index page
+     *
      */
-    public function index(): Factory|View|Application
+
+    public $genders;
+    public $occupations;
+    public $tracks;
+
+    public function __construct()
     {
-        $posts = Post::latest()->limit(3)->get();
-        $tracks = Track::all();
+        $this->genders = Gender::all();
+        $this->occupations = Occupation::all();
+        $this->tracks = Track::all();
+    }
+
+    public function index()
+    {
+        $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
-            'posts'=> $posts,
-            'tracks'=> $tracks
+            'posts' =>$posts,
+            'tracks' => $this->tracks,
+            'occupations' => $this->occupations,
+            'genders' => $this->genders,
         ]);
     }
     /**
-     * @return Factory|View|Application
+     * About page
+     *
      */
-    public function about(): Factory|View|Application
+    public function about()
     {
-        return view('about');
+        return view('welcome');
     }
 }

@@ -162,16 +162,12 @@
                                     </div>
                                 </li>
                             @empty
-                            Нета заданиеф
+                            Нета заданий
                             @endforelse
                         </ul>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
     </div>
 @endsection

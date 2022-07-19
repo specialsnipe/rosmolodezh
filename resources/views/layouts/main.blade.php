@@ -31,7 +31,7 @@
 
 <body>
     <header>
-        {{-- @include('includes.menu') --}}
+        @include('includes.menu')
     </header>
 
     <main>
@@ -39,7 +39,7 @@
     </main>
 
     <footer>
-        {{-- @include('includes.footer') --}}
+        @include('includes.footer')
     </footer>
 
     <button type="button" class="btn btn-floating btn-lg" id="btn-back-to-top">

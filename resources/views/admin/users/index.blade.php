@@ -118,8 +118,7 @@
                                             alt="image">
                                     </td>
                                     <td>
-{{--                                    <td style="display: flex; flex-direction: column">--}}
-{{--                                        <a href="{{route('admin.users.show', $user->id)}}">--}}
+
                                             <span>
                                                 {{$user->last_name}}
                                             </span>
