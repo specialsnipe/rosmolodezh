@@ -72,7 +72,7 @@
                                     <td>{{ $track->users_count }} {{$track->name_users_count}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Сдано работ:</td>
+                                    <td>Ответов:</td>
                                     <td>10/30</td>
                                 </tr>
                                 <tr>
@@ -102,9 +102,6 @@
                             <th>ID</th>
                             <th>Аватар</th>
                             <th>ФИО</th>
-                            <th>Траектория</th>
-                            <th>Блок</th>
-                            <th>Упражнение</th>
                             <th>Оценка</th>
 
                         </tr>
@@ -128,21 +125,10 @@
                                             </span>
 
                                 </td>
-                                <td><a
-                                        href="{{ route('admin.tracks.show', $track->id) }}"
-                                        style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a>
-                                </td>
-                                <td><a
-                                        href="{{ route('admin.tracks.blocks.show',[$track->id, $block->id] ) }}"
-                                        style="padding: 5px 10px; background: #59d576; border-radius: 5px">{{$block->title}}</a>
-                                </td>
-                                <td>
-                                    <a
-                                        {{--                                        href="{{ route('admin.tracks.show', $track->id) }}"--}}
-                                        style="padding: 5px 10px; background: #39cbe0; border-radius: 5px">{{$exercise->title}}</a>
+
                                 <td>
                                     <span
-                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">2</span>
+                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">@if(!$exercise->number) работа не сдана  @endif </span>
                                 </td>
                             </tr>
                         @empty

@@ -157,7 +157,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Сдано работ:</td>
+                                            <td><a href="{{route('admin.exercises.answers.index', $exercise->id)}}">Сдано работ:</a></td>
                                             <td>10/{{ $track->users_count }}</td>
                                         </tr>
                                         <tr>

@@ -146,6 +146,9 @@
                                                 </div>
                                                 <div class="mt-3 text-muted text-truncate">{!! $exercise->excerpt !!}
                                                 </div>
+                                            <div class="mt-3">
+                                                <a class="btn btn-info" href="{{route('admin.exercises.answers.index', $exercise->id)}}">Просмотр работ</a>
+                                            </div>
                                         </div>
                                         <div>
 
@@ -162,7 +165,7 @@
                                     </div>
                                 </li>
                             @empty
-                            Нета заданий
+                            Нет заданий
                             @endforelse
                         </ul>
                     </div>
