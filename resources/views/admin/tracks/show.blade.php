@@ -124,6 +124,9 @@
                 </div>
 
                 <div class="card-body table-responsive collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <a
+                                href="{{  route('admin.blocks.exercises.create', $block->id) }}"
+                                class="btn btn-success mb-3"> Добавить задание </a>
                     <table class="table table-hover table-head-fixed text-nowrap">
                         <thead>
                             <tr class="col sm-12">
@@ -166,15 +169,23 @@
                                     </table>
                                 </td>
                             </tr>
+                            @if($loop->last)
+                            <tr>
+                                <td colspan="5">
+                                    <a href="{{  route('admin.blocks.exercises.create', $block->id) }}"
+                                        class="btn btn-success mb-3"> Добавить ещё одно задание </a> </td>
+                            </tr>
+                            @endif
                             @empty
-                            <p>В данном блоке пока что нет заданий :( </p> <a
-                                href="{{  route('admin.blocks.exercises.create', $block->id) }}"
-                                class="btn btn-success mb-3"> Добавить задание </a>
+                            <tr>
+                                <td colspan="5">
+
+                                    <p>В данном блоке пока что нет заданий :( </p>
+                                </td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>
-                    <a href="{{  route('admin.blocks.exercises.create', $block->id) }}"
-                        class="btn btn-success mb-3"> Добавить ещё одно задание </a>
 
                 </div>
             </div>
