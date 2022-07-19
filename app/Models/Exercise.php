@@ -79,7 +79,7 @@ class Exercise extends Model
      */
     public function block(): belongsTo
     {
-        return $this->belongsTo(Track::class);
+        return $this->belongsTo(Block::class);
     }
     /**
      *  Relation with answers (one to many)

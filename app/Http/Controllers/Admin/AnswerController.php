@@ -6,17 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Answer\StoreAnswerRequest;
 use App\Http\Requests\Answer\UpdateAnswerRequest;
 use App\Models\Answer;
+use App\Models\Block;
+use App\Models\Exercise;
+use App\Models\Track;
+use App\Models\User;
 
 class AnswerController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Track $track
+     * @param Block $block
+     * @param Exercise $exercise
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Exercise $exercise)
     {
-        //
+        $block = $exercise->block;
+        $track = $block->track;
+        return view('admin.answers.index', compact('track', 'block', 'exercise'));
     }
 
     /**
@@ -49,6 +57,18 @@ class AnswerController extends Controller
     public function show(Answer $answer)
     {
         //
+    }
+
+    /**
+     * @param Track $track
+     * @param Block $block
+     * @param Exercise $exercise
+     * @param User $user
+     * @return void
+     */
+    public function show_user_answer(Track $track, Block $block, Exercise $exercise, User $user)
+    {
+
     }
 
     /**

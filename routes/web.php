@@ -30,10 +30,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
-
+    Route::group(['as' => 'tracks.blocks.exercises', 'prefix' => 'tracks/{track}/blocks/{block}/exercises'], function() {
+//        Route::get('answers', [\App\Http\Controllers\Admin\AnswerController::class, 'index'])->name('index');
+        Route::get('users/{user}/answer', [\App\Http\Controllers\Admin\AnswerController::class, 'show'])->name('show');
+    });
+    // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
+    // manage block of the track
     Route::resource('tracks.blocks', \App\Http\Controllers\Admin\BlockController::class);
+    // manage exercises of the block
     Route::resource('blocks.exercises', \App\Http\Controllers\Admin\ExerciseController::class);
+    // index, show and delete the answers of the exercise
+    Route::resource('exercises.answers', \App\Http\Controllers\Admin\AnswerController::class)->except(['create', 'edit', 'store', 'update']);
 });
 
 // TODO: Регистрацонные дела
@@ -66,7 +74,7 @@ Route::group(['as' => 'auth.'], function () {
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
 
-Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
-Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
+//Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
+//Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
 Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
