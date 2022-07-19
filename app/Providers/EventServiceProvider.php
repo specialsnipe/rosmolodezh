@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\UserRegistration;
+use App\Listeners\TelegramSubscriber;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\SendRegistrationEmailMessage;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
-use App\Listeners\TelegramSubscriber;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        UserRegistration::class => [
+            SendRegistrationEmailMessage::class,
         ],
     ];
 

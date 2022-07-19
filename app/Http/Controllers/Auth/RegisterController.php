@@ -8,9 +8,11 @@ use App\Models\Gender;
 use App\Models\TrackUser;
 use App\Models\Occupation;
 use App\Mail\RegistrationMail;
+use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
@@ -37,13 +39,10 @@ class RegisterController extends Controller
         ]);
 
         auth()->login($user);
-        $emailData = [
-            'title' => 'Успешная регистрация!',
-            'track' => $user->track->title,
-            'login' => $user->login,
-        ];
 
-        Mail::to($data['email'])->send(new RegistrationMail($emailData));
+        event(new Registered($user));
+        event(new UserRegistration($user));
+
         return redirect()->route('home');
     }
 }
