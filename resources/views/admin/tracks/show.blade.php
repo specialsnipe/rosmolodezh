@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">Направление "{{ $track->title }}"</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 ">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Главная</a></li>
                             <li class="breadcrumb-item active"><a
@@ -33,12 +33,12 @@
         <div class="row">
             <div class="col-12 m-3">
                 <div class="card mr-4">
-                    <div class="card-body">
-                        <div class="tack_header">
-                            <h1>Направление "{{ $track->title }}"</h1>
-                            <div class="track_manage_tab">
-                                <a href="{{ route('admin.tracks.show', $track->id) }}"> <i class="fa fa-eye"></i></a>
-                                <a href="{{ route('admin.tracks.edit', $track->id) }}">Изменить <i
+                    <div class="card-body ">
+                        <div class="tack_header row">
+                            <h1 class="col-sm-12 col-md-12 col-lg-7">Направление "{{ $track->title }}"</h1>
+                            <div class="track_manage_tab col-sm-12 col-md-12 col-lg-5">
+                                <a class="btn btn-outline-secondary " href="{{ route('admin.tracks.show', $track->id) }}"> <i class="fa fa-eye"></i></a>
+                                <a class="btn btn-info mr-3" href="{{ route('admin.tracks.edit', $track->id) }}">Изменить <i
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -52,8 +52,8 @@
 
                             </div>
                         </div>
-                        <div class="tack_info">
-                            <div class="track_image">
+                        <div class="tack_info row">
+                            <div class="track_image col-sm-12 col-md-6">
                                 <img src="{{ asset($track->image_original) }}" alt="дизайн" height="150">
                             </div>
                             <table class="tack_text track_table">
@@ -87,19 +87,19 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="col-4 mt-3 mb-3">
+                <div class="col-4 col-sm-12 col-md-6 mt-3 mb-3">
                     <a href="{{ route('admin.tracks.blocks.create', $track->id)}}"
-                       class="btn btn-block btn-primary">Добавить новый блок</a>
+                       class=" btn btn-block btn-primary">Добавить новый блок</a>
                 </div>
                 <div class="card-body table-responsive p-3">
                     @forelse($blocks as $block)
                         <div id="{{'accordion'. $block->id }}" role="tablist" aria-multiselectable="true">
 
                             <div class="card ">
-                                <div class="header-of-card " role="tab"
+                                <div class="header-of-card row" role="tab"
                                      style="padding:20px; display: flex; justify-content: space-between">
 
-                                    <h5 class="mb-0">
+                                    <h5 class="mb-0 col-sm-12 col-lg-8">
                                     <span data-toggle="collapse" data-parent="{{'#accordion'. $block->id }}"
                                           aria-expanded="true"
                                           aria-controls="collapseOne">
@@ -107,9 +107,9 @@
                                     </span>
                                     </h5>
                                     <span class="track_manage_tab">
-                                    <a href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i
+                                    <a class="btn btn-outline-secondary " href="{{ route('admin.tracks.blocks.show', [$track->id, $block->id]) }}"> <i
                                             class="fa fa-eye"></i></a>
-                                    <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i
+                                    <a class ="btn btn-info mr-3" href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i
                                             class="fa fa-pen"></i></a>
 
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -123,28 +123,28 @@
                                 </div>
 
                                 <div class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="card-block pt-2 pl-3">
+                                    <div class="card-block pt-2 pl-3" >
                                         @forelse($block->exercises as $exercise)
                                             @if($loop->first)
-                                                <table class="table table-hover text-nowrap">
+                                                <table class="table table-hover text-nowrap row">
                                                     <thead>
-                                                    <tr>
+                                                    <tr class="col sm-12">
                                                         <th>id</th>
                                                         <th>Название задания</th>
                                                         <th>Создатель</th>
                                                         <th>Дата создания</th>
-                                                        <th>Статистика</th>
+                                                        <th class="col-sm-12">Статистика</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     @endif
-                                                    <tr>
+                                                    <tr >
                                                         <td>{{ $exercise->id }}</td>
                                                         <td>{{ $exercise->title }}</td>
                                                         <td>{{ $exercise->creator->first_and_last_names }}</td>
                                                         <td>{{ $exercise->created_at }}</td>
-                                                        <td>
-                                                            <table>
+                                                        <td class>
+                                                            <table >
                                                                 <tr>
                                                                     <td>Время на выполнение:</td>
                                                                     <td>
