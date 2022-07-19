@@ -140,7 +140,7 @@ $tracks = Track::all();
                 @error('allowed')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
-                <button class="reg-btn" type="submit">Зарегистрироваться</button>
+                <button class="btn reg-btn pl-5 pr-5 pt-2 pb-2" type="submit">Зарегистрироваться</button>
             </label>
         </div>
     </form>
