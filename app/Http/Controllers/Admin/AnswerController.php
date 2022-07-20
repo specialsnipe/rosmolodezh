@@ -24,7 +24,8 @@ class AnswerController extends Controller
     {
         $block = $exercise->block;
         $track = $block->track;
-        return view('admin.answers.index', compact('track', 'block', 'exercise'));
+        $users = $track->users()->paginate(10);
+        return view('admin.answers.index', compact('track', 'block', 'exercise', 'users'));
     }
 
     /**
@@ -40,7 +41,7 @@ class AnswerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Answer\StoreAnswerRequest  $request
+     * @param \App\Http\Requests\Answer\StoreAnswerRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAnswerRequest $request)
@@ -51,7 +52,7 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param \App\Models\Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function show(Answer $answer)
@@ -74,7 +75,7 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param \App\Models\Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function edit(Answer $answer)
@@ -85,8 +86,8 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Answer\UpdateAnswerRequest  $request
-     * @param  \App\Models\Answer  $answer
+     * @param \App\Http\Requests\Answer\UpdateAnswerRequest $request
+     * @param \App\Models\Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateAnswerRequest $request, Answer $answer)
@@ -97,7 +98,7 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param \App\Models\Answer $answer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Answer $answer)

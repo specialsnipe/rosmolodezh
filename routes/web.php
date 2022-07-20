@@ -68,7 +68,6 @@ Route::group(['as' => 'auth.'], function () {
 });
 
 
-
 // TODO: Студенческие дела
 
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');

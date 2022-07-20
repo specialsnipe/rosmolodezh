@@ -31,7 +31,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class=" row align-items-center">
+                        <div class="row align-items-center">
 
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
@@ -58,7 +58,7 @@
                                     <h4>Траектория: "{{$track->title}}"</h4>
                                 </div>
                                 <div class="block_name  ">
-                                <h5>Блок:         "{{$block->title}}"</h5>
+                                    <h5>Блок: "{{$block->title}}"</h5>
                                 </div>
                             </div>
                             <table class="tack_text track_table">
@@ -75,15 +75,15 @@
                                 </tr>
                                 <tr>
                                     <td>Ответов:</td>
-                                    <td>10/30</td>
+                                    <td>{{ $exercise->answers_added_count }}/{{ $track->users_count }}</td>
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">100%</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }}%</span></td>
                                 </tr>
                                 <tr>
                                     <td>Средний балл:</td>
-                                    <td><span class="status_block status_success">4.7</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->average_score }}</span></td>
                                 </tr>
                             </table>
                         </div>
@@ -91,9 +91,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-3 ">
 
-            <div class="card m-3 col-12">
+            <div class="card col-12">
                 <div class="card-head p-3">
                     <h3 class="card-title">Ответы учащихся на упражнение {{$exercise->title}}</h3>
                 </div>
@@ -109,9 +109,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($track->users as $user)
+                        @forelse($users as $user)
                             <tr data-widget="expandable-table" aria-expanded="false">
-                                <td>{{$user->id}}</td>
+                                <td>{{$loop->iteration}}</td>
                                 <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                          alt="image">
                                 </td>
@@ -125,12 +125,14 @@
                                     <span>
                                                 {{$user->father_name}}
                                             </span>
-
+                                    <span class="text-muted">({{$user->id}})</span>
                                 </td>
 
                                 <td>
                                     <span
-                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">@if(!$exercise->number) работа не сдана  @endif </span>
+                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">@if(!$exercise->number)
+                                            работа не сдана
+                                        @endif </span>
                                 </td>
                             </tr>
                         @empty
@@ -143,13 +145,11 @@
                     </table>
                 </div>
             </div>
-            {{-- * Filter block --}}
-
-            {{-- @livewire('users-component') --}}
-
-            {{--            <div class="card m-3 p-3">--}}
-            {{--                {{ $exercise->users->withQueryString()->links() }}--}}
-            {{--            </div>--}}
+            <div class="card col-12">
+                <div class="card-body">
+                {{ $users->links() }}
+                </div>
+            </div>
         </div>
     </div>
     </div>

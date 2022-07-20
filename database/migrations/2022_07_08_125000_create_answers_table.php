@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('active')->default(true);
+            $table->boolean('mark')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

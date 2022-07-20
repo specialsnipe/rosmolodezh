@@ -107,7 +107,7 @@
                                 </tr>
                                 <tr>
                                     <td>Ответов:</td>
-                                    <td>10/30</td>
+                                    <td><a href="{{route('admin.exercises.answers.index', $exercise->id)}}">0/{{$track->users_count}} </a></td>
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>

@@ -24,7 +24,10 @@ class Exercise extends Model
     ];
 
     protected $appends = [
-        'name_minute_count'
+        'name_minute_count',
+        'answers_added_count',
+        'academic_performance_percent',
+        'average_score'
     ];
 
 
@@ -45,6 +48,37 @@ class Exercise extends Model
         }
 
         return $last;
+    }
+
+    public function getAnswersAddedCountAttribute()
+    {
+        return Answer::where('exercise_id', $this->id)->get()->count();
+    }
+    public function getAcademicPerformancePercentAttribute()
+    {
+        $positive_ratings = 0;
+        $answers = Answer::where('exercise_id', $this->id)->get();
+        foreach ($answers as $answer) {
+            if($answer >= 3) {
+                $positive_ratings++;
+            }
+        }
+        $users_count = $this->block->track->users()->count();
+
+        return $positive_ratings*100/$users_count;
+    }
+    public function getAverageScoreAttribute()
+    {
+        $score = 0;
+        $answers = Answer::where('exercise_id', $this->id)->get();
+        foreach ($answers as $answer) {
+            $score += $answer->mark;
+        }
+        $users_count = $this->block->track->users()->count();
+        if ($this->answers_added_count == 0) {
+            return 0;
+        }
+        return $score/ $this->answers_added_count;
     }
     /**
      *  Relation with users (one to many)
