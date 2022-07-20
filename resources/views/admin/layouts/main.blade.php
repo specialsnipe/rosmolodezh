@@ -110,8 +110,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                    <i class="fas fa-user"></i>
+                <a class="nav-link" href="{{ route('auth.logout') }}" role="button">
+                    <img src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Выход" width="20" height="20">
                 </a>
             </li>
         </ul>

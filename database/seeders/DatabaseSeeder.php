@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BlockSeeder::class);
         $this->call(TrackUserSeeder::class);
         $this->call(ComplexitySeeder::class);
+        $this->call(PostSeeder::class);
 
 
         Exercise::factory(30)->create();

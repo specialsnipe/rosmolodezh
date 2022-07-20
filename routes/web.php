@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Главная страница и побочные главной.
-
-
-// TODO: админ панельные дела
+// Admin functionality
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('main.index');
@@ -30,10 +27,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
-    Route::group(['as' => 'tracks.blocks.exercises', 'prefix' => 'tracks/{track}/blocks/{block}/exercises'], function() {
-//        Route::get('answers', [\App\Http\Controllers\Admin\AnswerController::class, 'index'])->name('index');
-        Route::get('users/{user}/answer', [\App\Http\Controllers\Admin\AnswerController::class, 'show'])->name('show');
-    });
+
     // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
     // manage block of the track
@@ -44,31 +38,43 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::resource('exercises.answers', \App\Http\Controllers\Admin\AnswerController::class)->except(['create', 'edit', 'store', 'update']);
 });
 
-// TODO: Регистрацонные дела
+// Authorization user
 
 Route::group(['as' => 'auth.'], function () {
 
     Route::group(['middleware' => 'guest'], function () {
-        // Авторизация пользователя
+        // Login user
         Route::group(['as'=> 'login.', 'prefix' => 'login'], function () {
             Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'index'])->name('show');
             Route::post('/', [\App\Http\Controllers\Auth\LoginController::class, 'submit'])->name('submit');
         });
 
-        // Регистрация пользователя
+        // Register user
         Route::group(['as'=> 'register.', 'prefix' => 'register'], function () {
             Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('show');
             Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('store');
         });
     });
-
+    // logout
     Route::group(['middleware' => 'auth'], function () {
         Route::get('logout', [\App\Http\Controllers\Client\UserController::class, 'logout'])->name('logout');
     });
 });
 
+// Verification email
 
+Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'email'], function () {
+    Route::get('/verify/{id}/{hash}', [\App\Http\Controllers\EmailController::class, 'verify'])->middleware('signed')->name('verify');
+    Route::get('/verify', [\App\Http\Controllers\EmailController::class, 'notice'])->name('notice');
+    Route::post('/verification-notification',[\App\Http\Controllers\EmailController::class, 'send'])->middleware('throttle:6,1')->name('send');
+});
+
+<<<<<<< Updated upstream
 // TODO: Студенческие дела
+=======
+
+// Client side
+>>>>>>> Stashed changes
 
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 Route::get('/test/mail/message', [\App\Http\Controllers\TestController::class, 'test']);
@@ -78,3 +84,5 @@ Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
 Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
+
+// todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified

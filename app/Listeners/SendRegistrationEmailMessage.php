@@ -2,13 +2,15 @@
 
 namespace App\Listeners;
 
+use Illuminate\Bus\Queueable;
 use App\Mail\RegistrationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendRegistrationEmailMessage
+class SendRegistrationEmailMessage implements ShouldQueue
 {
+    use Queueable;
     /**
      * Create the event listener.
      *
@@ -33,6 +35,5 @@ class SendRegistrationEmailMessage
             'login' => $event->user->login,
         ];
         $mail = Mail::to($event->user->email)->send(new RegistrationMail($emailData));
-        dd('asdasda');
     }
 }

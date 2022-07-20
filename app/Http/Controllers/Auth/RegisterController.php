@@ -7,6 +7,7 @@ use App\Models\Track;
 use App\Models\Gender;
 use App\Models\TrackUser;
 use App\Models\Occupation;
+use App\Jobs\RegisterUserJob;
 use App\Mail\RegistrationMail;
 use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
@@ -40,8 +41,7 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
-        event(new Registered($user));
-        event(new UserRegistration($user));
+        RegisterUserJob::dispatch($user);
 
         return redirect()->route('home');
     }
