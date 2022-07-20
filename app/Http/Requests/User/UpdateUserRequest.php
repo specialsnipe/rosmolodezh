@@ -34,8 +34,10 @@ class UpdateUserRequest extends FormRequest
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => ['nullable','numeric'],
-            'file'=>['nullable','image', 'mimes:jpg,jpeg,png', 'max:2048']
-            //'track_id' => ['required', 'min:1']
+            'file'=>['nullable','image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'track_id' => '',
+            'tg_name' => '',
+            'vk_url' => ['nullable', 'url'],
         ];
     }
     public function messages()
@@ -58,9 +60,8 @@ class UpdateUserRequest extends FormRequest
             'occupation_id.required' => 'Выберите занятость.',
             'occupation_id.min' => 'Выберанная занятость не верная.',
             'role_id.required' => 'Выберите роль.',
-            'role_id.min' => 'Выберанная роль не верная.',
-            //'track_id.required' => 'Поле направление обязательно.',
-            //'track_id.min' => 'Выберанное направление не верное.',
+            'role_id.min' => 'Выберанная роль неверная.',
+            'vk_url.url' => 'Это должно быть ссылкой',
         ];
     }
 }

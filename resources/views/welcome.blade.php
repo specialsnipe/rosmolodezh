@@ -2,13 +2,7 @@
 
 @section('content')
 
-@if (session()->has('error'))
-    <div class="m-3 alert alert-danger alert-dismissible fade show">
-        <span>
-            {{ session('error') }}
-        </span>
-    </div>
-@endif
+
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
     <!-- <div class="carousel-indicators">

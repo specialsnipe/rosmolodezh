@@ -10,6 +10,17 @@ $tracks = Track::all();
 
 <section class="registr-form d-flex justify-content-center mt-4" id="registration">
     <div class="line-top"></div>
+    @if (session()->has('error'))
+        <div class="container mt-3 mb-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <svg class="bi bi-exclamation-triangle me-2" width="24" height="24" fill="currentColor">
+                    <use xlink:href="#exclamation-triangle-fill"/>
+                </svg>
+                <span>{{ session('error') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
+            </div>
+        </div>
+    @endif
     <h1>Регистрация</h1>
 
 

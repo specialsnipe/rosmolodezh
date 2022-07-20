@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Filters\UsersFilter;
-use App\Http\Requests\User\ChangePasswordUserRequest;
-use App\Http\Requests\User\FilterRequest;
-use App\Models\Track;
-use App\Services\ImageService;
-use App\Http\Requests\User\StoreUserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
-use App\Models\Gender;
-use App\Models\Occupation;
 use App\Models\Role;
 use App\Models\User;
-
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Track;
+use App\Models\Gender;
+use App\Models\Occupation;
 use Illuminate\Http\Request;
+use App\Services\ImageService;
+use App\Http\Filters\UsersFilter;
+use App\Events\UserTelegramUpdate;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
+use App\Http\Requests\User\FilterRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
+use Illuminate\Contracts\Foundation\Application;
+use App\Http\Requests\User\ChangePasswordUserRequest;
 
 class UserController extends Controller
 {
@@ -124,12 +125,18 @@ class UserController extends Controller
         $data['avatar'] = $filename;
         unset($data['file']);
 
-        try {
-            $user->updateOrFail($data);
-        } catch (\Exception $exception) {
-            return abort(501);
-        }
+        $user->updateOrFail($data);
+        dd($data['tg_name']);
 
+        if (isset($data['tg_name'])) {
+            if (iseet($user->tg_id)) {
+                if($data['tg_name'] != $user->tg_name) {
+                    $user->tg_id = null;
+                    $user->save();
+                }
+            }
+            event(new UserTelegramUpdate($user));
+        }
         return redirect()->route('admin.users.show', $user->id);
     }
 

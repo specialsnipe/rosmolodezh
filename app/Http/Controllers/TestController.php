@@ -10,7 +10,6 @@ class TestController extends Controller
 {
     public function test()
     {
-        $user = User::find(2);
-        event(new UserRegistration($user));
+        
     }
 }
