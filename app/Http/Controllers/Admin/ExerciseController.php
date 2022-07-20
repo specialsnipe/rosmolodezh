@@ -8,6 +8,11 @@ use App\Http\Requests\Exercise\UpdateExerciseRequest;
 use App\Models\Block;
 use App\Models\Exercise;
 
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+
 class ExerciseController extends Controller
 {
     /**
@@ -54,10 +59,8 @@ class ExerciseController extends Controller
      */
     public function show( Block $block, Exercise $exercise)
     {
-        $track_id = $block->track_id;
-
-
-
+        $track = $block->track;
+        return view('admin.exercise.show', compact('block', 'exercise', 'track'));
     }
 
     /**
@@ -81,14 +84,20 @@ class ExerciseController extends Controller
         $track_id = $block->track_id;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Block $block, Exercise $exercise)
+
+    public function destroy(Request $request,Block $block, Exercise $exercise)
     {
-        $track_id = $block->track_id;
+        if(!Hash::check($request->input('password'), auth()->user()->password)) {
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
+        }
+
+        try {
+            $exercise->deleteOrFail();
+            $track = $block->track;
+            return redirect()->route('admin.tracks.blocks.show', [$track->id, $block->id]);
+        } catch (\Exception $e) {
+            abort(501);
+        }
     }
 }

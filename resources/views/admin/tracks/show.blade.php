@@ -145,7 +145,7 @@
                             @forelse($block->exercises as $exercise)
                             <tr>
                                 <td>{{ $exercise->id }}</td>
-                                <td>{{ $exercise->title }}</td>
+                                <td><a href="{{route('admin.blocks.exercises.show', [$block->id, $exercise->id])}}">{{ $exercise->title }}</a></td>
                                 <td>{{ $exercise->creator->first_and_last_names }}</td>
                                 <td>{{ $exercise->created_at }}</td>
                                 <td>

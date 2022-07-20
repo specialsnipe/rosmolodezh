@@ -31,7 +31,7 @@
 
             <div class="row">
                 <div class="col-12 m-3">
-                    <div class="card w-75">
+                    <div class="card ">
                         <div class="card-body">
                             <div class="row tack_info">
                                 <div class="col -6 track_image">
@@ -78,16 +78,21 @@
                             {{-- Settings buttons --}}
                             <section class="content">
                                 <div class="row">
-                                    <div class="col-1 mr-5">
-                                        <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}"
-                                            class="btn btn-warning ">Изменить</a>
-                                    </div>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#exampleModal">Удалить</button>
+                                    <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-md-start">
+                                        <div class="mr-2">
+                                            <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}"
+                                               class="btn btn-warning ">Изменить</a>
+                                        </div>
+                                        <button type="button" class=" btn btn-danger" data-toggle="modal"
+                                                data-target="#modalBlock">Удалить
+                                        </button>
 
-                                    <x-modal name="Вы уверены что хотите удалить?" type="delete"
-                                        action="{{ route('admin.tracks.blocks.destroy', [$block->track->id, $block->id]) }}">
-                                    </x-modal>
+                                        <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
+                                                 action="{{ route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"
+                                                 targetid="modalBlock">
+                                        </x-modal>
+                                    </div>
+
 
                                 </div>
                             </section>
@@ -99,9 +104,9 @@
             <div class="row">
                 <div class="col-12">
                     {{-- Add new blokc button --}}
-                    <div class="col-4 ml-2 mb-3">
+                    <div class="col-sm-12 col-md-6 ml-2 mb-3">
                         <a href="{{ route('admin.blocks.exercises.create', [$block->id]) }}"
-                            class="btn btn-block btn-primary">Добавить новое упражнение</a>
+                           class="btn btn-block btn-primary">Добавить новое упражнение</a>
                     </div>
                     {{-- All exercises of this block --}}
                     <div class="card-body table-responsive p-3">
@@ -113,24 +118,40 @@
                                             <div class="h3 fw-light">{{ $loop->index + 1 }}</div>
                                         </div>
                                         <div class="col-11">
-                                            <h4>
-                                                <a class="text-decoration-none link-dark me-2"
-                                                    href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{ $exercise->title }}</a>
+                                            <div class="row">
+                                                <h4 class="col-8">
+                                                    <a class="text-decoration-none link-dark me-2"
+                                                       href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{ $exercise->title }}</a>
                                                 </h4>
-                                                <div class="">
-                                                    <span>Уровень освоения: </span>
-                                                    <h5 style="display: inline"><span
-                                                            title="{{ $exercise->complexity->body }}"
-                                                            class="badge
+                                                <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
+                                                    <a class="btn btn-info mr-2"
+                                                       href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i
+                                                            class="fa fa-pen"></i></a>
+
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#deleteExercise">Удалить</button>
+
+                                                    <x-modal name="Вы уверены что хотите удалить это упражнение?" type="delete"
+                                                             action="{{ route('admin.blocks.exercises.destroy', [$block->id, $exercise->id]) }}"
+                                                             targetid="deleteExercise">
+                                                    </x-modal>
+                                                </div>
+                                            </div>
+
+                                            <div class="">
+                                                <span>Уровень освоения: </span>
+                                                <h5 style="display: inline"><span
+                                                        title="{{ $exercise->complexity->body }}"
+                                                        class="badge
                                                             @if ($exercise->complexity_id == 1) badge badge-primary @endif
                                                             @if ($exercise->complexity_id == 3) badge badge-warning @endif
                                                             @if ($exercise->complexity_id == 4) badge badge-danger @endif
                                                             @if ($exercise->complexity_id == 5) badge badge-danger @endif
                                                             @if ($exercise->complexity_id == 2) badge badge-success @endif
                                                             ">
-                                                            {{ $exercise->complexity->level }} </h5></span>
-                                                    <span> | Время на выполнение:</span>
-                                                    <h5 style="display: inline">
+                                                    {{ $exercise->complexity->level }} </h5>
+                                                <span> | Время на выполнение:</span>
+                                                <h5 style="display: inline">
                                                         <span
                                                             class="
                                                         @if ($exercise->time <= 15) badge badge-primary
@@ -142,12 +163,14 @@
                                                         ">
                                                             {{ $exercise->time }} {{ $exercise->name_minute_count }}
                                                         </span>
-                                                    </h5>
-                                                </div>
-                                                <div class="mt-3 text-muted text-truncate">{!! $exercise->excerpt !!}
-                                                </div>
+                                                </h5>
+                                            </div>
+                                            <div class="mt-3 text-muted text-truncate">{!! $exercise->excerpt !!}
+                                            </div>
                                             <div class="mt-3">
-                                                <a class="btn btn-info" href="{{route('admin.exercises.answers.index', $exercise->id)}}">Просмотр работ</a>
+                                                <a class="btn btn-info"
+                                                   href="{{route('admin.exercises.answers.index', $exercise->id)}}">Просмотр
+                                                    работ</a>
                                             </div>
                                         </div>
                                         <div>
@@ -165,7 +188,7 @@
                                     </div>
                                 </li>
                             @empty
-                            Нет заданий
+                                Нет заданий
                             @endforelse
                         </ul>
                     </div>
