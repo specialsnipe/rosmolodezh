@@ -85,6 +85,9 @@ Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseControl
 
 
 // todo: telegram webhook
-
+Route::get('/make/webhook', function () {
+    $http = Http::get('https://api.tlgr.org/bot5501374509:AAGa1MExGsrVvHVrALYiYeym0ww5rbiBYcQ/setWebhook?url=https://6985-176-96-82-145.eu.ngrok.io/webhook');
+    dd($http->body());
+});
 
 Route::post('/webhook', [\App\Http\Controllers\TelegramController::class, 'index']);

@@ -17,6 +17,5 @@ class TelegramController extends Controller
 
         Log::debug($request->all());
 
-
     }
 }
