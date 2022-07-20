@@ -16,29 +16,29 @@
                         href="{{  route('about') }}">О проекте</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="directions.html">Направления</a>
+                    <a class="nav-link" aria-current="page" href="#">Направления</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="news.html">Новости</a>
+                    <a class="nav-link" aria-current="page" href="#">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="teams.html">Команда</a>
+                    <a class="nav-link" aria-current="page" href="#">Команда</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="contacts.html">Контакты</a>
+                    <a class="nav-link" aria-current="page" href="#">Контакты</a>
                 </li>
                 @auth
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ route('auth.logout') }}">Выход</a>
                 </li>
-                @if(auth()->user()->role->name = 'admin')
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="{{ route('admin.main.index') }}">Админ панель</a>
-                    </li>
-                @endif
+                    @if(auth()->user()->role->name == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="{{ route('admin.main.index') }}">Админ панель</a>
+                        </li>
+                    @endif
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('auth.login.show') }}">Авторизация</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">Авторизация</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#registration">Регистрация</a>

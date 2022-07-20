@@ -24,9 +24,9 @@ class EventServiceProvider extends ServiceProvider
         UserRegistration::class => [
             SendRegistrationEmailMessage::class,
         ],
-        'Illuminate\Auth\Events\Verified' => [
-            'App\Listeners\LogVerifiedUser',
-        ],
+        // 'Illuminate\Auth\Events\Verified' => [
+        //     'App\Listeners\LogVerifiedUser',
+        // ],
     ];
 
     protected $subscribe = [

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Models\Track;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class TrackController extends Controller
 {
@@ -42,10 +41,10 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Track  $track
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Track $track)
+    public function show($id)
     {
         //
     }
@@ -53,10 +52,10 @@ class TrackController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Track  $track
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Track $track)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +64,10 @@ class TrackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Track  $track
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Track $track)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +75,10 @@ class TrackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Track  $track
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Track $track)
+    public function destroy($id)
     {
         //
     }

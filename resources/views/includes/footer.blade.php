@@ -16,7 +16,7 @@
             @auth
             <a href="{{ route('auth.logout') }}">Выход</a>
             @else
-            <a href="{{ route('auth.login.show') }}">Авторизация</a>
+            <a href="{{ route('auth.login') }}">Авторизация</a>
             <a href="#register">Регистрация</a>
             @endauth
         </div>

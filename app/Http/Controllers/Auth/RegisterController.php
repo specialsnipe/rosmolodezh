@@ -31,7 +31,7 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
-        $data['avatar'] = 'default_image.jpg';
+        $data['avatar'] = 'default_avatar.jpg';
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         TrackUser::create([
@@ -39,9 +39,11 @@ class RegisterController extends Controller
             'user_id' => $user->id,
         ]);
 
+        event(new Registered($user));
+
         auth()->login($user);
 
-        RegisterUserJob::dispatch($user);
+        // event(new UserRegistration($this->user));
 
         return redirect()->route('home');
     }

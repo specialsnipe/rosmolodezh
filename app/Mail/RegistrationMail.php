@@ -30,6 +30,6 @@ class RegistrationMail extends Mailable
     public function build()
     {
         return $this->subject('Тестовое сообщение от Стирай границы нет')
-                ->view('emails.registrationEmail', []);
+                ->view('emails.registrationEmail', $this->mailData);
     }
 }

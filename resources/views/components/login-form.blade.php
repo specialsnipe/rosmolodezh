@@ -22,7 +22,7 @@
         <div class="row align-items-center">
             <div class="col-8">
                 <div>
-                    <span>Ещё нет аккаунта? <a href="{{ route('auth.register.show') }}"> Зарегистрируйтесь</a></span>
+                    <span>Ещё нет аккаунта? <a href="{{ route('auth.register') }}"> Зарегистрируйтесь</a></span>
                 </div>
                 <div>
                     <a href="">Забыли пароль?</a>

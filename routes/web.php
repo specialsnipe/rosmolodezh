@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,18 +42,17 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
 // Authorization user
 
 Route::group(['as' => 'auth.'], function () {
-
     Route::group(['middleware' => 'guest'], function () {
         // Login user
-        Route::group(['as'=> 'login.', 'prefix' => 'login'], function () {
-            Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'index'])->name('show');
-            Route::post('/', [\App\Http\Controllers\Auth\LoginController::class, 'submit'])->name('submit');
+        Route::group(['as'=> 'login', 'prefix' => 'login'], function () {
+            Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'index']);
+            Route::post('/', [\App\Http\Controllers\Auth\LoginController::class, 'submit'])->name('.submit');
         });
 
         // Register user
-        Route::group(['as'=> 'register.', 'prefix' => 'register'], function () {
-            Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('show');
-            Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('store');
+        Route::group(['as'=> 'register', 'prefix' => 'register'], function () {
+            Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index']);
+            Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('.store');
         });
     });
     // logout
@@ -63,18 +63,14 @@ Route::group(['as' => 'auth.'], function () {
 
 // Verification email
 
-Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'email'], function () {
-    Route::get('/verify/{id}/{hash}', [\App\Http\Controllers\EmailController::class, 'verify'])->middleware('signed')->name('verify');
-    Route::get('/verify', [\App\Http\Controllers\EmailController::class, 'notice'])->name('notice');
-    Route::post('/verification-notification',[\App\Http\Controllers\EmailController::class, 'send'])->middleware('throttle:6,1')->name('send');
+Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'email','namespace' => "\App\Http\Controllers"], function () {
+    Route::get('/verify/{id}/{hash}', [EmailController::class, 'verify'])->middleware('signed')->name('verify');
+    Route::get('/verify', [EmailController::class, 'notice'])->name('notice');
+    Route::post('/verification-notification', [EmailController::class, 'send'])->middleware('throttle:6,1')->name('send');
 });
 
-<<<<<<< Updated upstream
-// TODO: Студенческие дела
-=======
 
 // Client side
->>>>>>> Stashed changes
 
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 Route::get('/test/mail/message', [\App\Http\Controllers\TestController::class, 'test']);
@@ -86,3 +82,9 @@ Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::c
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
 
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
+
+
+// todo: telegram webhook
+
+
+Route::post('/webhook', [\App\Http\Controllers\TelegramController::class, 'index']);

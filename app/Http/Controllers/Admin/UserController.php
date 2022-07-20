@@ -70,6 +70,7 @@ class UserController extends Controller
         unset($data['file']);
 
         $user = User::firstOrCreate($data);
+        event(new Registered($user));
         return redirect()->route('admin.users.index');
     }
 
