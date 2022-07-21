@@ -10,21 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserTelegramUpdate
+class TestBotMessage
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
-    public $new_tg_name;
-
+    public $chat_id;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, $new_tg_name)
+    public function __construct($chat_id)
     {
-        $this->user = $user;
-        $this->new_tg_name = $new_tg_name;
+        $this->chat_id = $chat_id;
     }
 }

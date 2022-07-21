@@ -37,7 +37,7 @@ class UserController extends Controller
         $data = $request->validated();
 
         $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
-        $users = User::filter($filter)->paginate(15);
+        $users = User::filter($filter)->withTrashed()->paginate(15);
         $roles = Role::all();
         $tracks = Track::all();
         return view('admin.users.index', compact('users', 'roles', 'tracks'));
@@ -111,6 +111,10 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
+        if (isset($data['tg_name'])) {
+            event(new UserTelegramUpdate($user, $data['tg_name']));
+        }
+
         if (!$request->hasFile('file')) {
             try {
                 $user->updateOrFail($request->validated());
@@ -119,24 +123,13 @@ class UserController extends Controller
                 return abort(501);
             }
         }
-
         ImageService::deleteOld($user->avatar, 'users/avatars');
         $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;
         unset($data['file']);
 
         $user->updateOrFail($data);
-        dd($data['tg_name']);
 
-        if (isset($data['tg_name'])) {
-            if (iseet($user->tg_id)) {
-                if($data['tg_name'] != $user->tg_name) {
-                    $user->tg_id = null;
-                    $user->save();
-                }
-            }
-            event(new UserTelegramUpdate($user));
-        }
         return redirect()->route('admin.users.show', $user->id);
     }
 
@@ -150,11 +143,46 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
+            $user->update([
+                'active' => false,
+            ]);
             $user->deleteOrFail();
             return redirect()->route('admin.users.index');
         } catch (\Exception $exception) {
             return dd($exception);
         }
+    }
+    /**
+     * Remove the user resource from storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
+     * @throws \Throwable
+     */
+    public function change_status(User $user)
+    {
+        if ($user->status) {
+
+            $user->update([
+                'active' => false,
+            ]);
+            $user->deleteOrFail();
+            return response()->json([
+                'user_id' => $user->id,
+                'active' => false,
+                'message' => 'status changed',
+            ]);
+        }
+        $user->update([
+            'active' => true,
+            'deleted_at' => null,
+        ]);
+        return response()->json([
+            'user_id' => $user->id,
+            'active' => true,
+            'message' => 'status changed',
+
+        ]);
     }
 
     public function change_password(ChangePasswordUserRequest $request, User $user)

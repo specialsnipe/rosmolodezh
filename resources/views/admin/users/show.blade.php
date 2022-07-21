@@ -59,11 +59,23 @@
                         </tr>
                         <tr>
                             <th>Почта</th>
-                            <td>{{$user->email}}</td>
+                            <td>{{$user->email}}
+                                @if(isset($user->email_verified_at))
+                                    <span class="text-muted">(почта подтверждена: {{ $user->email_verified_at }})</span>
+                                @else
+                                    <span class="text-danger"> (почта не подтверждена)</span>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Телеграм</th>
-                            <td>{{$user->tg_name}}</td>
+                            <td><a target="_blank" href="{{ 'https://t.me/'.$user->tg_name}}"> {{ $user->tg_name }} </a>
+                                @if(isset($user->tg_id))
+                                    <span class="text-muted">({{ $user->tg_id }})</span>
+                                @else
+                                    <span class="text-danger"> (пользователь ещё не запустил бота)</span>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Вконтакте</th>

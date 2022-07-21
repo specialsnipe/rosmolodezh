@@ -108,11 +108,14 @@
                                 <th>Занятость</th>
                                 <th>Роль</th>
                                 <th>Траектория</th>
+                                <th>Статус</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                <tr data-widget="expandable-table" aria-expanded="false">
+                                <tr @if (isset($user->deleted_at))
+                                class="bg-dark"
+                                @endif data-widget="expandable-table" aria-expanded="false">
                                     <td>{{$user->id}}</td>
                                     <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                             alt="image">
@@ -138,6 +141,10 @@
                                             href="{{route('admin.tracks.show', $track->id)}}"
                                             style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a>
                                         @empty <span>Нет траектории</span> @endforelse</td>
+                                    <td>
+                                        <span>@if($user->active) Активен @else Неактивный @endif</span>
+                                        <button class="btn btn-success">Поменять статус</button>
+                                    </td>
                                 </tr>
                                 <tr class="expandable-body d-none">
                                     <td colspan="10">
