@@ -142,6 +142,7 @@
                                             style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a>
                                         @empty <span>Нет траектории</span> @endforelse</td>
                                     <td>
+                                        {{-- Todo: изменение статуса --}}
                                         <span>@if($user->active) Активен @else Неактивный @endif</span>
                                         <button class="btn btn-success">Поменять статус</button>
                                     </td>

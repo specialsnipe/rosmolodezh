@@ -69,7 +69,7 @@
                         </tr>
                         <tr>
                             <th>Телеграм</th>
-                            <td><a target="_blank" href="{{ 'https://t.me/'.$user->tg_name}}"> {{ $user->tg_name }} </a>
+                            <td><a target="_blank" href="{{ $user->tg_url}}"> {{ $user->tg_name }} </a>
                                 @if(isset($user->tg_id))
                                     <span class="text-muted">({{ $user->tg_id }})</span>
                                 @else

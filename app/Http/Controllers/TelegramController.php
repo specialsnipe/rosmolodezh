@@ -18,7 +18,7 @@ class TelegramController extends Controller
     {
         $all = $request->all();
         if(isset($all['my_chat_member'])) {
-            // New user of telegram bot (?)
+            // New user of telegram bot (? may be not ?)
             $username = $all['my_chat_member']['chat']['username'];
             $id = $all['my_chat_member']['chat']['id'];
             $action = $all['my_chat_member']['new_chat_member']['status'];
@@ -29,20 +29,7 @@ class TelegramController extends Controller
                 'action' => $action
             ];
 
-            TelegramLog::create([
-                'username' => $username,
-                'u_id' => $id,
-                'action' => $action
-            ]);
-
-            $user = User::where('tg_name', $username)->first();
-            if (isset($user)) {
-                $user->tg_id = $id;
-                $user->save();
-                return true;
-            }
-            return false;
-            // event(new TelegramBotSubscribed($data));
+            event(new TelegramBotSubscribed($data));
 
         }
         if(isset($all['message'])) {

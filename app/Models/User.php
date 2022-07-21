@@ -36,7 +36,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'tg_name',
         'tg_id',
-        'tg_url',
         'vk_url',
     ];
 
@@ -45,7 +44,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar_thumbnail_path',
         'avatar_medium_path',
         'first_and_last_names',
-        'all_names'
+        'all_names',
+        'tg_url'
     ];
 
     public function getAvatarOriginalPathAttribute()
@@ -71,6 +71,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAllNamesAttribute()
     {
         return $this->last_name . ' ' . $this->first_name . ' ' . $this->father_name;
+    }
+    public function getTgUrlAttribute()
+    {
+        return 'https://t.me/'.$this->tg_name;
     }
 
     /**

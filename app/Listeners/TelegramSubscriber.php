@@ -64,9 +64,9 @@ class TelegramSubscriber
         $message = $this->telegram->sendMessage($event->chat_id, (string)view('telegram.start_bot', ['username' => $event->username]));
         return $message;
     }
+
     public function testBotMessage($event)
     {
-
         $message = $this->telegram->sendMessage($event->chat_id, (string)view('telegram.test_message'));
         return $message;
     }
