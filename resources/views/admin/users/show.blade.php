@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{$user->login}}</h1>
+                    <h1 class="m-0">{{$user->login}} @if(auth()->user()->id == $user->id) <span class="text-muted">(Это вы)</span> @endif</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -29,6 +29,10 @@
                 </div>
                 <table class="table table-head-fixed text-nowrap col-sm-12 col-md-8 col-xl-10">
                     <tbody>
+                        <tr>
+                            <th class="col-sm-4 col-md-2">Статус:</th>
+                            <td class="col-sm-8  col-md-10"> @if(isset($user->deleted_at)) <span class="badge badge-danger">Удалён</span> @else  <span class="badge badge-success">Активен</span> @endif</td>
+                        </tr>
                         <tr>
                             <th class="col-sm-4 col-md-2">ID</th>
                             <td class="col-sm-8  col-md-10">{{$user->id}}</td>
@@ -92,15 +96,27 @@
         </div>
         <div class="row ">
             <div class="col-sm-6 col-xl-4 mt-3">
-                <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-warning col-12">Изменить</a>
+                <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-info col-12">Изменить</a>
             </div>
+            @if(auth()->user()->id != $user->id)
             <div class="col-sm-6 col-xl-4 mt-3">
+                @if (isset($user->deleted_at))
+
+
+                <form action="{{route('admin.users.changeStatus', $user->id)}}" method="POST">
+                    @csrf
+                    @method('put')
+                    <input type="submit" class="btn btn-success col-12 " value="Восстановить">
+                </form>
+                @else
                 <form action="{{route('admin.users.destroy',$user->id)}}" method="POST">
                     @csrf
                     @method('delete')
-                    <input type="submit" class="btn btn-danger col-12 " value="Удалить">
+                    <input type="submit" class="btn btn-danger col-12 " value="Деактивировать">
                 </form>
+                @endif
             </div>
+            @endif
         </div>
     </section>
 </div>

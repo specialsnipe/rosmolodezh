@@ -6,6 +6,9 @@
 @endpush
 
 @section('content')
+
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -93,7 +96,6 @@
                 <a href="{{route('admin.users.create')}}" class="col-sm-12 col-md-4 btn btn-primary">Добавить
                     пользователя</a>
             </div>
-
             <div class="card m-3">
                 <div class="card-head p-3">
                     <h3 class="card-title">Записи пользователей зарегиестрированных на сайте</h3>
@@ -113,7 +115,8 @@
                         </thead>
                         <tbody>
                             @forelse($users as $user)
-                                <tr @if (isset($user->deleted_at))
+                                @livewire('table-user-component',['user'=>$user, 'active'=> $user->active])
+                                {{-- <tr @if (isset($user->deleted_at))
                                 class="bg-dark"
                                 @endif data-widget="expandable-table" aria-expanded="false">
                                     <td>{{$user->id}}</td>
@@ -141,10 +144,14 @@
                                             href="{{route('admin.tracks.show', $track->id)}}"
                                             style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a>
                                         @empty <span>Нет траектории</span> @endforelse</td>
-                                    <td>
+                                    <td>--}}
                                         {{-- Todo: изменение статуса --}}
-                                        <span>@if($user->active) Активен @else Неактивный @endif</span>
-                                        <button class="btn btn-success">Поменять статус</button>
+{{--
+                                        <div class="badge
+                                            @if($user->active) badge-success @else badge-secondary @endif">
+                                            @if($user->active) Активен @else Неактивный @endif
+                                        </div>
+                                        <button class="border-0 change-status text-center" style="padding: 5px 10px; background: #4a7aff; color:white;border-radius: 5px">Поменять статус</button>
                                     </td>
                                 </tr>
                                 <tr class="expandable-body d-none">
@@ -173,7 +180,7 @@
                                             </tbody>
                                         </table>
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 @empty
                                 <tr>
                                     <td></td>

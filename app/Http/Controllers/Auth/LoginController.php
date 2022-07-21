@@ -32,8 +32,9 @@ class LoginController extends Controller
     public function submit(LoginRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $user = User::where('login', $data['login'])->first();
+        $user = User::where('login', $data['login'])->withTrashed()->first();
 
+        // dd($data, $user);
         if (Hash::check($data['password'], $user->password)) {
             auth()->login($user);
             return redirect()->route('home');

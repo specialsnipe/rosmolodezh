@@ -81,8 +81,9 @@ class UserController extends Controller
      * @param User $user
      * @return Application|Factory|View
      */
-    public function show(User $user)
+    public function show($user)
     {
+        $user = User::withTrashed()->find($user);
         return view('admin.users.show', compact('user'));
     }
 
@@ -142,15 +143,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
-            $user->update([
-                'active' => false,
-            ]);
-            $user->deleteOrFail();
-            return redirect()->route('admin.users.index');
-        } catch (\Exception $exception) {
-            return dd($exception);
-        }
+        $user->update([
+            'active' => false,
+        ]);
+        $user->deleteOrFail();
+        return redirect()->back();
     }
     /**
      * Remove the user resource from storage.
@@ -159,30 +156,22 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws \Throwable
      */
-    public function change_status(User $user)
+    public function change_status($user)
     {
-        if ($user->status) {
+        $user = User::withTrashed()->find($user);
 
+        if (isset($user->deleted_at)) {
             $user->update([
-                'active' => false,
+                'active' => true,
             ]);
-            $user->deleteOrFail();
-            return response()->json([
-                'user_id' => $user->id,
-                'active' => false,
-                'message' => 'status changed',
-            ]);
+            $user->restore();
+            return redirect()->back();
         }
         $user->update([
-            'active' => true,
-            'deleted_at' => null,
+            'active' => false,
         ]);
-        return response()->json([
-            'user_id' => $user->id,
-            'active' => true,
-            'message' => 'status changed',
-
-        ]);
+        $user->deleteOrFail();
+        return redirect()->back();
     }
 
     public function change_password(ChangePasswordUserRequest $request, User $user)

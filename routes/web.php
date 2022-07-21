@@ -21,6 +21,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::match(['put', 'patch'], 'users/{user}/changeStatus', [\App\Http\Controllers\Admin\UserController::class, 'change_status'])->name('users.changeStatus');
     Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
@@ -63,10 +64,10 @@ Route::group(['as' => 'auth.'], function () {
 
 // Verification email
 
-Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'email','namespace' => "\App\Http\Controllers"], function () {
-    Route::get('/verify/{id}/{hash}', [EmailController::class, 'verify'])->middleware('signed')->name('verify');
-    Route::get('/verify', [EmailController::class, 'notice'])->name('notice');
-    Route::post('/verification-notification', [EmailController::class, 'send'])->middleware('throttle:6,1')->name('send');
+Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'email'], function () {
+    Route::get('/verify/{id}/{hash}', [\App\Http\Controllers\EmailController::class, 'verify'])->middleware('signed')->name('verify');
+    Route::get('/verify', [\App\Http\Controllers\EmailController::class, 'notice'])->name('notice');
+    Route::post('/verification-notification', [\App\Http\Controllers\EmailController::class, 'send'])->middleware('throttle:6,1')->name('send');
 });
 
 
