@@ -30,6 +30,8 @@ class Block extends Model
         'exercises'
     ];
     protected $appends = [
+        'image_original',
+        'image_medium',
         'image_thumbnail',
         'name_exercises_count'
     ];
@@ -51,9 +53,17 @@ class Block extends Model
         }
     }
 
+    public function getImageOriginalAttribute()
+    {
+        return 'storage/blocks/images/originals/'. $this->image;
+    }
     public function getImageThumbnailAttribute()
     {
         return 'storage/blocks/images/thumbnail/thumbnail_'. $this->image;
+    }
+    public function getImageMediumAttribute()
+    {
+        return 'storage/blocks/images/medium/medium_'. $this->image;
     }
 
     /**
@@ -81,6 +91,15 @@ class Block extends Model
     public function exercises(): hasMany
     {
         return $this->hasMany(Exercise::class);
+    }
+
+    /**
+     *  Relation with exercises (one to many)
+     * @return HasMany
+     */
+    public function deleted_exercises(): hasMany
+    {
+        return $this->hasMany(Exercise::class)->onlyTrashed();
     }
 
     /**

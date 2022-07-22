@@ -25,58 +25,6 @@
     </div>
 
     <div class="row m-3">
-        {{-- <div class="col-12"> --}}
-            {{-- <div class="card">
-                <div class="card-header">
-                    <h4>Все новости</h4>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="height: 300px;"> --}}
-                    {{-- <table class="table table-head-fixed text-nowrap">
-                        <thead>
-                            <tr>
-                                <th style="width: 30px">ID</th>
-                                <th style="width: 220px">Название</th>
-                                <th style="width: 180px">Автор</th>
-                                <th style="width: 380px">Текст</th>
-                                <th>Картинки</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($posts as $post)
-                            <tr>
-                                <td>{{$post->id}}</td>
-                                <td><a href="{{route('admin.posts.show',$post->id)}}">{{$post->title}}</a></td>
-                                <td>{{$post->user->login}}</td>
-                                <td>
-                                    <span style="">{!! Str::limit($post->excerpt, 20, '...') !!} </span>
-                                </td>
-                                <td>
-                                    <div class="image_container">
-                                        @foreach($post->images as $image)
-                                        <img src="{{ asset($image->thumbnail_image) }}" alt="" width="100px">
-                                        @endforeach
-                                    </div>
-
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td></td>
-                                <td>Постов нет</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table> --}}
-                    {{-- </div> --}}
-                <!-- /.card-body -->
-                {{--
-            </div> --}}
-            <!-- /.card -->
-
-            {{--
-        </div> --}}
-
         @foreach ($posts as $post)
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
             <div class="card">

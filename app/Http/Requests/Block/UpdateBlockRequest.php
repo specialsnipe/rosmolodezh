@@ -25,10 +25,10 @@ class UpdateBlockRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['nullable', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
             'body' => ['required'],
             'date_start' => ['required', 'date'],
-            'date_end' => ['required', 'date'],
+            'date_end' => ['required', 'date', 'after_or_equal:date_start'],
         ];
     }
 
@@ -45,6 +45,7 @@ class UpdateBlockRequest extends FormRequest
             'date_start.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
             'date_end.required' => 'Заполните поле: Дата окончания блока',
             'date_end.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
+            'date_end.after_or_equal' => 'Дата завершения блока не может быть раньше даты начала',
         ];
     }
 }

@@ -116,72 +116,7 @@
                         <tbody>
                             @forelse($users as $user)
                                 @livewire('table-user-component',['user'=>$user, 'active'=> $user->active])
-                                {{-- <tr @if (isset($user->deleted_at))
-                                class="bg-dark"
-                                @endif data-widget="expandable-table" aria-expanded="false">
-                                    <td>{{$user->id}}</td>
-                                    <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
-                                            alt="image">
-                                    </td>
-                                    <td>
-
-                                            <span>
-                                                {{$user->last_name}}
-                                            </span>
-                                            <span>
-                                                {{$user->first_name}}
-                                            </span>
-                                            <span>
-                                                {{$user->father_name}}
-                                            </span>
-
-                                    </td>
-                                    <td>{{$user->occupation->name}}</td>
-                                    <td><span
-                                            style="padding: 5px 10px; background: #72c07d; border-radius: 5px">{{$user->role->name}}</span>
-                                    </td>
-                                    <td>@forelse($user->tracks as $track) <a
-                                            href="{{route('admin.tracks.show', $track->id)}}"
-                                            style="padding: 5px 10px; background: #5ebff5; border-radius: 5px">{{$track->title}}</a>
-                                        @empty <span>Нет траектории</span> @endforelse</td>
-                                    <td>--}}
-                                        {{-- Todo: изменение статуса --}}
-{{--
-                                        <div class="badge
-                                            @if($user->active) badge-success @else badge-secondary @endif">
-                                            @if($user->active) Активен @else Неактивный @endif
-                                        </div>
-                                        <button class="border-0 change-status text-center" style="padding: 5px 10px; background: #4a7aff; color:white;border-radius: 5px">Поменять статус</button>
-                                    </td>
-                                </tr>
-                                <tr class="expandable-body d-none">
-                                    <td colspan="10">
-                                        <table class="table-head-fixed text-nowrap">
-                                            <thead>
-                                                <td class="mr-3 mt-3 mb-3">логин</td>
-                                                <td class="mr-3 mt-3 mb-3">пол</td>
-                                                <td class="mr-3 mt-3 mb-3">возраст</td>
-                                                <td class="mr-3 mt-3 mb-3">почта</td>
-                                                <td class="mr-3 mt-3 mb-3">телеграм логин</td>
-                                                <td class="mr-3 mt-3 mb-3">телеграм id</td>
-                                                <td class="mr-3 mt-3 mb-3">вконтакте</td>
-                                                <td class="mr-3 mt-3 mb-3">информация</td>
-                                            </thead>
-                                            <tbody>
-                                                <td class="mr-3 mt-3 mb-3"><a href="{{route('admin.users.show', $user->id)}}">{{$user->login}}</a>
-                                                </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->gender->name}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->age}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->age}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->tg_name}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->tg_id}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->tg_url}} </td>
-                                                <td class="mr-3 mt-3 mb-3">{{$user->about}} </td>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr> --}}
-                                @empty
+                            @empty
                                 <tr>
                                     <td></td>
                                     <td>Пользователей нет</td>

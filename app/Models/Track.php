@@ -99,7 +99,7 @@ class Track extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class)->withTrashed()->withTimestamps();
     }
 
     /**
@@ -109,7 +109,7 @@ class Track extends Model
      */
     public function curator(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'curator_id');
+        return $this->belongsTo(User::class, 'curator_id')->withTrashed();
     }
 
     /**
@@ -120,6 +120,15 @@ class Track extends Model
     public function blocks(): HasMany
     {
         return $this->hasMany(Block::class);
+    }
+    /**
+     * Relation with blocks (one to many)
+     *
+     * @return HasMany
+     */
+    public function deleted_blocks(): HasMany
+    {
+        return $this->hasMany(Block::class)->onlyTrashed();
     }
 
     /**

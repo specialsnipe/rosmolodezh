@@ -33,9 +33,9 @@
                 <div class="col-12 m-3">
                     <div class="card ">
                         <div class="card-body">
-                            <div class="row tack_info">
-                                <div class="col -6 track_image">
-                                    <img src="{{ asset($block->image_original) }}" alt="дизайн" height="150px">
+                            <div class="row ">
+                                <div class="col-6 track_image">
+                                    <img class="img-fluid rounded mb-2" src="{{ asset($block->image_medium) }}" alt="дизайн" height="150px">
                                 </div>
                                 <table class="col-6 tack_text track_table">
                                     <tr>
@@ -75,27 +75,27 @@
                                     </tr>
                                 </table>
                             </div>
-                            {{-- Settings buttons --}}
-                            <section class="content">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-md-start">
-                                        <div class="mr-2">
+                            <div class="row">
+                                <div class="col-sm-12 col-mb-6">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 row">
                                             <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}"
-                                               class="btn btn-warning ">Изменить</a>
+                                                class="col-12 btn btn-warning ">Изменить</a>
                                         </div>
-                                        <button type="button" class=" btn btn-danger" data-toggle="modal"
-                                                data-target="#modalBlock">Удалить
-                                        </button>
+                                        <div class="col-sm-12 col-md-6 row">
+                                            <button type="button" class="col-12 btn btn-danger" data-toggle="modal"
+                                                    data-target="#modalBlock">Удалить
+                                            </button>
 
-                                        <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
-                                                 action="{{ route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"
-                                                 targetid="modalBlock">
-                                        </x-modal>
+                                            <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
+                                                action="{{ route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"
+                                                targetid="modalBlock">
+                                            </x-modal>
+                                        </div>
                                     </div>
-
-
                                 </div>
-                            </section>
+                            </div>
+
                         </div>
                     </div>
                 </div>
