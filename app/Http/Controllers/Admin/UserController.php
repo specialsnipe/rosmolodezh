@@ -39,6 +39,9 @@ class UserController extends Controller
 
         $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
         $users = User::filter($filter)->withTrashed()->paginate(15);
+        foreach ($users as $user) {
+            // dd($user);
+        }
         $roles = Role::all();
         $tracks = Track::all();
         return view('admin.users.index', compact('users', 'roles', 'tracks'));

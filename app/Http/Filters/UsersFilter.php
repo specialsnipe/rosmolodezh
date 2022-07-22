@@ -15,6 +15,8 @@ class UsersFilter extends AbstractFilter
     public const OCCUPATION_ID = 'occupation_id';
     public const TRACK_ID = 'track_id';
     public const ROLE_ID = 'role_id';
+    public const ACTIVE = 'active';
+    public const DELETED_AT = 'deleted_at';
 
 
     protected function getCallbacks(): array
@@ -27,6 +29,8 @@ class UsersFilter extends AbstractFilter
             self::OCCUPATION_ID => [$this, 'occupationId'],
             self::TRACK_ID => [$this, 'trackId'],
             self::ROLE_ID => [$this, 'roleId'],
+            self::ACTIVE => [$this, 'active'],
+            self::DELETED_AT => [$this, 'deletedAt'],
         ];
 
     }

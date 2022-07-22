@@ -28,7 +28,7 @@ class StoreBlockRequest extends FormRequest
             'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
             'body' => ['required'],
             'date_start' => ['required', 'date'],
-            'date_end' => ['required', 'date'],
+            'date_end' => ['required', 'date', 'after_or_equal:date_start'],
         ];
     }
 

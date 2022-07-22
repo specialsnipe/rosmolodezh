@@ -1,5 +1,5 @@
 
-    <tr @if (isset($user->deleted_at))
+    <tr @if (!$user->active)
         class="bg-dark"
         @endif >
         <td wire:click='openMore' >{{$user->id}}</td>

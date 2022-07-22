@@ -16,16 +16,14 @@ class TableUserComponent extends Component
         if (auth()->user()->id != $this->user->id) {
 
             if (isset($this->user->deleted_at)) {
-                $this->user->update([
-                    'active' => true,
-                ]);
+                $this->user->active = 1;
+                $this->user->save();
                 $this->user->restore();
                 $this->active = true;
             } else {
 
-                $this->user->update([
-                    'active' => false,
-                ]);
+                $this->user->active = 0;
+                $this->user->save();
                 $this->user->deleteOrFail();
                 $this->active = false;
             }

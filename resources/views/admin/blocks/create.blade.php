@@ -25,54 +25,60 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <div class="row">
-                    <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
                         <form action="{{route('admin.tracks.blocks.store',$track->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group w-50">
-                                <label for="title">Название блока</label>
-                                <input type="text" class="form-control " id="title" name="title" placeholder="Название" value="{{old('title')}}">
-                                @error('title')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-50">
-                                <label for="exampleInputFile2">Загрузите иконку блока</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image" id="exampleInputFile"
-                                               value="{{old('image')}}" multiple>
-                                        <label class="custom-file-label" for="exampleInputFile2">Выберите
-                                            картинку</label>
-                                    </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12 col-md-6">
+                                    <label for="title">Название блока</label>
+                                    <input type="text" class="form-control " id="title" name="title" placeholder="Название" value="{{old('title')}}">
+                                    @error('title')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
-                                @error('image')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
 
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="date_start">Дата начала блока</label>
+                                    <input type="date" class="form-control" name="date_start" value="{{old('date_begin', date('Y-m-d'))}}">
+                                    @error('date_start')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="date_end">Дата окончания блока</label>
+                                    <input type="date" class="form-control" name="date_end" value="{{old('date_end', date('Y-m-d'))}}">
+                                    @error('date_end')
+                                    <div class="text-danger">{{$message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-sm-12 ">
+                                    <label for="summernote">Текст блока</label>
+                                    <textarea id="summernote" name="body">{{old('body')}}</textarea>
+                                    @error('body')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="summernote">Текст блока</label>
-                                <textarea id="summernote" name="body">{{old('body')}}</textarea>
-                                @error('body')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-25">
-                                <label for="date_start">Дата начала блока</label>
-                                <input type="date" class="form-control  mt-3" name="date_start" value="{{old('date_begin')}}">
-                                @error('date_start')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group w-25">
-                                <label for="date_end">Дата окончания блока</label>
-                                <input type="date" class="form-control  mt-3" name="date_end" value="{{old('date_end')}}">
-                                @error('date_end')
-                                <div class="text-danger">{{$message }}</div>
-                                @enderror
-                            </div>
+                            <hr>
+                            <div class="row">
 
+                                <div class="form-group col-sm-12 col-md-6">
+                                    <label for="exampleInputFile2">Загрузите иконку блока</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="image" id="exampleInputFile"
+                                                value="{{old('image')}}" multiple>
+                                            <label class="custom-file-label" for="exampleInputFile2">Выберите
+                                                картинку</label>
+                                        </div>
+                                    </div>
+                                    @error('image')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+
+                                </div>
+                            </div>
                             <input type="submit" class="btn btn-primary" value="Добавить">
                         </form>
                     </div>
