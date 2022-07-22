@@ -36,9 +36,7 @@
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
 
-                                {{--                                TODO сделать ссылки для изменения удаления,когда будет реализован функционал--}}
-
-                                <a class="btn btn-info mr-2" href="#">Изменить <i
+                                <a class="btn btn-info mr-2" href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить <i
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
