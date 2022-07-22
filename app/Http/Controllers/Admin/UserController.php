@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\User\FilterRequest;
 use App\Http\Requests\User\StoreUserRequest;
@@ -53,7 +54,8 @@ class UserController extends Controller
         $genders = Gender::all();
         $roles = Role::all();
         $occupations = Occupation::all();
-        return view('admin.users.create', compact('genders', 'roles', 'occupations'));
+        $tracks = Track::all();
+        return view('admin.users.create', compact('genders', 'roles', 'occupations', 'tracks'));
     }
 
     /**
@@ -65,12 +67,31 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-        $filename = ImageService::make($request->file('file'), 'users/avatars');
-        $data['avatar'] = $filename;
+
         $data['password'] = Hash::make($data['password']);
+
+        if (!$request->hasFile('file')) {
+            try {
+                $user->create($data);
+                if (isset($data['tg_name'])) {
+                    event(new UserTelegramUpdate($user, $data['tg_name']));
+                }
+                event(new Registered($user));
+                return redirect()->route('admin.users.show', $user->id);
+            } catch (\Exception $exception) {
+                return abort(501);
+            }
+        }
+
+        $filename = ImageService::make($request->file('file'), 'users/avatars');
         unset($data['file']);
 
-        $user = User::firstOrCreate($data);
+        $data['avatar'] = $filename;
+        $user = User::create($data);
+
+        if (isset($data['tg_name'])) {
+            event(new UserTelegramUpdate($user, $data['tg_name']));
+        }
         event(new Registered($user));
         return redirect()->route('admin.users.index');
     }

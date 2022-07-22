@@ -159,14 +159,23 @@
                         <hr>
                         {{-- avatar change --}}
                         <div class="form-group row">
-                            <div class="col-sm-12 col-md-2 col-xl-2 text-right">
-
-                                <img class="rounded img-fluid img-thumbnail mb-2"
-                                    height="100px">
-                                <span class="text-muted text-align-right">* старый аватар</span>
+                            <div class="col-sm-12 col-md-2 text-right">
+                                <div class="row">
+                                    <img src="{{ asset($user->avatar_medium_path) }}" class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
+                                    height="100" alt="старый аватар пользователя">
+                                    <span class="col-12  text-muted text-align-right">* старый аватар</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-2 text-right">
+                                <div class="row">
+                                    <img src="" class="col-12 rounded img-fluid img-thumbnail mb-2 preview_avatar"
+                                        height="100" alt="новый аватар пользователя">
+                                    <span class="col-12 text-muted text-align-right">* новый аватар</span>
+                                </div>
                             </div>
 
-                            <div class="col-sm-12 col-md-10 col-xl-10">
+                            <div class="col-sm-12 col-md-8">
+
                                 <label for="avatar">Аватар пользователя</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -218,3 +227,21 @@
 </div>
 
 @endsection
+
+@push('script')
+    <script>
+        let input = document.querySelector('.custom-file-input');
+        let preview = document.querySelector(".preview_avatar");
+        input.addEventListener('change', function(event) {
+            if(event.target.files.length > 0){
+                let src = URL.createObjectURL(event.target.files[0]);
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        })
+
+        preview.addEventListener('click', function () {
+            input.click();
+        })
+    </script>
+@endpush

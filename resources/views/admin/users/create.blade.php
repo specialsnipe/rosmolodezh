@@ -39,18 +39,6 @@
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
-                                    {{-- avatar image --}}
-                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                        <label for="avatar">Аватар пользователя</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" id="avatar" class="custom-file-input" name="file" id="avatar"
-                                                    value="Выбирите">
-                                                <label class="custom-file-label" for="avatar">Выберите
-                                                    картинку</label>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="email">Почта</label>
@@ -145,7 +133,73 @@
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
+
+                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                        <label for="track_id">Направление</label>
+                                        <select class="form-control " name="track_id" id="track_id">
+                                            <option value="0" disabled selected>Выберите направление</option>
+                                            @foreach($tracks as $track)
+                                                <option value="{{$track->id}}"
+                                                        @if(old('track_id') == $track->id) selected @endif>{{$track->title}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('occupation_id')
+                                        <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
                                 </div>
+                                <hr>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                        <label for="tg_name">Имя в телеграм</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-bold text-black-50"
+                                                    id="tg_name_addon">@</span>
+                                            </div>
+                                            <input type="text" class="form-control" name="tg_name"
+                                                placeholder="username" id="tg_name" aria-describedby="tg_name_addon"
+                                                value="{{ old('tg_name') }}">
+                                        </div>
+                                        @error('tg_name')
+                                        <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                        <label for="vk_url">Ссылка на ВКонтакте</label>
+                                        <input type="text" class="form-control" name="vk_url"
+                                            placeholder="vk url" id="vk_url" aria-describedby="vk_url_addon"
+                                            value="{{ old('vk_url') }}">
+                                        @error('vk_url')
+                                        <div class="text-danger">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                            </div>
+                                <hr>
+
+                                    {{-- avatar image --}}
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 col-md-4 text-right">
+                                            <div class="row">
+                                                <img src="" class="col-12 rounded img-fluid img-thumbnail mb-2 preview_avatar"
+                                                    height="100" alt="новый аватар пользователя">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-8">
+
+                                            <label for="avatar">Аватар пользователя</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" id="avatar" class="custom-file-input" name="file" id="avatar"
+                                                        value="Выбирите">
+                                                    <label class="custom-file-label" for="avatar">Выберите
+                                                        картинку</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <input type="submit" class="btn btn-primary  col-sm-12" value="Создать">
                             </form>
                         </div>
@@ -159,3 +213,21 @@
     </div>
 
 @endsection
+
+@push('script')
+    <script>
+        let input = document.querySelector('.custom-file-input');
+        let preview = document.querySelector(".preview_avatar")
+        input.addEventListener('change', function(event) {
+            if(event.target.files.length > 0){
+                let src = URL.createObjectURL(event.target.files[0]);
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        })
+
+        preview.addEventListener('click', function () {
+            input.click();
+        })
+    </script>
+@endpush

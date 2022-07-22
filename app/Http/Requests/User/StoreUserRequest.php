@@ -34,7 +34,10 @@ class StoreUserRequest extends FormRequest
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => 'numeric',
-            'file'=>['required','image', 'mimes:jpg,jpeg,png', 'max:2048']
+            'file'=>['required','image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'track_id' => 'required',
+            'tg_name' => '',
+            'vk_url' => ['nullable', 'url'],
             //'track_id' => ['required', 'min:1']
 
         ];

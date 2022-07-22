@@ -6,9 +6,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row ">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{$user->login}} @if(auth()->user()->id == $user->id) <span class="text-muted">(Это вы)</span> @endif</h1>
+                    <h1 class="ml-3">{{$user->login}} @if(auth()->user()->id == $user->id) <span class="text-muted">(Это вы)</span> @endif</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -21,13 +21,13 @@
         </div><!-- /.container-fluid -->
     </div>
 
-    <section class="content">
-        <div class="card">
+    <section class="content m-3">
+        <div class="card ">
             <div class="card-body row">
-                <div class="col-sm-12 col-md-4 col-xl-2">
-                    <img class="card-img-top" src="{{ asset($user->avatar_original_path) }}" alt="Аватарка пользователя">
+                <div class="col-sm-12 col-md-4">
+                    <img class="card-img-top" src="{{ asset($user->avatar_medium_path) }}" alt="Аватарка пользователя">
                 </div>
-                <table class="table table-head-fixed text-nowrap col-sm-12 col-md-8 col-xl-10">
+                <table class="table table-head-fixed text-nowrap col-sm-12 col-md-8 ">
                     <tbody>
                         <tr>
                             <th class="col-sm-4 col-md-2">Статус:</th>
