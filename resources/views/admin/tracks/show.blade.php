@@ -144,8 +144,8 @@
                         <tbody>
                             @forelse($block->exercises as $exercise)
                             <tr>
-                                <td>{{ $exercise->id }}</td>
-                                <td><a href="{{route('admin.blocks.exercises.show', [$block->id, $exercise->id])}}">{{ $exercise->title }}</a></td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td><a href="{{route('admin.blocks.exercises.show', [$block->id, $exercise->id])}}">{{ $exercise->title }} <span class="text-muted">(id: {{ $exercise->id }})</span></a></td>
                                 <td>{{ $exercise->creator->first_and_last_names }}</td>
                                 <td>{{ $exercise->created_at }}</td>
                                 <td>

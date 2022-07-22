@@ -131,7 +131,7 @@ class ExerciseCreateComponent extends Component
 
     public function completeExerciseCreate()
     {
-        return redirect()->route('admin.tracks.blocks.show',[ $this->block->track_id, $this->block->id]);
+        return redirect()->route('admin.blocks.exercises.show', [$this->block->id, $this->exercise->id]);
     }
 
     // public function mount()

@@ -19,7 +19,7 @@
                             <li class="breadcrumb-item"><a
                                     href="{{route('admin.tracks.blocks.show',[$track->id, $block->id] )}}">{{$block->title}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a
+                            <li class="breadcrumb-item"><a href="{{route('admin.blocks.exercises.show',)}}"
                                 >{{$exercise->title}}</a></li>
                             <li class="breadcrumb-item active">Ответы учеников</li>
                         </ol>
@@ -109,7 +109,7 @@
                         <tbody>
                         @forelse($users as $user)
                             <tr data-widget="expandable-table" aria-expanded="false">
-                                <td>{{$loop->iteration}}</td>
+                                <td>{{$users->firstItem() + $loop->index}}</td>
                                 <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                          alt="image">
                                 </td>
