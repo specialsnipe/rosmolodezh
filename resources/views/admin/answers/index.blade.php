@@ -19,7 +19,7 @@
                             <li class="breadcrumb-item"><a
                                     href="{{route('admin.tracks.blocks.show',[$track->id, $block->id] )}}">{{$block->title}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.blocks.exercises.show',)}}"
+                            <li class="breadcrumb-item"><a href="{{route('admin.blocks.exercises.show',[$block->id, $exercise->id])}}"
                                 >{{$exercise->title}}</a></li>
                             <li class="breadcrumb-item active">Ответы учеников</li>
                         </ol>
@@ -102,6 +102,8 @@
                             <th>ID</th>
                             <th>Аватар</th>
                             <th>ФИО</th>
+                            <th>Задание</th>
+                            <th>Просмотр</th>
                             <th>Оценка</th>
 
                         </tr>
@@ -127,10 +129,24 @@
                                 </td>
 
                                 <td>
+                                    @if($user->getAnswer($exercise))
                                     <span
-                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">@if(!$exercise->number)
-                                            работа не сдана
-                                        @endif </span>
+                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">
+                                            выполнено </span> @else  <span
+                                        style="padding: 5px 10px; background: #ec505d; border-radius: 5px">
+                                            не выполнено </span>
+                                        @endif
+                                </td>
+                                <td>
+                                    <a class="btn btn-info mr-2" href="#">Посмотреть</a>
+                                </td>
+                                <td>
+
+                                    @if(isset($user->getAnswer($exercise)->mark))
+                                        {{$user->getAnswer($exercise)->mark}}@else
+                                        не оценено
+                                    @endif
+
                                 </td>
                             </tr>
                         @empty

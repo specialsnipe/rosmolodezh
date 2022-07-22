@@ -59,7 +59,7 @@ class Exercise extends Model
         $positive_ratings = 0;
         $answers = Answer::where('exercise_id', $this->id)->get();
         foreach ($answers as $answer) {
-            if($answer >= 3) {
+            if($answer->mark >= 3) {
                 $positive_ratings++;
             }
         }

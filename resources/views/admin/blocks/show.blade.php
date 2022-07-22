@@ -62,6 +62,10 @@
                                         <td><span class="status_block status_success">4.7</span></td>
                                     </tr>
                                     <tr>
+                                        <td>Продолжительность:</td>
+                                        <td>{{$block->duration}} {{$block->name_duration}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Дата начала блока:</td>
                                         <td><span
                                                 class="status_block status_success">{{ $block->date_start->format('d.m.Y') }}</span>

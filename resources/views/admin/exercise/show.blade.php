@@ -107,7 +107,7 @@
                                 <tr>
                                     <td>Ответов:</td>
                                     <td>
-                                        <a href="{{route('admin.exercises.answers.index', $exercise->id)}}">0/{{$track->users_count}} </a>
+                                        <a href="{{route('admin.exercises.answers.index', $exercise->id)}}">{{ $exercise->answers_added_count }}/{{$track->users_count}} </a>
                                     </td>
                                 </tr>
                                 <tr>

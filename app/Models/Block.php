@@ -33,7 +33,9 @@ class Block extends Model
         'image_original',
         'image_medium',
         'image_thumbnail',
-        'name_exercises_count'
+        'name_exercises_count',
+        'duration',
+        'name_duration'
     ];
     protected $dates = [
         'created_at',
@@ -41,6 +43,30 @@ class Block extends Model
         'date_end',
         'date_start',
     ];
+
+
+    public function getDurationAttribute()
+    {
+        $exercises = $this->exercises;
+        $time = 0;
+        foreach ($exercises as $exercise){
+            $time += $exercise->time;
+        }
+        return round($time / 60);
+    }
+
+    public function getNameDurationAttribute()
+    {
+        $duration = $this->duration % 10;
+
+        if ($duration === 2 || $duration === 3 || $duration === 4) {
+            return 'часа';
+        } elseif($duration === 1 && $this->duration !== 11) {
+            return 'час';
+        } else {
+            return 'часов';
+        }
+    }
 
     public function getNameExercisesCountAttribute()
     {
