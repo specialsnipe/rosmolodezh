@@ -34,8 +34,8 @@ class Block extends Model
         'image_medium',
         'image_thumbnail',
         'name_exercises_count',
-        'duration',
-        'name_duration'
+        // 'duration',
+        // 'name_duration'
     ];
     protected $dates = [
         'created_at',
@@ -45,28 +45,30 @@ class Block extends Model
     ];
 
 
-    public function getDurationAttribute()
-    {
-        $exercises = $this->exercises;
-        $time = 0;
-        foreach ($exercises as $exercise){
-            $time += $exercise->time;
-        }
-        return round($time / 60);
-    }
+    // public function getDurationAttribute()
+    // {
+    //     $exercises = $this->exercises;
+    //     $time = 0;
+    //     foreach ($exercises as $exercise){
+    //         $time += $exercise->time;
+    //     }
 
-    public function getNameDurationAttribute()
-    {
-        $duration = $this->duration % 10;
+    //     // dd(round($time / 60));
+    //     return round($time / 60);
+    // }
 
-        if ($duration === 2 || $duration === 3 || $duration === 4) {
-            return 'часа';
-        } elseif($duration === 1 && $this->duration !== 11) {
-            return 'час';
-        } else {
-            return 'часов';
-        }
-    }
+    // public function getNameDurationAttribute()
+    // {
+    //     $duration = $this->duration % 10;
+
+    //     if ($duration === 2 || $duration === 3 || $duration === 4) {
+    //         return 'часа';
+    //     } elseif($duration === 1 && $this->duration !== 11) {
+    //         return 'час';
+    //     } else {
+    //         return 'часов';
+    //     }
+    // }
 
     public function getNameExercisesCountAttribute()
     {
@@ -107,7 +109,7 @@ class Block extends Model
      */
     public function track(): belongsTo
     {
-        return $this->belongsTo(Track::class);
+        return $this->belongsTo(Track::class)->withTrashed();
     }
 
     /**
@@ -116,7 +118,7 @@ class Block extends Model
      */
     public function exercises(): hasMany
     {
-        return $this->hasMany(Exercise::class);
+        return $this->hasMany(Exercise::class)->withTrashed();
     }
 
     /**

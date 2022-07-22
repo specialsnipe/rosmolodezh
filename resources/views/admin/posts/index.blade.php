@@ -1,6 +1,9 @@
 @extends('admin.layouts.main')
 
+@push('style')
 
+<link rel="stylesheet" href="{{ asset('css/simple-adaptive-slider.min.css') }}">
+@endpush
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,30 +31,28 @@
         @foreach ($posts as $post)
         <div class="col-sm-12 col-md-6 col-lg-3">
             <div class="card">
-                <div id="carouselExampleDark{{ $post->id }}" class="carousel carousel-dark slide" data-bs-ride="carousel">
-
-                    <div class="carousel-inner">
-                        @foreach ($post->images as $image)
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{{ asset($image->thumbnail_image) }}" class="d-block img-thumbnail w-100" alt="..." height="200">
+                @if($post->images->count() > 1)
+                    <div class="myslider">
+                        <div class="slider__wrapper">
+                            <div class="slider__items">
+                                @foreach ($post->images as $image)
+                                    <div class="slider__item">
+                                        <div>
+                                            <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="200" style="object-fit: cover">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        @endforeach
-
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark{{ $post->id }}"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Предыдущий</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark{{ $post->id }}"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Следующий</span>
-                    </button>
-                </div>
+                @else
+                    @foreach ($post->images as $image)
+                        <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="200" style="object-fit: cover">
+                    @endforeach
+                @endif
                 <div class="card-body">
                     <h5 class="text-bold card-title">{{ $post->title }}</h5>
-                    <div class="card-text">
+                    <div class="card-text text-truncate">
                         {{ $post->excerpt }}
                     </div>
                     <div class="row mt-2">
@@ -74,3 +75,17 @@
 </div>
 
 @endsection
+@push('script')
+<script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // инициализация слайдера
+      var slider = new SimpleAdaptiveSlider('.myslider', {
+        loop: false,
+        autoplay: false,
+        interval: 5000,
+        swipe: true,
+      });
+    });
+  </script>
+@endpush

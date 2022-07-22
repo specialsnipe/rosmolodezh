@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@push('style')
+
+<link rel="stylesheet" href="{{ asset('css/simple-adaptive-slider.min.css') }}">
+@endpush
 
 @section('content')
 <div class="content-wrapper">
@@ -26,7 +30,7 @@
                     <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-12">
                                 <label for="name">Название новости</label>
                                 <input type="text" class="form-control " name="title" placeholder="Название" id="name"
                                     value="{{old('title')}}">
@@ -35,27 +39,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-sm-12 col-md-6">
-                                <label for="image">Картинки для новости</label>
-                                <div class="input-group">
-                                    <div class="fallback">
-                                        <input type="file" class="custom-file-input" name="file[]" id="image" multiple>
-                                    </div>
-                                    <label class="custom-file-label" for="image">Выберите
-                                        картинку</label>
-                                </div>
 
-                                @error('file')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                                @if($errors->has('file.*'))
-                                    @foreach($errors->get('file.*') as $error)
-                                        @foreach($error as $message)
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @endforeach
-                                    @endforeach
-                                @endif
-                            </div>
                             {{-- @if($errors->all())--}}
                             {{-- {{ print_r($errors->all()) }}--}}
                             {{-- @foreach($errors->all() as $error)--}}
@@ -63,12 +47,50 @@
                             {{-- @endforeach--}}
                             {{-- @endif--}}
                         </div>
+                        <div class="form-group">
 
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="file[]" id="image"
+                                        value="{{old('file')}}" multiple>
+                                    <label class="custom-file-label" for="exampleInputFile">Выберите
+                                        картинку</label>
+                                </div>
+                            </div>
+
+                            @error('file')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                            @if($errors->has('file.*'))
+                                @foreach($errors->get('file.*') as $error)
+                                    @foreach($error as $message)
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @endforeach
+                                @endforeach
+                            @endif
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <label for="">Превью загруженной картинки</label>
-                                <div class="row ml-1 previews-container">
+                                <div class="previews-container">
+                                    <label for="">Превью загруженной картинки</label>
+                                    <div class="image_container text-right mb-2">
+                                        <div class="myslider">
+                                            <div class="slider__wrapper">
+                                                <div class="slider__items">
+                                                    <div class="slider__item">
+                                                        <div>
+                                                            <img src="" class="d-block w-100"
+                                                                alt="..." height="400" style="object-fit: cover">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                                        </div>
 
+                                        <span class="image-text text-muted"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -105,38 +127,52 @@
 @endsection
 
 @push('script')
+<script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
 <script>
-    let imgInp = document.querySelector('#image')
-    let previewContainer = document.querySelector('.previews-container')
-    imgInp.onchange = evt => {
-        const [files] = imgInp.files;
-        if (files) {
-            let oldImages = document.querySelectorAll('.preview-img');
-            if(oldImages) {
-                oldImages.forEach(element => {
-                    element.parentNode.removeChild(element);
-                });
+
+    let input = document.querySelector('.custom-file-input');
+    let sliderItems = document.querySelector(".slider__items");
+    input.addEventListener('change', function(event) {
+
+        sliderItems.innerHTML = '';
+        if(event.target.files.length > 0){
+            let imageText = document.querySelector('.image-text');
+
+            if (event.target.files.length > 1) {
+                imageText.innerHTML = '* Загруженные изображения (слайдер)'
+            } else {
+                imageText.innerHTML = '* Загруженное изображение';
+                sliderItems.style.transform = '';
             }
-            for (var i = 0; i < imgInp.files.length; i++) {
-                let file = imgInp.files[i];
-                let reader = new FileReader();
-                reader.onload = (e)=>{
-                    let preview = document.createElement('img');
-                    // preview.height = '200px';
-                    preview.alt = 'Превью изображения';
-                    preview.classList.add('preview-img');
-                    preview.classList.add('rounded');
-                    preview.classList.add('mr-3');
-                    preview.id = 'imagePrev';
-                    preview.src = e.target.result;
-                    // preview.classList.add('rounded');
-                    previewContainer.appendChild(preview);
-                    preview.height ='200';
-                }
-                reader.readAsDataURL(file);
+
+            for (let i = 0; i < event.target.files.length; i++) {
+                const element = event.target.files[i];
+
+                let sliderItem = document.createElement('div');
+                sliderItem.classList.add('slider__item');
+                sliderItems.appendChild(sliderItem);
+
+                let innerSlider = document.createElement('div');
+                sliderItem.appendChild(innerSlider);
+
+                let sliderImage = document.createElement('img');
+                sliderImage.classList.add('d-block');
+                sliderImage.classList.add('w-100');
+                sliderImage.height = 400;
+                sliderImage.style.objectFit = 'cover';
+                innerSlider.appendChild(sliderImage);
+
+                let src = URL.createObjectURL(element);
+                sliderImage.src = src;
+                sliderImage.style.display = "block";
             }
         }
-
-    }
+        var slider = new SimpleAdaptiveSlider('.myslider', {
+            loop: true,
+            autoplay: true,
+            interval: 2000,
+            swipe: true,
+        });
+    })
 </script>
 @endpush

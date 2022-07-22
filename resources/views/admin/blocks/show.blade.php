@@ -109,7 +109,7 @@
                 <div class="col-12">
                     {{-- Add new blokc button --}}
                     <div class="col-sm-12 col-md-6 ml-2 mb-3">
-                        <a href="{{ route('admin.blocks.exercises.create', [$block->id]) }}"
+                        <a href="{{ route('admin.blocks.exercises.create', $block->id) }}"
                            class="btn btn-block btn-primary">Добавить новое упражнение</a>
                     </div>
                     {{-- All exercises of this block --}}

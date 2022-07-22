@@ -27,7 +27,7 @@ class StorePostRequest extends FormRequest
             'title' => 'required',
             'excerpt' => 'required',
             'file' => ['required', 'array'],
-            'file.*'=>['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'file.*'=>['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'body' => 'required',
         ];
     }
