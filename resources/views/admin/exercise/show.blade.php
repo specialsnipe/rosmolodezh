@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0"> </h1>
+                        <h1 class="m-0"></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -35,9 +35,7 @@
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
 
-                                {{--                                TODO сделать ссылки для изменения,когда будет реализован функционал--}}
-
-                                <a class="btn btn-info mr-2" href="#">Изменить <i
+                                <a class="btn btn-info mr-2" href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить <i
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -46,7 +44,8 @@
 
                             </div>
                             <x-modal name="Вы уверены что хотите удалить это упражнение?" type="delete"
-                                     action="{{route('admin.blocks.exercises.destroy',[$block->id, $exercise->id])}}" targetid="deleteTrack">
+                                     action="{{route('admin.blocks.exercises.destroy',[$block->id, $exercise->id])}}"
+                                     targetid="deleteTrack">
                             </x-modal>
                         </div>
                     </div>
@@ -57,7 +56,7 @@
                                     <h4>Траектория: "{{$track->title}}"</h4>
                                 </div>
                                 <div class="block_name  ">
-                                    <h5>Блок:         "{{$block->title}}"</h5>
+                                    <h5>Блок: "{{$block->title}}"</h5>
                                 </div>
                                 <div>
                                     <span>Уровень освоения: </span>
@@ -107,7 +106,9 @@
                                 </tr>
                                 <tr>
                                     <td>Ответов:</td>
-                                    <td><a href="{{route('admin.exercises.answers.index', $exercise->id)}}">0/{{$track->users_count}} </a></td>
+                                    <td>
+                                        <a href="{{route('admin.exercises.answers.index', $exercise->id)}}">0/{{$track->users_count}} </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
@@ -124,7 +125,7 @@
             </div>
         </div>
 
-{{--        Body of exercise--}}
+        {{--        Body of exercise--}}
 
         <div class="p-2 p-md-4 card">
             <div class="card-body p-2 p-md-3">
@@ -145,13 +146,13 @@
                             <h3 class=" fw-bold mb-0 lh-base">Ссылки к упражнению:</h3>
                         </div>
                     </div>
-                        @forelse($exercise->links as $link)
-                            <div>
-                                <a href="{{$link->url}}">{{$link->name}}</a>
-                            </div>
-                        @empty
-                            <div>Ссылок нет :(</div>
-                        @endforelse
+                    @forelse($exercise->links as $link)
+                        <div>
+                            <a href="{{$link->url}}">{{$link->name}}</a>
+                        </div>
+                    @empty
+                        <div>Ссылок нет :(</div>
+                    @endforelse
                 </div>
             </div>
         </div>
