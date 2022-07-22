@@ -18,6 +18,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.posts.index')}}">Новости</a></li>
                         <li class="breadcrumb-item active">{{$post->title}}</li>
                     </ol>
                 </div><!-- /.col -->
@@ -50,96 +51,101 @@
                                     <div class="slider__wrapper">
                                         <div class="slider__items">
                                             @foreach ($post->images as $image)
-                                            <img src="{{ asset($image->medium_image) }}" class="d-block w-100" alt="..."
-                                                height="400" style="object-fit: cover">
+                                            <div class="slider__item">
+
+                                                <div>
+                                                    <img src="{{ asset($image->medium_image) }}" class="d-block w-100"
+                                                        alt="..." height="400" style="object-fit: cover">
+                                                </div>
+                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    @endforeach
+                                    <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                                    <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                                </div>
+
+                                <span class="image-text text-muted">*старые изображения (слайдер)</span>
+                                @else
+                                <div class="myslider">
+                                    <div class="slider__wrapper">
+                                        <div class="slider__items">
+                                            @foreach ($post->images as $image)
+                                            <div class="slider__item">
+                                                <div>
+                                                    <img src="{{ asset($image->thumbnail_image) }}"
+                                                        class="d-block w-100 single-image" alt="..." height="400"
+                                                        style="object-fit: cover">
+                                                </div>
+                                            </div>
+                                            <div class="slider__item">
+                                                <div>
+                                                    <img src="{{ asset($image->thumbnail_image) }}"
+                                                        class="d-block w-100 single-image" alt="..." height="400"
+                                                        style="object-fit: cover">
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="image-text text-muted">*старое изображение</span>
+                                @endif
+                            </div>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="file[]" id="image"
+                                        value="{{old('file')}}" multiple>
+                                    <label class="custom-file-label" for="exampleInputFile">Выберите
+                                        картинку</label>
                                 </div>
                             </div>
+
+                            @error('file')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                            @if($errors->has('file.*'))
+                            @foreach($errors->get('file.*') as $error)
+                            @foreach($error as $message)
+                            <div class="text-danger">{{ $message }}</div>
+                            @endforeach
+                            @endforeach
+                            @endif
+                            {{-- @if($errors->all())--}}
+                            {{-- {{ print_r($errors->all()) }}--}}
+                            {{-- @foreach($errors->all() as $error)--}}
+                            {{-- <div class="text-danger">{{$error}}</div>--}}
+                            {{-- @endforeach--}}
+                            {{-- @endif--}}
                         </div>
+                        <div class="form-group">
+                            <label for="excerpt">Изменить краткое описание</label>
+                            <textarea class="form-control" id="excerpt" name="excerpt">{{$post->excerpt}}</textarea>
 
-                        <span class="image-text text-muted">*старые изображения (слайдер)</span>
-                        @else
-                        <div class="myslider">
-                            <div class="slider__wrapper">
-                                <div class="slider__items">
-                                    @foreach ($post->images as $image)
-                                    <div class="slider__item">
-                                        <div>
-                                            <img src="{{ asset($image->thumbnail_image) }}"
-                                                class="d-block w-100 single-image" alt="..." height="400"
-                                                style="object-fit: cover">
-                                        </div>
-                                    </div>
-                                    <div class="slider__item">
-                                        <div>
-                                            <img src="{{ asset($image->thumbnail_image) }}"
-                                                class="d-block w-100 single-image" alt="..." height="400"
-                                                style="object-fit: cover">
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
+                            @error('excerpt')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
-                        <span class="image-text text-muted">*старое изображение</span>
-                        @endif
+                        <div class="form-group">
+                            <label for="summernote">Изменить основной текст статьи</label>
+                            <textarea id="summernote" name="body">{{$post->body}}</textarea>
+                        </div>
+                        @error('body')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
+                        <input type="submit" class="btn btn-primary" value="Изменить новость">
+                        {{-- @dd($errors->all())--}}
+                    </form>
+
                 </div>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="file[]" id="image" value="{{old('file')}}"
-                            multiple>
-                        <label class="custom-file-label" for="exampleInputFile">Выберите
-                            картинку</label>
-                    </div>
-                </div>
 
-                @error('file')
-                <div class="text-danger">{{$message}}</div>
-                @enderror
-                @if($errors->has('file.*'))
-                @foreach($errors->get('file.*') as $error)
-                @foreach($error as $message)
-                <div class="text-danger">{{ $message }}</div>
-                @endforeach
-                @endforeach
-                @endif
-                {{-- @if($errors->all())--}}
-                {{-- {{ print_r($errors->all()) }}--}}
-                {{-- @foreach($errors->all() as $error)--}}
-                {{-- <div class="text-danger">{{$error}}</div>--}}
-                {{-- @endforeach--}}
-                {{-- @endif--}}
+
             </div>
-            <div class="form-group">
-                <label for="excerpt">Изменить краткое описание</label>
-                <textarea class="form-control" id="excerpt" name="excerpt">{{$post->excerpt}}</textarea>
+            <!-- /.row -->
 
-                @error('excerpt')
-                <div class="text-danger">{{$message}}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="summernote">Изменить основной текст статьи</label>
-                <textarea id="summernote" name="body">{{$post->body}}</textarea>
-            </div>
-            @error('body')
-            <div class="text-danger">{{$message}}</div>
-            @enderror
-            <input type="submit" class="btn btn-primary" value="Изменить новость">
-            {{-- @dd($errors->all())--}}
-            </form>
-
-        </div>
-
-
-</div>
-<!-- /.row -->
-
-<!-- /.row (main row) -->
-</div><!-- /.container-fluid -->
-</section>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
 </div>
 </div>
 

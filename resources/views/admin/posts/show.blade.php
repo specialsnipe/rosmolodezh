@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@push('style')
+
+<link rel="stylesheet" href="{{ asset('css/simple-adaptive-slider.min.css') }}">
+@endpush
 
 @section('content')
     <div class="content-wrapper">
@@ -13,6 +17,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.posts.index')}}">Новости</a></li>
                             <li class="breadcrumb-item active">{{$post->title}}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -20,54 +25,51 @@
             </div><!-- /.container-fluid -->
             <section class="content">
                 <div class="container-fluid">
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                            <tbody>
-                            <tr>
-                                <td>ID</td>
-                                <td>{{$post->id}}</td>
-                            </tr>
-                            <tr>
-                                <td>Название</td>
-                                <td>{{$post->title}}</td>
-                            </tr>
-                            <tr>
-                                <td>Краткое описание</td>
-                                <td>{!!$post->excerpt!!}</td>
-                            </tr>
-                            <tr>
-                                <td>Основной текст статьи</td>
-                                <td>{!!$post->body!!}</td>
-                            </tr>
-                            <tr>
-                                <td>Картинки</td>
-                                @foreach($post->images as $image)
-                                    <td style="display: flex; flex-direction: column">
-                                        <span>
-                                            <img src="{{ $image->url }}" alt="" width="100px">
-                                        </span>
-                                    </td>
-                                @endforeach
+                    <div class="card">
+                        @if($post->images->count() > 1)
+                            <div class="myslider" id="{{ 'slider-' . $post->id }}">
+                                <div class="slider__wrapper">
+                                    <div class="slider__items">
+                                        @foreach ($post->images as $image)
+                                            <div class="slider__item">
+                                                <div>
+                                                    <img src="{{ asset($image->original_image) }}" class="d-block w-100" alt="..." height="500" style="object-fit: cover">
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                                <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                            </div>
+                        @else
+                            @foreach ($post->images as $image)
+                                <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="500" style="object-fit: cover">
+                            @endforeach
+                        @endif
+                        <div class="card-body">
+                            <h5 class="text-bold card-title">{{ $post->title }}</h5>
+                            <div class="card-text">
+                                {{ $post->excerpt }}
+                            </div>
+                            <div class="card-text text-truncate">
+                                {!! $post->body !!}
+                            </div>
+                            <div class="row mt-2">
+                                <a href="{{ route('admin.posts.edit', $post->id) }}" class="col-sm-12 col-md-2 btn btn-success">Изменить</a>
 
-                            </tr>
-                            </tbody>
-                        </table>
+                                <div class="col-sm-12 col-md-2">
+                                    <form action="{{route('admin.posts.destroy',$post->id)}}"
+                                        method="POST" style="display: inline-block" class="col-12 ">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="submit" class="col-12 btn btn-danger " value="Удалить">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                </div>
-                <div class="row">
-                    <div class="col-1 mt-3">
-                        <a href="{{route('admin.posts.edit',$post->id)}}"
-                           class="btn btn-warning ">Изменить</a>
-                    </div>
-                    <div class="col-1 mt-3">
-                        <form action="{{route('admin.posts.destroy',$post->id)}}"
-                              method="POST">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" class="btn btn-danger " value="Удалить">
-                        </form>
-                    </div>
                 </div>
             </section>
         </div>
@@ -78,3 +80,23 @@
 
 
 @endsection
+
+@push('script')
+
+<script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // инициализация слайдера
+      let sliderblock = document.querySelector('.myslider');
+      if (sliderblock) {
+        var slider = new SimpleAdaptiveSlider('.myslider', {
+            loop: true,
+            autoplay: true,
+            interval: 2000,
+            swipe: true,
+        });
+      }
+
+    });
+</script>
+@endpush

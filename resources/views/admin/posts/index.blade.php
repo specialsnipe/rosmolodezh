@@ -32,7 +32,7 @@
         <div class="col-sm-12 col-md-6 col-lg-3">
             <div class="card">
                 @if($post->images->count() > 1)
-                    <div class="myslider">
+                    <div class="myslider" id="{{ 'slider-' . $post->id }}">
                         <div class="slider__wrapper">
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
@@ -43,7 +43,10 @@
                                     </div>
                                 @endforeach
                             </div>
+                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
                         </div>
+
                     </div>
                 @else
                     @foreach ($post->images as $image)
@@ -79,13 +82,19 @@
 <script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // инициализация слайдера
-      var slider = new SimpleAdaptiveSlider('.myslider', {
-        loop: false,
-        autoplay: false,
-        interval: 5000,
-        swipe: true,
-      });
+      // инициализация слайдеров
+      let sliders = document.querySelectorAll('.myslider');
+      if(sliders) {
+        sliders.forEach(element => {
+            var slider = new SimpleAdaptiveSlider('#'+element.id, {
+                loop: true,
+                autoplay: true,
+                interval: 2000,
+                swipe: true,
+            });
+        });
+      }
+
     });
   </script>
 @endpush
