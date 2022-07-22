@@ -39,7 +39,7 @@ class RegisterController extends Controller
             'user_id' => $user->id,
         ]);
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
         auth()->login($user);
 

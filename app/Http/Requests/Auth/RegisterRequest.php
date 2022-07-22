@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
             'password_confirmation' => 'required',
             'occupation_id' => ['required', 'min:1'],
             'track_id' => ['required', 'min:1'],
-            'allowed' => ['required', 'in:true,1,on']
+            'allowed' => ['required',  'in:true,1,on']
         ];
     }
     public function messages()
@@ -36,7 +36,7 @@ class RegisterRequest extends FormRequest
             'last_name.required' => 'Поле фамилия обязательно.',
             'gender_id.required' => 'Выберите ваш пол.',
             'gender_id.min' => 'Выберанный пол не верный.',
-            'email.required' => 'Выберите ваш пол.',
+            'email.required' => 'Вы не указали почту.',
             'email.unique' => 'Такая почта уже зарегестрирована.',
             'email.email' => 'Неверный формат почты, проверьте ещё раз.',
             'login.required' => 'Выберите ваш логин.',
