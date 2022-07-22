@@ -69,7 +69,7 @@ class ExerciseController extends Controller
      */
     public function edit(Block $block, Exercise $exercise)
     {
-        $track_id = $block->track_id;
+        return view('admin.exercise.edit', ['block'=>$block, 'exercise'=> $exercise]);
     }
 
     /**
