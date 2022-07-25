@@ -70,7 +70,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-
+        dd($data);
         $data['password'] = Hash::make($data['password']);
 
         if (!$request->hasFile('file')) {

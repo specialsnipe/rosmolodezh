@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Block;
 use Livewire\Component;
 use App\Models\Exercise;
 use App\Models\Complexity;
@@ -138,6 +139,7 @@ class ExerciseCreateComponent extends Component
     // {
     //     $this->links =  $this->exercise->links;
     // }
+
     public function render()
     {
 

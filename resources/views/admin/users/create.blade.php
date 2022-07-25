@@ -147,6 +147,19 @@
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
+
+                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                        <div >
+                                            <label for="phone">Телефон</label>
+                                        </div>
+
+                                            <input
+                                                class="form-control "
+                                                type="text"
+                                                name="phone"
+                                                id="phone"
+                                                placeholder="+7(000)000-00-00" value="{{old('phone')}}" />
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="form-group row">
@@ -194,13 +207,17 @@
                                                 <div class="custom-file">
                                                     <input type="file" id="avatar" class="custom-file-input" name="file" id="avatar"
                                                         value="Выбирите">
+                                                    @error('file')
+                                                    <div class="text-danger">{{$message}}</div>
+                                                    @enderror
                                                     <label class="custom-file-label" for="avatar">Выберите
                                                         картинку</label>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                <input type="submit" class="btn btn-primary  col-sm-12" value="Создать">
+                                <input type="submit" class="btn btn-primary mt-3 col-sm-12" value="Создать">
                             </form>
                         </div>
                     </div>
@@ -228,6 +245,44 @@
 
         preview.addEventListener('click', function () {
             input.click();
-        })
+        });
+
+
+        window.addEventListener("DOMContentLoaded", function() {
+            [].forEach.call( document.querySelectorAll('#phone'), function(input) {
+                var keyCode;
+                function mask(event) {
+                    event.keyCode && (keyCode = event.keyCode);
+                    var pos = this.selectionStart;
+                    if (pos < 3) event.preventDefault();
+                    var matrix = "+7 (___) ___ ____",
+                        i = 0,
+                        def = matrix.replace(/\D/g, ""),
+                        val = this.value.replace(/\D/g, ""),
+                        new_value = matrix.replace(/[_\d]/g, function(a) {
+                            return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+                        });
+                    i = new_value.indexOf("_");
+                    if (i != -1) {
+                        i < 5 && (i = 3);
+                        new_value = new_value.slice(0, i)
+                    }
+                    var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+                        function(a) {
+                            return "\\d{1," + a.length + "}"
+                        }).replace(/[+()]/g, "\\$&");
+                    reg = new RegExp("^" + reg + "$");
+                    if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+                    if (event.type == "blur" && this.value.length < 5)  this.value = ""
+                }
+
+                input.addEventListener("input", mask, false);
+                input.addEventListener("focus", mask, false);
+                input.addEventListener("blur", mask, false);
+                input.addEventListener("keydown", mask, false)
+
+            });
+
+        });
     </script>
 @endpush

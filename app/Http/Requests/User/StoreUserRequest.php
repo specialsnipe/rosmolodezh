@@ -38,6 +38,7 @@ class StoreUserRequest extends FormRequest
             'track_id' => 'required',
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
+            'phone'=> ['required', 'min:11']
             //'track_id' => ['required', 'min:1']
 
         ];
@@ -50,7 +51,7 @@ class StoreUserRequest extends FormRequest
             'father_name.required' => 'Поле отчество обязательно.',
             'gender_id.required' => 'Выберите пол.',
             'gender_id.min' => 'Выберанный пол не верный.',
-            'email.required' => 'Выберите ваш пол.',
+            'email.required' => 'Введите почту.',
             'email.unique' => 'Такая почта уже зарегестрирована.',
             'email.email' => 'Неверный формат почты, проверьте ещё раз.',
             'login.required' => 'Выберите ваш логин.',
@@ -63,6 +64,12 @@ class StoreUserRequest extends FormRequest
             'occupation_id.min' => 'Выберанная занятость не верная.',
             'role_id.required' => 'Выберите роль.',
             'role_id.min' => 'Выберанная роль не верная.',
+            'phone.required' => 'Введите номер телефона',
+            'phone.min:11'=> 'Не правильно ввели номер телефона',
+            'file.required'=>'Загрузите картинку',
+            'file.image'=> 'Файл должен быть картинкой',
+            'file.mimes:jpg,jpeg,png'=> 'Неверный формат картинки, возможные: jpg,jpeg,png',
+            'file.max:2048'=> 'Слишком большой файл, максимум 2мб'
             //'track_id.required' => 'Поле направление обязательно.',
             //'track_id.min' => 'Выберанное направление не верное.',
         ];
