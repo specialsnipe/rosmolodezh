@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Helpers\Telegram;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Carbon::setLocale('ru_RU');
         Paginator::useBootstrapFive();
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {

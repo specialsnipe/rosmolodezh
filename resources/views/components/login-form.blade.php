@@ -3,7 +3,7 @@
     <h1>Авторизация</h1>
     <form action="{{ route('auth.login.submit') }}" method="post">
         @csrf
-        <div class="row ">
+        <div class="row col-md-12">
             <input class="input" id="" name="login" type="text" placeholder="Логин">
 
 

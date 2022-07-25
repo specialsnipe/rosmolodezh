@@ -8,6 +8,7 @@ use App\Http\Requests\Post\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\PostImage;
 use App\Services\ImageService;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -48,7 +49,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+
+        $date = Carbon::parse($post->created_at);
+        return view('admin.posts.show', compact('post','date'));
     }
 
 

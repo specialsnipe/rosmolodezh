@@ -53,30 +53,38 @@
                     <hr>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.genders.index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-child"></i>
+                    <a href="{{ route('admin.handbook.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid far fa-address-book"></i>
                         <p>
-                            Пол
+                            Справочник
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.roles.index') }}" class="nav-link">
-                        <i class="nav-icon far fa-address-book"></i>
-                        <p>
-                            Роли
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.occupations.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user-tie"></i>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{ route('admin.genders.index') }}" class="nav-link">--}}
+{{--                        <i class="nav-icon fa fa-child"></i>--}}
+{{--                        <p>--}}
+{{--                            Пол--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{ route('admin.roles.index') }}" class="nav-link">--}}
+{{--                        <i class="nav-icon fa fa-user-check"></i>--}}
+{{--                        <p>--}}
+{{--                            Роли--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{ route('admin.occupations.index') }}" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-user-tie"></i>--}}
 
-                        <p>
-                            Занятость
-                        </p>
-                    </a>
-                </li>
+{{--                        <p>--}}
+{{--                            Занятость--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
 
                 <li class="nav-item">

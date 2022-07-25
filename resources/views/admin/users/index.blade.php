@@ -64,7 +64,7 @@
                                     <div class="col-sm-12 col-md-4 col-lg-3 ">
                                         <label>Роль</label>
                                         <select class="select2" name="role_id[]" multiple="multiple"
-                                            data-placeholder="Выберете роль" style="width: 100%;">
+                                            data-placeholder="Выберите роль" style="width: 100%;">
                                             @foreach($roles as $role)
                                             <option {{is_array(request()->role_id)&&
                                                 in_array($role->id,request()->role_id)?'selected':''}}
@@ -75,7 +75,7 @@
                                     <div class="col-sm-12 col-md-4 col-lg-3 ">
                                         <label>Траектория</label>
                                         <select class="select2" name="track_id[]" multiple="multiple"
-                                            data-placeholder="Выберете траекторию" style="width: 100%;">
+                                            data-placeholder="Выберите траекторию" style="width: 100%;">
                                             @foreach($tracks as $track)
                                             <option {{is_array(request()->track_id)&&
                                                 in_array($track->id,request()->track_id)?'selected':''}}

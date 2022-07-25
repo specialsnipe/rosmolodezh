@@ -19,7 +19,8 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'father_name' => '',
-            'gender_id' => ['required', 'min:1'],
+//            'gender_id' => ['required', 'min:1'],
+
             'email' => ['required', 'unique:users', 'email:dns'],
             'login' => ['required', 'unique:users', 'regex:/^[a-z0-9]+$/i'],
             'password' => ['required', 'confirmed', 'min:6'],

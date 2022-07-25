@@ -66,7 +66,8 @@ class BlockController extends Controller
      */
     public function show(Track $track, Block $block)
     {
-        return view('admin.blocks.show', compact('track', 'block'));
+        $exercises = Exercise::where('block_id', $block->id)->get();
+        return view('admin.blocks.show', compact('track', 'block', 'exercises'));
     }
 
     /**

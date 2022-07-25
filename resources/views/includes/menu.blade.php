@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-xxl">
-        <a class="navbar-brand" href="index.html">Здесь будет лого</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Здесь будет лого</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,11 +38,11 @@
                     @endif
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">Авторизация</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">Войти</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#registration">Регистрация</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" aria-current="page" href="#registration">Регистрация</a>--}}
+{{--                </li>--}}
                 @endauth
             </ul>
         </div>

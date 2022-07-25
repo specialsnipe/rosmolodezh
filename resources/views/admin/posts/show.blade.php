@@ -23,6 +23,7 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
+                <p class="ml-2">Автор: {{$post->user->all_names}} • {{$date->translatedFormat('F')}} {{$date->day}}, {{$date->year}} • {{$date->format('H:i')}} </p>
             <section class="content">
                 <div class="container-fluid">
                     <div class="card">

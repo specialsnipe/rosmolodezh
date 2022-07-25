@@ -170,7 +170,7 @@
                         </h5>
                         {{-- Some input --}}
                         <div class="form-group">
-                            <label for="title">Название сслыки</label>
+                            <label for="title">Название ссылки</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror"
                                 id="title" wire:model="title" placeholder="Название">
                             @error('title')
@@ -200,7 +200,7 @@
                         <div class="row">
                             {{-- * Link name --}}
                             <div class="form-group col-4">
-                                <label for="link_name">Название сслыки </label>
+                                <label for="link_name">Название ссылки </label>
                                 <input type="text" class="form-control @error('link_name') is-invalid @enderror"
                                     id="link_name" wire:model="link_name" placeholder="Название">
                                 @error('link_name')
