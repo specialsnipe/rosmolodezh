@@ -147,8 +147,6 @@
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
-                                    <input type="tel" name="phone_number" placeholder="+7 (900) 123-45-67" pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"></label></p>
-                                    <p><input type="reset"> <input type="submit"></p>
                                 </div>
                                 <hr>
                                 <div class="form-group row">
