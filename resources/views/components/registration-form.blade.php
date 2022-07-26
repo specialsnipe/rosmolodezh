@@ -112,8 +112,8 @@ $tracks = Track::all();
                     {{-- track --}}
                     <div class="form-floating mb-3 col-sm-12  col-lg-4">
 
-                        <input type="text" name="phone_number" class="form-control @error('login') is-invalid @enderror"
-                            id="phone" placeholder="name@example.com" value="{{ old('phone_number') }}">
+                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                        id="phone" placeholder="+7(999)999 9999" value="{{ old('phone') }}">
                         <label for="floatingSelect">Номер телефона</label>
                         @error('track_id')
                         <span class="ml-2 text-danger"> {{ $message }}</span>
