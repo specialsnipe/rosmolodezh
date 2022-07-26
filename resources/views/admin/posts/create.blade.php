@@ -22,85 +22,92 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
-            <div class="card row">
+            <div class="card">
                 <div class="card-header">
                     <h3>Создание новости</h3>
                 </div>
-                <div class="card-body col-12">
+                <div class="card-body">
                     <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group row">
-                            <div class="col-12">
-                                <label for="name">Название новости</label>
-                                <input type="text" class="form-control " name="title" placeholder="Название" id="name"
-                                    value="{{old('title')}}">
-                                @error('title')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                            </div>
+
+                        <div class="row">
+                            {{-- fillable inputs --}}
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="name">Название новости</label>
+                                    <input type="text" class="form-control " name="title" placeholder="Название"
+                                        id="name" value="{{old('title')}}">
+                                    @error('title')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
 
 
-                            {{-- @if($errors->all())--}}
-                            {{-- {{ print_r($errors->all()) }}--}}
-                            {{-- @foreach($errors->all() as $error)--}}
-                            {{-- <div class="text-danger">{{$error}}</div>--}}
-                            {{-- @endforeach--}}
-                            {{-- @endif--}}
-                        </div>
-                        <div class="form-group">
+                                    {{-- @if($errors->all())--}}
+                                    {{-- {{ print_r($errors->all()) }}--}}
+                                    {{-- @foreach($errors->all() as $error)--}}
+                                    {{-- <div class="text-danger">{{$error}}</div>--}}
+                                    {{-- @endforeach--}}
+                                    {{-- @endif--}}
+                                </div>
 
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="file[]" id="image"
-                                        value="{{old('file')}}" multiple>
-                                    <label class="custom-file-label" for="exampleInputFile">Выберите
-                                        картинку</label>
+                                <div class="form-group">
+                                    <label for="excerpt">Краткое описание</label>
+                                    <textarea class="form-control" id="excerpt" name="excerpt"
+                                        rows="15">{{old('excerpt')}}</textarea>
+
+                                    @error('excerpt')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
                             </div>
-
-                            @error('file')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
-                            @if($errors->has('file.*'))
-                                @foreach($errors->get('file.*') as $error)
-                                    @foreach($error as $message)
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @endforeach
-                                @endforeach
-                            @endif
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
+                            {{-- preview image(s) --}}
+                            <div class="col-sm-12 col-md-8">
                                 <div class="previews-container">
-                                    <label for="">Превью загруженной картинки</label>
+                                    <label>Превью загруженной картинки</label>
                                     <div class="image_container text-right mb-2">
                                         <div class="myslider">
                                             <div class="slider__wrapper">
                                                 <div class="slider__items">
                                                     <div class="slider__item">
                                                         <div>
-                                                            <img src="" class="d-block w-100"
-                                                                alt="..." height="400" style="object-fit: cover">
+                                                            <img src="" class="d-block w-100" alt="..." height="400"
+                                                                style="object-fit: cover">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
-                                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                                            <a class="slider__control slider__control_prev" href="#" role="button"
+                                                data-slide="prev"></a>
+                                            <a class="slider__control slider__control_next" href="#" role="button"
+                                                data-slide="next"></a>
                                         </div>
 
                                         <span class="image-text text-muted"></span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="excerpt">Краткое описание</label>
-                            <textarea class="form-control" id="excerpt" name="excerpt">{{old('excerpt')}}</textarea>
+                                <div class="form-group">
 
-                            @error('excerpt')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="file[]" id="image"
+                                                value="{{old('file')}}" multiple>
+                                            <label class="custom-file-label" for="exampleInputFile">Выберите
+                                                картинку</label>
+                                        </div>
+                                    </div>
+
+                                    @error('file')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                    @if($errors->has('file.*'))
+                                    @foreach($errors->get('file.*') as $error)
+                                    @foreach($error as $message)
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="summernote">Основной текст статьи</label>
@@ -111,46 +118,108 @@
                             @enderror
                         </div>
                         <input type="submit" class="col-sm-12 col-md-6 col-lg-3 btn btn-primary" value="Добавить">
-                        {{-- @dd($errors->all())--}}
                     </form>
                 </div>
 
 
             </div>
-            <!-- /.row -->
+        </div>
+        </section>
+    </div>
 
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
-    </section>
-</div>
+    @endsection
 
-@endsection
-
-@push('script')
-<script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
-<script>
-
+    @push('script')
+    <script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
+    <script>
     let input = document.querySelector('.custom-file-input');
-    let sliderItems = document.querySelector(".slider__items");
+    let theSlider = document.querySelector('.myslider');
     input.addEventListener('change', function(event) {
 
-        sliderItems.innerHTML = '';
         if(event.target.files.length > 0){
             let imageText = document.querySelector('.image-text');
 
             if (event.target.files.length > 1) {
+                let slideWrapper = document.querySelector('.slider__wrapper');
+                if (slideWrapper) {
+                    slideWrapper.innerHTML = '';
+                }
                 imageText.innerHTML = '* Загруженные изображения (слайдер)'
-            } else {
-                imageText.innerHTML = '* Загруженное изображение';
-                sliderItems.style.transform = '';
-            }
+                if (slideWrapper) {
 
-            for (let i = 0; i < event.target.files.length; i++) {
-                const element = event.target.files[i];
+                    let sliderItems = document.querySelector(".slider__items");
+                    if (!sliderItems) {
+                        sliderItems = document.createElement('div');
+                        sliderItems.classList.add('slider__items');
+                        slideWrapper.appendChild(sliderItems)
+                    }
+                    for (let i = 0; i < event.target.files.length; i++) {
+                        const element = event.target.files[i];
+
+                        let sliderItem = document.createElement('div');
+                        sliderItem.classList.add('slider__item');
+                        sliderItems.appendChild(sliderItem);
+
+                        let innerSlider = document.createElement('div');
+                        sliderItem.appendChild(innerSlider);
+
+                        let sliderImage = document.createElement('img');
+                        sliderImage.classList.add('d-block');
+                        sliderImage.classList.add('w-100');
+                        sliderImage.height = 400;
+                        sliderImage.style.objectFit = 'cover';
+                        innerSlider.appendChild(sliderImage);
+
+                        let src = URL.createObjectURL(element);
+                        sliderImage.src = src;
+                        sliderImage.style.display = "block";
+                    }
+                } else {
+                    let sliderWrapper = document.createElement('div');
+                    sliderWrapper.classList.add('slider__wrapper');
+                    theSlider.appendChild(sliderWrapper);
+                    let sliderItems = document.createElement('div');
+                    sliderItems.classList.add('slider__items');
+                    sliderWrapper.appendChild(sliderItems);
+                    for (let i = 0; i < event.target.files.length; i++) {
+                        const element = event.target.files[i];
+
+                        let sliderItem = document.createElement('div');
+                        sliderItem.classList.add('slider__item');
+                        sliderItems.appendChild(sliderItem);
+
+                        let innerSlider = document.createElement('div');
+                        sliderItem.appendChild(innerSlider);
+
+                        let sliderImage = document.createElement('img');
+                        sliderImage.classList.add('d-block');
+                        sliderImage.classList.add('w-100');
+                        sliderImage.height = 400;
+                        sliderImage.style.objectFit = 'cover';
+                        innerSlider.appendChild(sliderImage);
+
+                        let src = URL.createObjectURL(element);
+                        sliderImage.src = src;
+                        sliderImage.style.display = "block";
+                    }
+                }
+
+                var slider = new SimpleAdaptiveSlider('.myslider', {
+                    loop: true,
+                    autoplay: true,
+                    interval: 2000,
+                    swipe: true,
+                });
+            } else {
+                let slideWrapper = document.querySelector('.slider__wrapper');
+                slideWrapper.innerHTML = '';
+                imageText.innerHTML = '* Загруженное изображение';
+
+                const element = event.target.files[0];
 
                 let sliderItem = document.createElement('div');
                 sliderItem.classList.add('slider__item');
-                sliderItems.appendChild(sliderItem);
+                slideWrapper.appendChild(sliderItem);
 
                 let innerSlider = document.createElement('div');
                 sliderItem.appendChild(innerSlider);
@@ -166,13 +235,8 @@
                 sliderImage.src = src;
                 sliderImage.style.display = "block";
             }
+
         }
-        var slider = new SimpleAdaptiveSlider('.myslider', {
-            loop: true,
-            autoplay: true,
-            interval: 2000,
-            swipe: true,
-        });
     })
-</script>
-@endpush
+    </script>
+    @endpush

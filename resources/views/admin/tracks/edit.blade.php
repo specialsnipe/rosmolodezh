@@ -108,7 +108,7 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Изменить">
+                            <input type="submit" class="btn btn-primary" value="Сохранить">
                         </form>
                     </div>
 

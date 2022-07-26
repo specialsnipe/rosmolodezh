@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" class="btn btn-primary col-sm-12" value="Изменить">
+                        <input type="submit" class="btn btn-primary col-sm-12" value="Сохранить">
                     </form>
                 </div>
             </div>

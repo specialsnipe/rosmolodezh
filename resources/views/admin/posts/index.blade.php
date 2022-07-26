@@ -28,44 +28,99 @@
     </div>
 
     <div class="row m-3">
-        @foreach ($posts as $post)
-        <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="col-12">
             <div class="card">
-                @if($post->images->count() > 1)
-                    <div class="myslider" id="{{ 'slider-' . $post->id }}">
-                        <div class="slider__wrapper">
-                            <div class="slider__items">
-                                @foreach ($post->images as $image)
-                                    <div class="slider__item">
-                                        <div>
-                                            <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="200" style="object-fit: cover">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>id <i class="fa fa-sort-amount-up disabled"></i></th>
+                                <th>название </th>
+                                <th>краткое описание </th>
+                                <th>Дата создания</th>
+                                <th>Дата изменения</th>
+                                <th>
+                                    управление
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($posts as $post)
+                            <tr>
+                                <td>{{ $post->id }}</td>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->excerpt }}</td>
+                                <td>{{ $post->created_at }}</td>
+                                <td>{{ $post->updated_at }}</td>
+                                <td>
+                                    <a href="{{ route('admin.posts.show', $post->id) }}">
+                                        <span class="btn btn-outline-info">
+                                            <i class="fa fa-eye"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('admin.posts.destroy', $post->id) }}">
+                                        <span class=" btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('admin.posts.edit', $post->id) }}">
+                                        <span class="btn btn-outline-success">
+                                            <i class="fa fa-pen "></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{-- <div class="col-sm-12 col-md-6 col-lg-3">
+                                <div class="card">
+                                    @if($post->images->count() > 1)
+                                    <div class="myslider" id="{{ 'slider-' . $post->id }}">
+                                        <div class="slider__wrapper">
+                                            <div class="slider__items">
+                                                @foreach ($post->images as $image)
+                                                <div class="slider__item">
+                                                    <div>
+                                                        <img src="{{ asset($image->thumbnail_image) }}"
+                                                            class="d-block w-100" alt="..." height="200"
+                                                            style="object-fit: cover">
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <a class="slider__control slider__control_prev" href="#" role="button"
+                                                data-slide="prev"></a>
+                                            <a class="slider__control slider__control_next" href="#" role="button"
+                                                data-slide="next"></a>
+                                        </div>
+
+                                    </div>
+                                    @else
+                                    @foreach ($post->images as $image)
+                                    <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..."
+                                        height="200" style="object-fit: cover">
+                                    @endforeach
+                                    @endif
+                                    <div class="card-body">
+                                        <h5 class="text-bold card-title">{{ $post->title }}</h5>
+                                        <div class="card-text text-truncate">
+                                            {{ $post->excerpt }}
+                                        </div>
+                                        <div class="row mt-2">
+                                            <a href="{{ route('admin.posts.show', $post->id) }}"
+                                                class="col-12 btn btn-outline-primary mb-1">Открыть</a>
+                                            <a href="{{ route('admin.posts.edit', $post->id) }}"
+                                                class="col-12 btn btn-success">Изменить</a>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
-                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
-                        </div>
+                                </div>
+                            </div> --}}
+                            @endforeach
 
-                    </div>
-                @else
-                    @foreach ($post->images as $image)
-                        <img src="{{ asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="200" style="object-fit: cover">
-                    @endforeach
-                @endif
-                <div class="card-body">
-                    <h5 class="text-bold card-title">{{ $post->title }}</h5>
-                    <div class="card-text text-truncate">
-                        {{ $post->excerpt }}
-                    </div>
-                    <div class="row mt-2">
-                        <a href="{{ route('admin.posts.show', $post->id) }}" class="col-12 btn btn-outline-primary mb-1">Открыть</a>
-                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="col-12 btn btn-success">Изменить</a>
-                    </div>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        @endforeach
 
     </div>
     <div class="row m-3">
@@ -96,5 +151,5 @@
       }
 
     });
-  </script>
+</script>
 @endpush
