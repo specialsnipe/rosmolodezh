@@ -25,7 +25,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-    @livewire('exercise-create-component', ['block' => $block-id])
+    @livewire('exercise-create-component', ['block' => $block])
     </div>
 @endsection
 @push('script')
