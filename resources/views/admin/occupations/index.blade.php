@@ -20,25 +20,11 @@
             </div><!-- /.container-fluid -->
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Fixed Header Table</h3>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Поиск">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class=" table table-hover text-nowrap">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -47,10 +33,24 @@
                             </thead>
                             <tbody>
                             @forelse($occupations as $occupation)
-                            <tr>
-                                <td>{{$occupation->id}}</td>
-                                <td><a href="{{route('admin.occupations.show',$occupation->id)}}">{{$occupation->name}}</a></td>
-                            </tr>
+                                <tr>
+                                    <td>{{$occupation->id}}</td>
+                                    <td>{{$occupation->name}}</td>
+                                    <td>
+                                        <div class="">
+                                            <a href="{{ route('admin.occupations.edit', $occupation->id) }}"
+                                               class="btn btn-block btn-success btn-sm ">Изменить</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form action="{{route('admin.occupations.destroy', $occupation->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>
+                                        </form>
+
+                                    </td>
+                                </tr>
                             @empty
                                 <tr>
                                     <td></td>
@@ -62,9 +62,9 @@
                     </div>
                     <!-- /.card-body -->
                 </div>
-                <div class="col-2 mt-3">
-                    <a href="{{route('admin.posts.create')}}"
-                       class="btn btn-block btn-primary">Добавить пол</a>
+                <div class="col-3 mt-3">
+                    <a href="{{route('admin.occupations.create')}}"
+                       class="btn btn-block btn-primary">Добавить</a>
                 </div>
                 <!-- /.card -->
             </div>

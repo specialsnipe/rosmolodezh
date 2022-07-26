@@ -21,9 +21,17 @@
                         @if($active) badge-success @else badge-secondary @endif">
                         @if($active) Активен @else Деактивирован @endif
                 </div>
+                @if($user->active)
                 <button wire:click='changeStatus'
-                    class="border-0 change-status text-center btn btn-primary"
-                    >Изменить статус</button>
+                    class="border-0 change-status text-center btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                </button>
+                    @else
+                    <button wire:click='changeStatus'
+                            class="border-0 change-status text-center btn btn-primary">
+                        Восстановить
+                    </button>
+                    @endif
             </td>
         @else
             <td wire:click='openMore' style="width: 200px" class="d-flex justify-content-end align-items-center">

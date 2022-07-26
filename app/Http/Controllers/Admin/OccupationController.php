@@ -19,25 +19,25 @@ class OccupationController extends Controller
         return view('admin.occupations.index', compact('occupations'));
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('admin.occupations.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Occupation\StoreOccupationRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreOccupationRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreOccupationRequest $request)
     {
-        //
+        $data = $request->validated();
+        Occupation::firstOrCreate($data);
+        return redirect()->route('admin.occupations.index');
     }
 
     /**
@@ -51,37 +51,42 @@ class OccupationController extends Controller
         //
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Occupation  $occupation
-     * @return \Illuminate\Http\Response
+     * @param Occupation $occupation
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Occupation $occupation)
     {
-        //
+        return view('admin.occupations.edit', compact('occupation'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Occupation\UpdateOccupationRequest  $request
-     * @param  \App\Models\Occupation  $occupation
-     * @return \Illuminate\Http\Response
+     * @param UpdateOccupationRequest $request
+     * @param Occupation $occupation
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateOccupationRequest $request, Occupation $occupation)
     {
-        //
+        $data = $request->validated();
+        $occupation->update($data);
+        return redirect()->route('admin.occupations.index');
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Occupation  $occupation
-     * @return \Illuminate\Http\Response
+     * @param Occupation $occupation
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \Throwable
      */
     public function destroy(Occupation $occupation)
     {
-        //
+        try {
+            $occupation->deleteOrFail();
+            return redirect()->route('admin.occupations.index');
+        }catch (\Exception $e) {
+            abort(501);
+        }
     }
 }

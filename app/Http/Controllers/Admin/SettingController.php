@@ -12,8 +12,8 @@ class SettingController extends Controller
 
     public function index()
     {
-        $settings = Setting::first();
-        return view('admin.settings.index', compact('settings'));
+        $setting = Setting::first();
+        return view('admin.settings.index', compact('setting'));
     }
 
     /**

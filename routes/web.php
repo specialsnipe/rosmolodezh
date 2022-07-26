@@ -27,9 +27,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
-//    Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
-//    Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
-//    Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
+    Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
+    Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
+    Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
 
     // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);

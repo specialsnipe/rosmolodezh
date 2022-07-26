@@ -70,16 +70,14 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-        dd($data);
         $data['password'] = Hash::make($data['password']);
-
         if (!$request->hasFile('file')) {
             try {
-                $user->create($data);
+                $user= User::firstOrCreate($data);
                 if (isset($data['tg_name'])) {
                     event(new UserTelegramUpdate($user, $data['tg_name']));
                 }
-                event(new Registered($user));
+//                event(new Registered($user));
                 return redirect()->route('admin.users.show', $user->id);
             } catch (\Exception $exception) {
                 return abort(501);
@@ -95,7 +93,7 @@ class UserController extends Controller
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
-        event(new Registered($user));
+//        event(new Registered($user));
         return redirect()->route('admin.users.index');
     }
 

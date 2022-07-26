@@ -13,7 +13,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=> 'required'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'Поле обязательно для заполнения'
         ];
     }
 }

@@ -19,25 +19,25 @@ class GenderController extends Controller
         return view('admin.genders.index', compact('genders'));
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('admin.genders.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Gender\StoreGenderRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreGenderRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreGenderRequest $request)
     {
-        //
+        $data = $request->validated();
+        Gender::firstOrCreate($data);
+        return redirect()->route('admin.genders.index');
     }
 
     /**
@@ -51,37 +51,42 @@ class GenderController extends Controller
         //
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Gender  $gender
-     * @return \Illuminate\Http\Response
+     * @param Gender $gender
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Gender $gender)
     {
-        //
+        return view('admin.genders.edit', compact('gender'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Gender\UpdateGenderRequest  $request
-     * @param  \App\Models\Gender  $gender
-     * @return \Illuminate\Http\Response
+     * @param UpdateGenderRequest $request
+     * @param Gender $gender
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateGenderRequest $request, Gender $gender)
     {
-        //
+        $data = $request->validated();
+        $gender->update($data);
+        return redirect()->route('admin.genders.index');
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Gender  $gender
-     * @return \Illuminate\Http\Response
+     * @param Gender $gender
+     * @return \Illuminate\Http\RedirectResponse|void
+     * @throws \Throwable
      */
     public function destroy(Gender $gender)
     {
-        //
+        try {
+            $gender->deleteOrFail();
+            return redirect()->route('admin.genders.index');
+        }catch (\Exception $e) {
+            abort(501);
+        }
     }
 }
