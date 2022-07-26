@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('body');
             $table->text('excerpt');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_updater_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->timestamps();

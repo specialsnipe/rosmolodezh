@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->paginate(12);
+        $posts = Post::paginate(12);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -51,7 +51,8 @@ class PostController extends Controller
     {
 
         $date = Carbon::parse($post->created_at);
-        return view('admin.posts.show', compact('post','date'));
+        $posts = Post::limit(6)->get();
+        return view('admin.posts.show', compact('post','date', 'posts'));
     }
 
 
@@ -63,6 +64,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $data = $request->validated();
+        $data['user_updater_id'] = auth()->user()->id;
         $images = $data['file']??null;
         unset($data['file']);
         if (!$images) {

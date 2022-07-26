@@ -30,28 +30,33 @@
     <div class="row m-3">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    <table class="table table-bordered">
+                <div class="card-body table-responsive table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>id <i class="fa fa-sort-amount-up disabled"></i></th>
-                                <th>название </th>
-                                <th>краткое описание </th>
+                                <th style="width: 200px">Название </th>
+                                <th>Краткое описание </th>
                                 <th>Дата создания</th>
                                 <th>Дата изменения</th>
-                                <th>
-                                    управление
+                                <th style="width: 200px">
+                                    Управление
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($posts as $post)
                             <tr>
-                                <td>{{ $post->id }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->excerpt }}</td>
-                                <td>{{ $post->created_at }}</td>
-                                <td>{{ $post->updated_at }}</td>
+
+                                    <td><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->id }}</a></td>
+                                    <td><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                                    <td>
+                                        <div class="text-truncate" style="width: 200px;">
+                                        {!! $post->excerpt !!}</div>
+                                    </td>
+                                    <td>{{ $post->created_at }}</td>
+                                    <td>{{ $post->updated_at }}</td>
+
                                 <td>
                                     <a href="{{ route('admin.posts.show', $post->id) }}">
                                         <span class="btn btn-outline-info">

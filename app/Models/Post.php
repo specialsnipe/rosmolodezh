@@ -30,7 +30,7 @@ class Post extends Model
      */
     public function links(): HasMany
     {
-        return $this->hasMany(PostLink::class);
+        return $this->hasMany(PostLink::class)->withTrashed();
     }
 
     /**
@@ -39,6 +39,15 @@ class Post extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
+    }
+
+    /**
+     * Relation with users (many to many)
+     * @return BelongsTo
+     */
+    public function user_updater(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_updater_id')->withTrashed();
     }
 }
