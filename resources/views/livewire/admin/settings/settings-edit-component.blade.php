@@ -28,7 +28,7 @@
                     <form action="#" wire:submit.prevent="AddPhone" method="post">
                         @csrf
                         <div class="form-group row w-50 mb-3 ml-1">
-                            <input  type="text" class="col-6 form-control " wire:model="phone" placeholder="Телефон"
+                            <input  type="text" class="col-6 form-control " wire:model="phone" id="phone" placeholder="+7(000)000-00-00"
                                    value="">
                             <button type="submit" class="col-4 btn btn-default ">Добавить новый телефон</button>
                             @error('phone')
@@ -44,7 +44,6 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
 
 
@@ -54,4 +53,5 @@
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
     </section>
+
 </div>
