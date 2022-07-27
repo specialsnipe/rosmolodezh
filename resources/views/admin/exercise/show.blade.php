@@ -121,8 +121,13 @@
                             </table>
                         </div>
                     </div>
+                    <a class="btn btn-info mr-2" href="{{route('admin.exercises.answers.index', $exercise->id)}}">Ответы учеников <i
+                            class="fa fa-eye"></i></a>
+
                 </div>
+
             </div>
+
         </div>
 
         {{--        Body of exercise--}}
