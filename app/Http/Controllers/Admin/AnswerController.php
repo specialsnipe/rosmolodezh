@@ -24,7 +24,8 @@ class AnswerController extends Controller
     {
         $block = $exercise->block;
         $track = $block->track;
-        $users = $track->users()->paginate(10);
+//        $users = $track->users()->paginate(10);
+        $users = $track->users;
         return view('admin.answers.index', compact('track', 'block', 'exercise', 'users'));
     }
 

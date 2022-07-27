@@ -2,6 +2,47 @@
 
 
 @section('content')
+    <style>.table_sort table {
+            border-collapse: collapse;
+        }
+
+        .table_sort th {
+            color: #17140e;
+            background: #008b8b;
+            cursor: pointer;
+        }
+
+        .table_sort td,
+        .table_sort th {
+            width: 150px;
+            height: 40px;
+            text-align: center;
+            border: 2px solid #171515;
+        }
+
+        .table_sort tbody tr:nth-child(even) {
+            background: #e3e3e3;
+        }
+
+        th.sorted[data-order="1"],
+        th.sorted[data-order="-1"] {
+            position: relative;
+        }
+
+        th.sorted[data-order="1"]::after,
+        th.sorted[data-order="-1"]::after {
+            right: 8px;
+            position: absolute;
+        }
+
+        th.sorted[data-order="-1"]::after {
+            content: "▼"
+        }
+
+        th.sorted[data-order="1"]::after {
+            content: "▲"
+        }
+    </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -89,6 +130,11 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
         <div class="row m-3 ">
 
             <div class="card col-12">
@@ -96,7 +142,7 @@
                     <h3 class="card-title">Ответы учащихся на упражнение {{$exercise->title}}</h3>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-head-fixed text-nowrap">
+                    <table class="table_sort table table-hover table-head-fixed text-nowrap">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -111,7 +157,8 @@
                         <tbody>
                         @forelse($users as $user)
                             <tr data-widget="expandable-table" aria-expanded="false">
-                                <td>{{$users->firstItem() + $loop->index}}</td>
+{{--                                <td>{{$users->firstItem() + $loop->index}}</td>--}}
+                                <td>{{$loop->iteration}}</td>
                                 <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                          alt="image">
                                 </td>
@@ -159,13 +206,35 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-12">
-                <div class="card-body">
-                {{ $users->links() }}
-                </div>
-            </div>
+{{--            <div class="card col-12">--}}
+{{--                <div class="card-body">--}}
+{{--                {{ $users->links() }}--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const getSort = ({ target }) => {
+                const order = (target.dataset.order = -(target.dataset.order || -1));
+                const index = [...target.parentNode.cells].indexOf(target);
+                const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
+                const comparator = (index, order) => (a, b) => order * collator.compare(
+                    a.children[index].innerHTML,
+                    b.children[index].innerHTML
+                );
+
+                for(const tBody of target.closest('table').tBodies)
+                    tBody.append(...[...tBody.rows].sort(comparator(index, order)));
+
+                for(const cell of target.parentNode.cells)
+                    cell.classList.toggle('sorted', cell === target);
+            };
+
+            document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
+
+        });
+    </script>
 @endsection
 
