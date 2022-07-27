@@ -118,6 +118,12 @@
             </div>
             @endif
         </div>
+        <div class="row">
+            <div class="col-sm-6 col-xl-4 mt-3">
+                <a href="{{ url()->previous() }}" class="btn btn-primary col-12"> Назад</a>
+            </div>
+        </div>
+
     </section>
 </div>
 </div>

@@ -162,16 +162,16 @@
                                 <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                          alt="image">
                                 </td>
-                                <td>
-                                    <span>
+                                <td><a href="{{route('admin.users.show', $user->id)}}"><span>
                                                 {{$user->last_name}}
                                             </span>
-                                    <span>
+                                        <span>
                                                 {{$user->first_name}}
                                             </span>
-                                    <span>
+                                        <span>
                                                 {{$user->father_name}}
-                                            </span>
+                                            </span></a>
+
                                     <span class="text-muted">({{$user->id}})</span>
                                 </td>
 
