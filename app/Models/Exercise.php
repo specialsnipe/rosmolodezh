@@ -70,15 +70,18 @@ class Exercise extends Model
     public function getAverageScoreAttribute()
     {
         $score = 0;
+        $i =0;
         $answers = Answer::where('exercise_id', $this->id)->get();
         foreach ($answers as $answer) {
-            $score += $answer->mark;
+            if($answer->mark) {
+                $score += $answer->mark;
+                $i++;
+            }
         }
-        $users_count = $this->block->track->users()->count();
-        if ($this->answers_added_count == 0) {
+        if ($i === 0) {
             return 0;
         }
-        return $score/ $this->answers_added_count;
+        return $score/ $i;
     }
     /**
      *  Relation with users (one to many)

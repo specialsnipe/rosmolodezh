@@ -31,8 +31,33 @@ class Track extends Model
         'url_image_medium',
         'url_image_thumbnail',
         'icon_thumbnail',
+        'average_score',
+
     ];
 
+    public function getAverageScoreAttribute()
+    {
+        $score = 0;
+        $blocks = $this->blocks;
+        $i = 0;
+        foreach ($blocks as $block) {
+            $exercises = $block->exercises;
+            foreach ($exercises as $exercise) {
+                $answers = Answer::where('exercise_id', $exercise->id)->get();
+                foreach ($answers as $answer) {
+                    if ($answer->mark) {
+                        $score += $answer->mark;
+                        $i++;
+                    }
+                }
+            }
+        }
+
+        if ($i === 0) {
+            return 0;
+        }
+        return round($score / $i, 1);
+    }
 
     public function getNameUsersCountAttribute()
     {
@@ -49,7 +74,7 @@ class Track extends Model
     public function getNameBlocksCountAttribute()
     {
 
-        if ($this->blocks_count === 1 ) {
+        if ($this->blocks_count === 1) {
             return 'блок';
         } elseif ($this->blocks_count === 2 || $this->blocks_count === 3 || $this->blocks_count === 4) {
             return 'блока';
@@ -60,36 +85,37 @@ class Track extends Model
 
     public function getImageOriginalAttribute()
     {
-        return 'storage/tracks/originals/'. $this->image;
+        return 'storage/tracks/originals/' . $this->image;
     }
 
     public function getImageMediumAttribute()
     {
-        return 'storage/tracks/medium/'. $this->image;
+        return 'storage/tracks/medium/' . $this->image;
     }
 
     public function getImageThumbnailAttribute()
     {
-        return 'storage/tracks/thumbnail/thumbnail_'. $this->image;
+        return 'storage/tracks/thumbnail/thumbnail_' . $this->image;
     }
 
     public function getUrlImageOriginalAttribute()
     {
-        return asset('storage/tracks/originals/'. $this->image);
+        return asset('storage/tracks/originals/' . $this->image);
     }
 
     public function getUrlImageMediumAttribute()
     {
-        return asset('storage/tracks/medium/'. $this->image);
+        return asset('storage/tracks/medium/' . $this->image);
     }
 
     public function getUrlImageThumbnailAttribute()
     {
-        return asset('storage/tracks/thumbnail/thumbnail_'. $this->image);
+        return asset('storage/tracks/thumbnail/thumbnail_' . $this->image);
     }
+
     public function getIconThumbnailAttribute()
     {
-        return 'storage/tracks/thumbnail/thumbnail_'. $this->icon;
+        return 'storage/tracks/thumbnail/thumbnail_' . $this->icon;
     }
 
     /**
@@ -121,6 +147,7 @@ class Track extends Model
     {
         return $this->hasMany(Block::class);
     }
+
     /**
      * Relation with blocks (one to many)
      *
