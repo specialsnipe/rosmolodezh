@@ -80,7 +80,7 @@
                             </tr>
                             <tr>
                                 <td>Средний балл:</td>
-                                <td><span class="status_block status_success">4.7</span></td>
+                                <td><span class="status_block status_success">{{$track->average_score}}</span></td>
                             </tr>
                         </table>
                     </div>
@@ -158,7 +158,7 @@
                                         </tr>
                                         <tr>
                                             <td><a href="{{route('admin.exercises.answers.index', $exercise->id)}}">Сдано работ:</a></td>
-                                            <td>0/{{ $track->users_count }}</td>
+                                            <td>{{ $exercise->answers_added_count }}/{{ $track->users_count }}</td>
                                         </tr>
                                         <tr>
                                             <td>Успеваемость:</td>
@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr>
                                             <td>Средний балл:</td>
-                                            <td><span class="status_block status_success">4.1</span>
+                                            <td><span class="status_block status_success">{{$exercise->average_score}}</span>
                                             </td>
                                         </tr>
                                     </table>
