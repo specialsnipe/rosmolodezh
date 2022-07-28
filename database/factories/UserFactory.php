@@ -48,6 +48,7 @@ class UserFactory extends Factory
             'occupation_id' => $occupations_ids[array_rand($occupations_ids)],
             'avatar' => 'default_avatar.jpg',
             'email_verified_at' => now(),
+            'phone' => fake()->phoneNumber(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
         ];
     }

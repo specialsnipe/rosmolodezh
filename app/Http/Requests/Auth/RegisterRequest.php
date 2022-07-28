@@ -27,7 +27,8 @@ class RegisterRequest extends FormRequest
             'password_confirmation' => 'required',
             'occupation_id' => ['required', 'min:1'],
             'track_id' => ['required', 'min:1'],
-            'allowed' => ['required',  'in:true,1,on']
+            'allowed' => ['required',  'in:true,1,on'],
+            'phone' => ['required', 'min:17']
         ];
     }
     public function messages()
@@ -53,6 +54,8 @@ class RegisterRequest extends FormRequest
             'track_id.min' => 'Выберанное направление не верное.',
             'allowed.required' => 'Вы должны согласиться с условиями.',
             'allowed.in' => 'Вы должны согласиться с условиями.',
+            'phone.required' => 'Номер телефона обязателен для заполнения.',
+            'phone.min' => 'Вы не дописали номер.',
         ];
     }
 

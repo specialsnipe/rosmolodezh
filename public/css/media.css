@@ -6,6 +6,10 @@
     .card-text-main{
         width: 100%;
     }
+    .auth-btn{
+        margin-top: 1rem;
+        width: 100%;
+    }
     .card-form {
         display: flex;
         justify-content: center;
@@ -91,7 +95,8 @@
     .block{
         width: 95%;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     #center-block .card-height{
         height: auto;

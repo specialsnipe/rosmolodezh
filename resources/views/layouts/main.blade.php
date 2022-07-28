@@ -25,7 +25,7 @@
         })(window,document,'script','dataLayer','GTM-W7MBMN');
     </script> --}}
 
-
+        @stack("styles")
     <title>Росмолодежь. Обучение</title>
 </head>
 
