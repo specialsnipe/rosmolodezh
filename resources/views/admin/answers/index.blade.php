@@ -184,7 +184,7 @@
 
 
                                 @if($user->getAnswer($exercise))
-                                    <td style="background: #a5e2f8">
+                                    <td style="background: #b9ffb3">
                                         <span
                                             style="padding: 5px 10px; ">
                                             выполнено </span>
@@ -202,7 +202,7 @@
                                 </td>
                                 @if($user->getAnswer($exercise))
                                     @if(isset($user->getAnswer($exercise)->mark))
-                                        <td style="background: #a5e2f8">
+                                        <td style="background: #b9ffb3">
                                             {{$user->getAnswer($exercise)->mark}}
                                         </td>
                                     @else
