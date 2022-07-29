@@ -111,6 +111,14 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Оценено:</td>
+                                    <td>@if($exercise->mark_count )
+                                            {{$exercise->mark_count }}
+                                        @else
+                                            0
+                                        @endif/{{ $track->users_count }}</td>
+                                </tr>
+                                <tr>
                                     <td>Успеваемость:</td>
                                     <td><span class="status_block status_success">100%</span></td>
                                 </tr>
