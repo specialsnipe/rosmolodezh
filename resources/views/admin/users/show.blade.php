@@ -46,6 +46,10 @@
                             <td>{{$user->last_name}} {{$user->first_name}} {{$user->father_name}} </td>
                         </tr>
                         <tr>
+                            <th>Контактный номер</th>
+                            <td>{{$user->phone}}</td>
+                        </tr>
+                        <tr>
                             <th>Возраст</th>
                             <td>{{$user->age}}</td>
                         </tr>

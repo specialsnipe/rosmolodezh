@@ -27,7 +27,8 @@ class Exercise extends Model
         'name_minute_count',
         'answers_added_count',
         'academic_performance_percent',
-        'average_score'
+        'average_score',
+        'mark_count'
     ];
 
 
@@ -54,6 +55,11 @@ class Exercise extends Model
     {
         return Answer::where('exercise_id', $this->id)->get()->count();
     }
+    public function getMarkCountAttribute()
+    {
+        return Answer::where('exercise_id', $this->id)->whereNotNull('mark')->get()->count();
+    }
+
     public function getAcademicPerformancePercentAttribute()
     {
         $positive_ratings = 0;
@@ -65,7 +71,7 @@ class Exercise extends Model
         }
         $users_count = $this->block->track->users()->count();
 
-        return $positive_ratings*100/$users_count;
+        return round($positive_ratings*100/$users_count, 1);
     }
     public function getAverageScoreAttribute()
     {

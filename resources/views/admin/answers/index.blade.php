@@ -54,7 +54,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.tracks.index')}}">Направление</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tracks.index')}}">Направления</a></li>
                             <li class="breadcrumb-item"><a
                                     href="{{route('admin.tracks.show', $track->id) }}">{{$track->title}}</a></li>
                             <li class="breadcrumb-item"><a
@@ -77,6 +77,10 @@
 
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
+
+                                <a class="btn btn-outline-secondary mr-3"
+                                   href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}"> <i
+                                        class="fa fa-eye"></i></a>
 
                                 <a class="btn btn-info mr-2"
                                    href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить
@@ -120,8 +124,12 @@
                                     <td>{{ $exercise->answers_added_count }}/{{ $track->users_count }}</td>
                                 </tr>
                                 <tr>
+                                    <td>Оценено:</td>
+                                    <td>{{$exercise->mark_count}}/{{ $track->users_count }}</td>
+                                </tr>
+                                <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }}%</span>
+                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }} %</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -140,9 +148,6 @@
         <div class="row m-3 ">
 
             <div class="card col-12">
-                <div class="card-head p-3">
-                    <h3 class="card-title">Ответы учащихся на упражнение {{$exercise->title}}</h3>
-                </div>
                 <div class="card-body table-responsive p-0">
                     <table class="table_sort table table-hover table-head-fixed text-nowrap">
                         <thead>
@@ -177,31 +182,39 @@
                                     <span class="text-muted">({{$user->id}})</span>
                                 </td>
 
-                                <td>
-                                    @if($user->getAnswer($exercise))
+
+                                @if($user->getAnswer($exercise))
+                                    <td style="background: #b9ffb3">
                                         <span
-                                            style="padding: 5px 10px; border-radius: 5px">
+                                            style="padding: 5px 10px; ">
                                             выполнено </span>
-                                    @else
+                                    </td>
+                                @else
+                                    <td>
                                         <span
                                             style="padding: 5px 10px; border-radius: 5px">
                                             не выполнено </span>
-                                    @endif
-                                </td>
+                                    </td>
+                                @endif
+
                                 <td>
                                     <a class="btn btn-info mr-2" href="#">Посмотреть</a>
                                 </td>
-                                <td>
-                                    @if($user->getAnswer($exercise))
-                                        @if(isset($user->getAnswer($exercise)->mark))
+                                @if($user->getAnswer($exercise))
+                                    @if(isset($user->getAnswer($exercise)->mark))
+                                        <td style="background: #b9ffb3">
                                             {{$user->getAnswer($exercise)->mark}}
-                                        @else
+                                        </td>
+                                    @else
+                                        <td style="background: #ffc4c4">
                                             не оценено
-                                        @endif
+                                        </td>
                                     @endif
+                                @else
+                                    <td>
 
-
-                                </td>
+                                    </td>
+                                @endif
                             </tr>
                         @empty
                             <tr>
