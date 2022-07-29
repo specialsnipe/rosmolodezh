@@ -31,7 +31,7 @@ class Track extends Model
         'url_image_medium',
         'url_image_thumbnail',
         'icon_thumbnail',
-        'average_score',
+        // 'average_score',
 
     ];
 

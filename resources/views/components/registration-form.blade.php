@@ -23,142 +23,143 @@ $tracks = Track::all();
     </div>
     @endif
     <h1>Регистрация</h1>
-        <form action="{{ route('auth.register.store') }}" method="post" class="w-100">
+    <form action="{{ route('auth.register.store') }}" method="post" class="w-100">
 
-            @csrf
-            <div class="form-group row">
-                    {{-- f name --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                        <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-                            id="floatingInput" placeholder="Фамилия" value="{{ old('first_name') }}">
-                        <label for="floatingInput">Фамилия</label>
-                        @error('first_name')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- s name --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                        <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror "
-                            id="floatingPassword" placeholder="Имя" value="{{ old('last_name') }}">
-                        <label for="floatingPassword">Имя</label>
-                        @error('last_name')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- father name --}}
-                    <div class="form-floating mb-3 col-sm-12 col-lg-4">
-                        <input type="text" name="father_name"
-                            class="form-control @error('father_name') is-invalid @enderror" id="floatingPassword"
-                            placeholder="Отчество"  value="{{ old('father_name') }}">
-                        <label for="floatingPassword">Отчество</label>
-
-                        @error('father_name')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- Login --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-6">
-                        <input type="text" name="login" class="form-control @error('login') is-invalid @enderror"
-                            id="floatingInput" placeholder="name@example.com" value="{{ old('login') }}">
-                        <label for="floatingInput">Логин</label>
-
-                        @error('login')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- Email --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-6">
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                        id="floatingPassword" placeholder="E-mail" value="{{ old('email') }}">
-                        <label for="floatingPassword">E-mail</label>
-
-                        @error('email')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- gender --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                        <select class="form-select @error('track_id') is-invalid @enderror" id="floatingSelect"
-                            name="track_id" aria-label="Floating label select example">
-                            <option value="0" selected disabled hidden>Выберите желаемое направление</option>
-                            @foreach ($tracks as $track)
-                            <option value="{{ $track->id }}" @if( old('track_id') == $track->id) selected @endif>
-                                {{$track->title }}</option>
-                            @endforeach
-
-                        </select>
-                        <label for="floatingSelect">Направление:</label>
-
-                        @error('track_id')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- ocupation --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                        <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror" name="'occupation_id"
-                            id="floatingSelect" aria-label="Floating label select example">
-                            <option value="0" selected disabled hidden>Занятость</option>
-                            @foreach ($occupations as $occupation)
-                            <option value="{{ $occupation->id }}" @if (old('occupation_id') ==$occupation->id) selected
-                                @endif>{{ $occupation->name }}</option>
-                            @endforeach
-                        </select>
-                        <label for="floatingSelect">Занятость:</label>
-
-                        @error('occupation_id')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- track --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-4">
-
-                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
-                        id="phone" placeholder="+7(999)999 9999" value="{{ old('phone') }}">
-                        <label for="floatingSelect">Номер телефона</label>
-                        @error('phone')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- pass --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-6">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            id="floatingInput" placeholder="Password">
-                        <label for="floatingInput">Пароль</label>
-                        @error('password')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- re pass --}}
-                    <div class="form-floating mb-3 col-sm-12  col-lg-6">
-                        <input type="password" name="password_confirmation"
-                            class="form-control @error('password_confirmation') is-invalid @enderror" id="floatingPassword"
-                            placeholder="Password">
-                        <label for="floatingPassword">Повторите пароль</label>
-
-                        @error('password_confirmation')
-                        <span class="ml-2 text-danger"> {{ $message }}</span>
-                        @enderror
-                    </div>
-                    {{-- checkbox allowed --}}
-                    <div class="form-check-label col-sm-12  col-lg-12 " for="flexCheckDefault">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="checkbox">
-                                <input name="allowed" class="form-check-input @error('allowed') is-invalid @enderror" type="checkbox"
-                                    id="checkboxNoLabel" aria-label="..." checked>
-                                Согласен с <a href="#">правилами пользования</a>
-                            </div>
-
-                            @error('allowed')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <button class="col-sm-12 col-md-6 col-lg-6 reg-btn" type="submit">Зарегистрироваться</button>
-                    </div>
-                {{-- </div> --}}
+        @csrf
+        <div class="form-group row">
+            {{-- f name --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-4">
+                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                    id="floatingInput" placeholder="Фамилия" value="{{ old('first_name') }}">
+                <label for="floatingInput">Фамилия</label>
+                @error('first_name')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
             </div>
-        </form>
+            {{-- s name --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-4">
+                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror "
+                    id="floatingPassword" placeholder="Имя" value="{{ old('last_name') }}">
+                <label for="floatingPassword">Имя</label>
+                @error('last_name')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- father name --}}
+            <div class="form-floating mb-3 col-sm-12 col-lg-4">
+                <input type="text" name="father_name" class="form-control @error('father_name') is-invalid @enderror"
+                    id="floatingPassword" placeholder="Отчество" value="{{ old('father_name') }}">
+                <label for="floatingPassword">Отчество</label>
+
+                @error('father_name')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- Login --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-6">
+                <input type="text" name="login" class="form-control @error('login') is-invalid @enderror"
+                    id="floatingInput" placeholder="name@example.com" value="{{ old('login') }}">
+                <label for="floatingInput">Логин</label>
+
+                @error('login')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- Email --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-6">
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                    id="floatingPassword" placeholder="E-mail" value="{{ old('email') }}">
+                <label for="floatingPassword">E-mail</label>
+
+                @error('email')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- gender --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-4">
+                <select class="form-select @error('track_id') is-invalid @enderror" id="floatingSelect" name="track_id"
+                    aria-label="Floating label select example">
+                    <option value="0" selected disabled hidden>Выберите желаемое направление</option>
+                    @foreach ($tracks as $track)
+                    <option value="{{ $track->id }}" @if( old('track_id')==$track->id) selected @endif>
+                        {{$track->title }}</option>
+                    @endforeach
+
+                </select>
+                <label for="floatingSelect">Направление:</label>
+
+                @error('track_id')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- ocupation --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-4">
+                <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
+                    name="'occupation_id" id="floatingSelect" aria-label="Floating label select example">
+                    <option value="0" selected disabled hidden>Занятость</option>
+                    @foreach ($occupations as $occupation)
+                    <option value="{{ $occupation->id }}" @if (old('occupation_id')==$occupation->id) selected
+                        @endif>{{ $occupation->name }}</option>
+                    @endforeach
+                </select>
+                <label for="floatingSelect">Занятость:</label>
+
+                @error('occupation_id')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- track --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-4">
+
+                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                    placeholder="+7(999)999 9999" value="{{ old('phone') }}">
+                <label for="floatingSelect">Номер телефона</label>
+                @error('phone')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- pass --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-6">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                    id="floatingInput" placeholder="Password">
+                <label for="floatingInput">Пароль</label>
+                @error('password')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- re pass --}}
+            <div class="form-floating mb-3 col-sm-12  col-lg-6">
+                <input type="password" name="password_confirmation"
+                    class="form-control @error('password_confirmation') is-invalid @enderror" id="floatingPassword"
+                    placeholder="Password">
+                <label for="floatingPassword">Повторите пароль</label>
+
+                @error('password_confirmation')
+                <span class="ml-2 text-danger"> {{ $message }}</span>
+                @enderror
+            </div>
+            {{-- checkbox allowed --}}
+            <div class="form-check-label col-sm-12  col-lg-12 " for="flexCheckDefault">
+                <div class="col-sm-12 col-md-6">
+                    <div class="checkbox">
+                        <input name="allowed" class="form-check-input @error('allowed') is-invalid @enderror"
+                            type="checkbox" id="checkboxNoLabel" aria-label="..." checked>
+                        Согласен с <a href="#">правилами пользования</a>
+                    </div>
+
+                    @error('allowed')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <button class="col-sm-12 col-md-6 col-lg-6 reg-btn" type="submit">Зарегистрироваться</button>
+            </div>
+            {{--
+        </div> --}}
+        </div>
+    </form>
     <div class="line-down"></div>
     <script>
+
         window.addEventListener("DOMContentLoaded", function() {
            [].forEach.call( document.querySelectorAll('#phone'), function(input) {
                var keyCode;
@@ -195,7 +196,5 @@ $tracks = Track::all();
            });
 
        });
-   </script>
+    </script>
 </section>
-
-

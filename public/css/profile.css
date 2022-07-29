@@ -1,0 +1,678 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #ededed;
+}
+.navbar {
+    background-color: #fff;
+    padding: 0;
+
+}
+.input-group .form-control{
+    border: 0;
+    border-radius: 0 5px 5px 0;
+}
+main{
+    display: flex;
+    justify-content: center;
+
+}
+.main-containers{
+    margin-top: 2rem;
+    width: 1400px;
+    background-color: #fff;
+    padding: 2rem;
+
+}
+.avatar.col-lg-3{
+    padding: 0;
+}
+
+.avatar img{
+    width: 310px;
+    height: 407px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    padding: 0;
+}
+
+
+.form-content{
+    background-color: #ededed;
+    padding: 1rem;
+    border-radius: 5px;
+
+}
+
+.input-group-text{
+    border: 0;
+    background-color: #085aff;
+    color: #fff;
+}
+
+.form-content input.input {
+    width: 315px;
+    height: 50px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    border: 0;
+    margin: 1rem 0;
+}
+.edit .edit-btn{
+    width: 485px;
+}
+/* .form-floating{
+    width: 49%;
+    border: 0;
+} */
+/* .form-content .input-child input:nth-child(1),
+.form-content .input-child input:nth-child(2)
+{
+    width: 49%;
+    border: 0;
+} */
+.form-content .select-options {
+    justify-content: space-between;
+    display: flex;
+    width: 992px;
+}
+
+.form-content .select select {
+    display: block;
+    width: 315px;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    background: none;
+    border: 0;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #444;
+    background-color: #fff;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+.edit-btn {
+    margin: 1rem 0;
+    width: 315px;
+    height: 50px;
+    background: #4886FF;
+    border-radius: 5px;
+    border: 0;
+    color: #fff;
+    transition: 250ms;
+}
+
+.edit-btn:hover {
+    background: #085aff;
+    text-decoration: underline;
+}
+
+.img-btn{
+    background: #4886FF;
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+    height: 50px;
+    width: 310px;
+    transition: 250ms;
+}
+.img-btn:hover {
+    background: #085aff;
+    text-decoration: underline;
+}
+
+.text-header{
+    font-size: 32px;
+    color: #202020;
+    font-weight: 600;
+}
+.accordion-button{
+    padding: 0;
+
+}
+
+.edit-block .accordion-flush .accordion-item .accordion-button{
+    width: -webkit-fill-available;
+    margin-right: 15px;
+}
+
+.table th{
+    border: 0;
+}
+#nonborder td{
+   margin-right: 0px;
+   border-right: 1px solid #DEE2E6;
+}
+
+#nonborder td:nth-last-child(1), #nonborder th:nth-last-child(1){
+    border-right: 0;
+}
+td:nth-last-child(1){
+    padding-right: 20px;
+}
+.add-bloc{
+display: flex;
+}
+.grade-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.accordion-item{
+    width: 1370px;
+}
+
+.accordion-button th{
+    margin: 0 auto;
+}
+.accordion-button{
+    border: 1px solid #555555;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.accordion-button{
+    padding: 10px 10px 0px 10px;
+
+}
+
+.accordion-flush .accordion-item .accordion-button {
+    border-radius: 5px;
+}
+
+.accordion-item:last-of-type .accordion-collapse{
+    padding: 0 10px;
+}
+.add-block{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+    width: 1370px;
+    background-color: #EDEDED;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+.text-h1{
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.text-h2{
+    font-weight: 400;
+    font-size: 18px
+}
+.information{
+    margin-top: 2rem;
+}
+.edit-block .btn{
+    margin-top: 1rem;
+}
+.add-block .btn, .edit-block .btn{
+    width: 272px;
+    height: 60px;
+    background-color: #555;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 250ms;
+}
+
+.add-block button:hover, .edit-block .btn:hover{
+    background-color: #333;
+    text-decoration: underline;
+}
+.edit-block{
+    height: auto;
+    width: 1370px;
+    background-color: #EDEDED;
+    border-radius: 5px;
+}
+.edit-block .accordion-flush .accordion-item .accordion-button{
+    border: 0;
+}
+
+.edit-row{
+    padding: 20px 20px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-block .text-h2{
+    width: 800px;
+}
+.edit-block .accordion-header{
+    margin-bottom: 1rem;
+}
+
+.edit-block .accordion {
+    --bs-accordion-bg: none;
+}
+
+.edit-block .accordion-button:not(.collapsed) {
+    color: none;
+    background-color: #EDEDED;
+    box-shadow: none;
+}
+.edit-block .accordion-button:focus, .add-block .accordion-button:focus{
+    box-shadow: none;
+}
+
+.edit-block .accordion-button{
+    padding-right: 1.5rem;
+}
+
+.edit-block .info-block{
+    width: 325px;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 115px;
+    margin-bottom: 1rem;
+}
+
+.edit-block .block-start, .edit-block .block-end{
+    width: 350px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+}
+.accordion-body .row {
+    --bs-gutter-x: 2rem;
+}
+.information{
+    display: flex;
+    justify-content: space-between;
+    width: 750px;
+}
+.accordion-button:not(.collapsed)::after {
+    margin-bottom: 5px;
+}
+.accordion-button::after {
+    margin-bottom: 5px;
+}
+.edit-block .accordion-button::after {
+
+    position: absolute;
+    right: 30px;
+    top: -36px;
+}
+.number-one{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 25px;
+    background-color: #085aff;
+    border-radius: 4px;
+    color: #fff;
+}
+.number-two{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 25px;
+    border-radius: 4px;
+    color: #fff;
+}
+.down-content .number-two {
+    margin-left: 1rem;
+}
+.info-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem;
+}
+.info-block p {
+    margin: 5px;
+}
+.info-block .one, .down-content .one{
+    display: flex;
+
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+.table th{
+    background-color: #3175fc;
+    color: #fff;
+}
+
+.accordion-item:last-of-type .accordion-collapse {
+    margin-top: 1rem;
+    padding: 0;
+}
+
+.accordion-header td{
+    border: 0;
+}
+
+.table th:nth-child(odd){
+    background-color: #4886FF;
+}
+.table tr:nth-child(even){
+    background-color: #f5f5f5;
+}
+.table tr{
+    transition: all .3s;
+}
+.table-2 tr:hover{
+    background-color: #ccc;
+
+}
+.table>:not(caption)>*>* {
+    border-bottom: none;
+}
+#nonborder td {
+    border-right: none;
+}
+.table{
+    margin-bottom: 10px;
+}
+
+.accordion-body .btn-edit{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-edit{
+    width: 580px;
+    height: 310px;
+    border-radius: 5px 10px;
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 2.5rem
+}
+.down-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 550px;
+}
+.del-btn{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ff5454;
+    border: 0;
+    color: #fff;
+    transition: 250ms;
+}
+.del-btn:hover{
+    background-color: #fe2323;
+    text-decoration: underline;
+}
+.down-content .edit-btn{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #4886FF;
+    color: #fff;
+    transition: 250ms;
+}
+.down-content .edit-btn:hover{
+    background: #004de6;
+    text-decoration: underline;
+}
+
+.top-content .text-h1{
+    font-size: 24px;
+    color: #252525;
+}
+
+.top-content p {
+    width: 300px;
+}
+
+.top-content .img-edit{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.top-content{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+}
+.down-content p{
+    margin-bottom: 0;
+}
+.down-content .number-one {
+    margin-left: 1rem;
+}
+.d-flex-card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.input-group{
+    height: 55px;
+}
+.btn-apply{
+    background: #4886FF;
+    border-radius: 5px;
+    border: 0;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    transition: 250ms;
+
+    padding: 16px;
+}
+.btn-apply:hover{
+    background: #1863fa;
+    text-decoration: underline;
+}
+
+.main-container .row{
+    justify-content: flex-end;
+}
+
+/*
+    Класс для заблокированного задания
+*/
+.locked-task{
+    width: 1370px;
+    height: 250px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/*
+    Классы для цвета оценок
+*/
+.rating-two{
+    background-color: #FF4848;
+}
+.rating-three{
+    background-color: #ffc72c;
+}
+.rating-four{
+    background-color: #13E58D;
+}
+.rating-five{
+    background-color: #54EA2F;
+}
+/*
+    Классы для цвета оцененных блоков
+*/
+.block-for-two{
+    border: 6px solid #FF4848;
+    border-radius: 5px;
+}
+.block-for-three{
+    border: 6px solid #ffc72c;
+    border-radius: 5px;
+}
+.block-for-four{
+    border: 6px solid #13E58D;
+    border-radius: 5px;
+}
+.block-for-five{
+    border: 6px solid #54EA2F;
+    border-radius: 5px;
+}
+
+/*
+    Медиа запросы для адптивной версии страницы
+*/
+@media (min-width: 720px) and (max-width:1024px) {
+    .main-container, .form-content .select-options {
+        width: 100%;
+    }
+    .avatar {
+        display: flex;
+        flex-direction: column;
+    }
+    .avatar img{
+        width: 100%;
+        padding: 0;
+    }
+    .img-btn{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .add-block, .edit-block {
+        width: 95%;
+    }
+    .edit-block .block-start, .edit-block .block-end {
+        width: 250px;
+    }
+    .information {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+    .edit-block .text-h2 {
+        width: 100%;
+    }
+    .edit-row {
+        width: 100%;
+        flex-direction: column;
+    }
+    .edit-block .block-start, .edit-block .block-end {
+        width: 100%;
+        height: 50px;
+    }
+    .add-block{
+        padding: 10px 10px 20px 10px;
+    }
+    .edit-row {
+        padding: 10px 10px 0px 10px;
+    }
+    .form-content {
+        padding: 10px;
+    }
+    .btn-edit{
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+
+    }
+    .edit-block .btn, .add-block .btn{
+        margin-top: 0;
+        height: 50px;
+        font-weight: 300;
+    }
+    .block-start, .block-end{
+        margin-bottom: 1rem;
+
+    }
+    .text-h1 {
+        font-weight: 600;
+        font-size: 24px;
+    }
+    .text-header {
+        font-size: 26px;
+        text-align: center;
+    }
+    .avatar-content .form-content input.input, .avatar-content .edit-btn {
+        width: 32%;
+    }
+    .form-content .input-child input:nth-child(1), .form-content .input-child input:nth-child(2), .input-child .edit .btn-edit {
+        width: 49%;
+    }
+    .accordion{
+        width: 90%;
+    }
+    .accordion-item{
+        width: 100%;
+    }
+    .footer-block {
+        width: 90%;
+    }
+    .info-block .one{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .btn-edit {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    .edit-block .accordion-button::after {
+        position: absolute;
+        right: 14px;
+        top: -34px;
+    }
+    .info-block {
+        align-items: flex-start;
+    }
+    .card-edit{
+        width: 48%;
+        height: auto;
+        margin-bottom: .7rem;
+    }
+    .top-content {
+        flex-direction: column;
+        width: 100%;
+    }
+    .top-content .img-edit{
+        width: 100%;
+    }
+    .top-content p {
+        width: 100%;
+    }
+    .down-content{
+        width: 100%;
+        flex-direction: column;
+    }
+    .down-content .del-btn, .down-content .edit-btn{
+        width: 100%;
+    }
+    .down-content .one{
+        margin: 1rem 0;
+    }
+    .accordion-body {
+        padding: 0;
+    }
+    .grade-block #accordion-w .accordion{
+        width: 100%;
+    }
+}

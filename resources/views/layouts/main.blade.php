@@ -24,7 +24,7 @@
             '//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-W7MBMN');
     </script> --}}
-
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
         @stack("styles")
     <title>Росмолодежь. Обучение</title>
 </head>

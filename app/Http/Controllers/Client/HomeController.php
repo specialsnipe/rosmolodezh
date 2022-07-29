@@ -63,4 +63,12 @@ class HomeController extends Controller
     {
         return view('teams');
     }
+    /**
+     *Сontacts page
+     *
+     */
+    public function search()
+    {
+        return view('search');
+    }
 }

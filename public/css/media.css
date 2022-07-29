@@ -6,10 +6,6 @@
     .card-text-main{
         width: 100%;
     }
-    .auth-btn{
-        margin-top: 1rem;
-        width: 100%;
-    }
     .card-form {
         display: flex;
         justify-content: center;
@@ -95,8 +91,11 @@
     .block{
         width: 95%;
         display: flex;
-        align-items: center;
+        justify-content: center;
         flex-direction: column;
+    }
+    .directions-block .card {
+        width: 100%;
     }
     #center-block .card-height{
         height: auto;
@@ -225,7 +224,7 @@
         width: 100%;
     }
     .links-footer {
-        flex-direction: row;
+        align-content: center;
     }
     .btn-edit{
         width: 100%;
@@ -379,7 +378,24 @@
     .grade-block{
         padding: 0;
     }
+    .auth-btn{
+        margin-top: 1rem;
+        width: 100%;
+    }
+    .form-check-label {
+        flex-direction: column;
+    }
+    .main-container-directions{
+        width: 95%;
+        margin-top: 2rem;
+        flex-direction: column;
+    }
+    .main-container-directions .images-header img, .main-container-directions .btn-back{
+        width: 100%;
+    }
 }
+
+
 
 @media (min-width:720px) and (max-width: 1280px) {
     .card-text-main{
@@ -437,126 +453,17 @@
     .block-info-right .text-h1, .block-info-left .text-h1{
         font-size: 17px;
     }
-}
-
-@media (min-width:720px) and (max-width: 1024px){
-    .registr-form .input-child input:nth-child(1),
-    .registr-form .input-child input:nth-child(2) {
-        width: 100%;
+    .directions-block .card {
+        width: 290px;
     }
-    .select-options {
-        width: 100%;
-        flex-direction: column;
+    .main-container .images-header img, .main-container .images-header .btn-back{
+       width: 100%;
     }
-    .select select {
-        width: 100%;
+    .main-container .text-container{
+        width: 85%;
     }
-    .registr-form form .row{
-        flex-direction: column;
-    }
-    .registr-form input.input {
-        width: 100%;
-    }
-    .footer-block {
-        width: 90%;
-    }
-    .auth-btn{
-        width: 50%;
-
-    }
-    .reg-btn {
-        width: 49%;
-    }
-    .nav-item a{
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-    .card-text-main{
-        font-size: 18px;
-    }
-    .news-blocks p {
-        width: 95%;
-    }
-    .registr-form form{
-        width: 95%;
-    }
-    .news-block .card {
-        width: 49%;
-        margin-bottom: 1rem;
-    }
-    .direction {
-        width: 45%;
-    }
-    .select::after {
-        left: 96%;
-    }
-    .nav-item {
-        padding: 0;
-    }
-    .auth-form form {
-        width: 95%;
-    }
-    .auth-form {
-        height: 580px;
-    }
-    .news-block{
-        width: 95%;
-    }
-    .block{
-        width: 95%;
-    }
-    .form-content .select select {
-        width: 98%;
-    }
-    .form-content .select select {
-        width: 100%;
-    }
-    #center-block .card-height {
-        height: auto;
-    }
-    .grade-block .accordion {
-        width: 95%;
-    }
-    .main-container{
-        width: 95%;
-        margin-top: 2rem;
-        flex-direction: column;
-    }
-    .images-header{
-
-        padding: 2rem 0 0 0;
-    }
-    .images-header img{
-        width: 100%;
-    }
-    .btn-back{
-        width: 100%;
-    }
-    .text-container .text-h1{
-        width: 100%;
-    }
-    .right-block-info{
-        width: 49%;
-    }
-    .link-content .text-p{
-        width: 80%;
-    }
-    .text-container .line{
-        width: 100%;
-    }
-
-    .text-container .text-h1, .text-container .text-p{
-        width: 100%;
-        font-size: 20px;
-    }
-    .text-container .text-h1{
-        font-size: 24px;
-    }
-    .text-container{
-        width: 49%;
-    }
-    .flex-container{
-        justify-content: space-between;
+    .main-container .right-block-info{
+        width: 47%;
     }
 }
 
@@ -686,5 +593,140 @@
         width: 160px;
         font-size: 14px;
         text-overflow: ellipsis;
+    }
+}
+
+
+@media (min-width:720px) and (max-width: 1024px){
+    .registr-form .input-child input:nth-child(1),
+    .registr-form .input-child input:nth-child(2) {
+        width: 100%;
+    }
+    .select-options {
+        width: 100%;
+        flex-direction: column;
+    }
+    .select select {
+        width: 100%;
+    }
+    .registr-form form .row{
+        flex-direction: column;
+    }
+    .registr-form input.input {
+        width: 100%;
+    }
+    .footer-block {
+        width: 90%;
+    }
+    .auth-btn{
+        width: 50%;
+
+    }
+    .reg-btn {
+        width: 49%;
+    }
+    .nav-item a{
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    .card-text-main{
+        font-size: 18px;
+    }
+    .news-blocks p {
+        width: 95%;
+    }
+    .registr-form form{
+        width: 95%;
+    }
+    .news-block .card {
+        width: 49%;
+        margin-bottom: 1rem;
+    }
+    .direction {
+        width: 45%;
+    }
+    .select::after {
+        left: 96%;
+    }
+    .nav-item {
+        padding: 0;
+    }
+    .auth-form form {
+        width: 95%;
+    }
+    .auth-form {
+        height: 580px;
+    }
+    .news-block{
+        width: 95%;
+    }
+    .block{
+        width: 95%;
+    }
+    .form-content .select select {
+        width: 98%;
+    }
+    .form-content .select select {
+        width: 100%;
+    }
+    #center-block .card-height {
+        height: auto;
+    }
+    .grade-block .accordion {
+        width: 95%;
+    }
+    .main-container{
+        width: 95%;
+        margin-top: 2rem;
+        flex-direction: column;
+    }
+    .images-header{
+
+        padding: 2rem 0 0 0;
+    }
+    .images-header img{
+        width: 100%;
+    }
+    .btn-back{
+        width: 100%;
+    }
+    .text-container .text-h1{
+        width: 100%;
+    }
+    .right-block-info{
+        width: 49%;
+    }
+    .link-content .text-p{
+        width: 80%;
+    }
+    .text-container .line{
+        width: 100%;
+    }
+    .text-container .text-h1, .text-container .text-p{
+        width: 100%;
+        font-size: 20px;
+    }
+    .text-container .text-h1{
+        font-size: 24px;
+    }
+    .main-container .text-container{
+        width: 49%;
+    }
+    .flex-container{
+        justify-content: space-between;
+    }
+    .directions-block .card {
+        width: 235px;
+    }
+    .form-check-label {
+    width: 100%;
+    }
+    .main-container-directions .text-container {
+        width: 100%;
+    }
+    .main-container-directions{
+        width: 95%;
+        margin-top: 2rem;
+        flex-direction: column;
     }
 }

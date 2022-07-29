@@ -78,12 +78,18 @@ Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->
 Route::get('/test/mail/message', [\App\Http\Controllers\TestController::class, 'test']);
 Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
 Route::get('/contacts', [\App\Http\Controllers\Client\HomeController::class, 'contacts'])->name('contacts');
+Route::get('/teams', [\App\Http\Controllers\Client\HomeController::class, 'teams'])->name('teams');
+Route::get('/search', [\App\Http\Controllers\Client\HomeController::class, 'search'])->name('search');
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
 Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('profile', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile');
+    Route::get('user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
+});
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 
 

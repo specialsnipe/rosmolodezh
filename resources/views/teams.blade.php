@@ -1,9 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-
-<section id="center-block">
 <p class="h1-content">Наша команда</p>
+<section id="center-block">
     <div class="row row-cols-1 row-cols-md-2 w-card">
         <div class="col">
             <div class="card mb-3">

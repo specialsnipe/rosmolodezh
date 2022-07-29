@@ -12,6 +12,13 @@ body {
     padding: 0;
 
 }
+/* Fix */
+.navbar-expand-lg .navbar-nav .nav-link{
+    padding: 20px;
+}
+.navbar-brand{
+    margin: 0.5rem 0;
+}
 
 .transparent-elem {
     background: rgba(0, 0, 0, 0.348);
@@ -20,11 +27,9 @@ body {
 .form-floating input, .form-select{
     border: 0;
 }
-
 .form-floating label{
     padding-left: 1.5rem;
 }
-
 .form-control {
     display: block;
     width: 100%;
@@ -54,15 +59,6 @@ main .carousel-inner img {
 
 }
 
-.navbar-expand-lg .navbar-nav .nav-link{
-    padding: 20px;
-}
-.navbar-brand{
-    margin: 0.5rem 0;
-}
-.nav-item i{
-    margin-left: .5rem;
-}
 .nav-item:hover {
     background-color: #6a6a6a1a;
 }
@@ -86,6 +82,7 @@ main .carousel-inner img {
     border: 0;
     margin-right: 10px;
     margin-top: 3px;
+
 }
 .text-truncate{
     height: 70px;
@@ -141,8 +138,31 @@ main .carousel-inner img {
     background-color: transparent;
     pointer-events: painted;
 }
+/*
+    directions-block
+*/
 
-
+.directions-block .card{
+    width: 320px;
+    margin-bottom: 1rem;
+}
+.directions-block .card-body {
+    background-color: #282828;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    transition: 250ms;
+}
+.directions-block .card a {
+    margin: 0;
+}
+.directions-block  a{
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+}
+.directions-block .card-body:hover{
+    background-color: #474747;
+}
 .btn-search:focus~.input-search {
     width: 300px;
     border-radius: 5px;
@@ -171,7 +191,12 @@ main .carousel-inner img {
     padding: 20px;
     margin-top: 1rem;
 }
-
+.directions-block .card-img-top{
+    transition: 250ms;
+}
+.directions-block .card-img-top:hover{
+    opacity: 0.8;
+}
 .main-directions a {
     font-style: normal;
     font-weight: 400;
@@ -254,39 +279,12 @@ main .carousel-inner img {
     color: #FFFFFF;
 }
 
-/* 
-    directions-block 
-*/
-
-.directions-block .card{
-    width: 320px;
-    margin-bottom: 1rem;
-}
-.directions-block .card-body {
-    background-color: #282828;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    transition: 250ms;
-}
-.directions-block .card a {
-    margin: 0;
-}
-.directions-block  a{
-    font-size: 16px;
-    color: #fff;
-    text-decoration: none;
-}
-.directions-block .card-body:hover{
-    background-color: #474747;
-}
-
 .news-block {
     width: 1300px;
 }
 
 .news-block .card {
     width: 300px;
-    margin-bottom: 1rem;
 }
 .news-block .btn{
     width: 100%;
@@ -383,6 +381,10 @@ main .carousel-inner img {
     margin-bottom: 3rem;
 }
 
+.auth-form h1 {
+    margin-bottom: 40px;
+}
+
 .registr-form form {
     width: 1020px;
 }
@@ -394,7 +396,7 @@ main .carousel-inner img {
 .auth-form {
     display: flex;
     align-items: center;
-    min-height: 489px;
+    min-height: 493px;
 }
 
 .registr-form .line-down,
@@ -435,6 +437,8 @@ main .carousel-inner img {
     margin-top: -3px;
 }
 
+
+
 .select select {
     display: block;
     width: 325px;
@@ -469,6 +473,7 @@ main .carousel-inner img {
     justify-content: space-between;
     display: flex;
     width: 1020px;
+
 }
 
 .reg-form {
@@ -780,6 +785,7 @@ header form .btn {
     font-weight: 600;
     margin: 1.4rem 0;
     text-transform: uppercase;
+
 }
 
 .carousel-item .card a {
@@ -838,11 +844,13 @@ header form .btn {
     color: #fff;
     border: 0;
     transition: 250ms;
+
 }
 .submit-task .btn-container{
     width: 892px;
     display: flex;
     justify-content: space-between;
+
 }
 .form-control{
     border: 2px solid #D9D9D9;
@@ -852,6 +860,7 @@ header form .btn {
     display: flex;
     align-items: center;
     justify-content: space-around;
+
 }
 .icon-content i:hover{
     color: #0891e6;
@@ -936,10 +945,10 @@ header form .btn {
 }
 
 #center-block .card-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
 }
 
 #center-block h5{
@@ -948,6 +957,7 @@ header form .btn {
     line-height: 29px;
     align-items: center;
     color: #252525;
+
 }
 
 #center-block p{
@@ -971,17 +981,15 @@ header form .btn {
     font-size: 14px;
     color: #000000;
 }
-
 .add-materials .line{
-    border: 2px solid #D9D9D9;
+border: 2px solid #D9D9D9;
 }
-
 .link-content {
     margin: 0 auto;
     width: 350px;
 }
 .page-link{
-    padding: .5rem 1rem;
+padding: .5rem 1rem;
 }
 .active>.page-link, .page-link.active{
     background-color: #F19324;
@@ -998,7 +1006,9 @@ header form .btn {
     width: 1400px;
     min-height: 550px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
 }
 .rounded-top  .main-container{
     margin-top: 2rem;
@@ -1016,11 +1026,37 @@ header form .btn {
     display: flex;
     justify-content: space-between;
 }
+.main-container-directions{
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 15px;
+    width: 1400px;
+    min-height: 550px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem;
+}
+.rounded-top  .main-container-directions{
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    width: 1400px;
+    min-height: 550px;
+}
+.container .main-container-directions{
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    width: 1300px;
+    min-height: 550px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .images-header{
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0;
 }
 .images-header img{
     width: 450px;
@@ -1050,9 +1086,33 @@ header form .btn {
 }
 
 .text-container{
-    width: 410px;
+    width: 100%;
+    padding: 0 1rem;
 }
 
+.main-container-directions .text-container .text-h2{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #272727;
+}
+.main-container-directions .text-container li p{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    color: #555555;
+    margin: 0;
+}
+.main-container-directions .text-container li{
+    color:  #F19324;
+    }
+.main-container-directions .text-container ul{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: justify;
+    color: #555555;
+    }
 .text-container .text-h1{
     font-weight: 600;
     font-size: 32px;
@@ -1062,14 +1122,13 @@ header form .btn {
     margin-top: 1rem;
 }
 .text-container .line{
-    height: 2px;
-    background-color:  #F19324;
-    width: 90%;
+    border: 2px solid #F19324;
+    width: 100%;
     margin-bottom: 1rem;
 }
 .text-container .text-p{
     margin-top: 1rem;
-    width: 90%;
+    width: 100%;
     font-weight: 400;
     font-size: 20px;
     line-height: 29px;
@@ -1110,8 +1169,7 @@ header form .btn {
 }
 
 .right-block-info .line{
-    height: 2px;
-    background-color:  #D9D9D9;
+    border: 2px solid #D9D9D9;
     margin: 1rem 0;
 }
 
@@ -1120,6 +1178,7 @@ header form .btn {
     font-size: 18px;
     line-height: 22px;
     color: #202020;
+
     margin-bottom: .5rem;
 
 }
@@ -1145,4 +1204,34 @@ header form .btn {
 
 .flex-container{
     display: flex;
+}
+
+.text-container .icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F19324;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    margin: 1rem 0;
+    transition: 250ms;
+}
+.text-container .icon:hover{
+    background-color: #555;
+    color: #ffffff;
+}
+
+.text-container a{
+    text-decoration: none;
+}
+.text-container a:not(:first-child){
+    margin-left: 1rem;
+}
+.text-container .link-row{
+    display: flex;
+    width: 100%;
+
 }

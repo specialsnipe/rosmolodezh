@@ -16,29 +16,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(12);
-        return view('posts', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -48,7 +28,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $posts = Post::limit(5)->get();
+        return view('posts.show', [
+            'post' => $post,
+            'posts' => $posts
+        ]);
     }
 
     /**
