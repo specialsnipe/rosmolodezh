@@ -78,18 +78,18 @@ $tracks = Track::all();
                     </div>
                     {{-- gender --}}
                     <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                        <select class="form-select @error('gender_id') is-invalid @enderror" id="floatingSelect"
-                            name="gender_id" aria-label="Floating label select example">
-                            <option value="0" selected disabled hidden>Укажите ваш пол</option>
-                            @foreach ($genders as $gender)
-                            <option value="{{ $gender->id }}" @if ( old('gender_id') == $gender->id) selected @endif>{{
-                                $gender->name }}</option>
+                        <select class="form-select @error('track_id') is-invalid @enderror" id="floatingSelect"
+                            name="track_id" aria-label="Floating label select example">
+                            <option value="0" selected disabled hidden>Выберите желаемое направление</option>
+                            @foreach ($tracks as $track)
+                            <option value="{{ $track->id }}" @if( old('track_id') == $track->id) selected @endif>
+                                {{$track->title }}</option>
                             @endforeach
 
                         </select>
-                        <label for="floatingSelect">Ваш пол:</label>
+                        <label for="floatingSelect">Направление:</label>
 
-                        @error('gender_id')
+                        @error('track_id')
                         <span class="ml-2 text-danger"> {{ $message }}</span>
                         @enderror
                     </div>
@@ -115,7 +115,7 @@ $tracks = Track::all();
                         <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
                         id="phone" placeholder="+7(999)999 9999" value="{{ old('phone') }}">
                         <label for="floatingSelect">Номер телефона</label>
-                        @error('track_id')
+                        @error('phone')
                         <span class="ml-2 text-danger"> {{ $message }}</span>
                         @enderror
                     </div>

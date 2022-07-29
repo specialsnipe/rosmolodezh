@@ -20,9 +20,11 @@ body {
 .form-floating input, .form-select{
     border: 0;
 }
+
 .form-floating label{
     padding-left: 1.5rem;
 }
+
 .form-control {
     display: block;
     width: 100%;
@@ -52,18 +54,17 @@ main .carousel-inner img {
 
 }
 
-.navbar-brand {
-    padding: 15px 15px;
+.navbar-expand-lg .navbar-nav .nav-link{
+    padding: 20px;
 }
-
-.nav-item {
-    transition: 200ms;
-    padding: 10px 15px;
+.navbar-brand{
+    margin: 0.5rem 0;
 }
-
+.nav-item i{
+    margin-left: .5rem;
+}
 .nav-item:hover {
     background-color: #6a6a6a1a;
-
 }
 
 .nav-item a {
@@ -85,7 +86,6 @@ main .carousel-inner img {
     border: 0;
     margin-right: 10px;
     margin-top: 3px;
-
 }
 .text-truncate{
     height: 70px;
@@ -254,12 +254,39 @@ main .carousel-inner img {
     color: #FFFFFF;
 }
 
+/* 
+    directions-block 
+*/
+
+.directions-block .card{
+    width: 320px;
+    margin-bottom: 1rem;
+}
+.directions-block .card-body {
+    background-color: #282828;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    transition: 250ms;
+}
+.directions-block .card a {
+    margin: 0;
+}
+.directions-block  a{
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+}
+.directions-block .card-body:hover{
+    background-color: #474747;
+}
+
 .news-block {
     width: 1300px;
 }
 
 .news-block .card {
     width: 300px;
+    margin-bottom: 1rem;
 }
 .news-block .btn{
     width: 100%;
@@ -356,10 +383,6 @@ main .carousel-inner img {
     margin-bottom: 3rem;
 }
 
-.auth-form h1 {
-    margin-bottom: 40px;
-}
-
 .registr-form form {
     width: 1020px;
 }
@@ -371,7 +394,7 @@ main .carousel-inner img {
 .auth-form {
     display: flex;
     align-items: center;
-    min-height: 493px;
+    min-height: 489px;
 }
 
 .registr-form .line-down,
@@ -412,8 +435,6 @@ main .carousel-inner img {
     margin-top: -3px;
 }
 
-
-
 .select select {
     display: block;
     width: 325px;
@@ -448,7 +469,6 @@ main .carousel-inner img {
     justify-content: space-between;
     display: flex;
     width: 1020px;
-
 }
 
 .reg-form {
@@ -760,7 +780,6 @@ header form .btn {
     font-weight: 600;
     margin: 1.4rem 0;
     text-transform: uppercase;
-
 }
 
 .carousel-item .card a {
@@ -819,13 +838,11 @@ header form .btn {
     color: #fff;
     border: 0;
     transition: 250ms;
-
 }
 .submit-task .btn-container{
     width: 892px;
     display: flex;
     justify-content: space-between;
-
 }
 .form-control{
     border: 2px solid #D9D9D9;
@@ -835,7 +852,6 @@ header form .btn {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 .icon-content i:hover{
     color: #0891e6;
@@ -920,10 +936,10 @@ header form .btn {
 }
 
 #center-block .card-body{
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #center-block h5{
@@ -932,7 +948,6 @@ flex-direction: column;
     line-height: 29px;
     align-items: center;
     color: #252525;
-
 }
 
 #center-block p{
@@ -956,15 +971,17 @@ flex-direction: column;
     font-size: 14px;
     color: #000000;
 }
+
 .add-materials .line{
-border: 2px solid #D9D9D9;
+    border: 2px solid #D9D9D9;
 }
+
 .link-content {
     margin: 0 auto;
     width: 350px;
 }
 .page-link{
-padding: .5rem 1rem;
+    padding: .5rem 1rem;
 }
 .active>.page-link, .page-link.active{
     background-color: #F19324;
@@ -1101,7 +1118,6 @@ padding: .5rem 1rem;
     font-size: 18px;
     line-height: 22px;
     color: #202020;
-
     margin-bottom: .5rem;
 
 }

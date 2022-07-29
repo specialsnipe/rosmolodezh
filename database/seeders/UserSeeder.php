@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             'avatar' => 'default_avatar.jpg',
             'login' => 'Alex',
             'password' => Hash::make('123456'),
+            'phone' => '+7 (999) 999 9991',
             'email' => 'alex@mail.ru',
         ]);
         User::create([
@@ -39,6 +40,7 @@ class UserSeeder extends Seeder
             'avatar' => 'default_avatar.jpg',
             'login' => 'Nikita',
             'password' => Hash::make('123456'),
+            'phone' => '+7 (999) 999 9999',
             'email' => 'nikita@mail.ru',
         ]);
 

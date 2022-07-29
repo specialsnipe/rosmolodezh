@@ -81,7 +81,18 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="row d-flex justify-content-evenly">
                             @foreach ($tracks as $track)
-                                <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a>
+                            
+                            <div class="card col-md-3 col-lg-3 col-sm-12 ">
+                                <a href="{{ route('tracks.show', $track->id) }}" class="card-title">
+                                <img src="/images/card-images-1.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    {{ $track->title }}
+                                    </div>
+                                
+                                </a>
+                            </div>
+                            
+                                <!-- <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a> -->
                             @endforeach
                         </div>
                     </div>

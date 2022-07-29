@@ -15,21 +15,23 @@
                     <a class="nav-link @if(Request::route()->getName() == 'about') active @endif " aria-current="page"
                         href="{{  route('about') }}">О проекте</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item  @if(Request::route()->getName() == 'about') active @endif">
                     <a class="nav-link" aria-current="page" href="#">Направления</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Новости</a>
+                    <a class="nav-link  @if(Request::route()->getName() == 'posts.index') active @endif" aria-current="page" 
+                    href="{{  route('posts.index') }}">Новости</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Команда</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Контакты</a>
+                    <a class="nav-link @if(Request::route()->getName() == 'contacts') active @endif" aria-current="page"
+                     href="{{  route('contacts') }}">Контакты</a>
                 </li>
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('auth.logout') }}">Выход</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('auth.logout') }}">Выход<i class="fas fa-sign-out"></i></a>
                 </li>
                     @if(auth()->user()->role->name == 'admin')
                         <li class="nav-item">
@@ -38,7 +40,7 @@
                     @endif
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">Войти</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('auth.login') }}">Войти<i class="fas fa-sign-in"></i></a>
                 </li>
 {{--                <li class="nav-item">--}}
 {{--                    <a class="nav-link" aria-current="page" href="#registration">Регистрация</a>--}}

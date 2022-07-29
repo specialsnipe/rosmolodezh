@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'emai
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 Route::get('/test/mail/message', [\App\Http\Controllers\TestController::class, 'test']);
 Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
+Route::get('/contacts', [\App\Http\Controllers\Client\HomeController::class, 'contacts'])->name('contacts');
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);

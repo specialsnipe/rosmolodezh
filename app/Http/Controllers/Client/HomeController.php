@@ -45,6 +45,14 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return view('welcome');
+        return view('about');
+    }
+    /**
+     * Contacts page
+     *
+     */
+    public function contacts()
+    {
+        return view('contacts');
     }
 }

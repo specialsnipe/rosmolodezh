@@ -115,8 +115,9 @@
                                     <td><span class="status_block status_success">100%</span></td>
                                 </tr>
                                 <tr>
+
                                     <td>Средний балл:</td>
-                                    <td><span class="status_block status_success">4.7</span></td>
+                                    <td><span class="status_block status_success">{{$exercise->average_score}}</span></td>
                                 </tr>
                             </table>
                         </div>

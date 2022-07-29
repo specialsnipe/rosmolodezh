@@ -140,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAnswer($exercise)
     {
-        return $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first() ;
+        return $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
 //        Answer::where('user_id', $this->id)->where('exercise_id', $exercise->id)->get();
     }
 

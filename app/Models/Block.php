@@ -34,6 +34,7 @@ class Block extends Model
         'image_medium',
         'image_thumbnail',
         'name_exercises_count',
+//        'average_score',
 //         'duration',
         // 'name_duration'
     ];
@@ -68,6 +69,26 @@ class Block extends Model
     //         return 'часов';
     //     }
     // }
+//    public function getAverageScoreAttribute()
+//    {
+//        $score = 0;
+//        $exercises = $this->exercises;
+//        $i = 0;
+//
+//        foreach ($exercises as $exercise) {
+//            $answers = Answer::where('exercise_id', $exercise->id)->get();
+//            foreach ($answers as $answer) {
+//                if($answer->mark) {
+//                    $score += $answer->mark;
+//                    $i++;
+//                }
+//            }
+//        }
+//        if($i === 0) {
+//            return 0;
+//        }
+//        return round($score / $i, 1);
+//    }
 
     public function getNameExercisesCountAttribute()
     {
