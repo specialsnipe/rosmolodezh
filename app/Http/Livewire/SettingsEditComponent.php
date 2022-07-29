@@ -71,9 +71,10 @@ class SettingsEditComponent extends Component
     public function AddPhone()
     {
         $this->validate([
-            'phone' => ['required']
+            'phone' => ['required','min:17']
         ], [
-            'email.required' => 'Поле обязательно для заполнения',
+            'phone.required' => 'Поле обязательно для заполнения',
+            'phone.min:17' => 'В номере телефона не хватает цифр',
         ]);
         SettingPhone::create([
             'phone' => $this->phone,

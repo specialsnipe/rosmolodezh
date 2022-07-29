@@ -60,7 +60,8 @@
                             <li class="breadcrumb-item"><a
                                     href="{{route('admin.tracks.blocks.show',[$track->id, $block->id] )}}">{{$block->title}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.blocks.exercises.show',[$block->id, $exercise->id])}}"
+                            <li class="breadcrumb-item"><a
+                                    href="{{route('admin.blocks.exercises.show',[$block->id, $exercise->id])}}"
                                 >{{$exercise->title}}</a></li>
                             <li class="breadcrumb-item active">Ответы учеников</li>
                         </ol>
@@ -77,7 +78,9 @@
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
 
-                                <a class="btn btn-info mr-2" href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить <i
+                                <a class="btn btn-info mr-2"
+                                   href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить
+                                    <i
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -118,11 +121,13 @@
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }}%</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }}%</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Средний балл:</td>
-                                    <td><span class="status_block status_success">{{ $exercise->average_score }}</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->average_score }}</span>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -130,9 +135,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
 
         <div class="row m-3 ">
@@ -157,7 +159,7 @@
                         <tbody>
                         @forelse($users as $user)
                             <tr data-widget="expandable-table" aria-expanded="false">
-{{--                                <td>{{$users->firstItem() + $loop->index}}</td>--}}
+                                {{--                                <td>{{$users->firstItem() + $loop->index}}</td>--}}
                                 <td>{{$loop->iteration}}</td>
                                 <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
                                          alt="image">
@@ -177,22 +179,27 @@
 
                                 <td>
                                     @if($user->getAnswer($exercise))
-                                    <span
-                                        style="padding: 5px 10px; background: #72c07d; border-radius: 5px">
-                                            выполнено </span> @else  <span
-                                        style="padding: 5px 10px; background: #ec505d; border-radius: 5px">
+                                        <span
+                                            style="padding: 5px 10px; border-radius: 5px">
+                                            выполнено </span>
+                                    @else
+                                        <span
+                                            style="padding: 5px 10px; border-radius: 5px">
                                             не выполнено </span>
-                                        @endif
+                                    @endif
                                 </td>
                                 <td>
                                     <a class="btn btn-info mr-2" href="#">Посмотреть</a>
                                 </td>
                                 <td>
-
-                                    @if(isset($user->getAnswer($exercise)->mark))
-                                        {{$user->getAnswer($exercise)->mark}}@else
-                                        не оценено
+                                    @if($user->getAnswer($exercise))
+                                        @if(isset($user->getAnswer($exercise)->mark))
+                                            {{$user->getAnswer($exercise)->mark}}
+                                        @else
+                                            не оценено
+                                        @endif
                                     @endif
+
 
                                 </td>
                             </tr>
@@ -206,29 +213,29 @@
                     </table>
                 </div>
             </div>
-{{--            <div class="card col-12">--}}
-{{--                <div class="card-body">--}}
-{{--                {{ $users->links() }}--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            {{--            <div class="card col-12">--}}
+            {{--                <div class="card-body">--}}
+            {{--                {{ $users->links() }}--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            const getSort = ({ target }) => {
+            const getSort = ({target}) => {
                 const order = (target.dataset.order = -(target.dataset.order || -1));
                 const index = [...target.parentNode.cells].indexOf(target);
-                const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
+                const collator = new Intl.Collator(['en', 'ru'], {numeric: true});
                 const comparator = (index, order) => (a, b) => order * collator.compare(
                     a.children[index].innerHTML,
                     b.children[index].innerHTML
                 );
 
-                for(const tBody of target.closest('table').tBodies)
+                for (const tBody of target.closest('table').tBodies)
                     tBody.append(...[...tBody.rows].sort(comparator(index, order)));
 
-                for(const cell of target.parentNode.cells)
+                for (const cell of target.parentNode.cells)
                     cell.classList.toggle('sorted', cell === target);
             };
 
