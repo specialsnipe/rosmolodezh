@@ -23,7 +23,8 @@
                     href="{{  route('posts.index') }}">Новости</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Команда</a>
+                    <a class="nav-link" aria-current="page" 
+                    href="">Команда</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(Request::route()->getName() == 'contacts') active @endif" aria-current="page"
@@ -47,11 +48,11 @@
 {{--                </li>--}}
                 @endauth
             </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Искать здесь..." aria-label="Search">
+            </form>
         </div>
-        <!-- <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Искать здесь..." aria-label="Search">
-
-        </form> -->
+        
 
 
         <!-- <div class="search-box">

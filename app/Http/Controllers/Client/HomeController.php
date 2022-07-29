@@ -48,11 +48,19 @@ class HomeController extends Controller
         return view('about');
     }
     /**
-     * Contacts page
+     *Сontacts page
      *
      */
     public function contacts()
     {
         return view('contacts');
+    }
+    /**
+     *Сontacts page
+     *
+     */
+    public function teams()
+    {
+        return view('teams');
     }
 }
