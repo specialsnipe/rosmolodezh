@@ -40,7 +40,6 @@ class StoreUserRequest extends FormRequest
             'vk_url' => ['nullable', 'url'],
             'phone'=> ['required', 'min:17']
             //'track_id' => ['required', 'min:1']
-
         ];
     }
     public function messages()
@@ -65,7 +64,7 @@ class StoreUserRequest extends FormRequest
             'role_id.required' => 'Выберите роль.',
             'role_id.min' => 'Выберанная роль не верная.',
             'phone.required' => 'Введите номер телефона',
-            'phone.min:11'=> 'Не правильно ввели номер телефона',
+            'phone.min:17'=> 'Не правильно ввели номер телефона',
             'file.required'=>'Загрузите картинку',
             'file.image'=> 'Файл должен быть картинкой',
             'file.mimes:jpg,jpeg,png'=> 'Неверный формат картинки, возможные: jpg,jpeg,png',
