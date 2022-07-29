@@ -59,11 +59,11 @@
                                     </tr>
                                     <tr>
                                         <td>Средний балл:</td>
-                                        <td><span class="status_block status_success">{{$block->average_score}}</span></td>
+                                        <td><span class="status_block status_success">{{$averageMarkBlock}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Продолжительность:</td>
-                                        <td>{{$block->duration}} {{$block->name_duration}}</td>
+                                        <td>{{$duration}}</td>
                                     </tr>
                                     <tr>
                                         <td>Дата начала блока:</td>

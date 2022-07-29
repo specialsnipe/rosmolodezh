@@ -8,6 +8,7 @@ use App\Http\Requests\Track\UpdateTrackRequest;
 use App\Models\Block;
 use App\Models\Track;
 use App\Models\User;
+use App\Services\AverageMark\AverageMarkTrack;
 use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -24,8 +25,13 @@ class TrackController extends Controller
      */
     public function index(): View|Factory|Application
     {
+        $tracks = Track::all();
+        $allAverageMark = [];
+        foreach ($tracks as $track) {
+            $allAverageMark[] = AverageMarkTrack::getMark($track);
+        }
         return view('admin.tracks.index', [
-            'tracks' => Track::all(),
+            'tracks' => $tracks, 'allAverageMark' => $allAverageMark
         ]);
     }
 
@@ -70,9 +76,11 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
+        $averageMarkTrack = AverageMarkTrack::getMark($track);
         return view('admin.tracks.show', [
             'track' => $track,
             'blocks' => Block::where('track_id', $track->id)->get(),
+            'averageMarkTrack' => $averageMarkTrack
         ]);
     }
 

@@ -69,6 +69,10 @@ class Block extends Model
     //         return 'часов';
     //     }
     // }
+
+
+
+
 //    public function getAverageScoreAttribute()
 //    {
 //        $score = 0;

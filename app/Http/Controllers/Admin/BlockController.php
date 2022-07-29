@@ -9,6 +9,8 @@ use App\Models\Block;
 use App\Models\Exercise;
 use App\Models\Track;
 use App\Models\User;
+use App\Services\AverageMark\AverageMarkBlock;
+use App\Services\Duration\DurationBlock;
 use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -66,8 +68,10 @@ class BlockController extends Controller
      */
     public function show(Track $track, Block $block)
     {
+        $duration = DurationBlock::getNameDuration($block);
+        $averageMarkBlock = AverageMarkBlock::getMark($block);
         $exercises = Exercise::where('block_id', $block->id)->get();
-        return view('admin.blocks.show', compact('track', 'block', 'exercises'));
+        return view('admin.blocks.show', compact('track', 'block', 'exercises','averageMarkBlock', 'duration'));
     }
 
     /**

@@ -85,7 +85,7 @@
                                         </tr>
                                         <tr>
                                             <td>Средний балл:</td>
-                                            <td><span class="status_block status_success">{{$track->average_score}}</span></td>
+                                            <td><span class="status_block status_success">{{$allAverageMark[$loop->index]}}</span></td>
                                         </tr>
                                     </table>
                                 </div>
