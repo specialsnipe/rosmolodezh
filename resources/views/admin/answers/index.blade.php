@@ -148,9 +148,6 @@
         <div class="row m-3 ">
 
             <div class="card col-12">
-                <div class="card-head p-3">
-                    <h3 class="card-title">Ответы учащихся на упражнение "{{$exercise->title}}"</h3>
-                </div>
                 <div class="card-body table-responsive p-0">
                     <table class="table_sort table table-hover table-head-fixed text-nowrap">
                         <thead>
