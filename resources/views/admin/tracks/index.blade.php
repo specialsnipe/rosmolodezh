@@ -108,7 +108,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Количество заданий:</td>
-                                                                    <td><b>15 заданий</b></td>
+                                                                    <td><b>{{ $block->exercises_count }} {{ $block->name_exercises_count }}</b></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Уровень освоения:</td>

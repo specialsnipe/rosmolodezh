@@ -71,7 +71,7 @@ class Exercise extends Model
         }
         $users_count = $this->block->track->users()->count();
 
-        return $positive_ratings*100/$users_count;
+        return round($positive_ratings*100/$users_count, 1);
     }
     public function getAverageScoreAttribute()
     {

@@ -107,20 +107,16 @@
                                 <tr>
                                     <td>Ответов:</td>
                                     <td>
-                                        <a href="{{route('admin.exercises.answers.index', $exercise->id)}}">{{ $exercise->answers_added_count }}/{{$track->users_count}} </a>
+                                    {{ $exercise->answers_added_count }}/{{$track->users_count}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Оценено:</td>
-                                    <td>@if($exercise->mark_count )
-                                            {{$exercise->mark_count }}
-                                        @else
-                                            0
-                                        @endif/{{ $track->users_count }}</td>
+                                    <td>{{$exercise->mark_count }}/{{ $track->users_count}}</td>
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">100%</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }} %</span></td>
                                 </tr>
                                 <tr>
 
