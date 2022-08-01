@@ -206,13 +206,7 @@
                                                              alt="image">
                                                     </td>
                                                     <td><a href="{{route('admin.users.show', $user->id)}}"><span>
-                                                {{$user->last_name}}
-                                            </span>
-                                                            <span>
-                                                {{$user->first_name}}
-                                            </span>
-                                                            <span>
-                                                {{$user->father_name}}
+                                                {{$user->all_names}}
                                             </span></a>
 
                                                         <span class="text-muted">({{$user->id}})</span>
@@ -309,7 +303,6 @@
             </div>
         </div>
     </div>
-    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -330,7 +323,6 @@
             };
 
             document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
-
         });
     </script>
 @endsection

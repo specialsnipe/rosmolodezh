@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class=" row align-items-center">
-                            <h1>{{$user->all_names}}</h1>
+                            <h1><a href="{{route('admin.users.show', $user->id)}}">{{$user->all_names}}</a></h1>
                         </div>
                     </div>
                     <div class="card-body">
@@ -83,64 +83,62 @@
                                 </h5>
                             </div>
 
-                        <table class="tack_text track_table">
-                            <tr>
-                                <td>Оценка за упрежнение:</td>
-                                <td><span class="status_block status_success">
+                            <table class="tack_text track_table">
+                                <tr>
+                                    <td>Оценка за упрежнение:</td>
+                                    <td><span class="status_block status_success">
                                         @if($answer->mark)
-                                            {{$answer->mark}}
-                                        @else
-                                            не оценено
-                                        @endif
-
+                                                {{$answer->mark}}
+                                            @else
+                                                не оценено
+                                            @endif
                                     </span></td>
-                            </tr>
-                            <tr>
-                                <td>Средний балл:</td>
-                                <td><span class="status_block status_success">{{$user->average_mark}}</span></td>
-                            </tr>
-                       </table>
+                                </tr>
+                                <tr>
+                                    <td>Средний балл:</td>
+                                    <td><span class="status_block status_success">{{$user->average_mark}}</span></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-    </div>
+        {{--        Body of exercise--}}
 
-    {{--        Body of exercise--}}
-
-    <div class="p-2 p-md-4 card">
-        <div class="card-body p-2 p-md-3">
-            <div class="hexlet-markdown-body overflow-hidden">
-                <div class="mb-4 position-relative d-inline-block">
-                    <h1 class="my-0 d-flex flex-column-reverse">
-                        {{$answer->title}}
-                        <span class="sr-only">—</span>
-                    </h1>
-                </div>
-                <div>
-                    {!!$answer->body!!}
-                </div>
-                <hr class="mt-5">
-                <div class="d-flex flex-wrap flex-lg-nowrap mt-md-4 pt-lg-2 align-items-start">
-
-                    <div class="mt-3 mt-lg-0 w-100">
-                        <h3 class=" fw-bold mb-0 lh-base">Прикрепленные файлы:</h3>
+        <div class="p-2 p-md-4 card">
+            <div class="card-body p-2 p-md-3">
+                <div class="hexlet-markdown-body overflow-hidden">
+                    <div class="mb-4 position-relative d-inline-block">
+                        <h1 class="my-0 d-flex flex-column-reverse">
+                            {{$answer->title}}
+                            <span class="sr-only">—</span>
+                        </h1>
                     </div>
-                </div>
-                @forelse($answer->answerFiles as $file)
                     <div>
-                        <a href="{{asset($file->fila_name)}}">
-                            <button class="btn"><i class="fa fa-download"></i> Download File</button>
-                        </a>
+                        {!!$answer->body!!}
                     </div>
-                @empty
-                    <div>Файлов нет :(</div>
-                @endforelse
+                    <hr class="mt-5">
+                    <div class="d-flex flex-wrap flex-lg-nowrap mt-md-4 pt-lg-2 align-items-start">
+
+                        <div class="mt-3 mt-lg-0 w-100">
+                            <h3 class=" fw-bold mb-0 lh-base">Прикрепленные файлы:</h3>
+                        </div>
+                    </div>
+                    @forelse($answer->answerFiles as $file)
+                        <div>
+                            <a href="{{asset($file->fila_name)}}">
+                                <button class="btn"><i class="fa fa-download"></i> Download File</button>
+                            </a>
+                        </div>
+                    @empty
+                        <div>Файлов нет :(</div>
+                    @endforelse
+                </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 
