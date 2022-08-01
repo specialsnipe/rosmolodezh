@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('setting_emails', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->string('description')->nullable();
             $table->foreignId('setting_id')->constrained()->cascadeOnDelete();
             $table->boolean('active')->default(true);
             $table->timestamps();

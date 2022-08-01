@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('vk_url');
-            $table->string('tg_url');
-            $table->string('ok_url');
+            $table->string('vk_url')->nullable();
+            $table->string('vk_description')->nullable();
+            $table->string('tg_url')->nullable();
+            $table->string('tg_description')->nullable();
+            $table->string('ok_url')->nullable();
+            $table->string('ok_description')->nullable();
+            $table->string('location')->nullable();
+            $table->string('location_description')->nullable();
+            $table->string('location_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,10 +17,12 @@ class SettingEmailSeeder extends Seeder
     {
         SettingEmail::create([
             'email' => 'rosmolodezh@mail.tu',
+            'description' => 'Наша основная почта',
             'setting_id' => '1',
         ]);
         SettingEmail::create([
             'email' => 'secondrosmolodezh@mail.tu',
+            'description' => 'Почта нашего психолога',
             'setting_id' => '1',
         ]);
     }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('main.index');
-    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index', 'update']);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::match(['put', 'patch'], 'users/{user}/changeStatus', [\App\Http\Controllers\Admin\UserController::class, 'change_status'])->name('users.changeStatus');

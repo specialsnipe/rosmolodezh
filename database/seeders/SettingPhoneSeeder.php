@@ -17,11 +17,13 @@ class SettingPhoneSeeder extends Seeder
     {
         SettingPhone::create([
             'phone' => '8 800 555 35 35',
-            'setting_id' => '1',
+            'description' => 'Горячая линия',
+            'setting_id' => 1,
         ]);
         SettingPhone::create([
             'phone' => '8 900 555 35 35',
-            'setting_id' => '1',
+            'description' => 'Телефон менеджера',
+            'setting_id' => 1,
         ]);
     }
 }

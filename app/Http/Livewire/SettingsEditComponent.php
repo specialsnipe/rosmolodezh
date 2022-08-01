@@ -16,7 +16,9 @@ class SettingsEditComponent extends Component
     public $phone_title;
     public $email_title;
     public $email;
+    public $email_description;
     public $phone;
+    public $phone_description;
     public $changedEmail;
 
 
@@ -55,32 +57,40 @@ class SettingsEditComponent extends Component
     public function AddEmail()
     {
         $this->validate([
-            'email' => ['required', 'email:dns']
+            'email' => ['required', 'email:dns'],
+            'email_description' => ['required'],
         ], [
             'email.required' => 'Поле обязательно для заполнения',
-            'email.email' => "Неверный формат почты"
+            'email.email' => "Неверный формат почты",
+            'email_description.required' => "Обязательно добавтье описание",
         ]);
         SettingEmail::create([
             'email' => $this->email,
+            'description' => $this->email_description,
             'setting_id' => $this->setting->id
         ]);
         $this->email = '';
+        $this->email_description = '';
         $this->setting = Setting::first();
     }
 
     public function AddPhone()
     {
         $this->validate([
-            'phone' => ['required','min:17']
+            'phone' => ['required','min:17'],
+            'phone_description' => ['required'],
         ], [
             'phone.required' => 'Поле обязательно для заполнения',
             'phone.min:17' => 'В номере телефона не хватает цифр',
+            'phone_description.required' => "Обязательно добавтье описание",
         ]);
         SettingPhone::create([
             'phone' => $this->phone,
+            'description' => $this->phone_description,
             'setting_id' => $this->setting->id
         ]);
         $this->phone = '';
+        $this->phone_description = '';
         $this->setting = Setting::first();
     }
 }
