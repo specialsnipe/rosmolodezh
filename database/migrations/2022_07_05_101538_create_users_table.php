@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('father_name');
+            $table->string('father_name')->nullable();
             $table->string('avatar')->default('default_avatar.jpg');
             $table->integer('age')->nullable();
             $table->text('about')->nullable();
