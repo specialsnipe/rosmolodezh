@@ -60,7 +60,8 @@ class ExerciseController extends Controller
     public function show( Block $block, Exercise $exercise)
     {
         $track = $block->track;
-        return view('admin.exercise.show', compact('block', 'exercise', 'track'));
+        $users = $track->users;
+        return view('admin.exercise.show', compact('block', 'exercise', 'track', 'users'));
     }
 
     /**

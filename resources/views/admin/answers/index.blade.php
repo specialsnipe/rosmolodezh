@@ -197,9 +197,16 @@
                                     </td>
                                 @endif
 
-                                <td>
-                                    <a class="btn btn-info mr-2" href="#">Посмотреть</a>
-                                </td>
+
+                                @if($user->getAnswer($exercise))
+                                    <td>
+                                        <a class="btn btn-info mr-2" href="{{route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id])}}">Посмотреть</a>
+                                    </td>
+                                @else
+                                    <td>
+
+                                    </td>
+                                @endif
                                 @if($user->getAnswer($exercise))
                                     @if(isset($user->getAnswer($exercise)->mark))
                                         <td style="background: #b9ffb3">

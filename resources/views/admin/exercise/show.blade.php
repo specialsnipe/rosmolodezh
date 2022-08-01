@@ -126,11 +126,112 @@
                             </table>
                         </div>
                     </div>
-                    <a class="btn btn-info mr-2" href="{{route('admin.exercises.answers.index', $exercise->id)}}">Ответы учеников <i
-                            class="fa fa-eye"></i></a>
-
                 </div>
+                <div class="" id="accordion" role="tablist" aria-multiselectable="true">
 
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <h5 class="mb-0">
+                                <a class="btn btn-info mr-2 col-12" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                   aria-controls="collapseOne">
+                                    Ответы учеников <i
+                                        class="fa fa-eye"></i>
+                                </a>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-block">
+                                <div class="card col-12">
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table_sort table table-hover table-head-fixed text-nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Аватар</th>
+                                                <th>ФИО</th>
+                                                <th>Задание</th>
+                                                <th>Просмотр</th>
+                                                <th>Оценка</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @forelse($users as $user)
+                                                <tr data-widget="expandable-table" aria-expanded="false">
+                                                    {{--                                <td>{{$users->firstItem() + $loop->index}}</td>--}}
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
+                                                             alt="image">
+                                                    </td>
+                                                    <td><a href="{{route('admin.users.show', $user->id)}}"><span>
+                                                {{$user->last_name}}
+                                            </span>
+                                                            <span>
+                                                {{$user->first_name}}
+                                            </span>
+                                                            <span>
+                                                {{$user->father_name}}
+                                            </span></a>
+
+                                                        <span class="text-muted">({{$user->id}})</span>
+                                                    </td>
+
+
+                                                    @if($user->getAnswer($exercise))
+                                                        <td style="background: #b9ffb3">
+                                        <span
+                                            style="padding: 5px 10px; ">
+                                            выполнено </span>
+                                                        </td>
+                                                    @else
+                                                        <td>
+                                        <span
+                                            style="padding: 5px 10px; border-radius: 5px">
+                                            не выполнено </span>
+                                                        </td>
+                                                    @endif
+
+
+                                                    @if($user->getAnswer($exercise))
+                                                        <td>
+                                                            <a class="btn btn-info mr-2" href="{{route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id])}}">Посмотреть</a>
+                                                        </td>
+                                                    @else
+                                                        <td>
+
+                                                        </td>
+                                                    @endif
+                                                    @if($user->getAnswer($exercise))
+                                                        @if(isset($user->getAnswer($exercise)->mark))
+                                                            <td style="background: #b9ffb3">
+                                                                {{$user->getAnswer($exercise)->mark}}
+                                                            </td>
+                                                        @else
+                                                            <td style="background: #ffc4c4">
+                                                                не оценено
+                                                            </td>
+                                                        @endif
+                                                    @else
+                                                        <td>
+
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td></td>
+                                                    <td>Учащихся нет</td>
+                                                </tr>
+                                            @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

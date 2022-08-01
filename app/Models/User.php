@@ -46,7 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar_medium_path',
         'first_and_last_names',
         'all_names',
-        'tg_url'
+        'tg_url',
+        'average_mark'
     ];
 
     public function getAvatarOriginalPathAttribute()
@@ -141,7 +142,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAnswer($exercise)
     {
         return $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
-//        Answer::where('user_id', $this->id)->where('exercise_id', $exercise->id)->get();
+    }
+    public function getAverageMarkAttribute($exercise)
+    {
+        $answers = $this->hasMany(Answer::class)->get();
+        $result = 0;
+        $i = 0;
+            foreach ($answers as $answer) {
+                if($answer->mark) {
+                    $result += $answer->mark;
+                    $i++;
+                }
+            }
+
+        if($i === 0) {
+            return 0;
+        }
+        return round($result / $i, 1);
     }
 
     /**

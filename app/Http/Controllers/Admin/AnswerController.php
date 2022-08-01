@@ -24,7 +24,6 @@ class AnswerController extends Controller
     {
         $block = $exercise->block;
         $track = $block->track;
-//        $users = $track->users()->paginate(10);
         $users = $track->users;
         return view('admin.answers.index', compact('track', 'block', 'exercise', 'users'));
     }
@@ -50,15 +49,20 @@ class AnswerController extends Controller
         //
     }
 
+
     /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Answer $answer
-     * @return \Illuminate\Http\Response
+     * @param Track $track
+     * @param Block $block
+     * @param Exercise $exercise
+     * @param Answer $answer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Answer $answer)
+    public function show(Exercise $exercise, Answer $answer)
     {
-        //
+        $block = $exercise->block;
+        $track = $block->track;
+        $user = $answer->user;
+        return view('admin.answers.show', compact('track', 'block', 'exercise', 'answer', 'user'));
     }
 
     /**
