@@ -18,7 +18,7 @@
             <button class="mb-4 img-btn">Нажмите для загрузки аватара</button>
         </form>
 
-        <form action="{{ action('user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
+        <form action="{{ route('user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
             <div class="text-header mb-4">Личные данные "{{ $user->first_and_last_names }}"</div>
 
             <div class="form-group row">
