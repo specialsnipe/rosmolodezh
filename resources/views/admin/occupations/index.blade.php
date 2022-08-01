@@ -19,7 +19,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <div class="row">
+        <div class="row m-3">
             <div class="col-6">
                 <div class="card">
                     <!-- /.card-header -->

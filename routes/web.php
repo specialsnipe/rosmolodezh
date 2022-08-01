@@ -22,14 +22,16 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::match(['put', 'patch'], 'users/{user}/changeStatus', [\App\Http\Controllers\Admin\UserController::class, 'change_status'])->name('users.changeStatus');
-    Route::resource('handbook', \App\Http\Controllers\Admin\HandBookController::class);
     Route::match(['put', 'patch'], 'users/{user}/change_password', [\App\Http\Controllers\Admin\UserController::class, 'change_password'])->name('users.change_password');
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
+    // handbook of a site constants
+    Route::resource('handbook', \App\Http\Controllers\Admin\HandBookController::class);
     Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
+    Route::get('/complexity', [App\Http\Controllers\Admin\ComplexityController::class, 'index'])->name('complexity.index');
 
     // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
