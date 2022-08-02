@@ -17,6 +17,7 @@ class Answer extends Model
         'title',
         'body',
         'exercise_id',
+        'mark',
         'user_id'
     ];
 

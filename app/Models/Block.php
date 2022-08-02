@@ -34,9 +34,9 @@ class Block extends Model
         'image_medium',
         'image_thumbnail',
         'name_exercises_count',
-//        'average_score',
-//         'duration',
-        // 'name_duration'
+        'average_score',
+        'duration',
+        'name_duration'
     ];
     protected $dates = [
         'created_at',
@@ -46,57 +46,60 @@ class Block extends Model
     ];
 
 
-//     public function getDurationAttribute()
-//     {
-//         $exercises = $this->exercises;
-//         $time = 0;
-//         foreach ($exercises as $exercise){
-//             $time += $exercise->time;
-//         }
-//
-//         return round($time / 60);
-//     }
-
-    // public function getNameDurationAttribute()
-    // {
-    //     $duration = $this->duration % 10;
-
-    //     if ($duration === 2 || $duration === 3 || $duration === 4) {
-    //         return 'часа';
-    //     } elseif($duration === 1 && $this->duration !== 11) {
-    //         return 'час';
-    //     } else {
-    //         return 'часов';
-    //     }
-    // }
-
-
-
-
-//    public function getAverageScoreAttribute()
-//    {
-//        $score = 0;
+    public function getDurationAttribute()
+    {
+        $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
 //        $exercises = $this->exercises;
-//        $i = 0;
-//
-//        foreach ($exercises as $exercise) {
-//            $answers = Answer::where('exercise_id', $exercise->id)->get();
-//            foreach ($answers as $answer) {
-//                if($answer->mark) {
-//                    $score += $answer->mark;
-//                    $i++;
-//                }
-//            }
-//        }
-//        if($i === 0) {
-//            return 0;
-//        }
-//        return round($score / $i, 1);
-//    }
+        $time = 0;
+
+
+
+        foreach ($exercises as $exercise) {
+            $time += $exercise->time;
+        }
+        return round($time / 60);
+    }
+
+    public function getNameDurationAttribute()
+    {
+        $duration = $this->duration % 10;
+
+        if ($duration === 2 || $duration === 3 || $duration === 4) {
+            return 'часа';
+        } elseif ($duration === 1 && $this->duration !== 11) {
+            return 'час';
+        } else {
+            return 'часов';
+        }
+    }
+
+
+    public function getAverageScoreAttribute()
+    {
+        $score = 0;
+        $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
+//        $exercises = $this->exercises;
+        $i = 0;
+
+        foreach ($exercises as $exercise) {
+            $answers = Answer::where('exercise_id', $exercise->id)->without(['exercise', 'user'])->get();
+//            $answers = $exercise->answers;
+            foreach ($answers as $answer) {
+                if ($answer->mark) {
+                    $score += $answer->mark;
+                    $i++;
+                }
+            }
+        }
+        if ($i === 0) {
+            return 0;
+        }
+        return round($score / $i, 1);
+    }
 
     public function getNameExercisesCountAttribute()
     {
-        if ($this->exercises_count === 1 ) {
+        if ($this->exercises_count === 1) {
             return 'упражнение';
         } elseif ($this->exercises_count === 2 || $this->exercises_count === 3 || $this->exercises_count === 4) {
             return 'упражнения';
@@ -107,15 +110,17 @@ class Block extends Model
 
     public function getImageOriginalAttribute()
     {
-        return 'storage/blocks/images/originals/'. $this->image;
+        return 'storage/blocks/images/originals/' . $this->image;
     }
+
     public function getImageThumbnailAttribute()
     {
-        return 'storage/blocks/images/thumbnail/thumbnail_'. $this->image;
+        return 'storage/blocks/images/thumbnail/thumbnail_' . $this->image;
     }
+
     public function getImageMediumAttribute()
     {
-        return 'storage/blocks/images/medium/medium_'. $this->image;
+        return 'storage/blocks/images/medium/medium_' . $this->image;
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Models\Block;
 use App\Models\Exercise;
 use App\Models\Track;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
@@ -109,5 +110,16 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
+    }
+
+    public function changeMark(Request $request,Exercise $exercise, Answer $answer)
+    {
+
+        $answer->update([
+           'mark'=>$request->input('mark'),
+        ]);
+        $block = $exercise->block;
+
+        return redirect()->route('admin.blocks.exercises.show',[$block->id, $exercise->id] );
     }
 }
