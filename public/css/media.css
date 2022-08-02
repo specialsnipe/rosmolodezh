@@ -125,6 +125,9 @@
     .img-btn{
         width: 100%;
     }
+    .main-container .flex-container{
+        width: 100%;
+    }
     .add-block .btn{
         width: 100%;
         height: 50px;
@@ -474,10 +477,6 @@
     .main-container .text-container{
         width: 85%;
     }
-    .main-container .flex-container{
-        width: 100%;
-        flex-direction: column;
-    }
 }
 
 /* @media (min-width: 420px) and (max-width: 1150px) {
@@ -707,9 +706,6 @@
     .text-container .text-h1{
         width: 100%;
     }
-    .right-block-info{
-        width: 100%;
-    }
     .link-content .text-p{
         width: 80%;
     }
@@ -751,5 +747,12 @@
     .search-item{
         margin: 0.7rem;
         width: 46.3%;
+    }
+}
+
+
+@media (min-width: 280px) and (max-width: 1200px) {
+    .main-container .flex-container{
+        width: 100%;
     }
 }

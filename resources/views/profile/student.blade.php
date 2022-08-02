@@ -91,7 +91,9 @@
                 </div>
             </div>
         </form>
-        <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-12">
+        
+    <div class="grade-block">
+    <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-12">
             <div class="text-header mb-4">Смена пароля</div>
             <div class="form-group row">
                 <div class="form-floating mb-3 col-sm-12 col-md-4 col-lg-4">
@@ -108,7 +110,6 @@
                 </div>
             </div>
         </div>
-    <div class="grade-block">
         <div class="edit-block block-for-two mt-4 mb-4">
             <div class="edit-row">
                 <div class="text">
@@ -141,7 +142,6 @@
                             <p>Преподаватель: Семенов. А.B.</p>
                         </div>
                     </div>
-                    <button class="btn">Подробнее...</button>
                 </div>
             </div>
             <section id="accordion-w">
@@ -308,7 +308,6 @@
                             <p>Преподаватель: Семенов. А.B.</p>
                         </div>
                     </div>
-                    <button class="btn">Подробнее...</button>
                 </div>
             </div>
             <section id="accordion-w">
@@ -476,7 +475,6 @@
                             <p>Преподаватель: Семенов. А.B.</p>
                         </div>
                     </div>
-                    <button class="btn">Подробнее...</button>
                 </div>
             </div>
             <section id="accordion-w">
