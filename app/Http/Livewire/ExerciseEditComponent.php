@@ -13,7 +13,7 @@ class ExerciseEditComponent extends Component
     public $exercise;
     public $complexities;
     public $levels = [];
-    public $complexity_id = 1;
+    public $complexity_id;
     public $exercise_title;
     public $exercise_excerpt;
     public $exercise_body;
@@ -156,6 +156,7 @@ class ExerciseEditComponent extends Component
         $this->exercise_body = $exercise->body;
         $this->exercise_time = $exercise->time;
         $this->links = $exercise->links;
+        $this->complexity_id = $exercise->complexity_id;
 
     }
 }

@@ -129,7 +129,7 @@
                                                 </h4>
                                                 <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
                                                     <a class="btn btn-info mr-2"
-                                                       href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}">Изменить <i
+                                                       href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить <i
                                                             class="fa fa-pen"></i></a>
 
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"

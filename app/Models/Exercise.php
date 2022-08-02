@@ -87,7 +87,7 @@ class Exercise extends Model
         if ($i === 0) {
             return 0;
         }
-        return $score/ $i;
+        return round($score/ $i, 1);
     }
     /**
      *  Relation with users (one to many)

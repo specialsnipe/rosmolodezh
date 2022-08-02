@@ -95,7 +95,7 @@
                                     </span></td>
                                 </tr>
                                 <tr>
-                                    <td>Средний балл:</td>
+                                    <td>Средний балл ученика :</td>
                                     <td><span class="status_block status_success">{{$user->average_mark}}</span></td>
                                 </tr>
                             </table>
