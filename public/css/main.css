@@ -807,7 +807,7 @@ header form .btn {
     background-color: #D9D9D9;
 }
 .descriptions{
-    width: 1400px;
+    width: 100%;
     min-height: 285px;
     background: #FFFFFF;
     border: 4px solid #D9D9D9;
@@ -843,8 +843,8 @@ header form .btn {
     text-decoration: underline;
 }
 .submit-task .btn-send{
-    width: 245px;
-    height: 60px;
+    width: 25%;
+    padding: 15px;
     background: #1A9DF3;
     border-radius: 10px;
     color: #fff;
@@ -853,7 +853,7 @@ header form .btn {
 
 }
 .submit-task .btn-container{
-    width: 892px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -887,8 +887,8 @@ header form .btn {
 .submit-task .attach-file{
     background: #555555;
     border-radius: 10px;
-    width: 245px;
-    height: 60px;
+    width: 25%;
+    padding: 15px;
     transition: 250ms;
     color: #fff;
     border: 0;
@@ -902,7 +902,7 @@ header form .btn {
 }
 .submit-task{
     padding: 2rem;
-    width: 965px;
+    width: 70%;
     min-height: 485px;
     background: #FFFFFF;
     border: 4px solid #D9D9D9;
@@ -917,7 +917,7 @@ header form .btn {
     text-decoration: none;
 }
 .add-materials {
-    width: 395px;
+    width: 28%;
     min-height: 485px;
     background: #FFFFFF;
     border-radius: 10px;
@@ -940,7 +940,7 @@ header form .btn {
     margin-bottom: 1rem;
 }
 .content{
-    width: 1400px;
+    width: 75%;
 }
 
 #center-block .line {
@@ -990,6 +990,7 @@ flex-direction: column;
 }
 .add-materials .line{
 border: 2px solid #D9D9D9;
+margin-bottom: 1rem;
 }
 /* .link-content {
     margin: 0 auto;

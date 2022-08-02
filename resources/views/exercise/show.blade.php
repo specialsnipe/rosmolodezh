@@ -1,7 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+<main style="
+    display: flex;
+    justify-content: center;">
+    
 <div class="content mt-3">
+<p class="h1-content">Страница с заданием </p>
     <div class="descriptions col-sm-12 col-md-12 col-lg-12">
         <p class="text-h1">{{ $exercise->title }}</p>
         <div class="line"></div>
@@ -53,4 +58,5 @@
         </div>
     </div>
 </div>
+</main>
 @endsection

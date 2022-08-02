@@ -748,6 +748,17 @@
         margin: 0.7rem;
         width: 46.3%;
     }
+    .content-down{
+        flex-direction: column;
+    }
+    .submit-task{
+        width: 100%;
+    }
+    .add-materials{
+        margin-top: 2rem;
+        width: 100%;
+    }
+
 }
 
 

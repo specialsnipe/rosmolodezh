@@ -172,22 +172,29 @@ $user = auth()->user();
                                             @forelse($block->exercises as $exercise)
                                             <div class="card-edit">
                                                 <div class="top-content">
-                                                    <div class="text-cintent">
+                                                    <div class="text-content">
                                                         <p class="text-h1">{{ $exercise->title }}</p>
                                                         <p>
                                                             {{ $exercise->excerpt }}
                                                         </p>
                                                     </div>
+                                                    <div class="column">
+                                                    <div class="one">
+                                                            <p>Сложность:</p>
+                                                            <p class="coplexity rating-two"> Сложно </p>
+                                                        </div>
+                                                        <div class="one">
+                                                            <p>Минут:</p>
+                                                            <p class="number-one">{{ $exercise->time }}</p>
+                                                        </div>
+                                                        <div class="one">
+                                                            <p>Оценка:</p>
+                                                            <p class="number-two rating-two"> 2</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="down-content">
-                                                    <div class="one">
-                                                        <p>Минут:</p>
-                                                        <p class="number-one">{{ $exercise->time }}</p>
-                                                    </div>
-                                                    <div class="one">
-                                                        <p>Оценка:</p>
-                                                        <p class="number-two rating-two"> 2</p>
-                                                    </div>
+                                                    
                                                     <a href="{{ route('blocks.exercises.show', [$block->id, $exercise->id] ) }}" class="edit-btn">Подробнее...</a>
                                                 </div>
                                             </div>
@@ -430,10 +437,6 @@ $user = auth()->user();
                                                         </p>
                                                     </div>
                                                     <div>
-                                                        <img class="img-edit" src="images/3.jpg" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="down-content">
                                                     <div class="one">
                                                         <p>Минут:</p>
                                                         <p class="number-one">12</p>
@@ -442,6 +445,10 @@ $user = auth()->user();
                                                         <p>Оценка:</p>
                                                         <p class="number-two rating-two"> 2</p>
                                                     </div>
+                                                    </div>
+                                                </div>
+                                                <div class="down-content">
+                                                    
                                                     <button class="edit-btn">Подробнее...</button>
                                                 </div>
                                             </div>
@@ -532,8 +539,8 @@ $user = auth()->user();
                                         </div>
                                     </div>
                     </section>
-                </div>
+                </div> --}}
             </div>
         </div>
-    </div> --}}
+    </div>
     @endsection

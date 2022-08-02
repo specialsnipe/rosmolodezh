@@ -5,6 +5,9 @@
 body{
     background-color: #ededed;
 }
+.text{
+    width: 65%;
+}
 .accordion-body{
     width: 100%;
 }
@@ -93,7 +96,15 @@ main{
     display: flex;
     width: 992px;
 }
-
+.column .one{
+    display: flex;
+    width: 72%;
+    justify-content: space-between;
+    align-items: center;
+}
+.column .one p{
+    margin: 5px;
+}
 .form-content .select select {
     display: block;
     width: 315px;
@@ -301,21 +312,20 @@ display: flex;
 }
 
 .edit-block .block-start, .edit-block .block-end{
-    width: 40%;
+    width: 330px;
     height: 60px;
     background-color: #fff;
     border-radius: 5px;
     display: flex;
     align-items: center;
     padding-left: 2rem;
+    margin-right: 2rem;
 }
 .accordion-body .row {
     --bs-gutter-x: 2rem;
 }
 .information{
     display: flex;
-    justify-content: space-between;
-
 }
 .accordion-button:not(.collapsed)::after {
     margin-bottom: 5px;
@@ -326,7 +336,7 @@ display: flex;
 .edit-block .accordion-button::after {
 
     position: absolute;
-    right: 5px;
+    right: 8px;
     top: -20px;
 }
 .number-one{
@@ -338,6 +348,11 @@ display: flex;
     background-color: #085aff;
     border-radius: 4px;
     color: #fff;
+}
+.column .coplexity{
+    padding: 3px 20px;
+    color: white;
+    border-radius: 4px;
 }
 .number-two{
     display: flex;
@@ -413,15 +428,15 @@ display: flex;
 
 .card-edit{
     width: 45%;
-    min-height: 310px;
     border-radius: 5px 10px;
     background-color: #fff;
     padding: 1rem;
     margin-bottom: 2.5rem
 }
+
 .down-content{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 .del-btn{
@@ -438,13 +453,16 @@ display: flex;
     text-decoration: underline;
 }
 .down-content .edit-btn{
-    width: 33%;
+    width: 50%;
     padding: 15px;
     border-radius: 5px;
     border: 0;
     background-color: #4886FF;
     color: #fff;
     transition: 250ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .down-content .edit-btn:hover{
     background: #004de6;
@@ -703,6 +721,9 @@ display: flex;
     .card-text-main{
         width: 100%;
     }
+    .text{
+        width: 100%;
+    }
     .card-form {
         display: flex;
         justify-content: center;
@@ -734,6 +755,9 @@ display: flex;
     .reg-btn{
         width: 100%;
         margin-top: 1.6rem;
+    }
+    .column .one{
+        width: 76%;
     }
     .registr-form input.input{
         width: 100%;
@@ -1324,6 +1348,9 @@ display: flex;
     .registr-form .input-child input:nth-child(2) {
         width: 100%;
     }
+    .text{
+        width: 100%;
+    }
     .avatar-content .form-content{
         width: 100%;
     }
@@ -1585,6 +1612,7 @@ display: flex;
     .down-content{
         width: 100%;
         flex-direction: column;
+        align-items: flex-start;
     }
     .down-content .del-btn, .down-content .edit-btn{
         width: 100%;
