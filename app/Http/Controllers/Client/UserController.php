@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Block;
 use App\Models\Track;
 use App\Models\Gender;
 use App\Models\Occupation;
@@ -30,7 +31,8 @@ class UserController extends Controller
             'occupations' => Occupation::all(),
             'tracks' => Track::all(),
         ];
-
+        $data['blocks'] = Block::where('track_id',$data['tracks'][0]->id)->with('exercises')->get();
+        // dd($data['blocks']);
         $role = auth()->user()->role->name;
         if ($role == 'tutor') {
             return view('profile.tutor', $data);

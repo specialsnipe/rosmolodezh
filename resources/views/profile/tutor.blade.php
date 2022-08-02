@@ -11,7 +11,7 @@
             <button class="mb-4 img-btn">Нажмите для загрузки аватара</button>
         </div>
 
-        <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
+        <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-8">
             <div class="text-header mb-4">Данные куратора</div>
 
             <div class="form-group mb-3 row">
@@ -88,6 +88,10 @@
                 </div>
             </div>
         </div>
+    </div>
+       
+
+        <div class="grade-block">
         <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-12">
             <div class="text-header mb-4">Смена пароля</div>
             <div class="form-group row">
@@ -105,8 +109,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="grade-block">
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -208,7 +210,7 @@
                                 <p>Преподаватель: Семенов. А.B.</p>
                             </div>
                         </div>
-                        <button class="btn">Редактировать</button>
+                        <!-- <button class="btn">Редактировать</button> -->
                     </div>
                 </div>
                 <section id="accordion-w">
