@@ -45,6 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar_thumbnail_path',
         'avatar_medium_path',
         'first_and_last_names',
+        'short_name',
         'all_names',
         'tg_url',
         'average_mark'
@@ -73,6 +74,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAllNamesAttribute()
     {
         return $this->last_name . ' ' . $this->first_name . ' ' . $this->father_name;
+    }
+    public function getShortNameAttribute()
+    {
+        return $this->last_name . ' ' . mb_substr($this->first_name, 0, 1) . '. ' . mb_substr($this->father_name, 0, 1) . '.';
     }
     public function getTgUrlAttribute()
     {

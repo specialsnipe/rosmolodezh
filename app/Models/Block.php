@@ -133,6 +133,15 @@ class Block extends Model
     }
 
     /**
+     *  Relation with users (one to many)
+     *
+     */
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
      *  Relation with tracks (one to many)
      * @return BelongsTo
      */
