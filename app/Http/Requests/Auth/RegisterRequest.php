@@ -61,6 +61,6 @@ class RegisterRequest extends FormRequest
 
     public function failedValidation(Validator $validator) {
         session()->flash('error', 'Вы допустили ошибки при регистрации.');
-        return redirect()->to(url()->previous() . '#registration')->withErrors($this->validator)->withInput(Request::except('_token'));
+        return redirect()->route('auth.register')->withErrors($this->validator)->withInput(Request::except('_token'));
     }
 }

@@ -73,6 +73,9 @@
                 </div>
                 <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        @if(!isset(auth()->user()->tracks[0]->id))
+                            <option value="0" selected disabled>Выбери направление</option>
+                        @endif
                         @foreach ($tracks as $track)
                             <option value="{{ $track->id }}" @if(isset(auth()->user()->tracks[0]->id) && auth()->user()->tracks[0]->id == $track->id) selected
                                 @endif>{{ $track->title }}</option>

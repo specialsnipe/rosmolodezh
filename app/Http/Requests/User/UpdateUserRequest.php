@@ -62,6 +62,7 @@ class UpdateUserRequest extends FormRequest
             'occupation_id.min' => 'Выберанная занятость не верная.',
             'role_id.required' => 'Выберите роль.',
             'role_id.min' => 'Выберанная роль неверная.',
+            'track_id.required' => 'Обязательно выберите траекторию.',
             'vk_url.url' => 'Это должно быть ссылкой',
         ];
     }
