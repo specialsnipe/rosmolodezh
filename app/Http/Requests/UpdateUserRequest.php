@@ -29,6 +29,7 @@ class UpdateUserRequest extends FormRequest
             'file'=>['nullable','image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
+            'track_id' => ['required', 'min:1'],
         ];
     }
     public function messages()
@@ -50,6 +51,8 @@ class UpdateUserRequest extends FormRequest
             'password_confirmation.required' => 'Поле подтвержение пароля обязательно.',
             'occupation_id.required' => 'Выберите занятость.',
             'occupation_id.min' => 'Выберанная занятость не верная.',
+            'track_id.required' => 'Обязательно выберите траекторию.',
+            'track_id.min' => 'Обязательно выберите траекторию.',
             'vk_url.url' => 'Это должно быть ссылкой',
         ];
     }

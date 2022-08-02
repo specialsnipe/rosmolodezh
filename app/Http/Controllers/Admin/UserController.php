@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Track;
 use App\Models\Gender;
+use App\Models\TrackUser;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
@@ -13,8 +14,8 @@ use App\Http\Filters\UsersFilter;
 use App\Events\UserTelegramUpdate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
@@ -144,8 +145,8 @@ class UserController extends Controller
         if (!$request->hasFile('file')) {
 
             $user->updateOrFail($request->validated());
-            return redirect()->route('admin.users.show', $user->id);
             // check setter 'track_id' and delete old if it needed
+            // dd($user->tracks[0]);
             if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
 
                 foreach ($user->tracks as $track) {
@@ -161,13 +162,16 @@ class UserController extends Controller
                     'user_id' => $user->id,
                 ]);
             }
+            return redirect()->route('admin.users.show', $user->id);
         }
+
         ImageService::deleteOld($user->avatar, 'users/avatars');
         $filename = ImageService::make($request->file('file'), 'users/avatars');
         $data['avatar'] = $filename;
         unset($data['file']);
 
         $user->updateOrFail($data);
+        dd($user->tracks[0]);
         // check setter  'track_id' and delete old if it needed
         if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
 

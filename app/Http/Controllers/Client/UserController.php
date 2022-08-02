@@ -8,6 +8,7 @@ use App\Models\Occupation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -41,16 +42,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
-        $data = [
-            'genders' => Gender::all(),
-            'occupations' => Occupation::all(),
-            'tracks' => Track::all(),
-        ];
 
-        $role = auth()->user()->role->name;
-        if ($role == 'tutor') {
-            return view('profile.tutor', $data);
-        }
-        return view('profile.student', $data);
+        return back();
     }
 }

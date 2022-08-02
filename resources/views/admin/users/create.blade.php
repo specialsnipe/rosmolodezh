@@ -143,7 +143,7 @@
                                                         @if(old('track_id') == $track->id) selected @endif>{{$track->title}}</option>
                                             @endforeach
                                         </select>
-                                        @error('occupation_id')
+                                        @error('track_id')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
