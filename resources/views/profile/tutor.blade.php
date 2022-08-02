@@ -115,7 +115,7 @@
                             aria-controls="flush-collapseOne">
                             <table class="table">
                                 <tr>
-                                    <td scope="col">Посомтреть всех учеников</th>
+                                    <td scope="col">Посмотреть всех учеников</th>
                                 </tr>
                             </table>
                         </button>

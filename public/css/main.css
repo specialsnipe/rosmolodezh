@@ -66,7 +66,9 @@ main .carousel-inner img {
 .nav-item a {
     transition: 200ms;
 }
-
+.nav-item a i{
+    margin-left: 0.5rem;
+}
 .nav-item a:hover,
 .nav-item .nav-link a:hover {
     color: #272727;
@@ -86,6 +88,9 @@ main .carousel-inner img {
 }
 .text-truncate{
     height: 70px;
+}
+.link-content .text-truncate{
+    height: 50px;
 }
 .search-box {
     width: fit-content;
@@ -226,7 +231,7 @@ main .carousel-inner img {
     padding: 15px 0;
     background: #F19324;
     min-height: 420px;
-    justify-content: center
+    justify-content: space-between;
 }
 
 .news-blocks .accordion-flush .accordion-item .accordion-button,
@@ -285,6 +290,7 @@ main .carousel-inner img {
 
 .news-block .card {
     width: 300px;
+    margin-bottom: 1rem;
 }
 .news-block .btn{
     width: 100%;
@@ -343,7 +349,7 @@ main .carousel-inner img {
 }
 
 .block {
-    width: 1300px;
+    width: 70%;
 }
 .auth-btn{
     width: 50%;
@@ -968,6 +974,7 @@ flex-direction: column;
     padding: 0;
     margin: 0;
     color: #202020;
+    width: 85%;
 }
 
 .link-content .p-header{
@@ -984,10 +991,10 @@ flex-direction: column;
 .add-materials .line{
 border: 2px solid #D9D9D9;
 }
-.link-content {
+/* .link-content {
     margin: 0 auto;
     width: 350px;
-}
+} */
 .page-link{
 padding: .5rem 1rem;
 }
@@ -1003,7 +1010,7 @@ padding: .5rem 1rem;
     margin-top: 2rem;
     background-color: #fff;
     border-radius: 15px 15px 0 0;
-    width: 1400px;
+    width: 80%;
     min-height: 550px;
     display: flex;
     justify-content: space-between;
@@ -1057,9 +1064,10 @@ padding: .5rem 1rem;
     display: flex;
     flex-direction: column;
     padding: 0;
+    width: 100%;
 }
 .images-header img{
-    width: 450px;
+    width: 100%;
     height: 475px;
     border-radius: 10px;
     object-fit: cover;
@@ -1068,7 +1076,7 @@ padding: .5rem 1rem;
 
 .btn-back{
     margin-top: 1rem;
-    width: 450px;
+    width: 100%;
     font-size: 20px;
     height: 475px;
     height: 60px;
@@ -1080,13 +1088,16 @@ padding: .5rem 1rem;
     align-items: center;
     cursor: pointer;
     transition: 250ms;
+    color: #555;
+    text-decoration: none;
 }
 .btn-back:hover{
     background-color: #e1e1e1;
+    color: #444;
 }
 
 .text-container{
-    width: 100%;
+    width: 50%;
     padding: 0 1rem;
 }
 
@@ -1122,7 +1133,8 @@ padding: .5rem 1rem;
     margin-top: 1rem;
 }
 .text-container .line{
-    border: 2px solid #F19324;
+    height: 4px;
+    background-color:  #F19324;
     width: 100%;
     margin-bottom: 1rem;
 }
@@ -1154,7 +1166,7 @@ padding: .5rem 1rem;
 .right-block-info{
     padding: 2rem;
     margin: 1rem 0;
-    width: 350px;
+    width: 45%;
     background: #F4F4F4;
     border-radius: 10px;
 }
@@ -1169,7 +1181,8 @@ padding: .5rem 1rem;
 }
 
 .right-block-info .line{
-    border: 2px solid #D9D9D9;
+    height: 4px;
+    background-color:  #D9D9D9;
     margin: 1rem 0;
 }
 
@@ -1204,6 +1217,8 @@ padding: .5rem 1rem;
 
 .flex-container{
     display: flex;
+    width: 65%;
+    justify-content: space-between;
 }
 
 .text-container .icon{
@@ -1227,11 +1242,60 @@ padding: .5rem 1rem;
 .text-container a{
     text-decoration: none;
 }
-.text-container a:not(:first-child){
+/* .text-container a:not(:first-child){
     margin-left: 1rem;
-}
+} */
 .text-container .link-row{
     display: flex;
     width: 100%;
-
 }
+.search-container{
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    width: 90%;
+    min-height: 600px;
+    padding: 1rem 2rem;
+}
+
+.search:hover{
+    background-color: #e37900;
+}
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;;
+    background-color: #F19324;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 17px;
+    transition: 250ms;
+}
+
+.search-container input{
+    border: #c2c2c2 solid 1px;
+}
+.search-container .h1-content{
+    font-size: 30px;
+}
+.search-content .h1{
+    font-size: 26px;
+}
+.search-item{
+    padding: 15px;
+    border: #ededed solid 1px;
+    margin: 0.7rem;
+    border-radius: 5px;
+    width: 48.2%;
+    color: #555;
+    transition: 250ms;
+}
+
+.search-item:hover{
+    color: #444;
+    border: #959595 solid 1px;
+}
+

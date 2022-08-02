@@ -89,13 +89,15 @@
         width: 95%;
     }
     .block{
-        width: 95%;
+        width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
+        align-items: center;
     }
     .directions-block .card {
-        width: 100%;
+        width: 90%;
+        margin-bottom: 1.5rem;
     }
     #center-block .card-height{
         height: auto;
@@ -130,11 +132,12 @@
         font-weight: 300;
     }
     .add-block {
-        width: 95%;
+        width: 100%;
         flex-direction: column;
         height: auto;
         display: flex;
         align-items: stretch;
+        padding: 10px 10px 20px 10px;
     }
     .edit-block {
         flex-direction: column;
@@ -162,9 +165,6 @@
     .edit-block .block-start, .edit-block .block-end {
         width: 100%;
         height: 50px;
-    }
-    .add-block{
-        padding: 10px 10px 20px 10px;
     }
     .edit-row {
         padding: 10px 10px 0px 10px;
@@ -216,9 +216,6 @@
     }
     td:nth-last-child(1) {
         padding-right: 0;
-    }
-    .line-top {
-        width: 100%;
     }
     .logo {
         width: 100%;
@@ -339,6 +336,7 @@
         width: 95%;
         margin-top: 2rem;
         flex-direction: column;
+        padding: 1rem;
     }
     .images-header{
         padding: 2rem 0;
@@ -350,9 +348,6 @@
         width: 100%;
     }
     .text-container .text-h1{
-        width: 100%;
-    }
-    .right-block-info{
         width: 100%;
     }
     .link-content .text-p{
@@ -374,6 +369,7 @@
     }
     .flex-container{
         flex-direction: column;
+        width: 100%;
     }
     .grade-block{
         padding: 0;
@@ -391,6 +387,22 @@
         flex-direction: column;
     }
     .main-container-directions .images-header img, .main-container-directions .btn-back{
+        width: 100%;
+    }
+    .search-container .contents{
+        flex-direction: column;
+    }
+    .search-container .search, .search-container .form-floating{
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    .search-container .h1-content{
+        font-size: 28px;
+    }
+    .search-item{
+        width: 93%;
+    }
+    .right-block-info{
         width: 100%;
     }
 }
@@ -462,8 +474,9 @@
     .main-container .text-container{
         width: 85%;
     }
-    .main-container .right-block-info{
-        width: 47%;
+    .main-container .flex-container{
+        width: 100%;
+        flex-direction: column;
     }
 }
 
@@ -496,9 +509,6 @@
         display: flex;
         justify-content: space-between;
     }
-    .form-content {
-        width: 70%;
-    }
     .form-content input.input{
         width: 32%;
     }
@@ -515,7 +525,7 @@
         width: 32%;
     }
     .add-block {
-        width: 95%;
+        width: 100%;
     }
     .edit-block {
         width: 95%;
@@ -549,6 +559,10 @@
      }
      .grade-block .accordion {
         width: 95%;
+    }
+    .search-item{
+        margin: 0.7rem;
+        width: 47.8%;
     }
 
 }
@@ -694,7 +708,7 @@
         width: 100%;
     }
     .right-block-info{
-        width: 49%;
+        width: 100%;
     }
     .link-content .text-p{
         width: 80%;
@@ -710,10 +724,15 @@
         font-size: 24px;
     }
     .main-container .text-container{
-        width: 49%;
+        width: 100%;
     }
     .flex-container{
+        width: 100%;
         justify-content: space-between;
+        width: 100%;
+    }
+    .link-content p {
+        width: 100%;
     }
     .directions-block .card {
         width: 235px;
@@ -728,5 +747,9 @@
         width: 95%;
         margin-top: 2rem;
         flex-direction: column;
+    }
+    .search-item{
+        margin: 0.7rem;
+        width: 46.3%;
     }
 }

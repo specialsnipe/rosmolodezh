@@ -9,6 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
                     <a class="nav-link @if(Request::route()->getName() == 'home') active @endif " aria-current="page"
                         href="{{ route('home') }}">Главная</a>
@@ -24,7 +25,7 @@
                         <li><a class="dropdown-item" href="{{ route('about') }}">Страница о проекте</a></li>
                     </ul>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link  @if(Request::route()->getName() == 'tracks.index') active @endif"
                         aria-current="page" href="{{ route('tracks.index') }}">Направления</a>
                 </li>
@@ -55,8 +56,11 @@
                     </ul>
                 </li>
                 @else
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center @if(Request::route()->getName() == 'search') active @endif " href="{{ route('search') }}" class="nav-link"> Поиск по сайту <i class="fas fa-search"></i></a>
+                </li>
                 <li class="nav-item ">
-                    <a class="nav-link d-flex align-items-center" aria-current="page" href="{{ route('auth.login') }}">Войти <i class="fas fa-sign-in"></i></a>
+                    <a class="nav-link d-flex align-items-center  @if(Request::route()->getName() == 'auth.login') active @endif" aria-current="page" href="{{ route('auth.login') }}">Войти <i class="fas fa-sign-in"></i></a>
                 </li>
 
                 @endauth
