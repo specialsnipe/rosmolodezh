@@ -38,6 +38,7 @@ class UpdateUserRequest extends FormRequest
             'track_id' => '',
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
+            'track_id' => ['required', 'min:1'],
         ];
     }
     public function messages()

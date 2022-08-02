@@ -39,9 +39,6 @@ class UserController extends Controller
 
         $filter = app()->make(UsersFilter::class, ['queryParams' => array_filter($data)]);
         $users = User::filter($filter)->withTrashed()->paginate(15);
-//        foreach ($users as $user) {
-//             dd($user);
-//        }
         $roles = Role::all();
         $tracks = Track::all();
         return view('admin.users.index', compact('users', 'roles', 'tracks'));
@@ -72,16 +69,17 @@ class UserController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
         if (!$request->hasFile('file')) {
-            try {
-                $user= User::firstOrCreate($data);
-                if (isset($data['tg_name'])) {
-                    event(new UserTelegramUpdate($user, $data['tg_name']));
-                }
-//                event(new Registered($user));
-                return redirect()->route('admin.users.show', $user->id);
-            } catch (\Exception $exception) {
-                return abort(501);
+            $user= User::firstOrCreate ($data);
+            if (isset($data['tg_name'])) {
+                event(new UserTelegramUpdate($user, $data['tg_name']));
             }
+//                event(new Registered($user));
+
+            TrackUser::create([
+                'track_id' => $data['track_id'],
+                'user_id' => $user->id,
+            ]);
+            return redirect()->route('admin.users.show', $user->id);
         }
 
         $filename = ImageService::make($request->file('file'), 'users/avatars');
@@ -90,6 +88,10 @@ class UserController extends Controller
         $data['avatar'] = $filename;
         $user = User::create($data);
 
+        TrackUser::create([
+            'track_id' => $data['track_id'],
+            'user_id' => $user->id,
+        ]);
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
@@ -119,8 +121,9 @@ class UserController extends Controller
     {
         $genders = Gender::all();
         $roles = Role::all();
+        $tracks = Track::all();
         $occupations = Occupation::all();
-        return view('admin.users.edit', compact('user', 'genders', 'roles', 'occupations'));
+        return view('admin.users.edit', compact('user', 'genders', 'roles', 'occupations', 'tracks'));
     }
 
     /**
@@ -139,11 +142,24 @@ class UserController extends Controller
         }
 
         if (!$request->hasFile('file')) {
-            try {
-                $user->updateOrFail($request->validated());
-                return redirect()->route('admin.users.show', $user->id);
-            } catch (\Exception $exception) {
-                return abort(501);
+
+            $user->updateOrFail($request->validated());
+            return redirect()->route('admin.users.show', $user->id);
+            // check setter 'track_id' and delete old if it needed
+            if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
+
+                foreach ($user->tracks as $track) {
+                    $track->delete();
+                }
+                $track = TrackUser::create([
+                    'track_id' => $data['track_id'],
+                    'user_id' => $user->id,
+                ]);
+            } else {
+                $track = TrackUser::create([
+                    'track_id' => $data['track_id'],
+                    'user_id' => $user->id,
+                ]);
             }
         }
         ImageService::deleteOld($user->avatar, 'users/avatars');
@@ -152,7 +168,22 @@ class UserController extends Controller
         unset($data['file']);
 
         $user->updateOrFail($data);
+        // check setter  'track_id' and delete old if it needed
+        if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
 
+            foreach ($user->tracks as $track) {
+                $track->delete();
+            }
+            $track = TrackUser::create([
+                'track_id' => $data['track_id'],
+                'user_id' => $user->id,
+            ]);
+        } else {
+            $track = TrackUser::create([
+                'track_id' => $data['track_id'],
+                'user_id' => $user->id,
+            ]);
+        }
         return redirect()->route('admin.users.show', $user->id);
     }
 

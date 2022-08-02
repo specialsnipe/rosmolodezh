@@ -55,13 +55,11 @@
                         <tr>
                             <th>Выбранное направление</th>
                             @if($user->tracks)
-
                                 @forelse($user->tracks as $track)
-                                    <td>{{$track->title}} </td>
+                                    <td>{{$track->title}}</td>
                                 @empty
-                                    <td>Направление не выборано</td>
+                                    <td>Направление не выбрано</td>
                                 @endforelse
-
                             @endif
                         </tr>
                         <tr>

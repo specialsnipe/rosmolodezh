@@ -120,49 +120,61 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
+                            <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                <label for="track_id">Направление</label>
+                                <select class="form-control " name="track_id" id="track_id">
+                                    <option value="0" disabled selected>Выберите направление</option>
+                                    @foreach($tracks as $track)
+                                    <option value="{{$track->id}}" @if(isset($user->tracks[0]->id) && $user->tracks[0]->id == $track->id) selected
+                                        @endif>{{$track->title}}</option>
+                                    @endforeach
+                                </select>
+                                @error('occupation_id')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
                         <hr>
                         {{-- telegram change --}}
                         <div class="form-group row">
-                                <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                    <label for="tg_name">Имя в телеграм</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-bold text-black-50"
-                                                id="tg_name_addon">@</span>
-                                        </div>
-                                        <input type="text" class="form-control" name="tg_name"
-                                            placeholder="username" id="tg_name" aria-describedby="tg_name_addon"
-                                            value="{{ $user->tg_name }}">
+                            <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                <label for="tg_name">Имя в телеграм</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-bold text-black-50"
+                                            id="tg_name_addon">@</span>
                                     </div>
-                                    @error('tg_name')
-                                    <div class="text-danger">{{$message}}</div>
-                                    @enderror
+                                    <input type="text" class="form-control" name="tg_name" placeholder="username"
+                                        id="tg_name" aria-describedby="tg_name_addon" value="{{ $user->tg_name }}">
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                    <label for="tg_username">Телеграм id</label>
-                                    <input type="text" class="form-control" name="tg_username"
-                                        placeholder="Когда пользователь подтвердит свою учетную запись" id="tg_id" aria-describedby="tg_id"
-                                        value="{{ $user->tg_id }}" readonly>
-                                </div>
+                                @error('tg_name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                <label for="tg_username">Телеграм id</label>
+                                <input type="text" class="form-control" name="tg_username"
+                                    placeholder="Когда пользователь подтвердит свою учетную запись" id="tg_id"
+                                    aria-describedby="tg_id" value="{{ $user->tg_id }}" readonly>
+                            </div>
 
-                                <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                    <label for="vk_url">Ссылка на ВКонтакте</label>
-                                    <input type="text" class="form-control" name="vk_url"
-                                        placeholder="vk url" id="vk_url" aria-describedby="vk_url_addon"
-                                        value="{{ $user->vk_url }}">
-                                    @error('vk_url')
-                                    <div class="text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                                <label for="vk_url">Ссылка на ВКонтакте</label>
+                                <input type="text" class="form-control" name="vk_url" placeholder="vk url" id="vk_url"
+                                    aria-describedby="vk_url_addon" value="{{ $user->vk_url }}">
+                                @error('vk_url')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
                         </div>
                         <hr>
                         {{-- avatar change --}}
                         <div class="form-group row">
                             <div class="col-sm-12 col-md-2 text-right">
                                 <div class="row">
-                                    <img src="{{ asset($user->avatar_medium_path) }}" class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
-                                    height="100" alt="старый аватар пользователя">
+                                    <img src="{{ asset($user->avatar_medium_path) }}"
+                                        class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar" height="100"
+                                        alt="старый аватар пользователя">
                                     <span class="col-12  text-muted text-align-right">* старый аватар</span>
                                 </div>
                             </div>
@@ -229,8 +241,8 @@
 @endsection
 
 @push('script')
-    <script>
-        let input = document.querySelector('.custom-file-input');
+<script>
+    let input = document.querySelector('.custom-file-input');
         let preview = document.querySelector(".preview_avatar");
         input.addEventListener('change', function(event) {
             if(event.target.files.length > 0){
@@ -243,5 +255,5 @@
         preview.addEventListener('click', function () {
             input.click();
         })
-    </script>
+</script>
 @endpush

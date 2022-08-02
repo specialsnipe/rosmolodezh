@@ -38,8 +38,8 @@ class StoreUserRequest extends FormRequest
             'track_id' => 'required',
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
-            'phone'=> ['required', 'min:17']
-            //'track_id' => ['required', 'min:1']
+            'phone'=> ['required', 'min:17'],
+            'track_id' => ['required', 'min:1']
         ];
     }
     public function messages()
