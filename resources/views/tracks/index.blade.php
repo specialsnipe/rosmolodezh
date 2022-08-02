@@ -87,12 +87,11 @@
                 @foreach ($tracks as $track )
 
                 <div class="card">
-                    <img src="images/1.jpg" class="card-img-top" alt="...">
+                    <img src="{{ asset($track->url_image_original) }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">{{ $track->title }}</h5>
+                        <p class="card-text">{{ $track->body }}</p>
+                        <a href="{{ route('tracks.show', $track->id) }}" class="btn btn-primary">Подробнее...</a>
                     </div>
                 </div>
                 @endforeach
