@@ -30,17 +30,18 @@ class StoreUserRequest extends FormRequest
             'gender_id' => ['required', 'min:1'],
             'email' => ['required', 'unique:users', 'email:dns'],
             'login' => ['required', 'unique:users'],
-            'password' => ['required','min:6'],
+            'password' => ['required', 'min:6'],
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => 'numeric',
-            'file'=>['nullable','image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
-            'phone'=> ['required', 'min:17'],
-            'track_id' => ['required', 'min:1']
+            'phone' => ['required', 'min:17'],
+            'track_id' => ['required', 'min:1'],
         ];
     }
+
     public function messages()
     {
         return [
@@ -63,11 +64,11 @@ class StoreUserRequest extends FormRequest
             'role_id.required' => 'Выберите роль.',
             'role_id.min' => 'Выберанная роль не верная.',
             'phone.required' => 'Введите номер телефона',
-            'phone.min:17'=> 'Не правильно ввели номер телефона',
-            'file.required'=>'Загрузите картинку',
-            'file.image'=> 'Файл должен быть картинкой',
-            'file.mimes:jpg,jpeg,png'=> 'Неверный формат картинки, возможные: jpg,jpeg,png',
-            'file.max:2048'=> 'Слишком большой файл, максимум 2мб'
+            'phone.min:17' => 'Не правильно ввели номер телефона',
+            'file.required' => 'Загрузите картинку',
+            'file.image' => 'Файл должен быть картинкой',
+            'file.mimes:jpg,jpeg,png' => 'Неверный формат картинки, возможные: jpg,jpeg,png',
+            'file.max:2048' => 'Слишком большой файл, максимум 2мб',
             //'track_id.required' => 'Поле направление обязательно.',
             //'track_id.min' => 'Выберанное направление не верное.',
         ];

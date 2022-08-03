@@ -52,11 +52,11 @@
                                             class="fa fa-pen"></i> Изменить</a>
 
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModal">Удалить
+                                            data-target="#deleteTrack{{$track->id}}">Удалить
                                     </button>
 
                                     <x-modal name="Вы уверены что хотите удалить?" type="delete"
-                                             action="{{ route('admin.tracks.destroy', [$track->id]) }}">
+                                             action="{{ route('admin.tracks.destroy', [$track->id]) }}" targetid="deleteTrack{{$track->id}}">
                                     </x-modal>
                                 </div>
 

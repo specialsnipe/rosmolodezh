@@ -38,6 +38,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'tg_id',
         'phone',
         'vk_url',
+        'curator_job',
+        'curator_about'
     ];
 
     protected $appends = [

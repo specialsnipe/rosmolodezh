@@ -98,17 +98,32 @@
                             <div class="form-group w-50 mb-5">
                                 <label for="curator_id">Куратор направления (все пользователи с ролью 2,3)</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
-                                    <option disabled selected> Выберите куратора</option>
+                                    <option value="0" disabled selected> Выберите куратора</option>
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}"
-                                                @if($track->curator_id == $user->id) selected @endif> {{ $user->first_and_last_names }}</option>
+                                                @if($track->curator_id == $user->id) selected
+                                            @endif> {{ $user->first_and_last_names }}</option>
                                     @endforeach
                                 </select>
                                 @error('curator_id')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Сохранить">
+                            <div class="form-group w-50">
+                                <label for="title">Место работы куратора<span class="text-secondary">(Информация будет отображена в карточке направления)</span></label>
+                                <input type="text" class="form-control " id="title" name="curator_job" placeholder="Место работы куратора" value="{{$curator->curator_job}}">
+                                @error('curator_job')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group w-50 mb-5">
+                                <label for="body">О кураторе<span class="text-secondary">(Информация будет отображена в карточке направления)</span></label>
+                                <textarea type="text" class="form-control" id="body" name="curator_about" placeholder="О кураторе"> {{$curator->curator_about}} </textarea>
+                                @error('curator_about')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Изменить">
                         </form>
                     </div>
 

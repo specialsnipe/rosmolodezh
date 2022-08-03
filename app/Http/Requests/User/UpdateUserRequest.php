@@ -39,6 +39,9 @@ class UpdateUserRequest extends FormRequest
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
             'track_id' => ['required', 'min:1'],
+            'curator_job' => ['required'],
+            'curator_about' => ['required'],
+            'phone' => ['required', 'min:17'],
         ];
     }
     public function messages()
@@ -64,6 +67,10 @@ class UpdateUserRequest extends FormRequest
             'role_id.min' => 'Выберанная роль неверная.',
             'track_id.required' => 'Обязательно выберите траекторию.',
             'vk_url.url' => 'Это должно быть ссылкой',
+            'curator_job'=> 'Поля обязательно для заполнения',
+            'curator_about' => 'Поле обязательно для заполнения',
+            'phone.required' => 'Введите номер телефона',
+            'phone.min:17' => 'Не правильно ввели номер телефона',
         ];
     }
 }

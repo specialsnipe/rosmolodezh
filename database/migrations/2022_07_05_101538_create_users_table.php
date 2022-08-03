@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string('tg_id')->nullable();
             $table->string('vk_url')->nullable();
             $table->boolean('active')->default(true);
+            $table->string('curator_job')->nullable();
+            $table->string('curator_about')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

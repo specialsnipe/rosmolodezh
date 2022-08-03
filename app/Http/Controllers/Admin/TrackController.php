@@ -50,7 +50,7 @@ class TrackController extends Controller
     /**
      * Store a track in storage.
      *
-     * @param  \App\Http\Requests\Track\StoreTrackRequest  $request
+     * @param \App\Http\Requests\Track\StoreTrackRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreTrackRequest $request)
@@ -63,7 +63,15 @@ class TrackController extends Controller
         $filename = ImageService::make($request->file('image'), 'tracks');
         $data['image'] = $filename;
 //        dd($data);
+        $user = User::findOrFail($data['curator_id']);
+
+        $user->update([
+            'curator_job' => $data['curator_job'],
+            'curator_about' => $data['curator_about']
+        ]);
+        unset($data['curator_job'], $data['curator_about']);
         $track = Track::create($data);
+
 
         return redirect()->route('admin.tracks.show', $track->id);
     }
@@ -71,7 +79,7 @@ class TrackController extends Controller
     /**
      * Display the track.
      *
-     * @param  \App\Models\Track  $track
+     * @param \App\Models\Track $track
      * @return Application|Factory|View
      */
     public function show(Track $track)
@@ -87,22 +95,24 @@ class TrackController extends Controller
     /**
      * Show the form for editing the track.
      *
-     * @param  \App\Models\Track  $track
+     * @param \App\Models\Track $track
      * @return Application|Factory|View
      */
     public function edit(Track $track)
     {
+        $curator = User::findOrFail($track->curator_id);
         return view('admin.tracks.edit', [
             'track' => $track,
-            'users' => User::where('role_id', 3)->orWhere('role_id', 2)->get()
+            'users' => User::where('role_id', 3)->orWhere('role_id', 2)->get(),
+            'curator' => $curator
         ]);
     }
 
     /**
      * Update the track.
      *
-     * @param  \App\Http\Requests\Track\UpdateTrackRequest  $request
-     * @param  \App\Models\Track  $track
+     * @param \App\Http\Requests\Track\UpdateTrackRequest $request
+     * @param \App\Models\Track $track
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateTrackRequest $request, Track $track)
@@ -120,6 +130,12 @@ class TrackController extends Controller
             $data['image'] = $filename;
         }
 //        dd($data);
+        $user = User::findOrFail($data['curator_id']);
+        $user->update([
+            'curator_job' => $data['curator_job'],
+            'curator_about' => $data['curator_about']
+        ]);
+        unset($data['curator_job'], $data['curator_about']);
         $track->update($data);
 
         return redirect()->route('admin.tracks.show', $track->id);
@@ -133,7 +149,7 @@ class TrackController extends Controller
      */
     public function destroy(Request $request, Track $track)
     {
-        if(!Hash::check($request->input('password'), auth()->user()->password)) {
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
             session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
             return back();
         }

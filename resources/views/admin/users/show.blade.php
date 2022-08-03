@@ -11,6 +11,11 @@
                         <h1 class="ml-3">{{$user->login}} @if(auth()->user()->id == $user->id)
                                 <span class="text-muted">(Это вы)</span>
                             @endif
+                            @if(isset($isCurator))
+                                <span class="text-success">
+                                    Является куратором направления {{ $isCurator->title }}
+                                </span>
+                            @endif
                         </h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
@@ -115,6 +120,32 @@
                         <tr>
                             <th>Комментарий</th>
                             <td>{{$user->about}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Место работы куратора</th>
+                            @if($isCurator)
+                                @if($user->curator_job)
+                                    <td>{{$user->curator_job}}</td>
+                                @else
+                                    <td>не указано</td>
+                                @endif
+                            @else
+                                <td>не является куратором</td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <th>О кураторе</th>
+
+                            @if($isCurator)
+                                @if($user->curator_about)
+                                    <td>{{$user->curator_about}}</td>
+                                @else
+                                    <td>не указано</td>
+                                @endif
+                            @else
+                                <td>не является куратором</td>
+                            @endif
                         </tr>
                         </tbody>
                     </table>

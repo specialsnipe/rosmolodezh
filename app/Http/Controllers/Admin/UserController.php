@@ -101,13 +101,13 @@ class UserController extends Controller
     /**
      * Show the user
      *
-     * @param User $user
      * @return Application|Factory|View
      */
-    public function show($user)
+    public function show($id)
     {
-        $user = User::withTrashed()->find($user);
-        return view('admin.users.show', compact('user'));
+        $user = User::withTrashed()->find($id);
+        $isCurator = Track::where('curator_id', $user->id)->first();
+        return view('admin.users.show', compact('user', 'isCurator'));
     }
 
     /**
@@ -122,7 +122,8 @@ class UserController extends Controller
         $roles = Role::all();
         $tracks = Track::all();
         $occupations = Occupation::all();
-        return view('admin.users.edit', compact('user', 'genders', 'roles', 'occupations', 'tracks'));
+        $isCurator = Track::where('curator_id', $user->id)->first();
+        return view('admin.users.edit', compact('user', 'genders', 'roles', 'occupations', 'tracks', 'isCurator'));
     }
 
     /**

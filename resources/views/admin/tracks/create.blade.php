@@ -80,7 +80,7 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="form-group w-50 mb-5">
+                            <div class="form-group w-50 mt-5">
                                 <label for="curator_id">Куратор направления (все пользователи с ролью 2,3)</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option disabled selected> Выберите куратора</option>
@@ -92,10 +92,10 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <input type="submit" class="btn btn-primary" value="Изменить">
+
+                            <input type="submit" class="btn btn-primary" value="Добавить">
                         </form>
                     </div>
-
                 </div>
                 <!-- /.row -->
 

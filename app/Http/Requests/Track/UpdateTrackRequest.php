@@ -25,7 +25,7 @@ class UpdateTrackRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'unique:tracks,title,' . $this->track->id],
-            'image' => ['nullable', 'required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'icon' => '',
             'body' => ['required'],
             'tg_url' => ['required','url'],
@@ -43,7 +43,6 @@ class UpdateTrackRequest extends FormRequest
         return [
             'title.required' => 'Название направления обязательно',
             'title.unique' => 'Направление с таким названием уже существует',
-            'image.required' => 'Изображение направления обязательно',
             'image.image' => 'Здесь должно быть изображение',
             'image.mimes' => 'Изображение должно быть такого формата: .jpg .jpeg .png',
             'image.max' => 'Изображение не должно весить больше 2мб',

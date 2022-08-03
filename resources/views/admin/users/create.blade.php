@@ -27,14 +27,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <form action="{{route('admin.users.store')}}" method="post" enctype="multipart/form-data" class="col-12">
+                            <form action="{{route('admin.users.store')}}" method="post" enctype="multipart/form-data"
+                                  class="col-12">
                                 @csrf
                                 <div class="form-group row">
                                     {{-- Login --}}
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="login">Логин <span class="text-muted">(используется для входа на сайт)</span></label>
-                                        <input type="text" class="form-control " name="login" placeholder="Логин" id="login"
-                                            value="{{old('login')}}">
+                                        <input type="text" class="form-control " name="login" placeholder="Логин"
+                                               id="login"
+                                               value="{{old('login')}}">
                                         @error('login')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
@@ -42,8 +44,9 @@
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="email">Почта</label>
-                                        <input type="text" class="form-control " name="email" placeholder="Почта" id="email"
-                                            value="{{old('email')}}">
+                                        <input type="text" class="form-control " name="email" placeholder="Почта"
+                                               id="email"
+                                               value="{{old('email')}}">
                                         @error('email')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
@@ -51,24 +54,28 @@
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="first_name">Имя </label>
-                                        <input type="text" class="form-control " name="first_name" placeholder="Имя" id="first_name"
-                                            value="{{old('first_name')}}">
+                                        <input type="text" class="form-control " name="first_name" placeholder="Имя"
+                                               id="first_name"
+                                               value="{{old('first_name')}}">
                                         @error('first_name')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="last_name">Фамилия</label>
-                                        <input type="text" class="form-control " name="last_name" placeholder="Фамилия" id="last_name"
-                                            value="{{old('last_name')}}">
+                                        <input type="text" class="form-control " name="last_name" placeholder="Фамилия"
+                                               id="last_name"
+                                               value="{{old('last_name')}}">
                                         @error('last_name')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                        <label for="father_name">Отчество <span class="text-muted">(если есть)</span></label>
-                                        <input type="text" class="form-control " name="father_name" placeholder="Отчество" id="father_name"
-                                            value="{{old('father_name')}}">
+                                        <label for="father_name">Отчество <span
+                                                class="text-muted">(если есть)</span></label>
+                                        <input type="text" class="form-control " name="father_name"
+                                               placeholder="Отчество" id="father_name"
+                                               value="{{old('father_name')}}">
                                         @error('father_name')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
@@ -76,8 +83,9 @@
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="age">Возраст</label>
-                                        <input type="number" class="form-control " name="age" placeholder="Возраст" id="age"
-                                            value="{{old('age')}}">
+                                        <input type="number" class="form-control " name="age" placeholder="Возраст"
+                                               id="age"
+                                               value="{{old('age')}}">
                                         @error('age')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
@@ -85,8 +93,9 @@
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="password">Пароль</label>
-                                        <input type="text" class="form-control " name="password" placeholder="Пароль" id="password"
-                                            value="{{old('password')}}">
+                                        <input type="text" class="form-control " name="password" placeholder="Пароль"
+                                               id="password"
+                                               value="{{old('password')}}">
                                         @error('password')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
@@ -149,17 +158,18 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                        <div >
+                                        <div>
                                             <label for="phone">Телефон</label>
                                         </div>
 
-                                            <input
-                                                class="form-control "
-                                                type="text"
-                                                name="phone"
-                                                id="phone"
-                                                placeholder="+7(000)000-00-00" value="{{old('phone')}}" />
+                                        <input
+                                            class="form-control "
+                                            type="text"
+                                            name="phone"
+                                            id="phone"
+                                            placeholder="+7(000)000-00-00" value="{{old('phone')}}"/>
                                     </div>
+
                                 </div>
                                 <hr>
                                 <div class="form-group row">
@@ -168,11 +178,11 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-bold text-black-50"
-                                                    id="tg_name_addon">@</span>
+                                                      id="tg_name_addon">@</span>
                                             </div>
                                             <input type="text" class="form-control" name="tg_name"
-                                                placeholder="username" id="tg_name" aria-describedby="tg_name_addon"
-                                                value="{{ old('tg_name') }}">
+                                                   placeholder="username" id="tg_name" aria-describedby="tg_name_addon"
+                                                   value="{{ old('tg_name') }}">
                                         </div>
                                         @error('tg_name')
                                         <div class="text-danger">{{$message}}</div>
@@ -182,41 +192,43 @@
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <label for="vk_url">Ссылка на ВКонтакте</label>
                                         <input type="text" class="form-control" name="vk_url"
-                                            placeholder="vk url" id="vk_url" aria-describedby="vk_url_addon"
-                                            value="{{ old('vk_url') }}">
+                                               placeholder="vk url" id="vk_url" aria-describedby="vk_url_addon"
+                                               value="{{ old('vk_url') }}">
                                         @error('vk_url')
                                         <div class="text-danger">{{$message}}</div>
                                         @enderror
                                     </div>
-                            </div>
+                                </div>
                                 <hr>
 
-                                    {{-- avatar image --}}
-                                    <div class="form-group row">
-                                        <div class="col-sm-12 col-md-4 text-right">
-                                            <div class="row">
-                                                <img src="" class="col-12 rounded img-fluid img-thumbnail mb-2 preview_avatar"
-                                                    height="100" alt="новый аватар пользователя">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-8">
-
-                                            <label for="avatar">Аватар пользователя</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" id="avatar" class="custom-file-input" name="file" id="avatar"
-                                                        value="Выбирите">
-                                                    @error('file')
-                                                    <div class="text-danger">{{$message}}</div>
-                                                    @enderror
-                                                    <label class="custom-file-label" for="avatar">Выберите
-                                                        картинку</label>
-                                                </div>
-
-                                            </div>
+                                {{-- avatar image --}}
+                                <div class="form-group row">
+                                    <div class="col-sm-12 col-md-4 text-right">
+                                        <div class="row">
+                                            <img src=""
+                                                 class="col-12 rounded img-fluid img-thumbnail mb-2 preview_avatar"
+                                                 height="100" alt="новый аватар пользователя">
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12 col-md-8">
+
+                                        <label for="avatar">Аватар пользователя</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" id="avatar" class="custom-file-input" name="file"
+                                                       id="avatar"
+                                                       value="Выбирите">
+                                                @error('file')
+                                                <div class="text-danger">{{$message}}</div>
+                                                @enderror
+                                                <label class="custom-file-label" for="avatar">Выберите
+                                                    картинку</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                                 <input type="submit" class="btn btn-primary mt-3 col-sm-12" value="Создать">
                             </form>
                         </div>
@@ -235,8 +247,8 @@
     <script>
         let input = document.querySelector('.custom-file-input');
         let preview = document.querySelector(".preview_avatar")
-        input.addEventListener('change', function(event) {
-            if(event.target.files.length > 0){
+        input.addEventListener('change', function (event) {
+            if (event.target.files.length > 0) {
                 let src = URL.createObjectURL(event.target.files[0]);
                 preview.src = src;
                 preview.style.display = "block";
@@ -248,9 +260,10 @@
         });
 
 
-        window.addEventListener("DOMContentLoaded", function() {
-            [].forEach.call( document.querySelectorAll('#phone'), function(input) {
+        window.addEventListener("DOMContentLoaded", function () {
+            [].forEach.call(document.querySelectorAll('#phone'), function (input) {
                 var keyCode;
+
                 function mask(event) {
                     event.keyCode && (keyCode = event.keyCode);
                     var pos = this.selectionStart;
@@ -259,7 +272,7 @@
                         i = 0,
                         def = matrix.replace(/\D/g, ""),
                         val = this.value.replace(/\D/g, ""),
-                        new_value = matrix.replace(/[_\d]/g, function(a) {
+                        new_value = matrix.replace(/[_\d]/g, function (a) {
                             return i < val.length ? val.charAt(i++) || def.charAt(i) : a
                         });
                     i = new_value.indexOf("_");
@@ -268,12 +281,12 @@
                         new_value = new_value.slice(0, i)
                     }
                     var reg = matrix.substr(0, this.value.length).replace(/_+/g,
-                        function(a) {
+                        function (a) {
                             return "\\d{1," + a.length + "}"
                         }).replace(/[+()]/g, "\\$&");
                     reg = new RegExp("^" + reg + "$");
                     if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
-                    if (event.type == "blur" && this.value.length < 5)  this.value = ""
+                    if (event.type == "blur" && this.value.length < 5) this.value = ""
                 }
 
                 input.addEventListener("input", mask, false);
