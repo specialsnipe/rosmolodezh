@@ -69,17 +69,17 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
+        $trackId = $data['track_id'];
+        unset($data['track_id']);
         if (!$request->hasFile('file')) {
             $user= User::firstOrCreate ($data);
+            $user->tracks()->attach($trackId);
             if (isset($data['tg_name'])) {
                 event(new UserTelegramUpdate($user, $data['tg_name']));
             }
 //                event(new Registered($user));
 
-            TrackUser::create([
-                'track_id' => $data['track_id'],
-                'user_id' => $user->id,
-            ]);
+
             return redirect()->route('admin.users.show', $user->id);
         }
 
@@ -88,11 +88,9 @@ class UserController extends Controller
 
         $data['avatar'] = $filename;
         $user = User::create($data);
+        $user->tracks()->attach($trackId);
 
-        TrackUser::create([
-            'track_id' => $data['track_id'],
-            'user_id' => $user->id,
-        ]);
+
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
@@ -137,7 +135,8 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-
+        $trackId = $data['track_id'];
+        unset($data['track_id']);
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
@@ -147,21 +146,8 @@ class UserController extends Controller
             $user->updateOrFail($request->validated());
             // check setter 'track_id' and delete old if it needed
             // dd($user->tracks[0]);
-            if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
+            $user->tracks()->sync($trackId);
 
-                foreach ($user->tracks as $track) {
-                    $track->delete();
-                }
-                $track = TrackUser::create([
-                    'track_id' => $data['track_id'],
-                    'user_id' => $user->id,
-                ]);
-            } else {
-                $track = TrackUser::create([
-                    'track_id' => $data['track_id'],
-                    'user_id' => $user->id,
-                ]);
-            }
             return redirect()->route('admin.users.show', $user->id);
         }
 
@@ -171,23 +157,8 @@ class UserController extends Controller
         unset($data['file']);
 
         $user->updateOrFail($data);
-        dd($user->tracks[0]);
         // check setter  'track_id' and delete old if it needed
-        if (isset($user->tracks[0]) && $data['track_id'] !=  $user->tracks[0]->id) {
-
-            foreach ($user->tracks as $track) {
-                $track->delete();
-            }
-            $track = TrackUser::create([
-                'track_id' => $data['track_id'],
-                'user_id' => $user->id,
-            ]);
-        } else {
-            $track = TrackUser::create([
-                'track_id' => $data['track_id'],
-                'user_id' => $user->id,
-            ]);
-        }
+        $user->tracks()->sync($trackId);
         return redirect()->route('admin.users.show', $user->id);
     }
 
