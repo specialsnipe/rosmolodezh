@@ -63,13 +63,13 @@ class TrackController extends Controller
         $filename = ImageService::make($request->file('image'), 'tracks');
         $data['image'] = $filename;
 //        dd($data);
-        $user = User::findOrFail($data['curator_id']);
-
-        $user->update([
-            'curator_job' => $data['curator_job'],
-            'curator_about' => $data['curator_about']
-        ]);
-        unset($data['curator_job'], $data['curator_about']);
+//        $user = User::findOrFail($data['curator_id']);
+//
+//        $user->update([
+//            'curator_job' => $data['curator_job'],
+//            'curator_about' => $data['curator_about']
+//        ]);
+//        unset($data['curator_job'], $data['curator_about']);
         $track = Track::create($data);
 
 
@@ -130,12 +130,12 @@ class TrackController extends Controller
             $data['image'] = $filename;
         }
 //        dd($data);
-        $user = User::findOrFail($data['curator_id']);
-        $user->update([
-            'curator_job' => $data['curator_job'],
-            'curator_about' => $data['curator_about']
-        ]);
-        unset($data['curator_job'], $data['curator_about']);
+//        $user = User::findOrFail($data['curator_id']);
+//        $user->update([
+//            'curator_job' => $data['curator_job'],
+//            'curator_about' => $data['curator_about']
+//        ]);
+//        unset($data['curator_job'], $data['curator_about']);
         $track->update($data);
 
         return redirect()->route('admin.tracks.show', $track->id);
