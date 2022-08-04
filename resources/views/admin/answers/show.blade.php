@@ -148,8 +148,8 @@
                     </div>
                     @forelse($answer->answerFiles as $file)
                         <div>
-                            <a href="{{asset($file->file_original_path)}}" download="">
-                                <button class="btn"><i class="fa fa-download"></i> Download File</button>
+                            <a href="{{asset($file->file_original_path)}}" download="{{$file->original_file_name}}">
+                                <button class="btn"><i class="fa fa-download"></i> {{$file->original_file_name}}</button>
                             </a>
                         </div>
                     @empty

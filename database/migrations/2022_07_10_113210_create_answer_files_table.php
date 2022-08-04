@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('answer_files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('answer_id')->constrained()->cascadeOnDelete();
+            $table->string('original_file_name');
             $table->string('file_name');
             $table->string('type');
             $table->boolean('active')->default(true);

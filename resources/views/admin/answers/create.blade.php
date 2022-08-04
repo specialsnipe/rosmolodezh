@@ -40,8 +40,27 @@
                     <div class="text-danger">{{$message }}</div>
                     @enderror
                 </div>
-                <div class="ml-3 mb-3">
-                    <input type="file" name="file">
+
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file[]" id="image"
+                                   value="{{old('file')}}" multiple>
+                            <label class="custom-file-label" for="exampleInputFile">Загрузите файлыу</label>
+                        </div>
+                    </div>
+
+                    @error('file')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                    @if($errors->has('file.*'))
+                        @foreach($errors->get('file.*') as $error)
+                            @foreach($error as $message)
+                                <div class="text-danger">{{ $message }}</div>
+                            @endforeach
+                        @endforeach
+                    @endif
                 </div>
 
                 <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Отправить ответ">

@@ -16,6 +16,7 @@ class AnswerFile extends Model
         'answer_id',
         'file_name',
         'type',
+        'original_file_name'
     ];
     protected $appends = [
         'file_original_path',

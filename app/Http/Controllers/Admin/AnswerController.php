@@ -51,23 +51,34 @@ class AnswerController extends Controller
     {
         $data = $request->validated();
 
-        $file = $request->file('file');
-        $fileName = $file->hashName();
-        $fileExtension = $request->file('file')->extension();
+        $files = $data['file'];
 
-        $path = Storage::disk('public')->path('users/answers');
-        $file->move($path, $fileName);
         unset($data['file']);
 
         $data['user_id'] = auth()->user()->id;
         $data['exercise_id'] = $exercise->id;
         $answer = Answer::firstOrCreate($data);
 
-        $answerData['answer_id'] = $answer->id;
-        $answerData['file_name'] = $fileName;
-        $answerData['type'] = $fileExtension;
 
-        AnswerFile::firstOrCreate($answerData);
+
+        if ($files) {
+            foreach ($files as $file) {
+                $fileName = $file->hashName();
+                $fileExtension = $file->extension();
+                $originalFileName = $file->getClientOriginalName();
+
+                $path = Storage::disk('public')->path('users/answers');
+                $file->move($path, $fileName);
+
+                $fileData['answer_id'] = $answer->id;
+                $fileData['file_name'] = $fileName;
+                $fileData['type'] = $fileExtension;
+                $fileData['original_file_name'] = $originalFileName;
+                AnswerFile::firstOrCreate($fileData);
+            }
+        }
+
+
         $block = $exercise->block;
         return redirect()->route('admin.blocks.exercises.show', [$block->id, $exercise->id]);
     }
