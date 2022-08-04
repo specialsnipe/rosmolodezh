@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Answer\StoreAnswerRequest;
 use App\Http\Requests\Answer\UpdateAnswerRequest;
 use App\Models\Answer;
+use App\Models\AnswerFile;
 use App\Models\Block;
 use App\Models\Exercise;
 use App\Models\Track;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnswerController extends Controller
 {
@@ -29,25 +31,45 @@ class AnswerController extends Controller
         return view('admin.answers.index', compact('track', 'block', 'exercise', 'users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\Answer\StoreAnswerRequest $request
-     * @return \Illuminate\Http\Response
+     * @param Exercise $exercise
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function store(StoreAnswerRequest $request)
+    public function create(Exercise $exercise)
     {
-        //
+        return view('admin.answers.create', compact('exercise'));
+    }
+
+
+    /**
+     * @param StoreAnswerRequest $request
+     * @param Exercise $exercise
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(StoreAnswerRequest $request, Exercise $exercise)
+    {
+        $data = $request->validated();
+
+        $file = $request->file('file');
+        $fileName = $file->hashName();
+        $fileExtension = $request->file('file')->extension();
+
+        $path = Storage::disk('public')->path('users/answers');
+        $file->move($path, $fileName);
+        unset($data['file']);
+
+        $data['user_id'] = auth()->user()->id;
+        $data['exercise_id'] = $exercise->id;
+        $answer = Answer::firstOrCreate($data);
+
+        $answerData['answer_id'] = $answer->id;
+        $answerData['file_name'] = $fileName;
+        $answerData['type'] = $fileExtension;
+
+        AnswerFile::firstOrCreate($answerData);
+        $block = $exercise->block;
+        return redirect()->route('admin.blocks.exercises.show', [$block->id, $exercise->id]);
     }
 
 

@@ -13,7 +13,7 @@ class StoreAnswerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreAnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required'],
+            'body' => ['required'],
+            'file' => ['required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Поле обязательно для заполнениея',
+            'body.required' => 'Поле обязательно для заполнениея',
+            'file.required' => 'Поле обязательно для заполнениея',
         ];
     }
 }

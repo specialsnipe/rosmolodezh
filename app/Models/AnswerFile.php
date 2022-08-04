@@ -15,8 +15,16 @@ class AnswerFile extends Model
     protected $fillable = [
         'answer_id',
         'file_name',
-        'type'
+        'type',
     ];
+    protected $appends = [
+        'file_original_path',
+    ];
+
+    public function getFileOriginalPathAttribute()
+    {
+        return 'storage/users/answers/' . $this->file_name;
+    }
 
     /**
      * Relation with answers (one to many)
@@ -26,4 +34,5 @@ class AnswerFile extends Model
     {
         return $this->belongsTo(Answer::class);
     }
+
 }

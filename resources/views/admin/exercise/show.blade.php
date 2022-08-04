@@ -76,7 +76,16 @@
                             <h1 class="col-sm-12 col-lg-8">Упражнение: "{{ $exercise->title }}"</h1>
                             <div class="col-sm-12 col-lg-4 d-flex justify-content-md-end">
 
-                                <a class="btn btn-info mr-2" href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить <i
+                                @if(!auth()->user()->getAnswer($exercise))
+                                    <a class="btn btn-info mr-2"
+                                       href="{{route('admin.exercises.answers.create', [$exercise->id])}}">Ответить на
+                                        задание <i
+                                            class="fa fa-pen"></i></a>
+
+                                @endif
+                                    <a class="btn btn-info mr-2"
+                                   href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить
+                                    <i
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -148,7 +157,7 @@
                                 <tr>
                                     <td>Ответов:</td>
                                     <td>
-                                    {{ $exercise->answers_added_count }}/{{$track->users_count}}
+                                        {{ $exercise->answers_added_count }}/{{$track->users_count}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -157,12 +166,14 @@
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }} %</span></td>
+                                    <td><span class="status_block status_success">{{ $exercise->academic_performance_percent }} %</span>
+                                    </td>
                                 </tr>
                                 <tr>
 
                                     <td>Средний балл:</td>
-                                    <td><span class="status_block status_success">{{$exercise->average_score}}</span></td>
+                                    <td><span class="status_block status_success">{{$exercise->average_score}}</span>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -173,7 +184,8 @@
                     <div class="card">
                         <div class="card-header" role="tab" id="headingOne">
                             <h5 class="mb-0">
-                                <a class="btn btn-info mr-2 col-12" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                <a class="btn btn-info mr-2 col-12" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseOne" aria-expanded="false"
                                    aria-controls="collapseOne">
                                     Ответы учеников <i
                                         class="fa fa-eye"></i>
@@ -202,7 +214,8 @@
                                                 <tr data-widget="expandable-table" aria-expanded="false">
                                                     {{--                                <td>{{$users->firstItem() + $loop->index}}</td>--}}
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px
+                                                    <td><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px
+                                                             height=50px
                                                              alt="image">
                                                     </td>
                                                     <td><a href="{{route('admin.users.show', $user->id)}}"><span>
@@ -230,7 +243,8 @@
 
                                                     @if($user->getAnswer($exercise))
                                                         <td>
-                                                            <a class="btn btn-info mr-2" href="{{route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id])}}">Посмотреть</a>
+                                                            <a class="btn btn-info mr-2"
+                                                               href="{{route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id])}}">Посмотреть</a>
                                                         </td>
                                                     @else
                                                         <td>
