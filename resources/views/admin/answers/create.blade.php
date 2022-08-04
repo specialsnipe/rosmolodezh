@@ -47,7 +47,7 @@
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="file[]" id="image"
                                    value="{{old('file')}}" multiple>
-                            <label class="custom-file-label" for="exampleInputFile">Загрузите файлыу</label>
+                            <label class="custom-file-label" for="exampleInputFile">Загрузите файлы</label>
                         </div>
                     </div>
 
