@@ -83,6 +83,8 @@ Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about
 Route::get('/contacts', [\App\Http\Controllers\Client\HomeController::class, 'contacts'])->name('contacts');
 Route::get('/teams', [\App\Http\Controllers\Client\HomeController::class, 'teams'])->name('teams');
 Route::get('/search', [\App\Http\Controllers\Client\HomeController::class, 'search'])->name('search');
+Route::get('/search/exercises', [\App\Http\Controllers\Client\HomeController::class, 'exercisesSearch'])->name('exercises.search');
+Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class, 'postsSearch'])->name('posts.search');
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);

@@ -26,7 +26,7 @@ class StoreAnswerRequest extends FormRequest
         return [
             'title' => ['required'],
             'body' => ['required'],
-            'file.*'=>['mimes:txt,docx,rar,7z,zip', 'max:2048'],
+            'file.*'=>['file', 'max:10024'],
         ];
     }
 
@@ -36,7 +36,7 @@ class StoreAnswerRequest extends FormRequest
             'title.required' => 'Поле обязательно для заполнениея',
             'body.required' => 'Поле обязательно для заполнениея',
             'file.*.mimes' => 'Возможные форматы файлов:txt,docx,rar,7z,zip',
-            'file.*.max' => 'Файл слишком много весит! (не более 2мб)',
+            'file.*.max' => 'Файл слишком много весит! (не более 10 мб)',
         ];
     }
 }

@@ -50,7 +50,6 @@ class AnswerController extends Controller
     public function store(StoreAnswerRequest $request, Exercise $exercise)
     {
         $data = $request->validated();
-
         $files = $data['file'];
 
         unset($data['file']);
@@ -64,6 +63,7 @@ class AnswerController extends Controller
         if ($files) {
             foreach ($files as $file) {
                 $fileName = $file->hashName();
+
                 $fileExtension = $file->extension();
                 $originalFileName = $file->getClientOriginalName();
 

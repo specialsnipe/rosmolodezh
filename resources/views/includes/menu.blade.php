@@ -33,7 +33,7 @@
                     <a class="nav-link  @if(Request::route()->getName() == 'posts.index') active @endif" aria-current="page"
                     href="{{  route('posts.index') }}">Новости</a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center @if(Request::route()->getName() == 'search') active @endif " href="{{ route('search') }}" class="nav-link"> Поиск по сайту <i class="fas fa-search"></i></a>
                 </li>

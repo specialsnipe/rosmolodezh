@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -44,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
                 ->action('Подтвердить почту', $url, 'success')
                 ->line('Если вы не регистрировались на нашем сайте то не нажимайте на кнопку.');
         });
+
     }
 }

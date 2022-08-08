@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\Filters\SearchFilter;
+use App\Http\Requests\Search\FilterRequest;
+use App\Models\Exercise;
 use App\Models\Post;
 use App\Models\Track;
 use App\Models\Gender;
@@ -9,6 +12,8 @@ use App\Models\Occupation;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class HomeController extends Controller
 {
@@ -33,12 +38,13 @@ class HomeController extends Controller
         $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
-            'posts' =>$posts,
+            'posts' => $posts,
             'tracks' => $this->tracks,
             'occupations' => $this->occupations,
             'genders' => $this->genders,
         ]);
     }
+
     /**
      * About page
      *
@@ -47,6 +53,7 @@ class HomeController extends Controller
     {
         return view('about');
     }
+
     /**
      *Сontacts page
      *
@@ -55,6 +62,7 @@ class HomeController extends Controller
     {
         return view('contacts');
     }
+
     /**
      *Сontacts page
      *
@@ -63,12 +71,60 @@ class HomeController extends Controller
     {
         return view('teams');
     }
+
     /**
      *Сontacts page
      *
      */
-    public function search()
+    public function search(FilterRequest $request)
     {
-        return view('search');
+
+        $data = $request->validated();
+        if (!isset($data['search'])) {
+            $posts = null;
+            return view('search.search', compact('posts'));
+        }
+        $filterPosts = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
+        $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
+        $posts = Post::filter($filterPosts)->get();
+        foreach ($posts as $post) {
+            $post['table'] = 'posts';
+        }
+        $exercises = Exercise::filter($filterExercises)->get();
+        foreach ($exercises as $exercise) {
+            $exercise['table'] = 'exercises';
+        }
+        $results = collect(array_merge($posts->toArray(), $exercises->toArray()));
+        $results = new Paginator($results, 4);
+        $search = $data['search'];
+        return view('search.search', compact('results', 'search'));
+    }
+
+    public function exercisesSearch(FilterRequest $request)
+    {
+
+        $data = $request->validated();
+
+        if (!isset($data['search'])) {
+            $exercises = null;
+            return view('search.exercises', compact('exercises'));
+        }
+        $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
+        $exercises = Exercise::filter($filterExercises)->paginate(4);
+        $search = $data['search'];
+        return view('search.exercises', compact('exercises', 'search'));
+    }
+
+    public function postsSearch(FilterRequest $request)
+    {
+        $data = $request->validated();
+        if (!isset($data['search'])) {
+            $posts = null;
+            return view('search.posts', compact('posts'));
+        }
+        $filterPosts = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
+        $posts = Post::filter($filterPosts)->paginate(4);
+        $search = $data['search'];
+        return view('search.posts', compact('posts', 'search'));
     }
 }
