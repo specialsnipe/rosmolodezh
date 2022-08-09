@@ -1308,7 +1308,7 @@ header form .btn {
 .main-container.post-show-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start !important;
     padding: 2rem !important;
 }
 
