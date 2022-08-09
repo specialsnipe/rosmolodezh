@@ -22,7 +22,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link @if(request()->routeIs('admin.users.*')) active @endif">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Пользователи
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.posts.index') }}" class="nav-link">
+                    <a href="{{ route('admin.posts.index') }}" class="nav-link @if(request()->routeIs('admin.posts.*') ) active @endif">
                         <i class="nav-icon far fa-newspaper"></i>
                         <p>
                             Новости
@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.tracks.index') }}" class="nav-link">
+                    <a href="{{ route('admin.tracks.index') }}" class="nav-link @if(request()->routeIs('admin.tracks.*') || request()->routeIs('admin.blocks.*')) active @endif">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>
                             Направления
@@ -53,7 +53,7 @@
                     <hr>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.handbook.index') }}" class="nav-link">
+                    <a href="{{ route('admin.handbook.index') }}" class="nav-link @if(request()->routeIs('admin.handbook.*') ) active @endif">
                         <i class="nav-icon fa-solid far fa-address-book"></i>
                         <p>
                             Справочник
@@ -91,7 +91,7 @@
                     <hr>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
+                    <a href="{{ route('admin.settings.index') }}" class="nav-link @if(request()->routeIs('admin.settings.*') ) active @endif">
                         <i class="nav-icon fa fa-wrench "></i>
                         <p>
                             Настройки

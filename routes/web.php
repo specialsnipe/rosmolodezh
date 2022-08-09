@@ -27,11 +27,16 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
     // handbook of a site constants
-    Route::resource('handbook', \App\Http\Controllers\Admin\HandBookController::class);
-    Route::resource('genders', \App\Http\Controllers\Admin\GenderController::class);
-    Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
-    Route::resource('occupations', \App\Http\Controllers\Admin\OccupationController::class);
-    Route::get('/complexity', [App\Http\Controllers\Admin\ComplexityController::class, 'index'])->name('complexity.index');
+    Route::group(['as'=> 'handbook.', 'prefix'=> 'handbook'], function () {
+        Route::resource('/', \App\Http\Controllers\Admin\HandBookController::class);
+        Route::resource('/genders', \App\Http\Controllers\Admin\GenderController::class);
+        Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class);
+        Route::resource('/occupations', \App\Http\Controllers\Admin\OccupationController::class);
+        Route::get('/complexity', [App\Http\Controllers\Admin\ComplexityController::class, 'index'])->name('complexity.index');
+    });
+
+
+
 
     // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
@@ -41,7 +46,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::resource('blocks.exercises', \App\Http\Controllers\Admin\ExerciseController::class);
     // index, show and delete the answers of the exercise
     Route::put('exercises/{exercise}/answers/{answer}', [\App\Http\Controllers\Admin\AnswerController::class, 'changeMark'])->name('exercises.answers.changeMark');
-    Route::resource('exercises.answers', \App\Http\Controllers\Admin\AnswerController::class)->except([ 'edit', 'update']);
+    Route::resource('exercises.answers', \App\Http\Controllers\Admin\AnswerController::class)->except(['edit', 'update']);
 });
 
 // Authorization user
@@ -49,13 +54,13 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
 Route::group(['as' => 'auth.'], function () {
     Route::group(['middleware' => 'guest'], function () {
         // Login user
-        Route::group(['as'=> 'login', 'prefix' => 'login'], function () {
+        Route::group(['as' => 'login', 'prefix' => 'login'], function () {
             Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'index']);
             Route::post('/', [\App\Http\Controllers\Auth\LoginController::class, 'submit'])->name('.submit');
         });
 
         // Register user
-        Route::group(['as'=> 'register', 'prefix' => 'register'], function () {
+        Route::group(['as' => 'register', 'prefix' => 'register'], function () {
             Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index']);
             Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('.store');
         });
