@@ -2,10 +2,29 @@
 
 @section('content')
 <div class="container main-container">
-    <div class="images-header">
-        <img src="" alt="">
+
+    @if($post->images->count() > 1)
+    <div class="images-header slider">
+        <div class="slider__wrapper">
+            <div class="slider__items">
+                @foreach ($post->images as $image)
+                    <div class="slider__item">
+                        <img src="{{ asset($image->original_image) }}" alt="">
+                    </div>
+                @endforeach
+            </div>
+       </div>
+       <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+       <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+
         <a href="{{ url()->previous() }}" class="btn-back">Назад</a>
     </div>
+    @else
+    <div class="images-header">
+        <img src="{{ asset($post->images[0]->original_image) }}" alt="">
+        <a href="{{ url()->previous() }}" class="btn-back">Назад</a>
+    </div>
+    @endif
     <div class="flex-container">
         <div class="text-container">
             <p class="text-h1">{{ $post->title }}</p>
@@ -36,3 +55,13 @@
     </div>
 </div>
 @endsection
+@push('script')
+    <script defer>
+        const sldier = new SimpleAdaptiveSlider('.slider', {
+            loop: true,
+            autoplay: false,
+            interval: 5000,
+            swipe: true,
+        });
+    </script>
+@endpush
