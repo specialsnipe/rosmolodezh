@@ -54,9 +54,11 @@
                 @endif
             </div>
         </div>
-        <div class="card m-3 p-3">
-            {{ $results->withQueryString()->links() }}
-        </div>
+        @if(isset($results))
+            <div class="card m-3 p-3">
+                {{ $results->withQueryString()->links() }}
+            </div>
+        @endif
     </div>
 
 @endsection

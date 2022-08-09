@@ -12,6 +12,8 @@ use App\Models\Occupation;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 
@@ -94,8 +96,11 @@ class HomeController extends Controller
         foreach ($exercises as $exercise) {
             $exercise['table'] = 'exercises';
         }
-        $results = collect(array_merge($posts->toArray(), $exercises->toArray()));
-        $results = new Paginator($results, 4);
+//        $results = $posts->concat($exercises)->paginate(4);
+        $results = array_merge($posts->toArray(), $exercises->toArray());
+        $page =  Paginator::resolveCurrentPage() ?: 1;
+        $results = Collection::make($results);
+        $results = new LengthAwarePaginator($results->forPage($page, 4), $results->count(),4, $page, ['path'=>url()->current()]);
         $search = $data['search'];
         return view('search.search', compact('results', 'search'));
     }
@@ -111,6 +116,7 @@ class HomeController extends Controller
         }
         $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
         $exercises = Exercise::filter($filterExercises)->paginate(4);
+        dd($exercises);
         $search = $data['search'];
         return view('search.exercises', compact('exercises', 'search'));
     }
