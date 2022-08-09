@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container main-container">
+<div class="container main-container post-show-container">
+    <div class="flex-container post-show">
 
     @if($post->images->count() > 1)
     <div class="images-header slider">
@@ -25,7 +26,6 @@
         <a href="{{ url()->previous() }}" class="btn-back">Назад</a>
     </div>
     @endif
-    <div class="flex-container">
         <div class="text-container">
             <p class="text-h1">{{ $post->title }}</p>
             <div class="line"></div>
@@ -38,6 +38,7 @@
             <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
             <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
         </div>
+    </div>
 
         <div class="right-block-info">
             <div class="text-h1">Другие интересные статьи</div>
@@ -52,7 +53,6 @@
                 @endforeach
             </div>
         </div>
-    </div>
 </div>
 @endsection
 @push('script')

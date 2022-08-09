@@ -14,10 +14,10 @@
         @foreach ($posts as $post)
             <div class="carousel-item @if($loop->first) active @endif">
                 <img src="{{ asset($post->images['0']->original_image) }}" class="d-block w-100" height="500" alt="...">
-                <div class="carousel-caption d-none d-md-block transparent-elem">
+                <a href="{{ route('posts.show', $post->id) }}" style="text-decoration: none" class="carousel-caption d-none d-md-block transparent-elem">
                     <h5>{{ $post->title }}</h5>
                     <p>{{ $post->excerpt }}</p>
-                </div>
+                </a>
             </div>
         @endforeach
         {{-- <div class="carousel-item">
@@ -81,17 +81,17 @@
                         data-bs-parent="#accordionFlushExample">
                         <div class="row d-flex justify-content-evenly">
                             @foreach ($tracks as $track)
-                            
+
                             <div class="card col-md-3 col-lg-3 col-sm-12 ">
                                 <a href="{{ route('tracks.show', $track->id) }}" class="card-title">
                                 <img src="/images/card-images-1.png" class="card-img-top" alt="...">
                                     <div class="card-body">
                                     {{ $track->title }}
                                     </div>
-                                
+
                                 </a>
                             </div>
-                            
+
                                 <!-- <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a> -->
                             @endforeach
                         </div>
