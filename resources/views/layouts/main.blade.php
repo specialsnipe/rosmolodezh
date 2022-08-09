@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/simple-adaptive-slider.min.css') }}">
 
     {{-- <script data-cfasync="false">
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -25,7 +26,8 @@
         })(window,document,'script','dataLayer','GTM-W7MBMN');
     </script> --}}
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-        @stack("styles")
+    <script src="{{ asset('/scripts/simple-adaptive-slider.min.js') }}"></script>
+    @stack("styles")
     <title>Росмолодежь. Обучение</title>
 </head>
 
@@ -50,6 +52,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+    @stack("script")
+
 </body>
 
 </html>

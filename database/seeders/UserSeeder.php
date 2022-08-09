@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
             'phone' => '+7 (999) 999 9991',
             'email' => 'alex@mail.ru',
         ]);
+
         User::create([
             'last_name' => 'Муругов',
             'first_name' => 'Никита',
