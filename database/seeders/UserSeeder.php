@@ -44,6 +44,6 @@ class UserSeeder extends Seeder
             'email' => 'nikita@mail.ru',
         ]);
 
-        User::factory()->count(100)->create();
+        // User::factory()->count(100)->create();
     }
 }

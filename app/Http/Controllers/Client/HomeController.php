@@ -116,7 +116,6 @@ class HomeController extends Controller
         }
         $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
         $exercises = Exercise::filter($filterExercises)->paginate(4);
-        dd($exercises);
         $search = $data['search'];
         return view('search.exercises', compact('exercises', 'search'));
     }
