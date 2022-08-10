@@ -13,7 +13,7 @@
                 <img src="{{ asset(auth()->user()->avatar_thumbnail_path) }}" class="img-circle" alt="Миниатюра">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->user()->first_and_last_names }}</a>
+                <a href="{{route('admin.users.show', auth()->user()->id)}}" class="d-block">{{ auth()->user()->first_and_last_names }}</a>
             </div>
         </div>
 

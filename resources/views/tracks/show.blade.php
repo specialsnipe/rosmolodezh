@@ -20,10 +20,10 @@
                     <p>{{ $track->curator->all_names }}</p>
                 </li>
                 <li>
-                    <p>Программист в Яндекс;</p>
+                    <p>{{$track->curator->curator_job}}</p>
                 </li>
                 <li>
-                    <p>Работает в сфере IT уже больше 10 лет.</p>
+                    <p>{{$track->curator->curator_about}}</p>
                 </li>
             </ul>
 
