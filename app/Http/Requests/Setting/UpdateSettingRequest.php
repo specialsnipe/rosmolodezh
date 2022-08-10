@@ -30,6 +30,9 @@ class UpdateSettingRequest extends FormRequest
             'vk_description'=>'required',
             'ok_url'=> '',
             'ok_description'=>'',
+            'location' => ['required'],
+            'location_description'=>['required'],
+            'location_url'=>['required', 'url']
         ];
     }
     /**

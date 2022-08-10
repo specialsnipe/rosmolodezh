@@ -6,6 +6,7 @@ use App\Http\Filters\SearchFilter;
 use App\Http\Requests\Search\FilterRequest;
 use App\Models\Exercise;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\Track;
 use App\Models\Gender;
 use App\Models\Occupation;
@@ -27,12 +28,15 @@ class HomeController extends Controller
     public $genders;
     public $occupations;
     public $tracks;
+    public $settings;
+
 
     public function __construct()
     {
         $this->genders = Gender::all();
         $this->occupations = Occupation::all();
         $this->tracks = Track::all();
+        $this->settings = Setting::first();
     }
 
     public function index()
@@ -62,7 +66,9 @@ class HomeController extends Controller
      */
     public function contacts()
     {
-        return view('contacts');
+        return view('contacts', [
+            'settings'=>$this->settings
+        ]);
     }
 
     /**
