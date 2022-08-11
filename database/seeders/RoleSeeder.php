@@ -16,16 +16,20 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
-            'name' => 'student'
+            'name' => 'student',
+            'readable_name' => 'Студент',
         ]);
         Role::create([
-            'name' => 'tutor'
+            'name' => 'tutor',
+            'readable_name' => 'Куратор',
         ]);
         Role::create([
-            'name' => 'teacher'
+            'name' => 'teacher',
+            'readable_name' => 'Учитель',
         ]);
         Role::create([
-            'name' => 'admin'
+            'name' => 'admin',
+            'readable_name' => 'Администратор',
         ]);
     }
 }
