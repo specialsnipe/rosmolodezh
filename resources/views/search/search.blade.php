@@ -32,6 +32,7 @@
                 @if(isset($results))
                     @forelse($results as $result)
                         @if ($result['table'] == 'posts')
+
                             <a href="{{route('posts.show', $result['id'])}}" class="col-sm-12 col-md-5 search-item"
                                style="text-decoration: none">
                                 <span class="text-muted">Новость</span>
@@ -39,10 +40,12 @@
                                 <p>{!! str_replace("$search","<b>$search</b>", $result['body']) !!}</p>
                             </a>
                         @elseif($result['table'] == 'exercises')
+
                             <a href="{{route('blocks.exercises.show', [$result['block_id'],$result['id']] )}}"
                                class="col-sm-12 col-md-5 search-item" style="text-decoration: none">
-                                <span class="text-muted">Упражнение</span>
-                                <p class="h1">{{$result['title']}} </p>
+                                <span class="text-muted">Направление: "{{$result->block->track->title}}"</span>
+                                <p class="text-muted">Блок: "{{$result->block->title}}"</p>
+                                <p class="h1"> <span class="text-muted">Упражнение:</span>"{{$result['title']}}" </p>
                                 <p>{!! str_replace("$search","<b>$search</b>", $result['body']) !!}</p>
                             </a>
                         @endif
