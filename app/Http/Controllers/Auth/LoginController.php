@@ -34,10 +34,14 @@ class LoginController extends Controller
         $data = $request->validated();
         $user = User::where('login', $data['login'])->withTrashed()->first();
 
-        // dd($data, $user);
+
         if (Hash::check($data['password'], $user->password)) {
             auth()->login($user);
-            return redirect()->route('home');
+            if ($user->role->name == 'admin') {
+                return redirect()->route('admin.main.index');
+            }
+            return redirect()->route('profile');
+
         }
 
         return back()->withErrors([

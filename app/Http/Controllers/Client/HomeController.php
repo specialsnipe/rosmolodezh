@@ -33,6 +33,7 @@ class HomeController extends Controller
         $this->genders = Gender::all();
         $this->occupations = Occupation::all();
         $this->tracks = Track::all();
+
     }
 
     public function index()
@@ -53,6 +54,8 @@ class HomeController extends Controller
      */
     public function about()
     {
+        $test = new Test;
+
         return view('about');
     }
 
