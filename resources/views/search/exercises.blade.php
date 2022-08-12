@@ -31,11 +31,12 @@
             <div class="row">
                 @if($exercises)
                     @forelse($exercises as $exercise)
-                        <a href="{{route('blocks.exercises.show',[$exercise->block, $exercise->id])}}"
+                        <a href="{{route('blocks.exercises.show', [$exercise['block_id'],$exercise['id']] )}}"
                            class="col-sm-12 col-md-5 search-item" style="text-decoration: none">
-                            <span class="text-muted">Упражнение</span>
-                            <p class="h1">{{$exercise->title}} </p>
-                            <p>{!! str_replace("$search","<b>$search</b>", $exercise->body) !!}</p>
+                            <span class="text-muted">Направление: "{{$exercise->block->track->title}}"</span>
+                            <p class="text-muted">Блок: "{{$exercise->block->title}}"</p>
+                            <p class="h1"> <span class="text-muted">Упражнение:</span>"{{$exercise['title']}}" </p>
+                            <p>{!! str_replace("$search","<b>$search</b>", $exercise['body']) !!}</p>
                         </a>
 
                     @empty

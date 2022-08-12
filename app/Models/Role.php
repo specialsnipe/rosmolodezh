@@ -12,21 +12,9 @@ class Role extends Model
     use HasFactory, SoftDeletes, Filterable;
 
     protected $fillable = [
-        'name'
+        'name',
+        'readable_name'
     ];
-
-    protected $appends = [
-        'rus_name'
-    ];
-
-    public function getRusNameAttribute()
-    {
-        if ($this->name == 'admin') return 'Администратор';
-        if ($this->name == 'teacher') return 'Учитель';
-        if ($this->name == 'tutor') return 'Куратор';
-        if ($this->name == 'student') return 'Студент';
-    }
-
 
     public function users()
     {

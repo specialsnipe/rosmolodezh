@@ -14,7 +14,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.occupations.index')}}">Занятость</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.index')}}">Справочник</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.occupations.index')}}">Занятость</a></li>
                             <li class="breadcrumb-item active">Добавление занятости</li>
                         </ol>
                     </div><!-- /.col -->
@@ -22,7 +23,7 @@
             </div><!-- /.container-fluid -->
         </div>
         <div class="col-4">
-            <form action="{{route('admin.occupations.store')}}" method="post">
+            <form action="{{route('admin.handbook.occupations.store')}}" method="post">
                 @csrf
                 <div class="form-group ml-3 ">
                     <label for="exampleInputEmail1">Введите занятость</label>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Helpers\General\CollectionHelper;
 use App\Http\Filters\SearchFilter;
 use App\Http\Requests\Search\FilterRequest;
 use App\Models\Exercise;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\Track;
 use App\Models\Gender;
 use App\Models\Occupation;
@@ -27,13 +29,15 @@ class HomeController extends Controller
     public $genders;
     public $occupations;
     public $tracks;
+    public $settings;
+
 
     public function __construct()
     {
         $this->genders = Gender::all();
         $this->occupations = Occupation::all();
         $this->tracks = Track::all();
-
+        $this->settings = Setting::first();
     }
 
     public function index()
@@ -54,8 +58,6 @@ class HomeController extends Controller
      */
     public function about()
     {
-        $test = new Test;
-
         return view('about');
     }
 
@@ -65,7 +67,9 @@ class HomeController extends Controller
      */
     public function contacts()
     {
-        return view('contacts');
+        return view('contacts', [
+            'settings'=>$this->settings
+        ]);
     }
 
     /**
@@ -99,11 +103,14 @@ class HomeController extends Controller
         foreach ($exercises as $exercise) {
             $exercise['table'] = 'exercises';
         }
-//        $results = $posts->concat($exercises)->paginate(4);
-        $results = array_merge($posts->toArray(), $exercises->toArray());
-        $page =  Paginator::resolveCurrentPage() ?: 1;
-        $results = Collection::make($results);
-        $results = new LengthAwarePaginator($results->forPage($page, 4), $results->count(),4, $page, ['path'=>url()->current()]);
+        $unionCollection = $posts->union($exercises);
+        $results = CollectionHelper::paginate($unionCollection, 20);
+
+
+//        $results = array_merge($posts->toArray(), $exercises->toArray());
+//        $page =  Paginator::resolveCurrentPage() ?: 1;
+//        $results = Collection::make($results);
+//        $results = new LengthAwarePaginator($results->forPage($page, 4), $results->count(),4, $page, ['path'=>url()->current()]);
         $search = $data['search'];
         return view('search.search', compact('results', 'search'));
     }
@@ -118,7 +125,7 @@ class HomeController extends Controller
             return view('search.exercises', compact('exercises'));
         }
         $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
-        $exercises = Exercise::filter($filterExercises)->paginate(4);
+        $exercises = Exercise::filter($filterExercises)->paginate(20);
         $search = $data['search'];
         return view('search.exercises', compact('exercises', 'search'));
     }
@@ -131,7 +138,7 @@ class HomeController extends Controller
             return view('search.posts', compact('posts'));
         }
         $filterPosts = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
-        $posts = Post::filter($filterPosts)->paginate(4);
+        $posts = Post::filter($filterPosts)->paginate(20);
         $search = $data['search'];
         return view('search.posts', compact('posts', 'search'));
     }

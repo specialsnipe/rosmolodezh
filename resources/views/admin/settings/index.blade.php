@@ -68,12 +68,35 @@
                 </div>
                 <div class="form-group col-sm-12 col-md-8">
                     <label for="vk_url">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="ok_description" value="">{{$setting->ok_description}}</textarea>
+                    <textarea type="text" class="form-control " name="ok_description" >{{$setting->ok_description}}</textarea>
                     @error('ok_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
-                <div class="form-group  col-sm-12 col-md-4">
+                <hr class="col-12"  style="padding: 0;height:1px;border:none;color:#333;background-color:#333;">
+                <div class="form-group  col-sm-12 col-md-8">
+                    <label for="location">Адрес</label>
+                    <input type="text" class="form-control " name="location" value="{{$setting->location}}">
+                    @error('location')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group  col-sm-12 col-md-12">
+                    <label for="location_url">url адреса</label>
+                    <input type="text" class="form-control " name="location_url" value="{{$setting->location_url}}">
+                    @error('location_url')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group col-sm-12 col-md-12">
+                    <label for="location_description">Краткое описание</label>
+                    <textarea type="text" class="form-control " name="location_description" >{{$setting->location_description}}</textarea>
+                    @error('location_description')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+
+                <div class=" col-sm-12 col-md-12">
                     <input type="submit" class="btn btn-primary w-100" value="Сохранить">
                 </div>
             </form>

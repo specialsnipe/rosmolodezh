@@ -14,7 +14,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.genders.index')}}">Пол</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.index')}}">Справочник</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.genders.index')}}">Пол</a></li>
                             <li class="breadcrumb-item active">Изменение пола</li>
                         </ol>
                     </div><!-- /.col -->
@@ -22,7 +23,7 @@
             </div><!-- /.container-fluid -->
         </div>
         <div class="col-4">
-            <form action="{{route('admin.genders.update', $gender->id)}}" method="post">
+            <form action="{{route('admin.handbook.genders.update', $gender->id)}}" method="post">
                 @csrf
                 @method('patch')
                 <div class="form-group ml-3 ">
