@@ -297,15 +297,14 @@ main .carousel-inner img {
 }
 
 .directions-block p {
-    width: 1300px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 44px;
+    color: #fff;
     text-align: center;
-    color: #FFFFFF;
+    font-size: 24px;
 }
-
+main .carousel-control-prev, .carousel-control-next{
+    width: 7vh !important;
+    height: 7vh !important;
+}
 .news-block {
     width: 1300px;
 }
@@ -638,6 +637,8 @@ header form .btn {
     border: 0;
     z-index: 9999;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 #btn-back-to-top:hover {
@@ -750,7 +751,7 @@ header form .btn {
     justify-content: center;
     flex-direction: column;
     width: 420px;
-    height: 540px;
+    min-height: 540px;
     background: #fff;
     border-radius: 10px;
 }
@@ -858,8 +859,9 @@ header form .btn {
 }
 
 .descriptions .line {
-    width: 1330px;
-    border: 2px solid #D9D9D9;
+    width: 100%;
+    height: 4px;
+    background-color:  #D9D9D9;
 }
 
 .descriptions .text-h1 {
@@ -1051,7 +1053,9 @@ header form .btn {
 }
 
 .add-materials .line {
-    border: 2px solid #D9D9D9;
+    width: 100%;
+    height: 4px;
+    background-color: #D9D9D9;
     margin-bottom: 1rem;
 }
 
@@ -1246,11 +1250,11 @@ header form .btn {
     text-decoration-line: none;
     color: #1A9DF3;
     transition: 250ms;
+    text-decoration: underline;
 }
 
 .text-container .link-text:hover {
-    color: #0099ff;
-    text-decoration-line: underline;
+    color: #08629d;
 }
 
 .right-block-info {
@@ -1259,6 +1263,7 @@ header form .btn {
     margin-left: 2rem;
     background: #F4F4F4;
     border-radius: 10px;
+    min-height: 550px;
 }
 
 .right-block-info .text-h1 {
@@ -1380,7 +1385,7 @@ header form .btn {
     border-radius: 15px 15px 0 0;
     width: 90%;
     min-height: 600px;
-    padding: 1rem 2rem;
+    padding: 2rem;
 }
 
 .search:hover {
@@ -1392,7 +1397,7 @@ header form .btn {
     align-items: center;
     justify-content: center;
     width: 15%;
-    ;
+    margin-left: 1rem;
     background-color: #F19324;
     border: 0;
     color: #fff;

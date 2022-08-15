@@ -10,7 +10,7 @@ $tracks = Track::all();
 @section('content')
 
 <p class="h1-content">О нашем проекте </p>
-<section class="container counter-block">
+<section class="counter-block">
     <div class="cunter-content">
         <div class="block-info-right">
             <p class="text-h1">Конкурс</p>

@@ -14,7 +14,7 @@
     <div class="container search-container">
         <p class="h1-content">Поиск по сайту</p>
         <form action="{{route('posts.search')}}" method="get"
-              class="d-flex justify-content-between form-floating col-sm-12 col-md-10 col-lg-12">
+              class="d-flex justify-content-between form-floating col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="mr-3 form-control" name="search" value="{{request('search')}}"
                    placeholder="search">
             <label for="floatingInput">Введите текст</label>
