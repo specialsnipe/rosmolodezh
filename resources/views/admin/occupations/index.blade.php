@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.index')}}">Справочник</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
                             <li class="breadcrumb-item active">Занятость</li>
                         </ol>
                     </div><!-- /.col -->
@@ -39,12 +39,12 @@
                                     <td>{{$occupation->name}}</td>
                                     <td>
                                         <div class="">
-                                            <a href="{{ route('admin.handbook.occupations.edit', $occupation->id) }}"
+                                            <a href="{{ route('admin.settings.occupations.edit', $occupation->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.handbook.occupations.destroy', $occupation->id)}}" method="post">
+                                        <form action="{{route('admin.settings.occupations.destroy', $occupation->id)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>
@@ -64,7 +64,7 @@
                     <!-- /.card-body -->
                 </div>
                 <div class="col-3 mt-3">
-                    <a href="{{route('admin.handbook.occupations.create')}}"
+                    <a href="{{route('admin.settings.occupations.create')}}"
                        class="btn btn-block btn-primary">Добавить</a>
                 </div>
                 <!-- /.card -->

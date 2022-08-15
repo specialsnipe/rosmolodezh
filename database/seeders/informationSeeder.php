@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SettingSeeder extends Seeder
+class InformationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        Setting::create([
+        Information::create([
             'vk_url' => 'https://vk.com/rosmolodez',
             'vk_description' => 'Это наша страница вконтакте, заходи и подпишись, там много интересного.',
             'tg_url' => 'https://t.me/+zkLRoaZN43JmN2Uyrosmolodez',

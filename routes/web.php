@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('main.index');
-    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index', 'update']);
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::match(['put', 'patch'], 'users/{user}/changeStatus', [\App\Http\Controllers\Admin\UserController::class, 'change_status'])->name('users.changeStatus');
@@ -26,13 +25,15 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'profile'])->name('index');
     });
-    // handbook of a site constants
-    Route::group(['as'=> 'handbook.', 'prefix'=> 'handbook'], function () {
-        Route::resource('/', \App\Http\Controllers\Admin\HandBookController::class);
+    // SettingsController of a site constants
+    Route::group(['as'=> 'settings.', 'prefix'=> 'settings'], function () {
+        Route::resource('/', \App\Http\Controllers\Admin\SettingsController::class);
         Route::resource('/genders', \App\Http\Controllers\Admin\GenderController::class);
         Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class);
+        Route::resource('/information', \App\Http\Controllers\Admin\InformationController::class)->only(['index', 'update']);
         Route::resource('/occupations', \App\Http\Controllers\Admin\OccupationController::class);
-        Route::get('/complexity', [App\Http\Controllers\Admin\ComplexityController::class, 'index'])->name('complexity.index');
+        Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class);
+        Route::resource('/complexity', App\Http\Controllers\Admin\ComplexityController::class)->only('index');
     });
 
 

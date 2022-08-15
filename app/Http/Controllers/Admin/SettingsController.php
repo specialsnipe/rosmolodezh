@@ -9,7 +9,7 @@ use App\Models\Gender;
 use App\Models\Occupation;
 use App\Models\Role;
 
-class HandBookController extends Controller
+class SettingsController extends Controller
 {
 
     /**
@@ -17,10 +17,6 @@ class HandBookController extends Controller
      */
     public function index()
     {
-        $occupations = Occupation::all();
-        $genders = Gender::all();
-        $roles = Role::all();
-
-        return view('admin.hand_book.index', compact('roles','genders','occupations'));
+        return view('admin.settings.index');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SettingPhone extends Model
+class InformationEmail extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -14,6 +14,6 @@ class SettingPhone extends Model
 
     public function setting()
     {
-        return $this->belongsTo(Setting::class);
+        return $this->belongsTo(Information::class);
     }
 }

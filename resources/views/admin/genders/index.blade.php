@@ -13,7 +13,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.index')}}">Справочник</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
                             <li class="breadcrumb-item active">Пол</li>
                         </ol>
                     </div><!-- /.col -->
@@ -36,15 +36,15 @@
                             @forelse($genders as $gender)
                                 <tr>
                                     <td>{{$gender->id}}</td>
-                                    <td><a href="{{route('admin.handbook.genders.show',$gender->id)}}">{{$gender->name}}</a></td>
+                                    <td><a href="{{route('admin.settings.genders.show',$gender->id)}}">{{$gender->name}}</a></td>
                                     <td>
                                         <div class="">
-                                            <a href="{{ route('admin.handbook.genders.edit', $gender->id) }}"
+                                            <a href="{{ route('admin.settings.genders.edit', $gender->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.handbook.genders.destroy',$gender->id)}}" method="post">
+                                        <form action="{{route('admin.settings.genders.destroy',$gender->id)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить
@@ -64,7 +64,7 @@
                     <!-- /.card-body -->
                 </div>
                 <div class="col-3 mt-3">
-                    <a href="{{route('admin.handbook.genders.create')}}"
+                    <a href="{{route('admin.settings.genders.create')}}"
                        class="btn btn-block btn-primary">Добавить пол</a>
                 </div>
                 <!-- /.card -->

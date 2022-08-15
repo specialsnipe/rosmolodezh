@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Setting;
-use App\Models\SettingEmail;
-use App\Models\SettingPhone;
+use App\Models\Information;
+use App\Models\InformationEmail;
+use App\Models\InformationPhone;
 use Livewire\Component;
 
-class SettingsEditComponent extends Component
+class InformationEditComponent extends Component
 {
     public $setting;
     public $tg_url;
@@ -22,7 +22,7 @@ class SettingsEditComponent extends Component
     public $changedEmail;
 
 
-    public function mount(Setting $setting)
+    public function mount(Information $setting)
     {
         $this->setting = $setting;
         $this->vk_url = $setting->vk_url;
@@ -32,7 +32,7 @@ class SettingsEditComponent extends Component
     public function render()
     {
 
-        return view('livewire.admin.settings.settings-edit-component');
+        return view('livewire.admin.settings.information.information-edit-component');
     }
 
     public function update()
@@ -44,13 +44,13 @@ class SettingsEditComponent extends Component
 
     public function DeleteEmail($email)
     {
-        SettingEmail::find($email)->delete();
-        $this->setting = Setting::first();
+        InformationEmail::find($email)->delete();
+        $this->setting = Information::first();
     }
     public function DeletePhone($phone)
     {
-        SettingPhone::find($phone)->delete();
-        $this->setting = Setting::first();
+        InformationPhone::find($phone)->delete();
+        $this->setting = Information::first();
     }
 
 
@@ -64,14 +64,14 @@ class SettingsEditComponent extends Component
             'email.email' => "Неверный формат почты",
             'email_description.required' => "Обязательно добавтье описание",
         ]);
-        SettingEmail::create([
+        InformationEmail::create([
             'email' => $this->email,
             'description' => $this->email_description,
             'setting_id' => $this->setting->id
         ]);
         $this->email = '';
         $this->email_description = '';
-        $this->setting = Setting::first();
+        $this->setting = Information::first();
     }
 
     public function AddPhone()
@@ -84,13 +84,13 @@ class SettingsEditComponent extends Component
             'phone.min:17' => 'В номере телефона не хватает цифр',
             'phone_description.required' => "Обязательно добавтье описание",
         ]);
-        SettingPhone::create([
+        InformationPhone::create([
             'phone' => $this->phone,
             'description' => $this->phone_description,
             'setting_id' => $this->setting->id
         ]);
         $this->phone = '';
         $this->phone_description = '';
-        $this->setting = Setting::first();
+        $this->setting = Information::first();
     }
 }

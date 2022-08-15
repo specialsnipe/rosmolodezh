@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\SettingEmail;
+use App\Models\InformationEmail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SettingEmailSeeder extends Seeder
+class InformationEmailSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,15 @@ class SettingEmailSeeder extends Seeder
      */
     public function run()
     {
-        SettingEmail::create([
+        InformationEmail::create([
             'email' => 'rosmolodezh@mail.tu',
             'description' => 'Наша основная почта',
-            'setting_id' => '1',
+            'information_id' => '1',
         ]);
-        SettingEmail::create([
+        InformationEmail::create([
             'email' => 'secondrosmolodezh@mail.tu',
             'description' => 'Почта нашего психолога',
-            'setting_id' => '1',
+            'information_id' => '1',
         ]);
     }
 }

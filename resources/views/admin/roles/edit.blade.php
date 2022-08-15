@@ -14,7 +14,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.index')}}">Справочник</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.handbook.roles.index')}}">Роли</a></li>
                             <li class="breadcrumb-item active">Изменение роли: {{$role->name}}</li>
                         </ol>

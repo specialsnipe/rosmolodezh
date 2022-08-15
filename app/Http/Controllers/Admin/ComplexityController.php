@@ -16,6 +16,6 @@ class ComplexityController extends Controller
     public function index()
     {
         $complexities = Complexity::all();
-        return view('admin.hand_book.complexity', compact('complexities'));
+        return view('admin.settings.complexity.index', compact('complexities'));
     }
 }

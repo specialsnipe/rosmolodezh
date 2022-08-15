@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('setting_phones', function (Blueprint $table) {
+        Schema::create('information_phones', function (Blueprint $table) {
             $table->id();
             $table->string('phone');
             $table->string('description')->nullable();
-            $table->foreignId('setting_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('information_id')->constrained('information')->cascadeOnDelete();
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setting_phones');
+        Schema::dropIfExists('information_phones');
     }
 };
