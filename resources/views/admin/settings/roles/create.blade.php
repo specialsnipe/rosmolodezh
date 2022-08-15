@@ -3,27 +3,23 @@
 
 @section('content')
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="padding-top: 1rem">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Добавление роли</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+        <div class="row d-flex justify-content-between mr-3 ml-3">
+            <div class="col-sm-6">
+                <h1 class="">Добавление роли</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right ">
+                    <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.handbook.roles.index')}}">Роли</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.settings.roles.index')}}">Роли</a></li>
                             <li class="breadcrumb-item active">Добавление роли</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
         <div class="col-4">
-            <form action="{{route('admin.handbook.roles.store')}}" method="post">
+            <form action="{{route('admin.settings.roles.store')}}" method="post">
                 @csrf
                 <div class="form-group ml-3 ">
                     <label for="exampleInputEmail1">Введите роль</label>

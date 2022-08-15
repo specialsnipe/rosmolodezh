@@ -16,7 +16,7 @@ class OccupationController extends Controller
     public function index()
     {
         $occupations = Occupation::all();
-        return view('admin.occupations.index', compact('occupations'));
+        return view('admin.settings.occupations.index', compact('occupations'));
     }
 
 
@@ -25,7 +25,7 @@ class OccupationController extends Controller
      */
     public function create()
     {
-        return view('admin.occupations.create');
+        return view('admin.settings.occupations.create');
     }
 
 
@@ -37,7 +37,7 @@ class OccupationController extends Controller
     {
         $data = $request->validated();
         Occupation::firstOrCreate($data);
-        return redirect()->route('admin.occupations.index');
+        return redirect()->route('admin.settings.occupations.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class OccupationController extends Controller
      */
     public function edit(Occupation $occupation)
     {
-        return view('admin.occupations.edit', compact('occupation'));
+        return view('admin.settings.occupations.edit', compact('occupation'));
     }
 
 
@@ -71,7 +71,7 @@ class OccupationController extends Controller
     {
         $data = $request->validated();
         $occupation->update($data);
-        return redirect()->route('admin.occupations.index');
+        return redirect()->route('admin.settings.occupations.index');
     }
 
 
@@ -84,7 +84,7 @@ class OccupationController extends Controller
     {
         try {
             $occupation->deleteOrFail();
-            return redirect()->route('admin.occupations.index');
+            return redirect()->route('admin.settings.occupations.index');
         }catch (\Exception $e) {
             abort(501);
         }

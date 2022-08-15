@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('complexities', function (Blueprint $table) {
+        Schema::create('complexity_times', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('level');
+            $table->integer('started_at')->nullable();
+            $table->integer('ended_at');
             $table->string('class_name');
-            $table->text('body');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complexities');
+        Schema::dropIfExists('complexity_times');
     }
 };

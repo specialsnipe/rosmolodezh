@@ -28,7 +28,7 @@
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
-                <a class="card-body" href="{{route('admin.settings.complexity.index')}}">
+                <a class="card-body" href="{{route('admin.settings.slider.index')}}">
                     <span  class="h5" ><i class="fa fa-desktop" aria-hidden="true"></i> Слайдер на главной странице </span>
                 </a>
             </div>

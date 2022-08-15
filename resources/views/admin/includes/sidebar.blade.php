@@ -87,27 +87,27 @@
                             Все настройки
                         </a>
                         <a href="{{ route('admin.settings.complexity.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.complexity.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.complexity.*') ) active @endif">
                             <i class="nav-icon fa fa-th-list" aria-hidden="true"></i> Сложности
                         </a>
                         <a href="{{ route('admin.settings.slider.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.slider.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.slider.*') ) active @endif">
                             <i class="nav-icon fa fa-desktop" aria-hidden="true"></i> Слайдер
                         </a>
                         <a href="{{ route('admin.settings.information.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.information.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.information.*') ) active @endif">
                             <i class="nav-icon fa fa-info-circle" aria-hidden="true"></i> Информация
                         </a>
                         <a href="{{ route('admin.settings.roles.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.roles.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.roles.*') ) active @endif">
                             <i class="nav-icon fa fa-user-secret"></i> Роли
                         </a>
                         <a href="{{ route('admin.settings.occupations.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.occupations.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.occupations.*') ) active @endif">
                             <i class="nav-icon fa fa-briefcase"></i> Занятость
                         </a>
                         <a href="{{ route('admin.settings.genders.index') }}" class="nav-link
-                        @if(request()->routeIs('admin.settings.genders.index') ) active @endif">
+                        @if(request()->routeIs('admin.settings.genders.*') ) active @endif">
                             <i class="nav-icon fa fa-venus-mars"></i> Пол
                         </a>
                     </div>

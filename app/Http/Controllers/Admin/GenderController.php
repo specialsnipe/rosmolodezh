@@ -16,7 +16,7 @@ class GenderController extends Controller
     public function index()
     {
         $genders = Gender::all();
-        return view('admin.genders.index', compact('genders'));
+        return view('admin.settings.genders.index', compact('genders'));
     }
 
 
@@ -25,7 +25,7 @@ class GenderController extends Controller
      */
     public function create()
     {
-        return view('admin.genders.create');
+        return view('admin.settings.genders.create');
     }
 
 
@@ -37,7 +37,7 @@ class GenderController extends Controller
     {
         $data = $request->validated();
         Gender::firstOrCreate($data);
-        return redirect()->route('admin.genders.index');
+        return redirect()->route('admin.settings.genders.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class GenderController extends Controller
      */
     public function edit(Gender $gender)
     {
-        return view('admin.genders.edit', compact('gender'));
+        return view('admin.settings.genders.edit', compact('gender'));
     }
 
 
@@ -71,7 +71,7 @@ class GenderController extends Controller
     {
         $data = $request->validated();
         $gender->update($data);
-        return redirect()->route('admin.genders.index');
+        return redirect()->route('admin.settings.genders.index');
     }
 
 
@@ -84,7 +84,7 @@ class GenderController extends Controller
     {
         try {
             $gender->deleteOrFail();
-            return redirect()->route('admin.genders.index');
+            return redirect()->route('admin.settings.genders.index');
         }catch (\Exception $e) {
             abort(501);
         }

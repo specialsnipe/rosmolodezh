@@ -1,6 +1,6 @@
 <div>
     <div class="row m-3">
-        <div class="col-sm-12 col-lg-6" style="padding: 0">
+        <div class="col-sm-12 col-lg-4" style="padding: 0">
             <div class="card col-sm-12 ">
                 <div class="card-body">
                     <form action="" wire:submit.prevent="AddEmail" method="post" class="row">
@@ -35,21 +35,15 @@
                 </div>
                 <div class="card-body">
                     @forelse($setting->emails as $email)
-                    <div class="card">
+                    <div class="card  bg-gradient-light ">
                         <div class="card-body">
-
-                            <div class="row form-group col-sm-12">
+                            <div class="row form-group  mb-0 col-sm-12 d-flex justify-content-between align-items-center">
                                  <span class="h5"><i class="fa fa-envelope"></i> {{$email->email}} </span>
+                                 <span class="btn btn-danger"
+                                 wire:click.prevent="DeleteEmail({{$email->id}})">Удалить</span>
                             </div>
-                            <div class="row col-12 text-center">
-
-                            </div>
-                            <div class="row form-group col-sm-12">
+                            <div class="row form-group col-sm-12 mb-0">
                                 <span class=" ">{{$email->description}} </span>
-                            </div>
-                            <div class="form-group row col-sm-12">
-                                <span class="btn btn-danger w-100"
-                                    wire:click.prevent="DeleteEmail({{$email->id}})">Удалить</span>
                             </div>
                         </div>
                     </div>
@@ -67,7 +61,7 @@
             </div>
 
         </div>
-        <div class="col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-lg-4">
             <div class="card col-sm-12 ">
                 <div class="card-body">
                     <form action="#" wire:submit.prevent="AddPhone" method="post" class="row">
@@ -102,19 +96,16 @@
                 </div>
                 <div class="card-body">
                     @forelse($setting->phones as $phone)
-                    <div class="card">
+
+                    <div class="card  bg-gradient-light">
                         <div class="card-body">
-
-                            <div class="row form-group col-sm-12">
-                                <span class="h5"><i class="fa fa-phone"></i> {{$phone->phone}}</span>
+                            <div class="row form-group  mb-0 col-sm-12 d-flex justify-content-between align-items-center">
+                                 <span class="h5"><i class="fa fa-phone"></i> {{$phone->phone}} </span>
+                                 <span class="btn btn-danger"
+                                 wire:click.prevent="DeletePhone({{$phone->id}})">Удалить</span>
                             </div>
-                            <div class="row form-group col-sm-12">
-                                <span class="">{{$phone->description}}</span>
-                            </div>
-                            <div class="row form-group col-12">
-
-                                <span class="btn btn-danger w-100"
-                                    wire:click.prevent="DeletePhone({{$phone->id}})">Удалить</span>
+                            <div class="row form-group col-sm-12 mb-0">
+                                <span class=" ">{{$phone->description}} </span>
                             </div>
                         </div>
                     </div>

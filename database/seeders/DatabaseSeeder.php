@@ -26,12 +26,13 @@ class DatabaseSeeder extends Seeder
         $this->call(TrackSeeder::class);
         // $this->call(BlockSeeder::class);
         $this->call(TrackUserSeeder::class);
-        // $this->call(ComplexitySeeder::class);
+        $this->call(ComplexitySeeder::class);
+        $this->call(ComplexityTimeSeeder::class);
         // $this->call(PostSeeder::class);
 
 
-        // Exercise::factory(30)->create();
-        // Answer::factory(30)->create();
+        Exercise::factory(30)->create();
+        Answer::factory(30)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

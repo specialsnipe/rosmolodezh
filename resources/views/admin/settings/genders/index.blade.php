@@ -2,24 +2,20 @@
 
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="padding-top: 1rem">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Роли</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                            <li class="breadcrumb-item active">Роли</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="row d-flex justify-content-between mr-3 ml-3">
+            <div class="col-sm-6">
+                <h1 class="">Управление полами</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right ">
+                    <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
+                    <li class="breadcrumb-item">Управление полами</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
         <div class="row m-3">
             <div class="col-6">
                 <div class="card">
@@ -33,21 +29,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($roles as $role)
+                            @forelse($genders as $gender)
                                 <tr>
-                                    <td>{{$role->id}}</td>
-                                    <td>{{$role->name}}</td>
+                                    <td>{{$gender->id}}</td>
+                                    <td><a href="{{route('admin.settings.genders.show',$gender->id)}}">{{$gender->name}}</a></td>
                                     <td>
                                         <div class="">
-                                            <a href="{{ route('admin.settings.roles.edit', $role->id) }}"
+                                            <a href="{{ route('admin.settings.genders.edit', $gender->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.settings.roles.destroy', $role->id)}} " method="post">
+                                        <form action="{{route('admin.settings.genders.destroy',$gender->id)}}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>
+                                            <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -63,8 +60,8 @@
                     <!-- /.card-body -->
                 </div>
                 <div class="col-3 mt-3">
-                    <a href="{{route('admin.settings.roles.create')}}"
-                       class="btn btn-block btn-primary">Добавить</a>
+                    <a href="{{route('admin.settings.genders.create')}}"
+                       class="btn btn-block btn-primary">Добавить пол</a>
                 </div>
                 <!-- /.card -->
             </div>

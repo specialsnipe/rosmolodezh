@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('vk_description')->nullable();
             $table->string('tg_url')->nullable();
             $table->string('tg_description')->nullable();
-            $table->string('ok_url')->nullable();
-            $table->string('ok_description')->nullable();
+            $table->string('zen_url')->nullable();
+            $table->string('zen_description')->nullable();
             $table->string('location')->nullable();
             $table->string('location_description')->nullable();
             $table->string('location_url')->nullable();

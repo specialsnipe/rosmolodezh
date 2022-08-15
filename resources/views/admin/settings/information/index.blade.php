@@ -4,26 +4,22 @@
 @endpush
 
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper" style="padding-top: 1rem">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Редактирование настроек</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                        <li class="breadcrumb-item active">Редактирование настроек</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
+    <div class="row d-flex justify-content-between mr-3 ml-3">
+        <div class="col-sm-6">
+            <h1 class="">Редактирование настроек</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right ">
+                <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
+                <li class="breadcrumb-item active">Редактирование настроек</li>
+            </ol>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 
-    <div class="card m-3">
+    <div class="card m-3 сol-sm-12">
         <div class="card-body">
             <form action="{{route('admin.settings.update',$setting->id )}}" method="post" class="row">
                 @method('put')
@@ -60,28 +56,29 @@
                 </div>
                 <hr class="col-12"  style="padding: 0">
                 <div class="form-group  col-sm-12 col-md-4">
-                    <label for="ok_url">Одноклассники url</label>
-                    <input type="text" class="form-control " name="ok_url" value="{{$setting->ok_url}}">
-                    @error('ok_url')
+                    <label for="zen_url">Яндекс.Дзен url</label>
+                    <input type="text" class="form-control " name="zen_url" value="{{$setting->zen_url}}">
+                    @error('zen_url')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group col-sm-12 col-md-8">
-                    <label for="vk_url">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="ok_description" >{{$setting->ok_description}}</textarea>
-                    @error('ok_description')
+                    <label for="zen_description">Краткое описание</label>
+                    <textarea type="text" class="form-control " name="zen_description" >{{$setting->zen_description}}</textarea>
+                    @error('zen_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
-                <hr class="col-12"  style="padding: 0;height:1px;border:none;color:#333;background-color:#333;">
-                <div class="form-group  col-sm-12 col-md-8">
+                 <hr class="col-12"  style="padding: 0">
+
+                <div class="form-group  col-sm-12 col-md-6">
                     <label for="location">Адрес</label>
                     <input type="text" class="form-control " name="location" value="{{$setting->location}}">
                     @error('location')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
-                <div class="form-group  col-sm-12 col-md-12">
+                <div class="form-group  col-sm-12 col-md-6">
                     <label for="location_url">url адреса</label>
                     <input type="text" class="form-control " name="location_url" value="{{$setting->location_url}}">
                     @error('location_url')

@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.settings.roles.index', compact('roles'));
     }
 
 
@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        return view('admin.settings.roles.create');
     }
 
 
@@ -37,7 +37,7 @@ class RoleController extends Controller
     {
         $data = $request->validated();
         Role::firstOrCreate($data);
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.settings.roles.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.roles.edit', compact('role'));
+        return view('admin.settings.roles.edit', compact('role'));
     }
 
 
@@ -71,7 +71,7 @@ class RoleController extends Controller
     {
         $data = $request->validated();
         $role->update($data);
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.settings.roles.index');
     }
 
 
@@ -84,7 +84,7 @@ class RoleController extends Controller
     {
         try {
             $role->deleteOrFail();
-            return redirect()->route('admin.roles.index');
+            return redirect()->route('admin.settings.roles.index');
         } catch (\Exception $exception) {
             abort(501);
         }
