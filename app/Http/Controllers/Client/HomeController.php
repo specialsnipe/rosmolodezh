@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Helpers\General\CollectionHelper;
-use App\Http\Filters\SearchFilter;
-use App\Http\Requests\Search\FilterRequest;
-use App\Models\Exercise;
 use App\Models\Post;
-use App\Models\Setting;
 use App\Models\Track;
 use App\Models\Gender;
+use App\Models\Exercise;
 use App\Models\Occupation;
+use App\Models\Information;
+use App\Http\Filters\SearchFilter;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\Foundation\Application;
+use App\Helpers\General\CollectionHelper;
+use App\Http\Requests\Search\FilterRequest;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Contracts\Foundation\Application;
 
 class HomeController extends Controller
 {
@@ -37,7 +37,7 @@ class HomeController extends Controller
         $this->genders = Gender::all();
         $this->occupations = Occupation::all();
         $this->tracks = Track::all();
-        $this->settings = Setting::first();
+        $this->settings = Information::first();
     }
 
     public function index()
