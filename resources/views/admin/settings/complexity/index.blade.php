@@ -1,5 +1,27 @@
 @extends('admin.layouts.main')
 
+@push('style')
+    @livewireScripts
+    <style>
+        .modal-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 2001;
+            transform: translate(-50%, -50%);
+        }
+        .modal-bg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 2000;
+            background: hsl(0 0% 0% /0.5)
+        }
+    </style>
+@endpush
+
 @section('content')
 
 <div class="content-wrapper" style="padding-top: 1rem">
@@ -21,3 +43,7 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+    @livewireScripts
+@endpush
