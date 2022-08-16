@@ -45,9 +45,29 @@
 
 
                                 <div class="col-sm-12 col-lg-4 d-flex justify-content-sm-end align-items-center">
-                                    <a class="btn btn-outline-secondary mr-3"
-                                       href="{{ route('admin.tracks.show', $track->id) }}"> <i
-                                            class="fa fa-eye"></i></a>
+
+                                    @php $is_added = false; @endphp
+                                    @foreach(auth()->user()->tracks as $trackFromUser)
+                                        @if($track->id == $trackFromUser->id)
+                                            @php $is_added = true; @endphp
+                                        @endif
+                                    @endforeach
+
+                                        @if($is_added)
+                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">
+                                                @csrf
+                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i
+                                                        class="fa fa-eye"></i>Удалить траекторию</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">
+                                                @csrf
+                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i
+                                                        class="fa fa-eye"></i>Добавить тракторию себе</button>
+                                            </form>
+                                        @endif
+
+
                                     <a class="btn btn-outline-secondary mr-3"
                                        href="{{ route('admin.tracks.show', $track->id) }}"> <i
                                             class="fa fa-eye"></i></a>

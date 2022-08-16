@@ -60,14 +60,17 @@
                             <td>{{$user->last_name}} {{$user->first_name}} {{$user->father_name}} </td>
                         </tr>
                         <tr>
-                            <th>Выбранное направление</th>
+                            <th>Выбранное направление</th><td>
                             @if($user->tracks)
                                 @forelse($user->tracks as $track)
-                                    <td>{{$track->title}}</td>
-                                @empty
-                                    <td>Направление не выбрано</td>
+                                    <div class="h4 d-inline">
+                                    <span class=" badge bg-primary">{{$track->title}}</span>
+                                    </div>
+                                        @empty
+                                    Направление не выбрано
                                 @endforelse
                             @endif
+                                </td>
                         </tr>
                         <tr>
                             <th>Контактный номер</th>
