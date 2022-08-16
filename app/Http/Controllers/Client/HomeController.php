@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Helpers\General\CollectionHelper;
+use App\Http\Controllers\Controller;
+use App\Http\Filters\SearchFilter;
+use App\Http\Requests\Search\FilterRequest;
+use App\Models\Exercise;
+use App\Models\Gender;
+use App\Models\Information;
+use App\Models\Occupation;
 use App\Models\Post;
 use App\Models\Track;
-use App\Models\Gender;
-use App\Models\Exercise;
-use App\Models\Occupation;
-use App\Models\Information;
-use App\Http\Filters\SearchFilter;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Contracts\View\Factory;
-use App\Helpers\General\CollectionHelper;
-use App\Http\Requests\Search\FilterRequest;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\Foundation\Application;
 
 class HomeController extends Controller
 {

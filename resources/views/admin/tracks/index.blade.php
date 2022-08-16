@@ -48,6 +48,9 @@
                                     <a class="btn btn-outline-secondary mr-3"
                                        href="{{ route('admin.tracks.show', $track->id) }}"> <i
                                             class="fa fa-eye"></i></a>
+                                    <a class="btn btn-outline-secondary mr-3"
+                                       href="{{ route('admin.tracks.show', $track->id) }}"> <i
+                                            class="fa fa-eye"></i></a>
                                     <a class="btn btn-info mr-3" href="{{ route('admin.tracks.edit', $track->id) }}"> <i
                                             class="fa fa-pen"></i> Изменить</a>
 
