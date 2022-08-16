@@ -41,6 +41,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
 
     // manage tracks
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
+    Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Admin\TrackController::class, 'addTrackForUser'])->name('tracks.addTrackForUser');
     // manage block of the track
     Route::resource('tracks.blocks', \App\Http\Controllers\Admin\BlockController::class);
     // manage exercises of the block

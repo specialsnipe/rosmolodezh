@@ -147,4 +147,18 @@ class TrackController extends Controller
             abort(501);
         }
     }
+
+    public function addTrackForUser(Track $track)
+    {
+        $user = auth()->user()->id;
+        $track->users()->toggle($user);
+        $tracks = Track::all();
+        $allAverageMark = [];
+        foreach ($tracks as $track) {
+            $allAverageMark[] = AverageMarkTrack::getMark($track);
+        }
+        return redirect()->route('admin.tracks.index');
+    }
+
+
 }

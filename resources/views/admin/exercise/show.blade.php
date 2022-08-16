@@ -81,7 +81,6 @@
                                        href="{{route('admin.exercises.answers.create', [$exercise->id])}}">Ответить на
                                         задание <i
                                             class="fa fa-pen"></i></a>
-
                                 @endif
                                     <a class="btn btn-info mr-2"
                                    href="{{route('admin.blocks.exercises.edit', [$block->id, $exercise->id])}}">Изменить
