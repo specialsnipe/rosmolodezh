@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,9 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->string('button');
-            $table->string('link');
+            $table->string('button_name');
+            $table->string('button_link');
             $table->string('image');
+            $table->boolean('active')->default(true);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_updater_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->timestamps();

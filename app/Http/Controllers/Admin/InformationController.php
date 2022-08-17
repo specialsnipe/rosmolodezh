@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Setting\StoreSettingRequest;
-use App\Http\Requests\Setting\UpdateSettingRequest;
+use App\Http\Requests\Setting\UpdateSliderRequest;
 use App\Models\Information;
 
 class InformationController extends Controller
@@ -16,11 +16,11 @@ class InformationController extends Controller
         return view('admin.settings.information.index', compact('setting'));
     }
     /**
-     * @param UpdateSettingRequest $request
+     * @param UpdateSliderRequest $request
      * @param Information $setting
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateSettingRequest $request, Information $setting)
+    public function update(UpdateSliderRequest $request, Information $setting)
     {
         $data = $request->validated();
         $setting->update($data);
