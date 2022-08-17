@@ -10,7 +10,7 @@ class Complexity extends Model
     use HasFactory;
 
     public $fillable = [
-        'name', 'level', 'body'
+        'name', 'level', 'body', 'class_name'
     ];
 
     /**
