@@ -28,12 +28,10 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $data = $request->validated();
-        // dd($data['body']);
         $data['user_id'] = auth()->user()->id;
         $images = $data['file'];
         unset($data['file']);
         $post = Post::firstOrCreate($data);
-//        dd($images);
         foreach ($images as $image) {
             $filename = ImageService::make($image, 'posts/images');
             $imageData = [

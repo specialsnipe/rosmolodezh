@@ -13,6 +13,7 @@ class StoreSliderRequest extends FormRequest
      */
     public function authorize()
     {
+
         return auth()->check() && auth()->user()->role->name == 'admin';
     }
 

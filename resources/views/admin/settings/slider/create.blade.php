@@ -7,6 +7,8 @@
 @endpush
 
 @section('content')
+
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header m-3">
@@ -26,6 +28,13 @@
                         </div><!-- /.col -->
                     </div><!-- /.row -->
 
+                    @if (session('success'))
+                    <div class="m-3 alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
                     <div class="card">
                         <div class="card-header">
                             <h3>Создание слайда</h3>
@@ -34,7 +43,6 @@
                             <form action="{{route('admin.settings.slider.store')}}" method="post"
                                   enctype="multipart/form-data">
                                 @csrf
-
                                 <div class="row">
                                     {{-- fillable inputs --}}
 
@@ -95,9 +103,9 @@
 
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="file"
+                                                    <input type="file" class="custom-file-input" name="image"
                                                            id="image"
-                                                           value="{{old('file')}}">
+                                                           value="{{old('image')}}">
                                                     <label class="custom-file-label" for="exampleInputFile">Выберите
                                                         картинку</label>
                                                 </div>

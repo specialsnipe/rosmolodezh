@@ -10,8 +10,17 @@ class SliderItem extends Model
     use HasFactory;
 
     public $fillable = [
-        'title', 'body', 'image', 'link', 'button', 'user_id', 'user_updater_id'
+        'title', 'body', 'image', 'button_link', 'button_name', 'user_id', 'user_updater_id', 'active'
     ];
+
+    public $appends = [
+        'slide_original_path'
+    ];
+
+    public function getSlideOriginalPathAttribute()
+    {
+        return 'storage/slider/images/originals/' . $this->image;
+    }
 
     /**
      * Get the user that owns the SliderItem
@@ -22,6 +31,7 @@ class SliderItem extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     /**
      * Get the user that owns the SliderItem
      *

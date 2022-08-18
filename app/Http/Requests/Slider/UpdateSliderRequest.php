@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Setting;
+namespace App\Http\Requests\Slider;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,6 +13,7 @@ class UpdateSliderRequest extends FormRequest
      */
     public function authorize()
     {
+
         return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
@@ -24,31 +25,24 @@ class UpdateSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'tg_url'=>['required', 'url'],
-            'tg_description'=>'required',
-            'vk_url'=>['required', 'url'],
-            'vk_description'=>'required',
-            'ok_url'=> '',
-            'ok_description'=>'',
-            'location' => ['required'],
-            'location_description'=>['required'],
-            'location_url'=>['required', 'url']
+            'title' =>['required'],
+            'body'=>['required'],
+            'button_name'=>['required'],
+            'button_link'=>['required', 'url'],
+            'image'=>['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048']
         ];
     }
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function messages()
     {
         return [
-            'tg_url.required'=>'Ссылка в телеграм обязательна',
-            'tg_url.url'=>'Это должна быть ссылка (начинается с http:// или https::/)',
-            'tg_description.required'=>'Заполните описание к телеграму',
-            'vk_url.required'=>'Ссылка в вконтакте обязательна',
-            'vk_url.url'=>'Это должна быть ссылка (начинается с http:// или https::/)',
-            'vk_description.required'=>'Заполните описание к вконтаке',
+            'title.required'=> 'Поле название обязательно',
+            'body.required' => 'Поле текст слайда обязательно',
+            'button_name.required' => 'Поле Текст кнопки обязательно',
+            'button_link.required' => 'Поле url кнопки обязательно',
+            'button_link.url' => 'Это должна быть ссылка',
+            'image.image' => 'Файл должен быть картинкой',
+            'image.mimes' => 'Возможные форматы файлов: jpg,jpeg,png',
+            'image.max' => 'Файл слишком много весит! (не более 2мб)',
         ];
     }
 }

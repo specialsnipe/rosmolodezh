@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Slider;
+use App\Http\Requests\Slider\StoreSliderRequest;
+use App\Models\SliderItem;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSliderRequest;
-use App\Http\Requests\UpdateSliderRequest;
+use App\Http\Requests\Slider\UpdateSliderRequest;
+use App\Services\ImageService;
 
 class SliderController extends Controller
 {
@@ -26,59 +27,66 @@ class SliderController extends Controller
         return view('admin.settings.slider.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSliderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreSliderRequest $request)
     {
         $data = $request->validated();
-
+        $file = $data['image'];
+        $filename = ImageService::make($file, 'slider/images', false);
+        $data['image'] = $filename;
+        $data['user_id'] = auth()->user()->id;
+        SliderItem::create($data);
+        return redirect()
+            ->route('admin.settings.slider.create')
+            ->with(['success'=> 'Слайд успешно сохранен']);
     }
 
+
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param SliderItem $slider
+     * @return void
      */
-    public function show(Slider $slider)
+    public function show(SliderItem $slider)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Slider $slider)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSliderRequest  $request
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param SliderItem $slider
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function update(UpdateSliderRequest $request, Slider $slider)
+    public function edit(SliderItem $slider)
     {
-        //
+        return view('admin.settings.slider.edit', compact('slider'));
     }
 
+
+
+    public function update(UpdateSliderRequest $request, SliderItem $slider)
+    {
+
+        $data = $request->validated();
+
+        if(isset($data['image'])) {
+            ImageService::deleteOld($slider->image, 'slider/images');
+            $filename = ImageService::make($data['image'], 'slider/images', false);
+            $data['image'] = $filename;
+        }
+        $data['user_id'] = auth()->user()->id;
+        $slider->updateOrFail($data);
+        return redirect()
+            ->route('admin.settings.slider.edit', $slider->id)
+            ->with(['success'=> 'Слайд успешно изменен']);
+
+    }
+
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param SliderItem $slider
+     * @return void
      */
-    public function destroy(Slider $slider)
+    public function destroy(SliderItem $slider)
     {
         //
     }
