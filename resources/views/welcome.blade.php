@@ -16,7 +16,7 @@
                 <img src="{{ asset($slide->slide_original_path) }}" class="d-block w-100" height="500" alt="...">
                 <a href="#" style="text-decoration: none" class="carousel-caption d-none d-md-block transparent-elem">
                     <h5>{{ $slide->title }}</h5>
-                    <p>{{ $slide->body }}</p>
+                    <p>{!!  $slide->body !!} </p>
                 </a>
             </div>
         @endforeach

@@ -110,6 +110,10 @@
                         @if(request()->routeIs('admin.settings.genders.*') ) active @endif">
                             <i class="nav-icon fa fa-venus-mars"></i> Пол
                         </a>
+                        <a href="{{ route('admin.settings.phrases.index') }}" class="nav-link
+                        @if(request()->routeIs('admin.settings.phrases.*') ) active @endif">
+                            <i class="nav-icon fas fa-trophy"></i> Фразы
+                        </a>
                     </div>
                 </li>
                 <script type="text/javascript" defer>

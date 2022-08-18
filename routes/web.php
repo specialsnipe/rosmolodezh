@@ -34,6 +34,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
         Route::resource('/occupations', \App\Http\Controllers\Admin\OccupationController::class);
         Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class);
         Route::resource('/complexity', App\Http\Controllers\Admin\ComplexityController::class)->only('index');
+        Route::resource('/phrases', App\Http\Controllers\Admin\PhraseController::class);
     });
 
 
