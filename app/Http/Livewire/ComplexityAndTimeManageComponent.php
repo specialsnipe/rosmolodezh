@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Complexity;
 use App\Models\ComplexityTime;
+use Illuminate\Validation\Validator;
 
 class ComplexityAndTimeManageComponent extends Component
 {
@@ -29,6 +30,14 @@ class ComplexityAndTimeManageComponent extends Component
     public $modalDataBody;
 
 
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if ($this->somethingElseIsInvalid()) {
+                $validator->errors()->add('modalError', 'Исправьте ошибки в валидации');
+            }
+        });
+    }
 
     /**
      *  open modal for change the complexity time
@@ -180,59 +189,65 @@ class ComplexityAndTimeManageComponent extends Component
      */
     public function updateTime($complexity_time_id)
     {
-        $currentTimeInterval = ComplexityTime::find($complexity_time_id);
-        $this->target_complexity_time = $currentTimeInterval;
-        $nextTimeInterval;
-        $oldTimeInterval;
-        $maybeNextStartedAt = $this->target_complexity_time->ended_at + 1;
+        if ($this->validateTimeMax($this->modalDataTimeMax)) {
 
-        foreach ($this->complexity_times as $complexity_time) {
-            if ($maybeNextStartedAt == $complexity_time->started_at) {
-                $nextTimeInterval = $complexity_time;
+            $currentTimeInterval = ComplexityTime::find($complexity_time_id);
+            $this->target_complexity_time = $currentTimeInterval;
+            $nextTimeInterval;
+            $oldTimeInterval;
+            $maybeNextStartedAt = $this->target_complexity_time->ended_at + 1;
+
+            foreach ($this->complexity_times as $complexity_time) {
+                if ($maybeNextStartedAt == $complexity_time->started_at) {
+                    $nextTimeInterval = $complexity_time;
+                    $currentTimeInterval->update([
+                        'ended_at' => $this->modalDataTimeMax,
+                        'class_name' => $this->modalDataClassName,
+                    ]);
+                    $nextTimeInterval->update([
+                        'started_at' => $currentTimeInterval->ended_at + 1,
+                    ]);
+                }
+            }
+
+            if (!isset($nextTimeInterval)) {
                 $currentTimeInterval->update([
                     'ended_at' => $this->modalDataTimeMax,
                     'class_name' => $this->modalDataClassName,
                 ]);
-                $nextTimeInterval->update([
-                    'started_at' => $currentTimeInterval->ended_at + 1,
-                ]);
             }
-        }
 
-        if (!isset($nextTimeInterval)) {
-            $currentTimeInterval->update([
-                'ended_at' => $this->modalDataTimeMax,
-                'class_name' => $this->modalDataClassName,
-            ]);
+            $this->complexity_times = ComplexityTime::all()->sortBy('started_at');
+            $this->modal_opened = false;
         }
-
-        $this->complexity_times = ComplexityTime::all()->sortBy('started_at');
-        $this->modal_opened = false;
     }
     /**
      *  create a new time interval
      */
     public function createTime()
     {
-        $lastComplexityTime = ComplexityTime::all()->sortByDesc('ended_at')->first();
-        $this->modal_isCreateNewInterval = false;
+        if ($this->validateTimeMax($this->modalDataTimeMax)) {
 
-        if (isset($lastComplexityTime)) {
-            ComplexityTime::create([
-                'started_at' => $lastComplexityTime->ended_at + 1,
-                'ended_at' => $this->modalDataTimeMax,
-                'class_name' => $this->modalDataClassName
-            ]);
-        } else {
-            ComplexityTime::create([
-                'started_at' => 0,
-                'ended_at' => $this->modalDataTimeMax,
-                'class_name' => $this->modalDataClassName
-            ]);
+            $lastComplexityTime = ComplexityTime::all()->sortByDesc('ended_at')->first();
+            $this->modal_isCreateNewInterval = false;
+
+            if (isset($lastComplexityTime)) {
+                ComplexityTime::create([
+                    'started_at' => $lastComplexityTime->ended_at + 1,
+                    'ended_at' => $this->modalDataTimeMax,
+                    'class_name' => $this->modalDataClassName
+                ]);
+            } else {
+                ComplexityTime::create([
+                    'started_at' => 0,
+                    'ended_at' => $this->modalDataTimeMax,
+                    'class_name' => $this->modalDataClassName
+                ]);
+            }
+
+            $this->complexity_times = ComplexityTime::all()->sortBy('started_at');
+            $this->modal_opened = false;
         }
-
-        $this->complexity_times = ComplexityTime::all()->sortBy('started_at');
-        $this->modal_opened = false;
     }
 
     /**
@@ -350,16 +365,7 @@ class ComplexityAndTimeManageComponent extends Component
      */
     public function updateComplexity(Complexity $complexity)
     {
-        $data = $this->validate([
-            'modalDataName' => ['required', 'unique:complexities,name,' . $complexity->id],
-            'modalDataLevel' => ['required', 'unique:complexities,level,' . $complexity->id],
-        ],[
-            'modalDataName.required' => 'Обязательно напишите название.',
-            'modalDataName.unique' => 'Сложность с таким названием уже существует.',
-            'modalDataLevel.required' => 'Обязательно напишите уровень.',
-            'modalDataLevel.unique' => 'Сложность с таким уровнем уже существует.',
-        ]);
-        if ($data) {
+        if ($this->validateDataNameAndLevel()) {
             $complexity->update([
                 'name' => $this->modalDataName ,
                 'level' => $this->modalDataLevel ,
@@ -434,16 +440,7 @@ class ComplexityAndTimeManageComponent extends Component
      */
     public function createComplexity()
     {
-        // dd($this->modalDataClassName);
-        $validatedData = $this->validate([
-            'modalDataName' => ['required', 'unique:complexities,name'],
-            'modalDataLevel' => ['required', 'unique:complexities,level'],
-        ],[
-            'modalDataName.required' => 'Обязательно напишите название.',
-            'modalDataName.unique' => 'Сложность с таким названием уже существует.',
-            'modalDataLevel.required' => 'Обязательно напишите уровень.',
-            'modalDataLevel.unique' => 'Сложность с таким уровнем уже существует.',
-        ]);
+        $validatedData = $this->validateDataNameAndLevel();
 
         if ($validatedData) {
             Complexity::create([
@@ -466,12 +463,7 @@ class ComplexityAndTimeManageComponent extends Component
         $this->modal_isCreateNewInterval = false;
     }
 
-
-    /**
-     * Validate data time interval
-     *
-     */
-    public function updatedModalDataTimeMax($value)
+    public function validateTimeMax($value)
     {
         if ($this->modal_isCreateNewInterval) {
             $lastComplexityTime = ComplexityTime::all()->sortByDesc('ended_at')->first();
@@ -479,19 +471,25 @@ class ComplexityAndTimeManageComponent extends Component
                 $lastTimeIntervalEnd = $lastComplexityTime->ended_at;
                 if ($lastTimeIntervalEnd >= $value) {
                     $this->addError('modalDataTimeMax', "Верхнее значение не может быть ниже или равно окончанию последнего интервала - {$lastTimeIntervalEnd}");
+                    return false;
                 } else {
                     $this->resetErrorBag('modalDataTimeMax');
+                    return true;
                 }
             }
         } else {
             $currentTimeIntervalEnd = $this->target_complexity_time->ended_at;
             $currentTimeIntervalStart = $this->target_complexity_time->started_at;
             $nextTimeInterval;
+            $lastTimeInterval;
             $maybeNextStartedAt = $this->target_complexity_time->ended_at + 1;
+            $maybeLastEndedAt = $this->target_complexity_time->started_at - 1;
 
             foreach ($this->complexity_times as $complexityTime) {
                 if ($maybeNextStartedAt == $complexityTime->started_at) {
                     $nextTimeInterval = $complexityTime;
+                }if ($maybeLastEndedAt == $complexityTime->ended_at) {
+                    $lastTimeInterval = $complexityTime;
                 }
             }
 
@@ -499,10 +497,12 @@ class ComplexityAndTimeManageComponent extends Component
                 if ($value <= $currentTimeIntervalStart) {
                     $this->addError(
                         'modalDataTimeMax',
-                        "Верхнее значение не может быть ниже или равно окончанию последнего интервала - {$lastTimeIntervalEnd}"
+                        "Верхнее значение не может быть ниже или равно окончанию последнего интервала - {$lastTimeInterval->ended_at} "
                     );
+                    return false;
                 } else {
                     $this->resetErrorBag('modalDataTimeMax');
+                    return true;
                 }
             } else {
                 if ($value <= $nextTimeInterval->ended_at &&
@@ -513,6 +513,7 @@ class ComplexityAndTimeManageComponent extends Component
                         'modalDataTimeMax',
                         "Заданное значение попадает в интервал - {$min} : {$max}"
                     );
+                    return false;
                 } elseif ($value > $nextTimeInterval->ended_at) {
 
                     // Error message about max more then ended at next interval
@@ -520,26 +521,25 @@ class ComplexityAndTimeManageComponent extends Component
                         'modalDataTimeMax',
                         "Верхнее значение текущего интервала привышает верхнее значение следущего - {$nextTimeInterval->ended_at}"
                     );
+                    return false;
                 } elseif ($value <= $currentTimeIntervalStart) {
                     $this->addError(
                         'modalDataTimeMax',
                         "Верхнее значение не может быть ниже или равно нижнему значению этого интервала - {$currentTimeIntervalStart}"
                     );
+                    return false;
                 } else {
                     $this->resetErrorBag('modalDataTimeMax');
+                    return true;
                 }
             }
         }
     }
 
-    /**
-     * Validate data name of new complexity
-     *
-     */
-    public function updatedModalDataName($value)
+    public function validateDataNameAndLevel()
     {
         if ($this->targetComplexityId) {
-            $this->validate([
+            return $this->validate([
                 'modalDataName' => ['required', 'unique:complexities,name,' . $this->targetComplexityId],
                 'modalDataLevel' => ['required', 'unique:complexities,level,' . $this->targetComplexityId],
             ],[
@@ -549,7 +549,7 @@ class ComplexityAndTimeManageComponent extends Component
                 'modalDataLevel.unique' => 'Сложность с таким уровнем уже существует.',
             ]);
         } else {
-            $this->validate([
+            return $this->validate([
                 'modalDataName' => ['required', 'unique:complexities,name'],
                 'modalDataLevel' => ['required', 'unique:complexities,level'],
             ],[
@@ -560,29 +560,20 @@ class ComplexityAndTimeManageComponent extends Component
             ]);
         }
     }
+
+    public function updatedModalDataTimeMax($value)
+    {
+        $this->validateTimeMax($value);
+    }
+
+    public function updatedModalDataName($value)
+    {
+        $this->validateDataNameAndLevel();
+    }
+
     public function updatedModalDataLevel($value)
     {
-        if ($this->targetComplexityId) {
-            $this->validate([
-                'modalDataName' => ['required', 'unique:complexities,name,' .$this->targetComplexityId],
-                'modalDataLevel' => ['required', 'unique:complexities,level,' . $this->targetComplexityId],
-            ],[
-                'modalDataName.required' => 'Обязательно напишите название.',
-                'modalDataName.unique' => 'Сложность с таким названием уже существует.',
-                'modalDataLevel.required' => 'Обязательно напишите уровень.',
-                'modalDataLevel.unique' => 'Сложность с таким уровнем уже существует.',
-            ]);
-        } else {
-            $this->validate([
-                'modalDataName' => ['required', 'unique:complexities,name'],
-                'modalDataLevel' => ['required', 'unique:complexities,level'],
-            ],[
-                'modalDataName.required' => 'Обязательно напишите название.',
-                'modalDataName.unique' => 'Сложность с таким названием уже существует.',
-                'modalDataLevel.required' => 'Обязательно напишите уровень.',
-                'modalDataLevel.unique' => 'Сложность с таким уровнем уже существует.',
-            ]);
-        }
+        $this->validateDataNameAndLevel();
     }
 
     public function mount()
