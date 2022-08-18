@@ -11,6 +11,7 @@ use App\Models\Gender;
 use App\Models\Information;
 use App\Models\Occupation;
 use App\Models\Post;
+use App\Models\SliderItem;
 use App\Models\Track;
 
 class HomeController extends Controller
@@ -36,6 +37,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        $slider = SliderItem::all();
         $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
@@ -43,6 +45,7 @@ class HomeController extends Controller
             'tracks' => $this->tracks,
             'occupations' => $this->occupations,
             'genders' => $this->genders,
+            'slider' => $slider
         ]);
     }
 

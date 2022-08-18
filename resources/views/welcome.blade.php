@@ -11,12 +11,12 @@
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div> -->
     <div class="carousel-inner">
-        @foreach ($posts as $post)
+        @foreach ($slider as $slide)
             <div class="carousel-item @if($loop->first) active @endif">
-                <img src="{{ asset($post->images['0']->original_image) }}" class="d-block w-100" height="500" alt="...">
-                <a href="{{ route('posts.show', $post->id) }}" style="text-decoration: none" class="carousel-caption d-none d-md-block transparent-elem">
-                    <h5>{{ $post->title }}</h5>
-                    <p>{{ $post->excerpt }}</p>
+                <img src="{{ asset($slide->slide_original_path) }}" class="d-block w-100" height="500" alt="...">
+                <a href="#" style="text-decoration: none" class="carousel-caption d-none d-md-block transparent-elem">
+                    <h5>{{ $slide->title }}</h5>
+                    <p>{{ $slide->body }}</p>
                 </a>
             </div>
         @endforeach
