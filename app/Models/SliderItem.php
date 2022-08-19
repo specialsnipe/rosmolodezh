@@ -14,12 +14,18 @@ class SliderItem extends Model
     ];
 
     public $appends = [
-        'slide_original_path'
+        'img_original_path',
+        'img_url',
     ];
 
-    public function getSlideOriginalPathAttribute()
+    public function getImgOriginalPathAttribute()
     {
         return 'storage/slider/images/originals/' . $this->image;
+    }
+
+    public function getImgUrlAttribute()
+    {
+        return asset('storage/slider/images/originals/' . $this->image);
     }
 
     /**

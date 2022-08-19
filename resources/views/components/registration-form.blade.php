@@ -8,8 +8,8 @@ $occupations = Occupation::all();
 $tracks = Track::all();
 @endphp
 
-<section class="registr-form container mt-3">
-    <div class="line-top"></div>
+<section class="registr-form mt-3">
+    <div class="line"></div>
 
     @if (session()->has('error'))
     <div class="container mt-3 mb-3">
@@ -157,7 +157,7 @@ $tracks = Track::all();
         </div> --}}
         </div>
     </form>
-    <div class="line-down"></div>
+    <div class="line line-down"></div>
     <script>
 
         window.addEventListener("DOMContentLoaded", function() {

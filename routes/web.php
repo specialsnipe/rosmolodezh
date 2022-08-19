@@ -100,7 +100,8 @@ Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::c
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('profile', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile');
+    Route::get('profile/data', [\App\Http\Controllers\Client\UserController::class, 'data'])->name('profile.data');
+    Route::get('profile/progress', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile.progress');
     Route::get('user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified

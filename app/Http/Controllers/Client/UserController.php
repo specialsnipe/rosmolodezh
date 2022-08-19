@@ -39,6 +39,17 @@ class UserController extends Controller
         }
         return view('profile.student', $data);
     }
+    public function data()
+    {
+        $data = [
+            'genders' => Gender::all(),
+            'occupations' => Occupation::all(),
+            'tracks' => Track::all(),
+            'user' => auth()->user(),
+        ];
+        return view('profile.personal-data', $data);
+
+    }
     /**
      *
      */

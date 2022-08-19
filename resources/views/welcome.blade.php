@@ -1,117 +1,81 @@
 @extends('layouts.main')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/landing-slider.css') }}">
+
+@endpush
 @section('content')
 
 
 
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
-    <!-- <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div> -->
-    <div class="carousel-inner">
-        @foreach ($slider as $slide)
-            <div class="carousel-item @if($loop->first) active @endif">
-                <img src="{{ asset($slide->slide_original_path) }}" class="d-block w-100" height="500" alt="...">
-                <a href="#" style="text-decoration: none" class="carousel-caption d-none d-md-block transparent-elem">
-                    <h5>{{ $slide->title }}</h5>
-                    <p>{!!  $slide->body !!} </p>
-                </a>
-            </div>
-        @endforeach
-        {{-- <div class="carousel-item">
-            <img src="images/2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block transparent-elem">
-                <h5>Метка второго слайда</h5>
-                <p>Некоторый репрезентативный заполнитель для второго слайда.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/3.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block transparent-elem">
-                <h5>Метка третьего слайда</h5>
-                <p>Некоторый репрезентативный заполнитель для третьего слайда.</p>
-            </div>
-        </div> --}}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Предыдущий</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Следующий</span>
-    </button>
-</div>
+<section class="container p-0">
 
-<section class="container-xxl mt-4">
-    <div class="row cards-with-text">
-        <div class="col-sm col-md-6 col-lg-3">
-            <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных программистов с
-                ОВЗ"</div>
-        </div>
-        <div class="col-sm col-md-6 col-lg-3">
-            <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных программистов с
-                ОВЗ"</div>
-        </div>
-        <div class="col-sm col-md-6 col-lg-3">
-            <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных программистов с
-                ОВЗ"</div>
-        </div>
-        <div class="col-sm col-md-6 col-lg-3">
-            <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных программистов с
-                ОВЗ"</div>
+    <div class="slider">
+        <div class="slider__wrapper">
+            <div class="slider__items">
+                @foreach ($slides as $slide)
+                <div class="slider__item">
+                    <div class="slide__img">
+                        <img class="img-fluid rounded " src="{{ $slide->img_url }}" alt="">
+                    </div>
+                    <div class="slide__text">
+                        <h3>{{ $slide->title }}</h3>
+                        <span>{!! $slide->body !!}</span>
+                        <a target="_blank" href="{{ $slide->button_link }}" class="btn btn-primary">{!!
+                            $slide->button_name !!}</a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
 
-<section class="news-blocks container-fluid mt-4">
-    <div class="block">
-        <div class="row directions-block ">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Посмотреть все направления
-                        </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample">
-                        <div class="row d-flex justify-content-evenly">
-                            @foreach ($tracks as $track)
-
-                            <div class="card col-md-3 col-lg-3 col-sm-12 ">
-                                <a href="{{ route('tracks.show', $track->id) }}" class="card-title">
-                                <img src="/images/card-images-1.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                    {{ $track->title }}
-                                    </div>
-
-                                </a>
-                            </div>
-
-                                <!-- <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a> -->
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+<section class="screen phrases-screen p-4">
+    <div class="container  p-0 ">
+        <div class="row cards-with-text">
+            <div class="col-sm col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center">"Будь умнее и умней с нами
+                    каждый день!"</div>
             </div>
+            <div class="col-sm col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных
+                    программистов с ОВЗ"</div>
+            </div>
+            <div class="col-sm col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center">"Почему именно мы? Потому
+                    что мы профессионалы своего дела."</div>
+            </div>
+            <div class="col-sm col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center">"Быть умнее других не
+                    зазорно!"</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="screen news-blocks">
+    <div class="container p-0">
+        <h2 class="text-light d-flex justify-content-center w-100 mt-4">Все направления</h2>
+        <div class="cards-track">
+            @foreach ($tracks as $track)
+            <div class="card col-md-3 col-lg-3 col-sm-12  d-flex flex-column justify-content-between">
+
+                <a href="{{ route('tracks.show', $track->id) }}">
+                    <img src="{{ asset($track->image_original ) }}" class="card-img-top rounded" alt="...">
+                </a>
+                <a href="{{ route('tracks.show', $track->id) }}" class="card-footer">
+                    <div class="">{{ $track->title }}</div>
+                </a>
+            </div>
+            @endforeach
+
         </div>
 
 
         <div class="mt-2 d-flex justify-content-center">
             <p>
-                Мы не рекомендуем использовать для разметки материалов системы управления тегами — в этом случае Метрика
-                не
-                сможет корректно
-                обработать размеченные данные. Но такие системы можно использовать для других целей, например, для
-                установки
-                счетчика на сайт.
-                Все размеченные сущности Schema.org должны быть внутри тега body. Если на странице несколько материалов,
-                каждый из них должен
-                быть размечен отдельно.
+                Тект для того чтобы пояснить что вообще зачем тут это и всё
             </p>
         </div>
     </div>
@@ -119,14 +83,32 @@
     </div>
 </section>
 <section>
-    <div class="news-block container-fluid">
+    <div class="container p-0">
         <h2 class="mt-4 mb-4"> Последние новости</h2>
         <x-index-post></x-index-post>
-        <a href="{{ route('posts.index') }}" class="btn mb-5">Все новости</a>
+        <a href="{{ route('posts.index') }}" class="btn w-100">Все новости</a>
     </div>
 </section>
 @guest
+<section class="container">
 <x-registration-form></x-registration-form>
+</section>
 @endguest
 @endsection
 
+
+@push('script')
+
+<script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
+<script defer>
+    let sliderblock = document.querySelector('.slider');
+        if (sliderblock) {
+            var slider = new SimpleAdaptiveSlider('.slider', {
+                loop: false,
+                autoplay: false,
+                interval: 2000,
+                swipe: true,
+            });
+        }
+</script>
+@endpush

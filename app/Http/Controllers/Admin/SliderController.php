@@ -16,7 +16,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return view('admin.settings.slider.index');
+        $slides = SliderItem::latest()->get();
+        return view('admin.settings.slider.index', compact('slides'));
     }
 
     /**

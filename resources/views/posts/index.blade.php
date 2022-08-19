@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section>
+<section class="container">
     <p class="h1-content">Новости</p>
     <div class="news-block container-fluid">
         <div class="card-form row d-flex justify-content-between">
@@ -15,6 +15,8 @@
 </section>
 
 @guest
-<x-registration-form></x-registration-form>
+<section class="container">
+    <x-registration-form></x-registration-form>
+</section>
 @endguest
 @endsection

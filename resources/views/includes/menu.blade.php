@@ -49,7 +49,8 @@
                         <li><a class="dropdown-item" aria-current="page" href="{{ route('admin.main.index') }}">Администрирование</a></li>
                     @else
 
-                        <li><a class="dropdown-item" aria-current="page" href="{{ route('profile') }}">Личный кабинет</a></li>
+                        <li><a class="dropdown-item" aria-current="page" href="{{ route('profile.data') }}">Персональные данные</a></li>
+                        <li><a class="dropdown-item" aria-current="page" href="{{ route('profile.progress') }}">Личный кабинет</a></li>
                     @endif
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item d-flex align-items-center" aria-current="page" href="{{ route('auth.logout') }}">Выход <i class="p-2 fas fa-sign-out"></i></a></li>

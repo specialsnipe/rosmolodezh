@@ -21,8 +21,8 @@
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.settings.slider.index')}}">Слайдеры</a></li>
-                                <li class="breadcrumb-item active">Создание слайдера</li>
+                                        href="{{route('admin.settings.slider.index')}}">Слайдер</a></li>
+                                <li class="breadcrumb-item active">Создание слайда</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->

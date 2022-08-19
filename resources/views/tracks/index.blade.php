@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @push('styles')
-    <style>.cards-wrapper {
+<style>
+    .cards-wrapper {
         display: flex;
         justify-content: center;
     }
@@ -57,9 +58,11 @@
         .card img {
             min-height: 200px;
         }
+
         .carousel {
             width: auto;
         }
+
         .card {
             width: 95%;
             height: auto;
@@ -71,43 +74,41 @@
             width: auto;
             margin: 0;
         }
+
         .card {
             width: 65%;
 
         }
-    }</style>
+    }
+</style>
 @endpush
 
 @section('content')
-<p class="h1-content">Наши направления</p>
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-touch="true">
-    <div class="carousel-inner">
-        <div class="carousel-item active col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="cards-wrapper">
+<div class="container">
+    <p class="h1-content">Наши направления</p>
+    <div class="slider">
+        <div class="slider__wrapper">
+            <div class="slider__items">
                 @foreach ($tracks as $track )
+                <div class="slider__item">
 
-                <div class="card">
-                    <img src="{{ asset($track->url_image_original) }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $track->title }}</h5>
-                        <p class="card-text">{{ $track->body }}</p>
-                        <a href="{{ route('tracks.show', $track->id) }}" class="btn btn-primary">Подробнее...</a>
+                    <div class="card">
+                        <img src="{{ asset($track->url_image_original) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $track->title }}</h5>
+                            <p class="card-text">{{ $track->body }}</p>
+                            <a href="{{ route('tracks.show', $track->id) }}" class="btn">Подробнее...</a>
+                        </div>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Предыдущий</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Следующий</span>
-    </button>
 </div>
 @guest
-<x-registration-form></x-registration-form>
+<div class="container">
+    <x-registration-form></x-registration-form>
+</div>
 @endguest
 @endsection

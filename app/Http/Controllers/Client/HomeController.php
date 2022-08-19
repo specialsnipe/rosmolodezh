@@ -37,7 +37,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $slider = SliderItem::all();
+        $slides = SliderItem::all();
         $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
@@ -45,7 +45,7 @@ class HomeController extends Controller
             'tracks' => $this->tracks,
             'occupations' => $this->occupations,
             'genders' => $this->genders,
-            'slider' => $slider
+            'slides' => $slides
         ]);
     }
 
