@@ -13,7 +13,7 @@ class UpdatePhraseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -24,7 +24,14 @@ class UpdatePhraseRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'body' => ['required']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'body.required' => 'Поле обязательно для заполнения'
         ];
     }
 }

@@ -35,12 +35,12 @@
                                     <td>{{$phrase->body}}</td>
                                     <td>
                                         <div class="">
-                                            <a href="{{ route('admin.settings.roles.edit', $role->id) }}"
+                                            <a href="{{ route('admin.settings.phrases.edit', $phrase->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.settings.roles.destroy', $role->id)}} " method="post">
+                                        <form action="{{route('admin.settings.phrases.destroy', $phrase->id)}} " method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>
@@ -59,7 +59,7 @@
                     <!-- /.card-body -->
                 </div>
                 <div class="col-3 mt-3">
-                    <a href="{{route('admin.settings.roles.create')}}"
+                    <a href="{{route('admin.settings.phrases.create')}}"
                        class="btn btn-block btn-primary">Добавить</a>
                 </div>
                 <!-- /.card -->

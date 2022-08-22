@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreLandingPhraseRequest;
-use App\Http\Requests\UpdateLandingPhraseRequest;
+use App\Http\Requests\Phrase\StorePhraseRequest;
+use App\Http\Requests\Phrase\UpdatePhraseRequest;
 use App\Models\Phrase;
 
 class PhraseController extends Controller
@@ -27,18 +27,21 @@ class PhraseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.settings.phrases.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreLandingPhraseRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StorePhraseRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreLandingPhraseRequest $request)
+    public function store(StorePhraseRequest $request)
     {
-        //
+        $data = $request->validated();
+        Phrase::firstOrCreate($data);
+        return redirect()
+            ->route('admin.settings.phrases.create')
+            ->with(['success'=> 'Фраза успешно сохранена']);
     }
 
     /**
@@ -47,7 +50,7 @@ class PhraseController extends Controller
      * @param  \App\Models\Phrase  $landingPhrase
      * @return \Illuminate\Http\Response
      */
-    public function show(Phrase $landingPhrase)
+    public function show(Phrase $phrase)
     {
         //
     }
@@ -55,33 +58,32 @@ class PhraseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Phrase  $landingPhrase
+     * @param  \App\Models\Phrase  $phrase
      * @return \Illuminate\Http\Response
      */
-    public function edit(Phrase $landingPhrase)
+    public function edit(Phrase $phrase)
     {
-        //
+        return view('admin.settings.phrases.edit', compact('phrase'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateLandingPhraseRequest  $request
-     * @param  \App\Models\Phrase  $landingPhrase
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateLandingPhraseRequest $request, Phrase $landingPhrase)
+
+    public function update(UpdatePhraseRequest $request, Phrase $phrase)
     {
-        //
+        $data = $request->validated();
+        $phrase->updateOrFail($data);
+
+        return redirect()
+            ->route('admin.settings.phrases.edit', $phrase->id)
+            ->with(['success'=> 'Фраза успешно изменена']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Phrase  $landingPhrase
+     * @param  \App\Models\Phrase  $phrase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Phrase $landingPhrase)
+    public function destroy(Phrase $phrase)
     {
         //
     }

@@ -7,25 +7,32 @@
         <!-- Content Header (Page header) -->
         <div class="row d-flex justify-content-between mr-3 ml-3">
             <div class="col-sm-6">
-                <h1 class="">Изменение роли: "{{$role->name}}"</h1>
+                <h1 class="">Изменение роли: "{{$phrase->body}}"</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right ">
                     <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.settings.roles.index')}}">Роли</a></li>
-                            <li class="breadcrumb-item active">Изменение роли: {{$role->name}}</li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.settings.phrases.index')}}">Фразы</a></li>
+                            <li class="breadcrumb-item active">Изменение фразы: {{$phrase->name}}</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        <div class="col-4">
-            <form action="{{route('admin.settings.roles.update', $role->id)}}" method="post">
+
+        @if (session('success'))
+            <div class="m-3 alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="col-8">
+            <form action="{{route('admin.settings.phrases.update', $phrase->id)}}" method="post">
                 @csrf
                 @method('patch')
                 <div class="form-group ml-3 ">
-                    <label for="exampleInputEmail1">Введите роль</label>
-                    <input type="text" class="form-control" id="gender" name="name" value="{{$role->name}}" placeholder="Роль">
-                    @error('name')
+                    <label for="exampleInputEmail1">Введите новую фразу</label>
+                    <input type="text" class="form-control" id="body" name="body" value="{{$phrase->body}}" placeholder="Роль">
+                    @error('body')
                     <div class="text-danger">{{$message }}</div>
                     @enderror
                 </div>

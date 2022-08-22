@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('body');
             $table->timestamps();
+            $table->boolean('active')->default(true);
         });
     }
 
