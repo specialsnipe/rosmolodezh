@@ -8,7 +8,7 @@
 
 
 
-<section class="container p-0">
+<section class="container p-0 mt-3">
 
     <div class="slider">
         <div class="slider__wrapper">
@@ -16,7 +16,9 @@
                 @foreach ($slides as $slide)
                 <div class="slider__item">
                     <div class="slide__img">
-                        <img class="img-fluid rounded " src="{{ $slide->img_url }}" alt="">
+                        <a>
+                            <img class="img-fluid" src="{{ $slide->img_url }}" alt="">
+                        </a>
                     </div>
                     <div class="slide__text">
                         <h3>{{ $slide->title }}</h3>
@@ -34,20 +36,20 @@
 <section class="screen phrases-screen p-4">
     <div class="container  p-0 ">
         <div class="row cards-with-text">
-            <div class="col-sm col-md-6 col-lg-3">
-                <div class="card-text-main d-flex align-items-center justify-content-center">"Будь умнее и умней с нами
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center m-0 m-sm-2">"Будь умнее и умней с нами
                     каждый день!"</div>
             </div>
-            <div class="col-sm col-md-6 col-lg-3">
-                <div class="card-text-main d-flex align-items-center justify-content-center">"3 000 успешных
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center m-0">"3 000 успешных
                     программистов с ОВЗ"</div>
             </div>
-            <div class="col-sm col-md-6 col-lg-3">
-                <div class="card-text-main d-flex align-items-center justify-content-center">"Почему именно мы? Потому
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center m-0">"Почему именно мы? Потому
                     что мы профессионалы своего дела."</div>
             </div>
-            <div class="col-sm col-md-6 col-lg-3">
-                <div class="card-text-main d-flex align-items-center justify-content-center">"Быть умнее других не
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card-text-main d-flex align-items-center justify-content-center m-0">"Быть умнее других не
                     зазорно!"</div>
             </div>
         </div>
@@ -56,17 +58,19 @@
 
 <section class="screen news-blocks">
     <div class="container p-0">
-        <h2 class="text-light d-flex justify-content-center w-100 mt-4">Все направления</h2>
-        <div class="cards-track">
+        <h2 class="text-light d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
+        <div class="row">
             @foreach ($tracks as $track)
-            <div class="card col-md-3 col-lg-3 col-sm-12  d-flex flex-column justify-content-between">
+            <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="card card-track d-flex flex-column justify-content-between">
 
-                <a href="{{ route('tracks.show', $track->id) }}">
-                    <img src="{{ asset($track->image_original ) }}" class="card-img-top rounded" alt="...">
-                </a>
-                <a href="{{ route('tracks.show', $track->id) }}" class="card-footer">
-                    <div class="">{{ $track->title }}</div>
-                </a>
+                    <a href="{{ route('tracks.show', $track->id) }}">
+                        <img src="{{ asset($track->image_original ) }}" class="card-img-top rounded" alt="...">
+                    </a>
+                    <a href="{{ route('tracks.show', $track->id) }}" class="card-footer">
+                        <div class="">{{ $track->title }}</div>
+                    </a>
+                </div>
             </div>
             @endforeach
 

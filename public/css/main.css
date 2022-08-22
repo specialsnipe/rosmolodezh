@@ -1582,3 +1582,8 @@ header form .btn {
     -ms-transform: rotate(-45deg) translate(10%, -200%);
     -o-transform: rotate(-45deg) translate(10%, -200%);
 }
+
+.card-track  a  img {
+    max-height: 100px;
+    min-height: 100px;
+}
