@@ -15,7 +15,7 @@
         type='text/css' media='all' />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/media.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/media.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/css/simple-adaptive-slider.min.css') }}">
 
     {{-- <script data-cfasync="false">

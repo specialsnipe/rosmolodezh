@@ -5,10 +5,8 @@
     margin: 0;
 }
 
-
-
 .slider__indicators {
-    z-index: 100;
+    z-index:200;
     right: 0;
 }
 .slider__indicators > * {
@@ -16,7 +14,7 @@
     width: 15px;
     height:15px;
     margin: auto 5px auto 5px;
-    background: hsl(0, 0%, 77%);
+    background: hsl(0, 0%, 20%);
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -36,31 +34,6 @@
     -ms-transform: scale(1.5);
     -o-transform: scale(1.5);
 }
-
-.slider__item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.slider__item .slide__text {
-    margin: 0 auto;
-}
-
-.slider__item:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-
-.slider__item > .slide__img {
-    width: 100% !important;
-    min-width: 50% !important;
-    max-width: 50% !important;
-    min-height: 100%;
-    max-height: 100%;
-    display: flex;
-    align-items: center;
-}
-
 .slider__item > * > .btn,.slider__indicator_active  {
     background: hsl(32, 88%, 54%) !important;
     border:1px solid hsl(32, 100%, 65%) !important;
@@ -70,3 +43,59 @@
     background: hsl(32, 91%, 64%) !important;
     border:1px solid hsl(32, 100%, 74%) !important;
 }
+
+
+.slider__item {
+    height: 450px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.slider__item .slide__text {
+    margin: 0 auto;
+}
+
+
+.slider__item {
+    position: relative;
+}
+.slide__img {
+    position: absolute;
+    width: 100%;
+}
+.slide__text {
+    color: white;
+    position: absolute;
+    background: black;
+    height: 100%;
+    padding: 3rem 12rem 3rem 5rem;
+    text-overflow: clip;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg,  hsl(0 0% 0%/0.4),hsl(0 0% 0%/0));
+
+}
+.slider__item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.slider__item:nth-child(even) .slide__text {
+    padding: 3rem 5rem 3rem 12rem;
+    background: linear-gradient(90deg, hsl(0 0% 0%/0),hsl(0 0% 0%/0.4));
+}
+
+.slider__item > .slide__img,
+.slider__item > .slide__img a,
+.slider__item > .slide__img a img
+{
+    width: 100% !important;
+    height: 100% !important;
+    /* min-width: 50% !important;
+    max-width: 50% !important; */
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+}
+
