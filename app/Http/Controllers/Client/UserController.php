@@ -58,4 +58,9 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function changePassword(Request $request)
+    {
+        return back();
+    }
 }

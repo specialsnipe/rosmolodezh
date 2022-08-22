@@ -40,7 +40,7 @@ class LoginController extends Controller
             if ($user->role->name == 'admin') {
                 return redirect()->route('admin.main.index');
             }
-            return redirect()->route('profile');
+            return redirect()->route('profile.progress');
 
         }
 

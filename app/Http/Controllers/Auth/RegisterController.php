@@ -45,6 +45,6 @@ class RegisterController extends Controller
 
         // event(new UserRegistration($this->user));
 
-        return redirect()->route('home');
+        return redirect()->route('profile.progress');
     }
 }
