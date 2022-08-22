@@ -33,7 +33,7 @@
     </div>
     <div class="row m-3">
 
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-12">
            <div class="card">
             <div class="card-body">
                 <div class="slider">
@@ -45,7 +45,7 @@
                                     <img class="img-fluid" src="{{ $slide->img_url }}" alt="">
                                 </div>
                                 <div class="slide__text">
-                                    <h3>{{ $slide->title }} <a href="{{ route('admin.settings.slider.edit', $slide->id) }}" class="btn btn-outline-secondary"> <i class="fa fa-pen"></i></a></h3>
+                                    <h3>{{ $slide->title }} </h3>
                                     <span>{!! $slide->body !!}</span>
                                     <a target="_blank" href="{{ $slide->button_link }}" class="btn btn-primary">{!! $slide->button_name !!}</a>
                                 </div>

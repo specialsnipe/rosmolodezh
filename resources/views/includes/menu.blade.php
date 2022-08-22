@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-xxl">
+    <div class="container">
         <a class="navbar-brand mr-2" href="{{ route('home') }}">Здесь будет лого</a>
 
 

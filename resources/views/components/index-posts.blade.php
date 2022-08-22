@@ -12,7 +12,7 @@ $posts = Post::latest()->limit(12)->get();
         <div class="card-body">
             <h5 class="card-title">{{ $post->title }}</h5>
             <p class="card-text">{{ $post->excerpt }}</p>
-            <a href="{{ route('posts.show', $post->id) }}" class="btn">Подробнее</a>
+            <a target="_blank" href="{{ route('posts.show', $post->id) }}" class="btn">Подробнее</a>
         </div>
     </div>
 

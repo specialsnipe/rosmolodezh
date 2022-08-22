@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Helpers\General\CollectionHelper;
-use App\Http\Controllers\Controller;
-use App\Http\Filters\SearchFilter;
-use App\Http\Requests\Search\FilterRequest;
-use App\Models\Exercise;
-use App\Models\Gender;
-use App\Models\Information;
-use App\Models\Occupation;
 use App\Models\Post;
-use App\Models\SliderItem;
 use App\Models\Track;
+use App\Models\Gender;
+use App\Models\Phrase;
+use App\Models\Exercise;
+use App\Models\Occupation;
+use App\Models\SliderItem;
+use App\Models\Information;
+use App\Http\Filters\SearchFilter;
+use App\Http\Controllers\Controller;
+use App\Helpers\General\CollectionHelper;
+use App\Http\Requests\Search\FilterRequest;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,7 @@ class HomeController extends Controller
     public function index()
     {
         $slides = SliderItem::all();
+        $phrases = Phrase::all()->random(4)->values();
         $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
@@ -45,7 +47,8 @@ class HomeController extends Controller
             'tracks' => $this->tracks,
             'occupations' => $this->occupations,
             'genders' => $this->genders,
-            'slides' => $slides
+            'slides' => $slides,
+            'phrases' => $phrases
         ]);
     }
 
