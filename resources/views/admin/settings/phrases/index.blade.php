@@ -32,7 +32,10 @@
                             @forelse($phrases as $phrase)
                                 <tr>
                                     <td>{{$phrase->id}}</td>
-                                    <td>{{$phrase->body}}</td>
+                                    <td>
+                                        <div class="text-truncate" style="width: 200px;">
+                                        {{$phrase->body}}
+                                        </div></td>
                                     <td>
                                         <div class="">
                                             <a href="{{ route('admin.settings.phrases.edit', $phrase->id) }}"

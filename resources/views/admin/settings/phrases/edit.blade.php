@@ -7,14 +7,18 @@
         <!-- Content Header (Page header) -->
         <div class="row d-flex justify-content-between mr-3 ml-3">
             <div class="col-sm-6">
-                <h1 class="">Изменение роли: "{{$phrase->body}}"</h1>
+                <h1 class="">Изменение фразы: <div class="text-truncate" style="width: 200px;">
+                        {{$phrase->body}}
+                    </div></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right ">
                     <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
                             <li class="breadcrumb-item"><a href="{{route('admin.settings.phrases.index')}}">Фразы</a></li>
-                            <li class="breadcrumb-item active">Изменение фразы: {{$phrase->name}}</li>
+                    <li class="breadcrumb-item active">Изменение фразы: <div class="text-truncate" style="width: 200px;">
+                            {{$phrase->body}}
+                        </div></li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
