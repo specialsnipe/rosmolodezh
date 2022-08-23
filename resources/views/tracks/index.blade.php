@@ -88,7 +88,7 @@
     <p class="h1-content">Наши направления</p>
     <div class="row">
         @foreach ($tracks as $track )
-        <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="col-sm-12 col-md-6 col-xl-4 mb-4">
             <div class="card">
                 <img src="{{ asset($track->url_image_original) }}" class="card-img-top" alt="...">
                 <div class="card-body">
