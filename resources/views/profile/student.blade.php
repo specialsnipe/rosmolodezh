@@ -165,8 +165,20 @@ $user = auth()->user();
                                         </p>
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
+                                        <form
+                                        @if($block->exercises_count < 1)
+                                            action="{{ '' }}"
+                                            @else
+                                            action="{{ '' }}"
+                                            @endif class="d-inline"></form>
+                                        <button type="submit" class="btn " @if($block->exercises_count < 1) disabled @endif>
+                                            @if($block->exercises_count < 1)
+                                            У данного блока нет упражнений
+                                            @else
+                                            Начать выполение блока
+                                            @endif
 
-                                        <button class="btn"> Начать выполение блока</button>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-md-column">
