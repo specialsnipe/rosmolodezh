@@ -31,6 +31,8 @@ class Track extends Model
         'url_image_medium',
         'url_image_thumbnail',
         'icon_thumbnail',
+        'exercises_count',
+        'hours_count',
         // 'average_score',
 
     ];
@@ -46,6 +48,28 @@ class Track extends Model
         } else {
             return 'человек';
         }
+    }
+
+    public function getExercisesCountAttribute()
+    {
+
+        $blocks = $this->blocks;
+        $total = 0;
+        foreach ($blocks as $block) {
+            $total += $block->exercises_count;
+        }
+        return $total;
+    }
+
+    public function getHoursCountAttribute()
+    {
+
+        $blocks = $this->blocks;
+        $total = 0;
+        foreach ($blocks as $block) {
+            $total += $block->duration;
+        }
+        return $total;
     }
 
     public function getNameBlocksCountAttribute()

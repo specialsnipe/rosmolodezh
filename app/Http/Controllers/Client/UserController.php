@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\User;
 use App\Models\Block;
 use App\Models\Track;
 use App\Models\Gender;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
+use App\Services\ImageService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserUpdateAvatarRequest;
+use App\Http\Requests\UserChangePasswordRequest;
 
 class UserController extends Controller
 {
@@ -55,12 +60,39 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request)
     {
+        $user = auth()->user();
+        $data = $request->validated();
+        $user->updateOrFail($data);
+        session()->flash('message', 'Ваши личные данные успешно обновлены');
+        return redirect()->route('profile.data');
 
+    }
+
+    public function changePassword(UserChangePasswordRequest $request)
+    {
+        $user = auth()->user();
+        $data = $request->validated();
+        if (Hash::check($data['old_password'], $user->password)) {
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+            session()->flash('message', 'Пароль успешно изменён');
+        } else {
+            return back()->withInput($data)->withErrors(['old_password' => 'Старый пароль неверный']);
+        }
         return back();
     }
 
-    public function changePassword(Request $request)
+    public function updateAvatar(UserUpdateAvatarRequest $request)
     {
+
+        $data = $request->validated();
+        ImageService::deleteOld(auth()->user()->avatar, 'users/avatars');
+        $filename = ImageService::make($request->file('file'), 'users/avatars');
+        auth()->user()->update([
+            'avatar' => $filename
+        ]);
+        session()->flash('message', 'Ваша аватарка была обновлена');
         return back();
     }
 }

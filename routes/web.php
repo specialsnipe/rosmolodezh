@@ -102,8 +102,9 @@ Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseControl
 Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/data', [\App\Http\Controllers\Client\UserController::class, 'data'])->name('profile.data');
     Route::get('profile/progress', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile.progress');
-    Route::get('user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
-    Route::get('user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
+    Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
+    Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
+    Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 

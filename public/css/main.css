@@ -54,6 +54,11 @@ body {
 
 }
 
+.bg-primary {
+    background: var(--main-primary) !important;
+    color: var(--main-white) !important;
+}
+
 /* Fix */
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 20px;
@@ -1232,11 +1237,11 @@ header form .btn {
 }
 
 .main-container-directions {
-    border: 1px solid #fefefe;
+    border: 1px solid #d8d8d8 !important;
     margin-top: 2rem;
     background-color: #fff;
     border-radius: 15px 15px 0 0 ;
-    width: 1400px;
+    width: 100%;
 
     padding: 2rem;
     -webkit-border-radius: 15px 15px 0 0 ;
