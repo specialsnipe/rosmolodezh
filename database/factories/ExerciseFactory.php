@@ -22,7 +22,7 @@ class ExerciseFactory extends Factory
             'body' => $this->faker->sentence(rand(10, 30), true),
             'complexity_id' => rand(1, 5),
             'user_id' => rand(1, 2),
-            'block_id' => rand(2, 3),
+            'block_id' => rand(1, 15),
             'active' => true,
             'time' => $this->faker->randomNumber(3),
         ];

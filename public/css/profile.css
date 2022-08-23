@@ -658,6 +658,14 @@ td:nth-last-child(1) {
     border-radius: 5px;
 }
 
+.profile-aside {
+    border-right: 1px solid #ededed ;
+}
+
+.track-list li {
+    list-style-type: none;
+}
+
 /*
     Медиа запросы для адптивной версии страницы
 */
@@ -1487,27 +1495,6 @@ td:nth-last-child(1) {
     }
 }
 
-/* @media (min-width: 420px) and (max-width: 1150px) {
-    .form-content input.input{
-        width: 100%;
-    }
-    .form-content .input-child input:nth-child(1), .form-content .input-child input:nth-child(2) {
-        width: 100%;
-    }
-    .form-content .select-options {
-        width: 100%;
-    }
-    .form-content .select select {
-        width: 100%;
-    }
-    .edit-btn {
-        width: 100%;
-    }
-    .accordion {
-        width: 95%;
-    }
-} */
-
 @media (min-width: 1150px) and (max-width: 1280px) {
     .main-container {
         width: 95%;
@@ -1644,7 +1631,6 @@ td:nth-last-child(1) {
         text-overflow: ellipsis;
     }
 }
-
 
 @media (min-width:720px) and (max-width: 1024px) {
 
@@ -1838,7 +1824,6 @@ td:nth-last-child(1) {
         width: 46.3%;
     }
 }
-
 
 /*
     Медиа запросы для адптивной версии страницы
@@ -2647,27 +2632,6 @@ td:nth-last-child(1) {
     }
 }
 
-/* @media (min-width: 420px) and (max-width: 1150px) {
-    .form-content input.input{
-        width: 100%;
-    }
-    .form-content .input-child input:nth-child(1), .form-content .input-child input:nth-child(2) {
-        width: 100%;
-    }
-    .form-content .select-options {
-        width: 100%;
-    }
-    .form-content .select select {
-        width: 100%;
-    }
-    .edit-btn {
-        width: 100%;
-    }
-    .accordion {
-        width: 95%;
-    }
-} */
-
 @media (min-width: 1150px) and (max-width: 1280px) {
     .main-container {
         width: 95%;
@@ -2987,3 +2951,5 @@ td:nth-last-child(1) {
         width: 46.3%;
     }
 }
+
+
