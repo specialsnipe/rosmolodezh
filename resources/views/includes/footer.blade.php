@@ -1,4 +1,4 @@
-<div class="footer-block">
+<div class="footer-block container">
     <div class=" logo">
         <img src="images/logo.png" alt="">
     </div>

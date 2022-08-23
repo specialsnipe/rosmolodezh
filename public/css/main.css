@@ -427,7 +427,6 @@ main .carousel-inner img {
 
 .direction:hover {
     border: 1px solid #282828;
-
 }
 
 .card-form {
@@ -444,12 +443,9 @@ main .carousel-control-prev, .carousel-control-next{
     width: 7vh !important;
     height: 7vh !important;
 }
-.news-block {
-    width: 1300px;
-}
 
 .news-block .card {
-    width: 300px;
+    width: 95%;
     margin-bottom: 1rem;
 }
 
@@ -527,8 +523,8 @@ main .carousel-control-prev, .carousel-control-next{
 }
 
 .reg-btn {
-    width: 635px;
-    height: 55px;
+    width: 49%;
+    padding: 1rem;
     background: #F19324;
     border-radius: 5px;
     border: 0;
@@ -557,7 +553,7 @@ main .carousel-control-prev, .carousel-control-next{
 }
 
 .auth-form form {
-    width: 700px;
+    width: 70%;
 }
 
 .auth-form {
@@ -670,7 +666,7 @@ footer {
 }
 
 .footer-block {
-    width: 1280px;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -707,12 +703,11 @@ footer .logo img {
 }
 
 .logo {
-    padding: 10px;
+    padding: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 60px;
+    width: 25%;
     background-color: #F19324;
     border-radius: 5px;
 }

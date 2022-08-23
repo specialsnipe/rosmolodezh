@@ -2,7 +2,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/landing-slider.css') }}">
-
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
 @section('content')
 
@@ -72,14 +72,14 @@
 
         <div class="mt-2 d-flex justify-content-center">
             <p>
-                Тект для того чтобы пояснить что вообще зачем тут это и всё
+                Текcт для того чтобы пояснить что вообще зачем тут это и всё
             </p>
         </div>
     </div>
 </section>
 
 <section>
-    <div class="container p-0">
+    <div class="container latest-posts p-0">
         <h2 class="mt-4 mb-4"> Последние новости</h2>
         <x-index-post></x-index-post>
         <a href="{{ route('posts.index') }}" class="btn w-100 mb-4">Все новости</a>

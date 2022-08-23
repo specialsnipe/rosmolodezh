@@ -5,6 +5,10 @@ use App\Models\Track;
 $tracks = Track::all();
 @endphp
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+@endpush
+
 @extends('layouts.main')
 
 @section('content')
@@ -71,59 +75,39 @@ $tracks = Track::all();
         </div>
     </div>
 </section>
-<section class="news-blocks container-fluid mt-4">
-    <div class="block">
-        <div class="row directions-block ">
-            <div class="mt-2 d-flex justify-content-center">
-                <p>
-                    Мы не рекомендуем использовать для разметки материалов системы управления тегами — в этом
-                    случае Метрика не
-                    сможет корректно
-                    обработать размеченные данные. Но такие системы можно использовать для других целей,
-                    например, для установки
-                    счетчика на сайт.
-                    Все размеченные сущности Schema.org должны быть внутри тега body. Если на странице несколько
-                    материалов,
-                    каждый из них должен
-                    быть размечен отдельно.
-                </p>
-            </div>
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapseOne" aria-expanded="false"
-                            aria-controls="flush-collapseOne">
-                            Посмотреть все направления
-                        </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample">
-                        <div class="row d-flex justify-content-evenly">
-                            @foreach ($tracks as $track)
-                            
-                            <div class="card col-md-3 col-lg-3 col-sm-12 ">
-                                <a href="{{ route('tracks.show', $track->id) }}" class="card-title">
-                                <img src="/images/card-images-1.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                    {{ $track->title }}
-                                    </div>
-                                
-                                </a>
-                            </div>
-                            
-                                <!-- <a href="{{ route('tracks.show', $track->id) }}" class="direction col-md-3 d-flex align-items-center justify-content-center"> {{ $track->title }} </a> -->
-                            @endforeach
-                        </div>
-                    </div>
+<section class="screen news-blocks">
+    <div class="container p-0">
+        <h2 class="text-light d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
+        <div class="row">
+            @foreach ($tracks as $track)
+            <div class="col-md-4 col-lg-4 col-sm-12">
+                <div class="card card-track d-flex flex-column justify-content-between mb-4">
+
+                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
+                        <img src="{{ asset($track->image_original ) }}" class="card-img-top rounded" alt="...">
+                    </a>
+                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer">
+                        <div class="">{{ $track->title }}</div>
+                    </a>
                 </div>
             </div>
+            @endforeach
+
+        </div>
+
+
+        <div class="mt-2 d-flex justify-content-center">
+            <p>
+                Текcт для того чтобы пояснить что вообще зачем тут это и всё
+            </p>
         </div>
     </div>
 </section>
 
 @guest
+<section class="container">
 <x-registration-form></x-registration-form>
+</section>
 @endguest
 @endsection
 

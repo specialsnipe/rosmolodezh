@@ -103,6 +103,7 @@
 
 }
 .slide__text span {
+    margin-bottom: 0.5rem;
     min-width: 150px;
     max-width: 350px;
     display: flex;

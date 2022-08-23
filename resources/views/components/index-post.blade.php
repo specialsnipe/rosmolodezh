@@ -10,7 +10,7 @@ if (!isset($posts)) {
 
 <div class="row justify-content-between">
     @forelse ($posts as $post)
-    <div class="col-md-3 col-sm-12">
+    <div class="col-sm-12 col-md-6 col-lg-3">
         <div class="card post_card mb-4">
             <img src="{{ asset($post->images['0']->thumbnail_image) }}" class="rounded img-fluid"
                 style="min-height: 200px; max-height:200px"

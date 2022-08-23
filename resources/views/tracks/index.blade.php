@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @push('styles')
+
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+
+
 <style>
     .cards-wrapper {
         display: flex;
@@ -16,7 +20,6 @@
 
     .card {
         margin: 0 0.5em;
-        width: 350px;
         height: 650px;
         border: none;
         border-radius: 15px;
@@ -73,11 +76,6 @@
         .carousel {
             width: auto;
             margin: 0;
-        }
-
-        .card {
-            width: 65%;
-
         }
     }
 </style>

@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+@endpush
+
 <style>
     #img {
         width: 400px;
@@ -14,7 +19,7 @@
     <div class="main-container-directions">
         <h1 class="h1-content mt-0 mb-4">Поиск по сайту</h1>
         <form action="{{route('search')}}" method="get"
-            class="d-flex justify-content-between form-floating col-sm-12 col-md-12 col-lg-12">
+            class="d-flex justify-content-between form-floating search-flex col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="mr-3 form-control" name="search" value="{{request('search')}}"
                 placeholder="search">
             <label for="floatingInput">Введите текст</label>

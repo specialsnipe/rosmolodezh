@@ -1,12 +1,16 @@
 @extends('layouts.main')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+@endpush
+
 @section('content')
 
 <section class="screen">
     <p class="h1-content">Наши контакты </p>
     <div class="container mb-4">
         <div class="row contact-form">
-            <div class="col-3">
+            <div class="col-sm-12 col-md-3">
                 <div class="card">
                     <i class="fas fa-phone-alt"></i>
                     <div class="card-body">
@@ -20,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-sm-12 col-md-3">
                 <div class="card">
                     <i class="fas fa-map-marker-alt"></i>
                     <div class="card-body">
@@ -33,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-sm-12 col-md-3">
                 <div class=" card">
                     <i class="fab fa-vk"></i>
                     <div class="card-body">
@@ -45,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-sm-12 col-md-3">
                 <div class="card">
                     <i class="fab fa-telegram-plane"></i>
                     <div class="card-body">
