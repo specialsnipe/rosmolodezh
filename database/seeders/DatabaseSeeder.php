@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TrackUserSeeder::class);
         $this->call(ComplexitySeeder::class);
         $this->call(ComplexityTimeSeeder::class);
+        $this->call(PhraseSeeder::class);
+        $this->call(SliderSeeder::class);
         // $this->call(PostSeeder::class);
 
 
