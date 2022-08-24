@@ -872,10 +872,11 @@ header form .btn {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 420px;
+    width: 35%;
     min-height: 540px;
     background: #fff;
     border-radius: 10px;
+    margin: 1rem 1rem;
 }
 
 .counter p {
@@ -921,13 +922,11 @@ header form .btn {
 .counter-block {
     display: flex;
     justify-content: space-around;
-
 }
 
-.cunter-content {
+.counter-content {
     display: flex;
     justify-content: space-around;
-    width: 1365px;
 }
 
 .block-info-right p,
@@ -942,10 +941,6 @@ header form .btn {
     font-size: 20px;
     font-weight: 600;
 }
-
-/* .card a {
-    margin-top: 1.5rem;
-} */
 
 .h1-content {
     text-align: center;
@@ -1002,10 +997,6 @@ header form .btn {
     margin-top: 1rem;
 }
 
-/* .player{
-    width: 1400px;
-    height: 615px;
-} */
 .submit-task .btn-send:hover {
     background: #3fb2ff;
     text-decoration: underline;
@@ -1019,7 +1010,6 @@ header form .btn {
     color: #fff;
     border: 0;
     transition: 250ms;
-
 }
 
 .submit-task .btn-container {
@@ -1038,7 +1028,6 @@ header form .btn {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 
 .icon-content i:hover {
@@ -1181,10 +1170,6 @@ header form .btn {
     margin-bottom: 1rem;
 }
 
-/* .link-content {
-    margin: 0 auto;
-    width: 350px;
-} */
 .page-link {
     padding: .5rem 1rem;
 }
@@ -1236,8 +1221,6 @@ header form .btn {
     margin-top: 2rem;
     background-color: #fff;
     border-radius: 15px 15px 0 0 ;
-    width: 100%;
-
     padding: 2rem;
     -webkit-border-radius: 15px 15px 0 0 ;
     -moz-border-radius: 15px 15px 0 0 ;
@@ -1466,7 +1449,6 @@ header form .btn {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-
 
 .text-container .icon {
     width: 50px;

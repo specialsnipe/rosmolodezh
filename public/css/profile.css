@@ -162,7 +162,7 @@ main {
     color: #fff;
     border-radius: 5px;
     border: 0;
-    height: 50px;
+    padding: 1rem;
     width: 100%;
     transition: 250ms;
 }
@@ -597,6 +597,7 @@ td:nth-last-child(1) {
     padding: 16px;
 }
 
+
 .btn-apply:hover {
     background: #1863fa;
     text-decoration: underline;
@@ -669,7 +670,38 @@ td:nth-last-child(1) {
 /*
     Медиа запросы для адптивной версии страницы
 */
-@media (min-width: 720px) and (max-width:1024px) {
+
+@media (min-width:280px) and (max-width: 770px) {
+    .footer-block {
+        flex-direction: column;
+    }
+    .icons{
+        flex-direction: row;
+        height: auto;
+        width: 65%;
+        margin-bottom: 1.5rem;
+    }
+    .logo {
+        margin: 1.5rem 0;
+        width: 80%;
+    }
+    footer{
+        height:auto;
+    }
+    .links-footer{
+    align-content: space-around
+    }
+    .exercise-block{
+        flex-direction: column;
+    }
+    .card .btn{
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* @media (min-width: 720px) and (max-width:1024px) {
 
     .main-container,
     .form-content .select-options {
@@ -846,11 +878,6 @@ td:nth-last-child(1) {
 }
 
 @media (min-width:280px) and (max-width: 720px) {
-    .nav-item a {
-        font-size: 20px;
-        text-transform: uppercase;
-    }
-
     .main-containers {
         width: 95%;
     }
@@ -1677,11 +1704,6 @@ td:nth-last-child(1) {
         width: 49%;
     }
 
-    .nav-item a {
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
     .card-text-main {
         font-size: 18px;
     }
@@ -1825,9 +1847,6 @@ td:nth-last-child(1) {
     }
 }
 
-/*
-    Медиа запросы для адптивной версии страницы
-*/
 @media (min-width: 720px) and (max-width:1024px) {
 
     .main-container,
@@ -2006,11 +2025,6 @@ td:nth-last-child(1) {
 }
 
 @media (min-width:280px) and (max-width: 720px) {
-    .nav-item a {
-        font-size: 20px;
-        text-transform: uppercase;
-    }
-
     .card-text-main {
         width: 100%;
     }
@@ -2804,11 +2818,6 @@ td:nth-last-child(1) {
         width: 49%;
     }
 
-    .nav-item a {
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
     .card-text-main {
         font-size: 18px;
     }
@@ -2952,4 +2961,4 @@ td:nth-last-child(1) {
     }
 }
 
-
+ */

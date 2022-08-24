@@ -1,7 +1,11 @@
 @extends('layouts.main')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+@endpush
+
 @section('content')
-<div class="screen screen-directions">
+<div class="screen container screen-directions">
     <div class="main-container-directions">
         <div class="container m-0 p-0">
             <div class="row">
@@ -47,10 +51,13 @@
                     <div class="line mt-2 mb-2"></div>
 
                     <p class="h2">Полезные ссылки:</p>
-                    <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
-                    <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
-                    <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
-                    <a href="" class="link-text">https://habr.com/ru/post/675130/</a>
+                    <div class="row">
+                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
+                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
+                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
+                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>

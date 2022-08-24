@@ -4,6 +4,10 @@
     $tracks = Track::all()->random(3);
 @endphp
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/media.css') }}">
+@endpush
+
 @extends('layouts.main')
 
 @section('content')

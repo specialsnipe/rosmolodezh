@@ -10,13 +10,12 @@
     <p class="h1-content">Наши контакты </p>
     <div class="container mb-4">
         <div class="row contact-form">
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <i class="fas fa-phone-alt"></i>
                     <div class="card-body">
                         <h5 class="card-title">Наши номера телефонов</h5>
                     </div>
-                    <div class="line mt-1 mb-1"></div>
                     @foreach($settings->phones as $phone)<br>
                         <span class="text-center"><b>{{ $phone->phone }}</b> <br>
                         {{ $phone->description }}</span>
@@ -24,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <i class="fas fa-map-marker-alt"></i>
                     <div class="card-body">
@@ -37,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class=" card">
                     <i class="fab fa-vk"></i>
                     <div class="card-body">
@@ -49,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <i class="fab fa-telegram-plane"></i>
                     <div class="card-body">

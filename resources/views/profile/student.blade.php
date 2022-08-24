@@ -115,8 +115,8 @@ $user = auth()->user();
             <article class="col-sm-12 col-md-9">
                 <div class="row">
                     <h4 class="h4 col-12 text-center mb-5">Направление "{{ auth()->user()->tracks[0]->title }}"</h4>
-                    <div class="col-sm-12 col-md-6">
-                        <table class="table table-responsive">
+                    <div class="col-sm-12 col-md-6 table-responsive">
+                        <table class="table">
                             <tbody>
                                 <tr>
                                     <td class="p-3">Куратор направления</tf>
@@ -158,20 +158,20 @@ $user = auth()->user();
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-lg-6">
 
                                         <p class="fs-5">
                                             Блок: {{ $block->title }}
                                         </p>
                                     </div>
-                                    <div class="col-6 d-flex justify-content-end">
+                                    <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
                                         <form
                                         @if($block->exercises_count < 1)
                                             action="{{ '' }}"
                                             @else
                                             action="{{ '' }}"
                                             @endif class="d-inline"></form>
-                                        <button type="submit" class="btn " @if($block->exercises_count < 1) disabled @endif>
+                                        <button type="submit" class="btn" @if($block->exercises_count < 1) disabled @endif>
                                             @if($block->exercises_count < 1)
                                             У данного блока нет упражнений
                                             @else
@@ -181,7 +181,7 @@ $user = auth()->user();
                                         </button>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-md-column">
+                                <div class="d-flex flex-md-column exercise-block">
 
 
                                     @forelse ($block->exercises as $exercise)

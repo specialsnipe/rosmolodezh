@@ -10,7 +10,7 @@
     right: 0;
 }
 .slider__indicators > * {
-    border: 0;
+    border: 1px solid #fff;
     width: 15px;
     height:15px;
     margin: auto 5px auto 5px;
@@ -79,7 +79,6 @@
 }
 
 .slide__text .btn {
-
     min-width: 30%;
     max-width: 50%;
     background: var(--main-white) !important;
@@ -132,4 +131,3 @@
     display: flex;
     align-items: center;
 }
-

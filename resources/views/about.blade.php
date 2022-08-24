@@ -14,8 +14,8 @@ $tracks = Track::all();
 @section('content')
 
 <p class="h1-content">О нашем проекте </p>
-<section class="counter-block">
-    <div class="cunter-content">
+<section class="counter-block container">
+    <div class="counter-content">
         <div class="block-info-right">
             <p class="text-h1">Конкурс</p>
             <p class="mb-3">Первый конкурс 2021</p>
