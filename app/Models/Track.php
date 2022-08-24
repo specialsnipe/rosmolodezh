@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Track extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasSEO;
+
 
     protected $fillable = [
         'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'
@@ -119,6 +122,16 @@ class Track extends Model
         return 'storage/tracks/thumbnail/thumbnail_' . $this->icon;
     }
 
+
+    public function getDynamicSEOData(): SEOData
+    {
+        // Override only the properties you want:
+        return new SEOData(
+            title: $this->title,
+            description: $this->body,
+            image: $this->url_image_medium,
+        );
+    }
     /**
      * Relation with users (many to many)
      *

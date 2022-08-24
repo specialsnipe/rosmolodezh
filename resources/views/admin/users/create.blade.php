@@ -121,7 +121,7 @@
                                             <option value="0" disabled selected>роль</option>
                                             @foreach($roles as $role)
                                                 <option value="{{$role->id}}"
-                                                        @if(old('role_id') == $role->id) selected @endif>{{$role->name}}</option>
+                                                        @if(old('role_id') == $role->id) selected @endif>{{$role->readable_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('role_id')

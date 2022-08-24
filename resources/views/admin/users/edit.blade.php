@@ -104,7 +104,7 @@
                                     <option value="0" disabled selected>роль</option>
                                     @foreach($roles as $role)
                                     <option value="{{$role->id}}" @if( $user->role_id == $role->id) selected
-                                        @endif>{{$role->rus_name}}</option>
+                                        @endif>{{$role->readable_name}}</option>
                                     @endforeach
                                 </select>
                                 @error('role_id')

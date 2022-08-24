@@ -48,10 +48,14 @@
                                     <h3>{{ $slide->title }} </h3>
                                     <span>{!! $slide->body !!}</span>
                                     <a target="_blank" href="{{ $slide->button_link }}" class="btn btn-primary">{!! $slide->button_name !!}</a>
+                                    <div>
+                                        <a target="_blank" href="{{route('admin.settings.slider.edit', $slide->id)}}" class="btn btn-primary">Изменить слайд</a>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
                         </div>
+
                     </div>
                 </div>
             </div>

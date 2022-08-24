@@ -83,4 +83,16 @@ class TrackController extends Controller
     {
         //
     }
+
+    public function addTrackForUser(Track $track)
+    {
+        $user = auth()->user()->id;
+        $track->users()->toggle($user);
+//        $tracks = Track::all();
+//        $allAverageMark = [];
+//        foreach ($tracks as $track) {
+//            $allAverageMark[] = AverageMarkTrack::getMark($track);
+//        }
+        return redirect()->route('tracks.show', $track->id);
+    }
 }
