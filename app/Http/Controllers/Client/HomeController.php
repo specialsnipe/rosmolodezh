@@ -39,7 +39,9 @@ class HomeController extends Controller
     public function index()
     {
         $slides = SliderItem::all();
-        $phrases = Phrase::all()->random(4)->values();
+        $phrases = Phrase::all();
+        $phrasesCount = ($phrases->count() >= 4) ? 4 : $phrases->count();
+        $phrases = $phrases->random($phrasesCount)->values();
         $posts = Post::latest()->limit(4)->get();
 
         return view('welcome', [
@@ -48,7 +50,8 @@ class HomeController extends Controller
             'occupations' => $this->occupations,
             'genders' => $this->genders,
             'slides' => $slides,
-            'phrases' => $phrases
+            'phrases' => $phrases,
+            'phrases_count' => $phrasesCount
         ]);
     }
 
