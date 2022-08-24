@@ -81,10 +81,11 @@ class PhraseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Phrase  $phrase
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Phrase $phrase)
     {
-        //
+        $phrase->delete();
+        return back();
     }
 }
