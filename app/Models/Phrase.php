@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Phrase extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'body',
         'active'

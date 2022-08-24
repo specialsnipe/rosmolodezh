@@ -26,6 +26,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required',
             'excerpt' => 'required',
+            'keywords' => '',
             'file' => ['required', 'array'],
             'file.*'=>['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'body' => 'required',

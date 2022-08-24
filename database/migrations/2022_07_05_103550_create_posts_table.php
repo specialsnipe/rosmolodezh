@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('body');
             $table->text('excerpt');
+            $table->text('keywords')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_updater_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->boolean('active')->default(true);

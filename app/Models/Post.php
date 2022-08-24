@@ -3,18 +3,31 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes, Filterable;
+    use HasFactory, SoftDeletes, Filterable, HasSEO;
 
     protected $guarded = false;
 
+    public function getDynamicSEOData(): SEOData
+    {
+        // Override only the properties you want:
+
+        return new SEOData(
+            title: $this->title,
+            tags: ['asdasd', 'Yjdsjq','Some'],
+            description: $this->excerpt,
+            image: $this->images[0]->thumbnail_image,
+        );
+    }
     /**
      * Relation with images (many to many)
      * @return HasMany

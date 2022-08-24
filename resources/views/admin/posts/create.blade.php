@@ -41,13 +41,15 @@
                                     <div class="text-danger">{{$message}}</div>
                                     @enderror
 
+                                </div>
+                                <div class="form-group">
+                                    <label for="keywords">SEO ключевые слова</label>
+                                    <input type="text" class="form-control " name="keywords" placeholder="Ключевые слова"
+                                        id="tokenfield" value="{{old('keywords')}} "></inp>
+                                    @error('keywords')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
 
-                                    {{-- @if($errors->all())--}}
-                                    {{-- {{ print_r($errors->all()) }}--}}
-                                    {{-- @foreach($errors->all() as $error)--}}
-                                    {{-- <div class="text-danger">{{$error}}</div>--}}
-                                    {{-- @endforeach--}}
-                                    {{-- @endif--}}
                                 </div>
 
                                 <div class="form-group">
@@ -132,6 +134,21 @@
     @push('script')
     <script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
     <script>
+
+    $('#tokenfield')
+    .on('tokenfield:createtoken', function (e) {
+        $('#tokenfield').val(
+            $('#tokenfield').tokenfield('getTokensList') == ''
+            ? e.attrs.value
+            : $('#tokenfield').tokenfield('getTokensList') + ', ' + e.attrs.value);
+        console.log($('#tokenfield').val());
+    })
+    .tokenfield({
+        showAutocompleteOnFocus: true,
+        delimiter: [',', ' ']
+    });
+
+
     let input = document.querySelector('.custom-file-input');
     let theSlider = document.querySelector('.myslider');
     input.addEventListener('change', function(event) {

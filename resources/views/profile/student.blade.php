@@ -202,3 +202,13 @@ $user = auth()->user();
     </div>
 </div>
 @endsection
+@push('script')
+    <script>
+        $("input[type=text]").keydown(function(event){
+      if(event.keyCode == 13){
+        event.preventDefault();
+          return false;
+          }
+      });
+    </script>
+@endpush

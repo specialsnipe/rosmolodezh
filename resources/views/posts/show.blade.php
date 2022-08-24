@@ -4,6 +4,11 @@
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
 
+@push('seo')
+<meta name='keywords' content='{{ $post->keywords ?? 'Новость' }}'>
+{!! seo()->for($post) !!}
+@endpush
+
 @section('content')
 <div class="screen container">
     <div class="main-container-directions">
@@ -11,12 +16,12 @@
             <div class="row">
                 <div class="col-sm-12 col-md-8">
                     @if($post->images->count() > 1)
-                    <div class="slider w-100">
+                    <div class="slider" style="max-width: 100% !important">
                         <div class="slider__wrapper">
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
                                     <div class="slider__item">
-                                        <img src="{{ asset($image->original_image) }}" alt="">
+                                        <img src="{{ asset($image->original_image) }}"  class="img-fluid rounded w-100"  alt="">
                                     </div>
                                 @endforeach
                             </div>
@@ -25,26 +30,28 @@
                     <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
                     <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
 
-                    </div>
+
                     @else
                     <img src="{{ asset($post->images[0]->original_image) }}" class="img-fluid rounded" alt="">
                     @endif
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="">
-                        <div class="h2">Другие интересные статьи</div>
-                        <div class="line mt-3 mb-3"></div>
-                        <div class="link-content">
-                            @foreach ($posts as $post)
+                    <div class="col-sm-12 col-md-4">
+                        <div class="">
+                            <div class="h2">Другие интересные статьи</div>
+                            <div class="line mt-3 mb-3"></div>
+                            <div class="link-content">
+                                @foreach ($posts as $post)
 
-                            <a href="{{ route('posts.show', $post->id) }}" class="">
-                                <p class="h5">{{ $post->title }}</p>
-                                <p class="text-truncate">{{ $post->excerpt }}</p>
-                            </a>
-                            @endforeach
+                                <a href="{{ route('posts.show', $post->id) }}" class="">
+                                    <p class="h5">{{ $post->title }}</p>
+                                    <p class="text-truncate">{{ $post->excerpt }}</p>
+                                </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 mt-3">
                     <span class="h2">{{ $post->title }}</span>
                     <p class="mt-3">{!! $post->body !!}</p>
@@ -57,7 +64,7 @@
                         <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                         <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

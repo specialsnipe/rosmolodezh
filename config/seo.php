@@ -74,6 +74,15 @@ return [
         'fallback' => null,
     ],
 
+    'tags' => [
+        /**
+         * Use this setting to specify a fallback description, which will be used on places
+         * where we don't have a description set via an associated ->seo model or via
+         * the ->getDynamicSEOData() method.
+         */
+        'fallback' => null,
+    ],
+
     'image' => [
         /**
          * Use this setting to specify a fallback image, which will be used on places where you
@@ -89,13 +98,5 @@ return [
          * don't have an author set via an associated ->seo model or via the ->getDynamicSEOData() method.
          */
         'fallback' => null,
-    ],
-
-    'twitter' => [
-        /**
-         * Use this setting to enter your username and include that with the Twitter Card tags.
-         * Enter the username like 'yourUserName', so without the '@'.
-         */
-        '@username' => null,
     ],
 ];
