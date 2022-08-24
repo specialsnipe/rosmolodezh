@@ -68,6 +68,26 @@
                 </div>
             </div>
             <div class="line"></div>
+            <div class="col-lg-6 col-sm-12">
+                @foreach (auth()->user()->tracks[0]->blocks as $block)
+                <div class="card mb-4">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-10">
+
+                                <p class="fs-5">
+                                    Содержание: {{ $block->title }}
+                                </p>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
             <div class="container">
                 <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Другие направления</h2>
                 <div class="row">

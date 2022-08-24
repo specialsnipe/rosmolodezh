@@ -26,12 +26,12 @@
             <button class=" search col-sm-12 col-md-2 col-lg-2">Искать</button>
         </form>
         <div class="mt-2">
-            <a class="btn btn-search-active" role="tab" href="{{route('search', ['search'=>request('search')])}}">Все</a>
+            <a class="btn mb-2 btn-search-active" role="tab" href="{{route('search', ['search'=>request('search')])}}">Все</a>
 
-            <a class="btn" role="tab"
+            <a class="btn mb-2" role="tab"
                 href="{{route('exercises.search', ['search'=>request('search')])}}">Упражнения</a>
 
-            <a class="btn" role="tab"
+            <a class="btn mb-2" role="tab"
                 href="{{route('posts.search', ['search'=>request('search')])}}">Новости</a>
         </div>
         <div class="search-content">
