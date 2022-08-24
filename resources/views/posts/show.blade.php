@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<div class="screen container screen-directions">
+<div class="screen container">
     <div class="main-container-directions">
         <div class="container m-0 p-0">
             <div class="row">
