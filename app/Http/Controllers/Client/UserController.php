@@ -26,9 +26,7 @@ class UserController extends Controller
         auth()->logout();
         return redirect()->route('home');
     }
-    /**
-     *
-     */
+
     public function profile()
     {
         $data = [
@@ -40,10 +38,18 @@ class UserController extends Controller
         // dd($data['blocks']);
         $role = auth()->user()->role->name;
         if ($role == 'tutor') {
+            $isCurator = Track::where('curator_id', auth()->user()->id)->first();
+            $data['isCurator'] = $isCurator;
             return view('profile.tutor', $data);
         }
         return view('profile.student', $data);
     }
+    public function show(User $user)
+    {
+        // $this->authorize('view', $user);
+        return view('profile.users.show', compact('user'));
+    }
+
     public function data()
     {
         $data = [
@@ -95,4 +101,5 @@ class UserController extends Controller
         session()->flash('message', 'Ваша аватарка была обновлена');
         return back();
     }
+
 }

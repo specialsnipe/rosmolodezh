@@ -106,6 +106,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
     Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
     Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');
+    Route::get('profile/user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
+        ->name('user.show')
+        ->can('view', 'user');
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 
