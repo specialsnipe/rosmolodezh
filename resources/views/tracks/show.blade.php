@@ -36,28 +36,29 @@
                                         class="badge large bg-primary">{{ $track->hours_count }}</span></p>
 
                                 @php $is_added = false; @endphp
-                                @auth()
-                                @foreach(auth()->user()->tracks as $trackFromUser)
-                                    @if($track->id == $trackFromUser->id)
-                                        @php $is_added = true; @endphp
-                                    @endif
-                                @endforeach
 
-                                @if($is_added)
-                                    <p class="fs-5">Вы являетесь участником данной траектории <span>
-                                           </span></p>
-                                    <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
-                                          style="display: inline">
-                                        @csrf
-                                        <button class="btn btn-orange" type="submit"> Отменить участие</button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
-                                          style="display: inline">
-                                        @csrf
-                                        <button class="btn btn-orange" type="submit"> Учавствовать</button>
-                                    </form>
-                                @endif
+                                @auth
+                                    @foreach(auth()->user()->tracks as $trackFromUser)
+                                        @if($track->id == $trackFromUser->id)
+                                            @php $is_added = true; @endphp
+                                        @endif
+                                    @endforeach
+
+                                    @if($is_added)
+                                        <p class="fs-5">Вы являетесь участником данной траектории <span>
+                                            </span></p>
+                                        <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
+                                            style="display: inline">
+                                            @csrf
+                                            <button class="btn btn-orange" type="submit"> Отменить участие</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
+                                            style="display: inline">
+                                            @csrf
+                                            <button class="btn btn-orange" type="submit"> Учавствовать</button>
+                                        </form>
+                                    @endif
                                 @endauth
 
 
@@ -105,7 +106,7 @@
                     <div class="col-lg-8 col-sm-12">
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Содержание направления:</h2>
 
-                    @foreach (auth()->user()->tracks[0]->blocks as $block)
+                    @foreach ($track->blocks as $block)
                             <div class="card mb-2">
 
                                 <div class="card-body">
