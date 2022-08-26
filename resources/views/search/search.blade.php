@@ -63,7 +63,10 @@
                 </div>
                 @endforelse
                 @else
-                <img src="{{asset('storage/search/search.png')}}" class="mt-3" id="img" alt="Поиcк">
+                <div class="search-not-found">
+                    <span>Начнём поиск?</span>
+                    <img src="{{ asset('images/start_search.svg') }}" alt="">
+                </div>
                 @endif
             </div>
         </div>
