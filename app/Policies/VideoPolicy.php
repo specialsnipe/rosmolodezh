@@ -18,7 +18,7 @@ class VideoPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return in_array('video_viewAny', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**
@@ -30,7 +30,7 @@ class VideoPolicy
      */
     public function view(User $user, Video $video)
     {
-        //
+        return in_array('video_view', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**

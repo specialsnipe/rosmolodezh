@@ -135,6 +135,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Role::class);
     }
+    public function permissions()
+    {
+        return $this->hasManyThrough(Permission::class, Role::class);
+    }
 
     /**
      * Relation with tracks (many to many)

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Track;
+use App\Models\PermissionRole;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TrackPolicy
+class PermissionRolePolicy
 {
     use HandlesAuthorization;
 
@@ -18,17 +18,17 @@ class TrackPolicy
      */
     public function viewAny(User $user)
     {
-        return in_array('track_viewAny', $user->role->permissions->flatten()->pluck('title')->toArray());
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Track  $track
+     * @param  \App\Models\PermissionRole  $permissionRole
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Track $track)
+    public function view(User $user, PermissionRole $permissionRole)
     {
         //
     }
@@ -48,10 +48,10 @@ class TrackPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Track  $track
+     * @param  \App\Models\PermissionRole  $permissionRole
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Track $track)
+    public function update(User $user, PermissionRole $permissionRole)
     {
         //
     }
@@ -60,10 +60,10 @@ class TrackPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Track  $track
+     * @param  \App\Models\PermissionRole  $permissionRole
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Track $track)
+    public function delete(User $user, PermissionRole $permissionRole)
     {
         //
     }
@@ -72,10 +72,10 @@ class TrackPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Track  $track
+     * @param  \App\Models\PermissionRole  $permissionRole
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Track $track)
+    public function restore(User $user, PermissionRole $permissionRole)
     {
         //
     }
@@ -84,10 +84,10 @@ class TrackPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Track  $track
+     * @param  \App\Models\PermissionRole  $permissionRole
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Track $track)
+    public function forceDelete(User $user, PermissionRole $permissionRole)
     {
         //
     }

@@ -18,7 +18,7 @@ class AnswerPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return in_array('answer_viewAny', $user->permissions->flatten());
     }
 
     /**
@@ -30,7 +30,7 @@ class AnswerPolicy
      */
     public function view(User $user, Answer $answer)
     {
-        //
+        return in_array('answer_view', $user->permissions->flatten()) || $user->id == $answer->user_id;
     }
 
     /**
@@ -41,7 +41,7 @@ class AnswerPolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array('answer_create', $user->permissions->flatten());
     }
 
     /**
@@ -53,7 +53,8 @@ class AnswerPolicy
      */
     public function update(User $user, Answer $answer)
     {
-        //
+        return in_array('answer_update', $user->permissions->flatten());
+
     }
 
     /**
@@ -65,7 +66,7 @@ class AnswerPolicy
      */
     public function delete(User $user, Answer $answer)
     {
-        //
+        return in_array('answer_delete', $user->permissions->flatten());
     }
 
     /**
@@ -77,7 +78,7 @@ class AnswerPolicy
      */
     public function restore(User $user, Answer $answer)
     {
-        //
+        return in_array('answer_restore', $user->permissions->flatten());
     }
 
     /**
@@ -89,6 +90,6 @@ class AnswerPolicy
      */
     public function forceDelete(User $user, Answer $answer)
     {
-        //
+        return in_array('answer_forceDelete', $user->permissions->flatten());
     }
 }

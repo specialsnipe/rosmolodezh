@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ComplexityTimeSeeder::class);
         $this->call(PhraseSeeder::class);
         $this->call(SliderSeeder::class);
+        $this->call(PermissionSeeder::class);
         // $this->call(PostSeeder::class);
 
 

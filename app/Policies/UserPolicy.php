@@ -29,12 +29,14 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return
-            $user->role_id == 2
-            || $user->role_id == 3
-            || $user->role_id == 4
-            || $user->id == $model->id;
-        // return false;
+        // return
+        //     $user->role_id == 2
+        //     || $user->role_id == 3
+        //     || $user->role_id == 4
+        //     || $user->id == $model->id;
+        // dd($user->role->permissions->flatten()->pluck('title')->toArray());
+        return in_array('user_view', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->id === $model->id;
     }
 
     /**
@@ -45,7 +47,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array('user_create', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**
@@ -57,7 +59,8 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return $user->permission->name == 'user_update'? true : false;
+
     }
 
     /**
