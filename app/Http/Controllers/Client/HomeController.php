@@ -106,14 +106,9 @@ class HomeController extends Controller
         foreach ($exercises as $exercise) {
             $exercise['table'] = 'exercises';
         }
-        $unionCollection = $posts->union($exercises);
+        $unionCollection = $posts->merge($exercises);
         $results = CollectionHelper::paginate($unionCollection, 20);
 
-
-//        $results = array_merge($posts->toArray(), $exercises->toArray());
-//        $page =  Paginator::resolveCurrentPage() ?: 1;
-//        $results = Collection::make($results);
-//        $results = new LengthAwarePaginator($results->forPage($page, 4), $results->count(),4, $page, ['path'=>url()->current()]);
         $search = $data['search'];
         return view('search.search', compact('results', 'search'));
     }

@@ -37,7 +37,7 @@ class UserController extends Controller
         $data['blocks'] = Block::where('track_id',$data['tracks'][0]->id)->with('exercises')->get();
         // dd($data['blocks']);
         $role = auth()->user()->role->name;
-        if ($role == 'tutor') {
+        if ($role == 'tutor'||$role == 'teacher') {
             $isCurator = Track::where('curator_id', auth()->user()->id)->first();
             $data['isCurator'] = $isCurator;
             return view('profile.tutor', $data);
@@ -46,7 +46,6 @@ class UserController extends Controller
     }
     public function show(User $user)
     {
-        // $this->authorize('view', $user);
         return view('profile.users.show', compact('user'));
     }
 
@@ -59,6 +58,9 @@ class UserController extends Controller
             'user' => auth()->user(),
         ];
         return view('profile.personal-data', $data);
+
+        Track::all()->merge(Track::all()->lessons)->merge()->orderBy('namber');
+
 
     }
     /**
