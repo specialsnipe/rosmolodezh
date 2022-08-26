@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Models\Track;
 use Illuminate\Http\Request;
+use App\Models\TrackUserRequest;
 use App\Http\Controllers\Controller;
 
 class TrackController extends Controller
@@ -47,6 +48,11 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
+        foreach (auth()->user()->tracks_request as $trackFromUser) {
+            if ($track->id == $trackFromUser->id) {
+                $is_added = true;
+            }
+        }
         return view('tracks.show', compact('track'));
     }
 
@@ -84,15 +90,54 @@ class TrackController extends Controller
         //
     }
 
-    public function addTrackForUser(Track $track)
+    public function sendRequest(Track $track)
     {
-        $user = auth()->user()->id;
-        $track->users()->toggle($user);
-//        $tracks = Track::all();
-//        $allAverageMark = [];
-//        foreach ($tracks as $track) {
-//            $allAverageMark[] = AverageMarkTrack::getMark($track);
-//        }
+        $user_id = auth()->user()->id;
+        $trackUserRequest = TrackUserRequest::where('user_id_sender', $user_id)
+        ->where('track_id', $track->id)
+        ->first();
+
+        if (!isset($trackUserRequest)) {
+            TrackUserRequest::create([
+                'user_id_sender'=>$user_id,
+                'track_id'=>$track->id,
+                'joining'=>true,
+                'refused'=>false,
+                'action'=>'send',
+            ]);
+        } else {
+            $trackUserRequest->update([
+                'joining'=>true,
+                'refused'=>false,
+                'action'=>'send',
+            ]);
+        }
+
+        return redirect()->route('tracks.show', $track->id);
+    }
+    public function sendRefuseRequest(Track $track)
+    {
+        $user_id = auth()->user()->id;
+        $trackUserRequest = TrackUserRequest::where('user_id_sender', $user_id)
+        ->where('track_id', $track->id)
+        ->first();
+
+        if (!isset($trackUserRequest)) {
+            TrackUserRequest::create([
+                'user_id_sender'=>$user_id,
+                'track_id'=>$track->id,
+                'joining'=>false,
+                'refused'=>true,
+                'action'=>'send',
+            ]);
+        } else {
+            $trackUserRequest->update([
+                'joining'=>false,
+                'refused'=>true,
+                'action'=>'send',
+            ]);
+        }
+
         return redirect()->route('tracks.show', $track->id);
     }
 }

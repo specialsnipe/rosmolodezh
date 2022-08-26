@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TrackUserRequest extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'user_id_sender',
+        'track_id',
+        'joining',
+        'refused',
+        'action',
+    ];
 }
