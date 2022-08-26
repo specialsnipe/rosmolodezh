@@ -95,8 +95,8 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="form-group w-50 mb-5">
-                                <label for="curator_id">Куратор направления (все пользователи с ролью 2,3)</label>
+                            <div class="form-group w-50 mb-3">
+                                <label for="curator_id">Куратор направления (все пользователи с ролью 2)</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option value="0" disabled selected> Выберите куратора</option>
                                     @foreach($users as $user)
@@ -109,6 +109,21 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
+
+                            <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+                                <label for="curator_id">Преподаватель направления (все пользователи с ролью 3)</label>
+                                <select class="select2" name="teacher_id[]" multiple="multiple"
+                                        data-placeholder="Выберите преподавателя" style="width: 100%;">
+                                    @foreach($users as $user)
+                                        <option {{is_array(request()->teacher_id)&&
+                                                in_array($user->id,request()->user_id)?'selected':''}}
+                                            @dd()
+                                                value="{{$user->id}}">{{$user->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             <div class="form-group w-50">
                                 <label for="title">Место работы куратора<span class="text-secondary">(Информация будет отображена в карточке направления)</span></label>
                                 <input type="text" class="form-control " id="title" name="curator_job" placeholder="Место работы куратора" value="{{$curator->curator_job}}">
