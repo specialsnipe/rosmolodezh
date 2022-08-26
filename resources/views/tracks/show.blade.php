@@ -27,36 +27,39 @@
                         <div class="flex-container">
                             <div class="text-container">
                                 <h1 class="h2">О направлении:</h1>
-                                <p class="fs-5">{{ $track->body }}</p>
-                                <p class="fs-5">Количество блоков: <span
+                                <p class="fs-6">{{ $track->body }}</p>
+                                <p class="fs-6">Количество блоков: <span
                                         class="badge large bg-primary">{{ $track->blocks_count }}</span></p>
-                                <p class="fs-5">Количество заданий: <span
+                                <p class="fs-6">Количество заданий: <span
                                         class="badge large bg-primary">{{ $track->exercises_count }}</span></p>
-                                <p class="fs-5">Количество часов: <span
+                                <p class="fs-6">Количество часов: <span
                                         class="badge large bg-primary">{{ $track->hours_count }}</span></p>
 
-                                @php $is_added = false; @endphp
+                                @php
+                                    $is_added = false;
+                                    $request_sended=false;
+                                @endphp
 
                                 @auth
-                                    @foreach(auth()->user()->tracks as $trackFromUser)
+                                    @foreach(auth()->user()->tracks_request as $trackFromUser)
                                         @if($track->id == $trackFromUser->id)
                                             @php $is_added = true; @endphp
                                         @endif
                                     @endforeach
 
                                     @if($is_added)
-                                        <p class="fs-5">Вы являетесь участником данной траектории <span>
+                                        <p class="fs-6">Вы являетесь участником данной траектории <span>
                                             </span></p>
-                                        <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
+                                        <form action="{{ route('tracks.sendRefuseRequest', $track->id) }}" method="post"
                                             style="display: inline">
                                             @csrf
-                                            <button class="btn btn-orange" type="submit"> Отменить участие</button>
+                                            <button class="btn btn-orange" type="submit"> Отправить запрос на отмену участия</button>
                                         </form>
                                     @else
-                                        <form action="{{ route('tracks.addTrackForUser', $track->id) }}" method="post"
+                                        <form action="{{ route('tracks.sendRequest', $track->id) }}" method="post"
                                             style="display: inline">
                                             @csrf
-                                            <button class="btn btn-orange" type="submit"> Учавствовать</button>
+                                            <button class="btn btn-orange" type="submit"> Отправить запрос на участие</button>
                                         </form>
                                     @endif
                                 @endauth

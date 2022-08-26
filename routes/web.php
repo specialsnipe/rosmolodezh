@@ -96,7 +96,8 @@ Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class,
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
-Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'addTrackForUser'])->name('tracks.addTrackForUser');
+Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
+Route::post('user/add/tracks/{track}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
 Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
 

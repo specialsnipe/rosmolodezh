@@ -142,6 +142,11 @@ class Track extends Model
         return $this->belongsToMany(User::class)->withTrashed()->withTimestamps();
     }
 
+    public function users_requests()
+    {
+        return $this->hasMany(TrackUserRequest::class);
+    }
+
     /**
      * Relation with users (many to one)
      *
