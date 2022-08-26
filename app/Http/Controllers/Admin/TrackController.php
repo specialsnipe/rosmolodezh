@@ -62,7 +62,12 @@ class TrackController extends Controller
         }
         $filename = ImageService::make($request->file('image'), 'tracks');
         $data['image'] = $filename;
+        $teachers = $data['teacher_id'];
+
         $track = Track::create($data);
+
+        $track->teachers()->attach($teachers);
+
 
 
         return redirect()->route('admin.tracks.show', $track->id);
@@ -74,8 +79,10 @@ class TrackController extends Controller
      * @param \App\Models\Track $track
      * @return Application|Factory|View
      */
-    public function show(Track $track)
+    public function show($track_id)
     {
+        $track = Track::where('id', $track_id)->with('teachers')->first();
+
         $averageMarkTrack = AverageMarkTrack::getMark($track);
         return view('admin.tracks.show', [
             'track' => $track,
@@ -92,11 +99,14 @@ class TrackController extends Controller
      */
     public function edit(Track $track)
     {
+//        dd($track->teachers->flatten()->pluck('id'));
+
         $curator = User::findOrFail($track->curator_id);
         return view('admin.tracks.edit', [
             'track' => $track,
             'users' => User::where('role_id', 3)->orWhere('role_id', 2)->get(),
-            'curator' => $curator
+            'curator' => $curator,
+            'teachers_ids' => $track->teachers->flatten()->pluck('id')->toArray(),
         ]);
     }
 
@@ -111,6 +121,7 @@ class TrackController extends Controller
     {
         $data = $request->validated();
 
+
         if ($request->hasFile('icon')) {
             ImageService::deleteOld($track->icon, 'tracks');
             $filename = ImageService::make($request->file('icon'), 'tracks');
@@ -121,7 +132,8 @@ class TrackController extends Controller
             $filename = ImageService::make($request->file('image'), 'tracks');
             $data['image'] = $filename;
         }
-
+        $teachers = $data['teacher_id'];
+        $track->teachers()->sync($teachers);
         $track->update($data);
 
         return redirect()->route('admin.tracks.show', $track->id);

@@ -187,4 +187,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(User::class);
     }
 
+
+    public function tracksWhereTeacher()
+    {
+        return $this->belongsToMany(Track::class, 'track_teachers',
+            'user_id', 'track_id', 'id', 'id');
+    }
+
 }

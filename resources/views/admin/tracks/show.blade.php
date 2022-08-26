@@ -84,6 +84,20 @@
                                     <td>Средний балл:</td>
                                     <td><span class="status_block status_success">{{$averageMarkTrack}}</span></td>
                                 </tr>
+
+                                <tr>
+                                    <td>Преподы направления:</td>
+                                    <td>
+                                        @forelse($track->teachers as $teacher)
+                                            <a href="{{ route('admin.users.show', $teacher->id) }}"
+                                               class="badge bg-primary">
+                                                {{$teacher->allNames}}</a> <br>
+                                        @empty
+                                            хоть что
+                                        @endforelse
+                                    </td>
+
+                                </tr>
                             </table>
                         </div>
                     </div>

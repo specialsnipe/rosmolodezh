@@ -99,7 +99,9 @@
                                 <label for="curator_id">Куратор направления (все пользователи с ролью 2)</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option value="0" disabled selected> Выберите куратора</option>
+
                                     @foreach($users as $user)
+
                                         <option value="{{ $user->id }}"
                                                 @if($track->curator_id == $user->id) selected
                                             @endif> {{ $user->first_and_last_names }}</option>
@@ -111,14 +113,14 @@
                             </div>
 
                             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-                                <label for="curator_id">Преподаватель направления (все пользователи с ролью 3)</label>
+                                <label for="teacher_id">Преподаватель направления (все пользователи с ролью 3)</label>
                                 <select class="select2" name="teacher_id[]" multiple="multiple"
                                         data-placeholder="Выберите преподавателя" style="width: 100%;">
+
                                     @foreach($users as $user)
-                                        <option {{is_array(request()->teacher_id)&&
-                                                in_array($user->id,request()->user_id)?'selected':''}}
-                                            @dd()
-                                                value="{{$user->id}}">{{$user->title}}</option>
+                                        <option {{ is_array($teachers_ids) &&
+                                                in_array($user->id, $teachers_ids)?'selected':''}}
+                                                value="{{$user->id}}">{{$user->first_and_last_names}}</option>
                                     @endforeach
                                 </select>
                             </div>

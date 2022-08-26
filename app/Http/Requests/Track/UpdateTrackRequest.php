@@ -30,6 +30,7 @@ class UpdateTrackRequest extends FormRequest
             'body' => ['required'],
             'tg_url' => ['required','url'],
             'curator_id' => ['required'],
+            'teacher_id'=>['required']
         ];
     }
 

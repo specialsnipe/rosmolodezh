@@ -30,6 +30,7 @@ class StoreTrackRequest extends FormRequest
             'body' => ['required'],
             'tg_url' => ['required','url'],
             'curator_id' => ['required'],
+            'teacher_id' => ['array', 'required']
         ];
     }
 
@@ -51,6 +52,7 @@ class StoreTrackRequest extends FormRequest
             'tg_url.required' => 'Ссылка на телеграмм чат направления обязательна',
             'tg_url.url' => 'Это поле должно быть ссылкой',
             'curator_id.required' => 'Выберите куратора направления',
+            'teacher_id.required'=>'Выберете преподавател(ей/я) направленя',
         ];
     }
 }
