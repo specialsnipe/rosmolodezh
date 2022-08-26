@@ -35,31 +35,27 @@
                                 <p class="fs-6">Количество часов: <span
                                         class="badge large bg-primary">{{ $track->hours_count }}</span></p>
 
-                                @php
-                                    $is_added = false;
-                                    $request_sended=false;
-                                @endphp
-
                                 @auth
-                                    @foreach(auth()->user()->tracks_request as $trackFromUser)
-                                        @if($track->id == $trackFromUser->id)
-                                            @php $is_added = true; @endphp
-                                        @endif
-                                    @endforeach
+                                    @if($requestToJoinSended)
+                                        <span class="btn btn-disabled">Был отправлен запрос участие</span>
+                                    @elseif($requestToRefuseSended)
+                                        <span class="btn btn-disabled">Был отправлен запрос на отмену участия</span>
+                                    @endif
 
-                                    @if($is_added)
-                                        <p class="fs-6">Вы являетесь участником данной траектории <span>
-                                            </span></p>
-                                        <form action="{{ route('tracks.sendRefuseRequest', $track->id) }}" method="post"
-                                            style="display: inline">
-                                            @csrf
-                                            <button class="btn btn-orange" type="submit"> Отправить запрос на отмену участия</button>
-                                        </form>
-                                    @else
+                                    @if(!$requestToJoinSended)
                                         <form action="{{ route('tracks.sendRequest', $track->id) }}" method="post"
                                             style="display: inline">
                                             @csrf
                                             <button class="btn btn-orange" type="submit"> Отправить запрос на участие</button>
+                                        </form>
+
+                                    @elseif(!$requestToRefuseSended)
+                                        <p class="fs-6">Вы являетесь участником данной траектории <span>
+                                        </span></p>
+                                        <form action="{{ route('tracks.sendRefuseRequest', $track->id) }}" method="post"
+                                            style="display: inline">
+                                            @csrf
+                                            <button class="btn btn-orange" type="submit"> Отправить запрос на отмену участия</button>
                                         </form>
                                     @endif
                                 @endauth

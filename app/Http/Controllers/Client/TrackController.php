@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\User;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\TrackUserRequest;
@@ -48,12 +49,18 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
-        foreach (auth()->user()->tracks_request as $trackFromUser) {
-            if ($track->id == $trackFromUser->id) {
-                $is_added = true;
+
+        $requestToJoinSended = false;
+        $requestToRefuseSended = false;
+        foreach (auth()->user()->tracks_requests as $trackRequest) {
+            if ($track->id == $trackRequest->track_id && $trackRequest->joining) {
+                $requestToJoinSended = true;
+            }
+            if ($track->id == $trackRequest->track_id && $trackRequest->refused) {
+                $requestToRefuseSended = true;
             }
         }
-        return view('tracks.show', compact('track'));
+        return view('tracks.show', compact('track', 'requestToJoinSended', 'requestToRefuseSended'));
     }
 
     /**
@@ -115,6 +122,7 @@ class TrackController extends Controller
 
         return redirect()->route('tracks.show', $track->id);
     }
+
     public function sendRefuseRequest(Track $track)
     {
         $user_id = auth()->user()->id;
@@ -139,5 +147,23 @@ class TrackController extends Controller
         }
 
         return redirect()->route('tracks.show', $track->id);
+    }
+
+    public function userAccepted(Track $track, User $user)
+    {
+        $user_id = $user->id;
+        $trackUserRequest = TrackUserRequest::where('user_id_sender', $user_id)
+        ->where('track_id', $track->id)
+        ->first();
+
+        $trackUserRequest->update([
+            'joining'=>true,
+            'refused'=>false,
+            'action'=>'accepted',
+        ]);
+
+        $user->tracks()->toggle($track);
+
+        return redirect()->back();
     }
 }

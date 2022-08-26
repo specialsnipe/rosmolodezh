@@ -96,14 +96,21 @@ Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class,
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
-Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
-Route::post('user/add/tracks/{track}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
 Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
 Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
+// manage tracks' user
+Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
+Route::post('user/add/tracks/{track}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
+Route::match(['put', 'patch'], 'user/add/tracks/{track}/user/{user}/accept', [\App\Http\Controllers\Client\TrackController::class, 'userAccepted'])
+    ->name('tracks.userAccepted');
 
+// Profile
 Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/data', [\App\Http\Controllers\Client\UserController::class, 'data'])->name('profile.data');
     Route::get('profile/progress', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile.progress');
+    Route::get('profile/progress/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'show'])
+        ->name('profile.track.show')
+        ->can('view','track');
     Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
     Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
     Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');

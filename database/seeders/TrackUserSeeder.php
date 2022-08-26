@@ -17,19 +17,19 @@ class TrackUserSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
-        $tracks = Track::all();
-        $tracks_ids = [];
-        foreach ($tracks as $track) {
-            $tracks_ids[] = $track->id;
-        }
+        // $users = User::all();
+        // $tracks = Track::all();
+        // $tracks_ids = [];
+        // foreach ($tracks as $track) {
+        //     $tracks_ids[] = $track->id;
+        // }
 
-        foreach ($users as $user) {
-            TrackUser::create([
-                'user_id' => $user->id,
-                'track_id' => $tracks_ids[array_rand($tracks_ids)],
-            ]);
-        }
+        // foreach ($users as $user) {
+        //     TrackUser::create([
+        //         'user_id' => $user->id,
+        //         'track_id' => $tracks_ids[array_rand($tracks_ids)],
+        //     ]);
+        // }
 //        TrackUser::create([
 //            'user_id' => 2,
 //            'track_id' => 1,

@@ -109,7 +109,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function tracks_requests()
     {
-        return $this->hasMany(TrackUserRequest::class, 'id', 'user_id_sender');
+        return $this->hasMany(TrackUserRequest::class, 'user_id_sender', 'id');
     }
 
     /**

@@ -30,7 +30,9 @@ class TrackPolicy
      */
     public function view(User $user, Track $track)
     {
-        //
+        return in_array('track_view', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && in_array($track->id, $user->tracks->flatten()->pluck('id')->toArray())
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -41,7 +43,8 @@ class TrackPolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array('track_create', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -53,7 +56,10 @@ class TrackPolicy
      */
     public function update(User $user, Track $track)
     {
-        //
+        return in_array('track_update', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->id === $track->creator_id
+            || $user->role->name === 'admin';
+
     }
 
     /**
@@ -65,7 +71,10 @@ class TrackPolicy
      */
     public function delete(User $user, Track $track)
     {
-        //
+        return in_array('track_delete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->id === $track->creator_id
+            || $user->role->name === 'admin';
+
     }
 
     /**
@@ -77,7 +86,10 @@ class TrackPolicy
      */
     public function restore(User $user, Track $track)
     {
-        //
+        return in_array('track_restore', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->id === $track->creator_id
+            || $user->role->name === 'admin';
+
     }
 
     /**
@@ -89,6 +101,8 @@ class TrackPolicy
      */
     public function forceDelete(User $user, Track $track)
     {
-        //
+        return in_array('track_forceDelete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->id === $track->creator_id
+            || $user->role->name === 'admin';
     }
 }

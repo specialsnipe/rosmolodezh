@@ -19,9 +19,9 @@ class ExerciseFactory extends Factory
         return [
             'title' => $this->faker->name,
             'excerpt' => $this->faker->sentence(rand(2, 3), true),
-            'body' => $this->faker->sentence(rand(10, 30), true),
+            'body' => $this->faker->sentence(rand(10, 100), true),
             'complexity_id' => rand(1, 5),
-            'user_id' => rand(1, 2),
+            'user_id' => rand(3, 4),
             'block_id' => rand(1, 15),
             'active' => true,
             'time' => $this->faker->randomNumber(3),
