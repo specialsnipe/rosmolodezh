@@ -17,7 +17,7 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="row m-3">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -26,6 +26,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Название</th>
+                                <th>Разрешения</th>
+                                <th colspan="2">Управление</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,13 +35,18 @@
                                 <tr>
                                     <td>{{$role->id}}</td>
                                     <td>{{$role->name}}</td>
-                                    <td>
+                                    <td class="d-flex flex-wrap">
+                                        @foreach ($role->permissions as $permission)
+                                            <span class="badge bg-info m-1">{{ $permission->title }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td class="w-25">
                                         <div class="">
                                             <a href="{{ route('admin.settings.roles.edit', $role->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="w-25">
                                         <form action="{{route('admin.settings.roles.destroy', $role->id)}} " method="post">
                                             @csrf
                                             @method('delete')

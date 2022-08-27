@@ -17,6 +17,7 @@ class TelegramController extends Controller
     public function index(Request $request)
     {
         $all = $request->all();
+
         if(isset($all['my_chat_member'])) {
             // New user of telegram bot (? may be not ?)
             $username = $all['my_chat_member']['chat']['username'];
