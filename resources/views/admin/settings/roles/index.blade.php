@@ -37,7 +37,7 @@
                                     <td>{{$role->name}}</td>
                                     <td class="d-flex flex-wrap">
                                         @foreach ($role->permissions as $permission)
-                                            <span class="badge bg-info m-1">{{ $permission->title }}</span>
+                                            <span class="badge bg-info m-1">{{ $permission->readable_title }}</span>
                                         @endforeach
                                     </td>
                                     <td class="w-25">

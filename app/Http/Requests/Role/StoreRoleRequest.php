@@ -24,13 +24,15 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required'
+            'name'=> 'required',
+            'permission_id' =>['array', 'required']
         ];
     }
     public function messages()
     {
         return [
-            'name.required'=>'Поле обязательно для заполнения'
+            'name.required'=>'Поле обязательно для заполнения',
+            'permission_id.required' => 'Поле обязательно для заполнение'
         ];
     }
 }
