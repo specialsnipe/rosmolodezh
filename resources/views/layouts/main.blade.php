@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ru">
 
@@ -15,20 +14,24 @@
     <link rel='stylesheet' id='roboto-subset.css-css'
         href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5'
         type='text/css' media='all' />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/media.css') }}"> --}}
+    {{--
+    <link rel="stylesheet" href="{{ asset('css/media.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/css/simple-adaptive-slider.min.css') }}">
+
 
     {{-- <script data-cfasync="false">
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            '//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-W7MBMN');
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7MBMN');
     </script> --}}
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('/scripts/simple-adaptive-slider.min.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-lite.min.css')}}">
+    <script src="{{ asset('plugins/summernote/summernote-lite.min.js') }}"></script>
     @stack("styles")
     <title>Росмолодежь. Обучение</title>
 </head>
@@ -51,7 +54,6 @@
     </button>
     <script src="{{ asset('scripts/script.js') }}"></script>
     <script defer>
-
         $("img").click( function() {
             if($(this).parent()[0].nodeName != 'A') {
                 let newIMG = $(this).clone();

@@ -46,11 +46,6 @@ class ExerciseController extends Controller
 
         // TODO: Сохранение файлов, видосов и ссылок
         $exercise = Exercise::create($data);
-        // if($request->hasFiles('videos'))
-        // foreach ()
-        // $exercise = Exercise::create($data);
-        // ret
-
     }
 
     /**

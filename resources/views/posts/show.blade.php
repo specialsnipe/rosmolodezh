@@ -20,15 +20,16 @@
                         <div class="slider__wrapper">
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
-                                    <div class="slider__item">
+                                    <div class="slider__item" style="max-height: 500px">
                                         <img src="{{ asset($image->original_image) }}"  class="img-fluid rounded w-100"  alt="">
                                     </div>
                                 @endforeach
                             </div>
-                        </div>
-                    </div>
+
                     <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
                     <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a>
+                        </div>
+                    </div>
 
 
                     @else

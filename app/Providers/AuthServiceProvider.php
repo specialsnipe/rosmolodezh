@@ -4,7 +4,13 @@ namespace App\Providers;
 
 
 use App\Models\User;
+use App\Models\Track;
+use App\Models\Answer;
+use App\Models\Exercise;
 use App\Policies\UserPolicy;
+use App\Policies\TrackPolicy;
+use App\Policies\AnswerPolicy;
+use App\Policies\ExercisePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,6 +23,9 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         User::class => UserPolicy::class,
+        Track::class => TrackPolicy::class,
+        Answer::class => AnswerPolicy::class,
+        Exercise::class => ExercisePolicy::class,
     ];
 
     /**
@@ -27,7 +36,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

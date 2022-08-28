@@ -25,6 +25,8 @@ class Exercise extends Model
     ];
 
     protected $appends = [
+        'complexityClassName',
+        'complexityTimeClassName',
         'name_minute_count',
         'answers_added_count',
         'academic_performance_percent',
@@ -32,6 +34,21 @@ class Exercise extends Model
         'mark_count'
     ];
 
+
+    public function getComplexityClassNameAttribute()
+    {
+
+        return Complexity::where('id', $this->complexity_id)
+            ->first()
+            ->class_name;
+    }
+    public function getComplexityTimeClassNameAttribute()
+    {
+        return ComplexityTime::where('started_at','<=', $this->time)
+            ->where('ended_at','>=', $this->time)
+            ->first()
+            ->class_name;
+    }
 
     public function getNameMinuteCountAttribute()
     {

@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->text('body');
             $table->string('file_name');
-            $table->string('file_type');
+            $table->string('file_type')->nullable();
+            $table->float('file_size')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('track_id')->constrained()->cascadeOnDelete();
             $table->foreignId('block_id')->constrained()->cascadeOnDelete();

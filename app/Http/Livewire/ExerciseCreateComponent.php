@@ -2,17 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\File;
+use App\Models\Link;
 use App\Models\Block;
 use Livewire\Component;
 use App\Models\Exercise;
 use App\Models\Complexity;
-use App\Models\Link;
+use Livewire\WithFileUploads;
+use App\Models\ComplexityTime;
 
 class ExerciseCreateComponent extends Component
 {
+    use WithFileUploads;
+
     public $block;
     public $exercise;
     public $complexities;
+    public $complexity_times;
     public $levels = [];
     public $complexity_id = 1;
     public $exercise_title;
@@ -23,10 +29,14 @@ class ExerciseCreateComponent extends Component
     public $stepFrame = 1;
 
     public $links = [];
+    public $exercise_files = [];
     public $link_name;
     public $link_url;
 
-    public $files = [];
+    public $file;
+    public $file_title;
+    public $file_url = '';
+    public $file_body;
 
     public function toStageTwo()
     {
@@ -103,7 +113,6 @@ class ExerciseCreateComponent extends Component
         session()->flash('info', 'Ссылка была успешно удалена :) Не хотите добавить другую?');
     }
 
-    // TODO: make edit modal window.
     public function editLink(Link $link)
     {
         $link->delete();
@@ -128,22 +137,73 @@ class ExerciseCreateComponent extends Component
 
         $this->links = $this->exercise->links;
     }
+    public function addFileToExercise()
+    {
+        $this->validate([
+            'file'=>['required','file', 'max:10024'],
+            'file_title'=>['required'],
+            'file_body'=>['required'],
+        ], [
+            'file.required' => 'Обязательно добавьте хотя бы один файл',
+            'file.mimes' => 'Возможные форматы файлов:txt,docx,rar,7z,zip',
+            'file.max' => 'Файл слишком много весит! (не более 10 мб)',
+            'file_title.required' => 'Обязательно назовите ваш файл',
+            'file_body.required' => 'Добавьте краткое описание к файлу',
+        ]);
+
+        if(isset($this->file)) {
+            File::create([
+                'title' => $this->file_title,
+                'url' => $this->file_url ?? '',
+                'body' => $this->file_body ?? '',
+                'file_name' => $this->file->hashName(),
+                'file_type' => $this->file->getClientOriginalExtension(),
+                'file_size' => $this->file->getSize() / 1024,
+                'user_id' => auth()->user()->id,
+                'track_id' => $this->block->track->id,
+                'block_id' => $this->block->id,
+                'exercise_id' => $this->exercise->id,
+            ]);
+
+            $this->file->storeAs('public/exercise/uploaded_files', $this->file->hashName());
+
+            $this->file_title = '';
+            $this->file = '';
+            $this->file_body = '';
+            $this->exercise_files = File::where('exercise_id', $this->exercise->id)->get();
+
+        }
+
+    }
+    public function deleteFile(File $file)
+    {
+        $file->delete();
+        $this->exercise_files = File::where('exercise_id', $this->exercise->id)->get();
+    }
+    public function updatedFile($values)
+    {
+        $this->validate([
+            'file'=>['required','file', 'max:10024'],
+        ], [
+            'file.required' => 'Обязательно добавьте хотя бы один файл',
+            'file.mimes' => 'Возможные форматы файлов:txt,docx,rar,7z,zip',
+            'file.max' => 'Файл слишком много весит! (не более 10 мб)',
+        ]);
+        $this->files = $values;
+    }
 
 
     public function completeExerciseCreate()
     {
-        return redirect()->route('admin.blocks.exercises.show', [$this->block->id, $this->exercise->id]);
+        // dd(url()->current());
+        return redirect()->route('blocks.exercises.show', [$this->block->id, $this->exercise->id]);
     }
-
-    // public function mount()
-    // {
-    //     $this->links =  $this->exercise->links;
-    // }
 
     public function render()
     {
 
         $this->complexities = Complexity::all();
+        $this->complexity_times = ComplexityTime::all();
         foreach ($this->complexities as $complexity) {
             $this->levels[$complexity->id] =  $complexity->level;
         }

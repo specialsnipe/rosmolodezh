@@ -98,9 +98,7 @@
                             </p>
                         </div>
                         <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                            <form action="{{ '' }}" class="d-inline">
-                            </form>
-                            <button type="submit" class="btn bg-primary"> Добавить новое упражнение </button>
+                            <a href="{{ route('exercise.create', $block->id) }}" class="btn bg-primary"> Добавить новое упражнение </a>
                         </div>
                     </div>
                     <div class="d-flex flex-md-column exercise-block">
