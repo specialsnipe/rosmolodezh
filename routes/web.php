@@ -111,6 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/progress/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'show'])
         ->name('profile.track.show')
         ->can('view','track');
+    Route::get('profile/progress/user/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'userShow'])
+        ->name('profile.user.track.show');
     Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
     Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
     Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');

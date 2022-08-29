@@ -183,7 +183,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $track = Track::find($track);
         $exercises = [];
-        $answers = [];
+
         $solvedExercises = 0;
         foreach($track->blocks as $block) {
             $exercises[$block->id] = $block->exercises;
@@ -191,7 +191,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $exercises = collect($exercises)->flatten();
         foreach($exercises as $exercise) {
             if ($exercise->answers->where('user_id', $this->id)->first()) {
-                $answers[$exercise->id] = $exercise->answers->where('user_id', $this->id);
+
                 $solvedExercises++;
             }
         }
@@ -201,7 +201,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $track = Track::find($track);
         $exercises = [];
-        $answers = [];
         $solvedExercises = 0;
         foreach($track->blocks as $block) {
             $exercises[$block->id] = $block->exercises;
@@ -209,14 +208,37 @@ class User extends Authenticatable implements MustVerifyEmail
         $exercises = collect($exercises)->flatten();
         foreach($exercises as $exercise) {
             if ($exercise->answers->where('user_id', $this->id)->whereNotNull('mark')->first()) {
-                $answers[$exercise->id] = $exercise->answers
-                                                    ->where('user_id', $this->id)
-                                                    ->whereNotNull('mark');
+
                 $solvedExercises++;
             }
         }
         return $solvedExercises;
     }
+
+    public function getAverageMarkTrackAttribute($track)
+    {
+        $track = Track::find($track);
+        $exercises = [];
+
+        $solvedExercises = 0;
+        $averageMark = 0;
+        foreach($track->blocks as $block) {
+            $exercises[$block->id] = $block->exercises;
+        }
+        $exercises = collect($exercises)->flatten();
+        foreach($exercises as $exercise) {
+            $answer = $exercise->answers->where('user_id', $this->id)->whereNotNull('mark')->first();
+            if ($answer) {
+                $solvedExercises++;
+                $averageMark += $answer->mark;
+            }
+        }
+        if($solvedExercises == 0) {
+            return 0;
+        }
+        return round($averageMark / $solvedExercises, 1);
+    }
+
 
     /**
      * @return BelongsTo

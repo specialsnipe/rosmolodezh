@@ -12,4 +12,9 @@ class ProfileTrackController extends Controller
     {
         return view('profile.track.teacher.show', compact('track'));
     }
+
+    public function userShow(Track $track)
+    {
+        return view('profile.track.student.show', compact('track'));
+    }
 }

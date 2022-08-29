@@ -17,15 +17,15 @@
                                 <tbody>
                                 <tr>
                                     <td class="p-3">Решено задач</td>
-                                    <td>12</td>
+                                    <td>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</td>
                                 </tr>
                                 <tr class="p-3">
                                     <td class="p-3">Средний балл</td>
-                                    <td>3.9</td>
+                                    <td>{{$user->getAverageMarkTrackAttribute($track->id)}}</td>
                                 </tr>
                                 <tr class="p-3">
                                     <td class="p-3">Получено оценок</td>
-                                    <td>12</td>
+                                    <td>{{$user->getAnswerMarkCountAttribute($track->id)}}</td>
                                 </tr>
                                 </tbody>
                             </table>
