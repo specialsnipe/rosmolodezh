@@ -17,7 +17,6 @@
             width: 150px;
             height: 40px;
             text-align: center;
-            border: 2px solid #171515;
         }
 
         .table_sort tbody tr:nth-child(even) {

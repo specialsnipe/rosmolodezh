@@ -41,7 +41,10 @@ class UserController extends Controller
             $data['isCurator'] = $isCurator;
             return view('profile.teacher', $data);
         }
-        return view('profile.student', $data);
+        $userId = auth()->user()->id;
+        $user = User::where('id', $userId)->with('tracks')->first();
+
+        return view('profile.student.main', compact('data', 'user'));
     }
     public function show(User $user)
     {

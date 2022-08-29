@@ -44,7 +44,6 @@ class HomeController extends Controller
         $phrases = $phrases->random($phrasesCount)->values();
         $posts = Post::latest()->limit(4)->get();
 
-        dd(auth()->user()->getSolvedTrackExercisesAttribute(1), auth()->user()->getAnswerMarkCountAttribute(1), );
         return view('welcome', [
             'posts' => $posts,
             'tracks' => $this->tracks,
