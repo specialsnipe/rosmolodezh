@@ -157,6 +157,10 @@ class PermissionSeeder extends Seeder
             'title' => 'block_forceDelete',
             'readable_title'=>'Удаление блока безвозвратно'
         ]);
+        $block_start = Permission::create([
+            'title' => 'block_start',
+            'readable_title'=>'Возможность стартовать блок'
+        ]);
         $answer_viewAny = Permission::create([
             'title' => 'answer_viewAny',
             'readable_title'=>'Просмотр ответов'
@@ -189,6 +193,7 @@ class PermissionSeeder extends Seeder
         $student = Role::find(Role::STUDENT);
         $student->permissions()->toggle($exercise_view);
         $student->permissions()->toggle($block_view);
+        $student->permissions()->toggle($block_start);
         $student->permissions()->toggle($answer_viewAny);
         $student->permissions()->toggle($answer_view);
         $student->permissions()->toggle($answer_create);

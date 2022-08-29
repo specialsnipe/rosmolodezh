@@ -20,7 +20,11 @@
             <div class="main-container-directions">
                 <div class="container row m-0 p-0">
                     <div class="col-sm-12 col-md-6 pl-0">
-                        <h1 class="h1">{{ $track->title }}</h1>
+                        <h1 class="h1">{{ $track->title }}</h1>@auth
+                            @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
+                                <span class="badge fs-8 bg-secondary"> Вы являетесь участником</span>
+                            @endif
+                            @endauth
                         <img class="w-100" src="{{ asset($track->url_image_original) }}" alt="">
                     </div>
                     <div class="col-sm-12 col-md-6 pr-0">
@@ -38,24 +42,23 @@
                                 @auth
                                 @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
                                     @if($requestToRefuseSended)
-                                        <span class="btn btn-disabled">Был отправлен запрос на отмену участия</span>
+                                        <span class="btn btn-secondary">Был отправлен запрос на отмену участия</span>
                                     @elseif(!$requestToRefuseSended)
-                                        <p class="fs-6">Вы являетесь участником данной траектории <span>
                                         </span></p>
                                         <form action="{{ route('tracks.sendRefuseRequest', $track->id) }}" method="post"
                                             style="display: inline">
                                             @csrf
-                                            <button class="btn btn-orange" type="submit"> Отправить запрос на отмену участия</button>
+                                            <button class="btn btn-primary" type="submit"> Отправить запрос на отмену участия</button>
                                         </form>
                                     @endif
                                 @else
                                     @if($requestToJoinSended)
-                                        <span class="btn btn-disabled">Был отправлен запрос на участие</span>
+                                        <span class="btn btn-secondary">Был отправлен запрос на участие</span>
                                     @elseif(!$requestToJoinSended)
                                         <form action="{{ route('tracks.sendRequest', $track->id) }}" method="post"
                                             style="display: inline">
                                             @csrf
-                                            <button class="btn btn-orange" type="submit"> Отправить запрос на участие</button>
+                                            <button class="btn btn-primary" type="submit"> Отправить запрос на участие</button>
                                         </form>
                                     @endif
                                 @endif

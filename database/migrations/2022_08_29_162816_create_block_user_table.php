@@ -13,17 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answer_files', function (Blueprint $table) {
+        Schema::create('block_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('answer_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('block_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('original_file_name');
-            $table->string('file_name');
-            $table->float('file_size');
-            $table->string('file_type');
-            $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -34,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer_files');
+        Schema::dropIfExists('block_user');
     }
 };

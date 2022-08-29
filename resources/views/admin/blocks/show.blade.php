@@ -71,12 +71,6 @@
                                                 class="status_block status_success">{{ $block->date_start->format('d.m.Y') }}</span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Дата окончания блока:</td>
-                                        <td><span
-                                                class="status_block status_success">{{ $block->date_end->format('d.m.Y') }}</span>
-                                        </td>
-                                    </tr>
                                 </table>
                             </div>
                             <div class="row">

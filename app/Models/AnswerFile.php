@@ -14,8 +14,10 @@ class AnswerFile extends Model
     protected $table = 'answer_files';
     protected $fillable = [
         'answer_id',
+        'user_id',
         'file_name',
-        'type',
+        'file_size',
+        'file_type',
         'original_file_name'
     ];
     protected $appends = [

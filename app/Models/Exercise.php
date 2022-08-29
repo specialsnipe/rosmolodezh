@@ -44,10 +44,18 @@ class Exercise extends Model
     }
     public function getComplexityTimeClassNameAttribute()
     {
+        $time = ComplexityTime::where('started_at','<=', $this->time)
+        ->where('ended_at','>=', $this->time)
+        ->first();
+
         return ComplexityTime::where('started_at','<=', $this->time)
-            ->where('ended_at','>=', $this->time)
-            ->first()
-            ->class_name;
+                ->where('ended_at','>=', $this->time)
+                ->first()
+                ? ComplexityTime::where('started_at','<=', $this->time)
+                    ->where('ended_at','>=', $this->time)
+                    ->first()->class_name
+                : 'dark';
+
     }
 
     public function getNameMinuteCountAttribute()

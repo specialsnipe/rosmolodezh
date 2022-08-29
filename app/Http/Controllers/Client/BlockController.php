@@ -51,7 +51,7 @@ class BlockController extends Controller
      */
     public function show(Block $block)
     {
-        //
+        return view('profile.blocks.student.show',compact('block'));
     }
 
     /**
@@ -86,5 +86,17 @@ class BlockController extends Controller
     public function destroy(Block $block)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Block  $block
+     * @return \Illuminate\Http\Response
+     */
+    public function start(Block $block)
+    {
+        auth()->user()->started_blocks()->toggle($block);
+        return redirect()->route('profile.block.show', $block->id);
     }
 }

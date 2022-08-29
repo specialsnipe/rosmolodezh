@@ -26,7 +26,7 @@ class ExerciseController extends Controller
      */
     public function create(Block $block)
     {
-        return view('exercise.create',compact('block'));
+        return view('profile.exercise.create',compact('block'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ExerciseController extends Controller
     public function show(Block $block, Exercise $exercise)
     {
         $this->authorize('view', $exercise);
-        return view('exercise.show', compact('exercise', 'block'));
+        return view('profile.exercise.show', compact('exercise', 'block'));
     }
 
     /**

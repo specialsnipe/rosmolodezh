@@ -195,7 +195,6 @@ class ExerciseCreateComponent extends Component
 
     public function completeExerciseCreate()
     {
-        // dd(url()->current());
         return redirect()->route('blocks.exercises.show', [$this->block->id, $this->exercise->id]);
     }
 

@@ -1,4 +1,6 @@
+
 @php
+use Illuminate\Support\Carbon;
 $user = auth()->user();
 @endphp
 
@@ -64,7 +66,11 @@ $user = auth()->user();
                     <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
                     <div class="col-sm-12">
                         @foreach (auth()->user()->tracks[0]->blocks as $block)
-                        <div class="card mb-4">
+                        <div class="card mb-4
+                            @if($block->date_start >= Carbon::now())
+                                locked-task
+                            @endif
+                        ">
 
                             <div class="card-body">
                                 <div class="row">
@@ -75,29 +81,43 @@ $user = auth()->user();
                                             Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>
                                     </div>
-                                    <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                                        <form
-                                        @if($block->exercises_count < 1)
-                                            action="{{ '' }}"
-                                            @else
-                                            action="{{ '' }}"
-                                            @endif class="d-inline">
-                                            <button type="submit" class="btn" @if($block->exercises_count < 1) disabled @endif>
+                                    @if(auth()->user()->started_blocks->where('id', $block->id)->first() == null)
+                                        @if(!($block->date_start >= Carbon::now()))
+                                        <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
+                                            <form
                                                 @if($block->exercises_count < 1)
-                                                У данного блока нет упражнений
+                                                    action="#"
                                                 @else
-                                                Начать выполение блока
+                                                    action="{{ route( 'block.start', $block->id) }}"
                                                 @endif
-                                            </button>
-                                        </form>
+                                                method='post'
+                                                class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary" @if($block->exercises_count < 1) disabled @endif>
+                                                    @if($block->exercises_count < 1)
+                                                    У данного блока нет упражнений
+                                                    @else
+                                                    Начать выполение блока
+                                                    @endif
+                                                </button>
+                                            </form>
+                                        </div>
+                                        @endif
+                                    @else
+                                    <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
+                                        <div>
+                                        <a href="{{ route('profile.block.show', $block->id) }}" class="btn btn-success d-inline">
+                                            Продолжить выполнение блока
+                                        </a></div>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="d-flex flex-md-column exercise-block">
 
 
                                     @forelse ($block->exercises as $exercise)
                                         @if($loop->first) <div class="fs-6 mt-0 mb-2">Задания блока:</div> @endif
-                                        <span class="fs-6">{{ $exercise->title }}</span>
+                                        <a href="{{ route('blocks.exercises.show', [$block->id,$exercise->id]) }}" class="fs-6">{{ $exercise->title }}</a>
                                     @empty
                                     <div class="fs-6 mt-0 mb-2">К данному блоку ещё не добавили заданий :(</div>
                                     @endforelse

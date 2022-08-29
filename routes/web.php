@@ -120,6 +120,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
         ->name('user.show')
         ->can('view', 'user');
+    Route::post('profile/blocks/{block}/start', [\App\Http\Controllers\Client\BlockController::class, 'start'])
+        ->name('block.start')
+        ->can('start', 'block');
+    Route::get('profile/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
+        ->name('profile.block.show')
+        ->can('view', 'block');
     Route::get('profile/blocks/{block}/exercises/create', [\App\Http\Controllers\Client\ExerciseController::class, 'create'])
         ->name('exercise.create')
         ->can('create', \App\Models\Exercise::class);

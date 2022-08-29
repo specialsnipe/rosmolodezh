@@ -195,4 +195,9 @@ class Block extends Model
         return $this->hasMany(File::class);
     }
 
+    public function started_blocks()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

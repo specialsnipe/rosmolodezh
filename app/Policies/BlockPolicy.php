@@ -19,11 +19,7 @@ class BlockPolicy
      */
     public function viewAny(User $user)
     {
-        return in_array('block_viewAny', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id)
-                    ? $user->track->where('id', $block->track_id)->id
-                    : null
-                === $block->track_id;
+        return in_array('block_viewAny', $user->role->permissions->flatten()->pluck('title')->toArray());
 
     }
 
@@ -36,9 +32,11 @@ class BlockPolicy
      */
     public function view(User $user, Block $block)
     {
-        return in_array('block_view', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id) ? $user->track->where('id', $block->track_id)->id : null
-                === $block->track_id;
+        return in_array('block_view', $user->role->permissions->flatten()->pluck('title')->toArray())
+        && $user->tracks->where('id', $block->track->id)->first()
+            ? $user->tracks->where('id', $block->track->id)->first()->id
+            : null
+        === $block->track->id;
     }
 
     /**
@@ -67,9 +65,11 @@ class BlockPolicy
      */
     public function update(User $user, Block $block)
     {
-        return in_array('block_update', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id) ? $user->track->where('id', $block->track_id)->id : null
-                === $block->track_id;
+        return in_array('block_update', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->tracks->where('id', $block->track->id)->first()
+                ? $user->tracks->where('id', $block->track->id)->first()->id
+                : null
+            === $block->track->id;
     }
 
     /**
@@ -81,9 +81,11 @@ class BlockPolicy
      */
     public function delete(User $user, Block $block)
     {
-        return in_array('block_delete', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id) ? $user->track->where('id', $block->track_id)->id : null
-                === $block->track_id;
+        return in_array('block_delete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->tracks->where('id', $block->track->id)->first()
+                ? $user->tracks->where('id', $block->track->id)->first()->id
+                : null
+            === $block->track->id;
     }
 
     /**
@@ -95,9 +97,11 @@ class BlockPolicy
      */
     public function restore(User $user, Block $block)
     {
-        return in_array('block_restore', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id) ? $user->track->where('id', $block->track_id)->id : null
-                === $block->track_id;
+        return in_array('block_restore', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->tracks->where('id', $block->track->id)->first()
+                ? $user->tracks->where('id', $block->track->id)->first()->id
+                : null
+            === $block->track->id;
     }
 
     /**
@@ -109,8 +113,25 @@ class BlockPolicy
      */
     public function forceDelete(User $user, Block $block)
     {
-        return in_array('block_forceDelete', $user->role->permissions->flatten())
-            && $user->track->where('id', $block->track_id) ? $user->track->where('id', $block->track_id)->id : null
-                === $block->track_id;
+        return in_array('block_forceDelete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->tracks->where('id', $block->track->id)->first()
+                ? $user->tracks->where('id', $block->track->id)->first()->id
+                : null
+            === $block->track->id;
+    }
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Block  $block
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function start(User $user, Block $block)
+    {
+        return in_array('block_start', $user->role->permissions->flatten()->pluck('title')->toArray())
+            && $user->tracks->where('id', $block->track->id)->first()
+                ? $user->tracks->where('id', $block->track->id)->first()->id
+                : null
+            === $block->track->id;
     }
 }
