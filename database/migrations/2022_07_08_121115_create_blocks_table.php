@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreignId('track_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->dateTime('date_start');
-            $table->dateTime('date_end');
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();

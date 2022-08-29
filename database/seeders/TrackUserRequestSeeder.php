@@ -29,8 +29,8 @@ class TrackUserRequestSeeder extends Seeder
                 TrackUserRequest::create([
                     'user_id_sender'=>$user->id,
                     'track_id'=>$tracks_ids[array_rand($tracks_ids)],
-                    'joining'=>false,
-                    'refused'=>true,
+                    'joining'=>true,
+                    'refused'=>false,
                     'action'=>'send',
                 ]);
             } elseif ($user->role->name != 'admin') {

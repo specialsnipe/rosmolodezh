@@ -25,42 +25,36 @@ class BlockSeeder extends Seeder
                 'body' => 'Узнать, что значит «быть программистом» и как им стать.',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
             [
                 'title' => 'О программировании',
                 'body' => 'Узнать что такое программирование и чем привлекательна эта профессия.',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
             [
                 'title' => 'Виды компаний и разработки',
                 'body' => 'Рассмотреть виды компаний и различные виды разработки.',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
             [
                 'title' => 'Процесс написания кода',
                 'body' => 'Понять, насколько важным является процесс написания кода в программировании, и есть ли другие важные виды деятельности у программиста?',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
             [
                 'title' => 'Знания, которые не устаревают',
                 'body' => 'Рассмотреть знания и навыки, которые не устаревают и не зависят от времени.',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
             [
                 'title' => 'Дополнительные материалы',
                 'body' => 'Статьи и видео, подобранные командой Хекслета. Помогут глубже погрузиться в тему курса',
                 'image' => 'default_block.jpg',
                 'date_start' =>now(),
-                'date_end' => now()
             ],
         ];
         foreach ($tracks as $track) {
@@ -73,7 +67,6 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
-                        'date_end' => $block['date_end'],
                     ]);
                 }
                 foreach ($block_list as $block){
@@ -84,7 +77,6 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
-                        'date_end' => $block['date_end'],
                     ]);
                 }
             }
@@ -97,7 +89,6 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
-                        'date_end' => $block['date_end'],
                     ]);
                 }
             }
@@ -109,7 +100,6 @@ class BlockSeeder extends Seeder
                     'track_id' => $track->id,
                     'user_id' => $track->curator_id,
                     'date_start' => $block['date_start'],
-                    'date_end' => $block['date_end'],
                 ]);
             }
         }

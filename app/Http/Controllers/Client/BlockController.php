@@ -25,7 +25,7 @@ class BlockController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.block.create');
     }
 
     /**

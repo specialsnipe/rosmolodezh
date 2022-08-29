@@ -32,35 +32,35 @@
 
                 <div class="form-group row">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control " >{{ $user->last_name }}</span>
+                        <span class="form-control " >{{ $user->last_name ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">Фамилия</label>
 
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control">{{ $user->first_name }}</span>
+                        <span class="form-control">{{ $user->first_name ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">Имя</label>
 
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
                         <span readoly name="father_name" type="text"
                             class="form-control " id="floatingPassword"
-                            placeholder="Отчество" value="{{ $user->father_name }}"> </span>
+                            placeholder="Отчество" value="{{ $user->father_name ?? 'Не задано'  }}"> </span>
                         <label for="floatinginput readoly">Отчество</label>
 
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control" >{{ $user->login }}</span>
+                        <span class="form-control" >{{ $user->login ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">Логин</label>
 
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control">{{ $user->email }}</span>
+                        <span class="form-control">{{ $user->email ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">E-mail</label>
 
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control ">{{ $user->age }}</span>
+                        <span class="form-control ">{{ $user->age ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">возраст</label>
 
                     </div>
@@ -70,17 +70,17 @@
                     border-radius: 5px 0 0 5px ; color: white;">@</span>
                         <span readoly name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
                             class="form-control " placeholder="Telegram Username"
-                            aria-label="Username" aria-describedby="basic-addon1" value="">{{ $user->tg_name }}</span>
+                            aria-label="Username" aria-describedby="basic-addon1" value="">{{ $user->tg_name ?? 'Не задано' }}</span>
                         <label for="floatingPassword" style="margin-left:40px;">Telegram Username</label>
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <span class="form-control"> <a href="{{ $user->vk_url }}">{{ $user->vk_url }}</a> </span>
+                        <span class="form-control"> <a href="{{ $user->vk_url ?? '#' }}">{{ $user->vk_url ?? 'Не задано' }}</a> </span>
                         <label for="floatinginput readoly">Ссылка на ВКонтакте</label>
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <span class="form-control ">{{ $user->gender->name }}</span>
+                        <span class="form-control ">{{ $user->gender ? $user->gender->name : 'Не задано' }}</span>
                         <label for="floatinginput readoly">Пол</label>
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">

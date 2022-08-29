@@ -36,19 +36,9 @@
                                         class="badge large bg-primary">{{ $track->hours_count }}</span></p>
 
                                 @auth
-                                    @if($requestToJoinSended)
-                                        <span class="btn btn-disabled">Был отправлен запрос участие</span>
-                                    @elseif($requestToRefuseSended)
+                                @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
+                                    @if($requestToRefuseSended)
                                         <span class="btn btn-disabled">Был отправлен запрос на отмену участия</span>
-                                    @endif
-
-                                    @if(!$requestToJoinSended)
-                                        <form action="{{ route('tracks.sendRequest', $track->id) }}" method="post"
-                                            style="display: inline">
-                                            @csrf
-                                            <button class="btn btn-orange" type="submit"> Отправить запрос на участие</button>
-                                        </form>
-
                                     @elseif(!$requestToRefuseSended)
                                         <p class="fs-6">Вы являетесь участником данной траектории <span>
                                         </span></p>
@@ -58,6 +48,17 @@
                                             <button class="btn btn-orange" type="submit"> Отправить запрос на отмену участия</button>
                                         </form>
                                     @endif
+                                @else
+                                    @if($requestToJoinSended)
+                                        <span class="btn btn-disabled">Был отправлен запрос на участие</span>
+                                    @elseif(!$requestToJoinSended)
+                                        <form action="{{ route('tracks.sendRequest', $track->id) }}" method="post"
+                                            style="display: inline">
+                                            @csrf
+                                            <button class="btn btn-orange" type="submit"> Отправить запрос на участие</button>
+                                        </form>
+                                    @endif
+                                @endif
                                 @endauth
 
 
