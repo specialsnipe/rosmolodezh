@@ -4,7 +4,7 @@
 <main style="
     display: flex;
     justify-content: center;">
-    
+
 <div class="content mt-3">
 <p class="h1-content">Страница с заданием </p>
     <div class="descriptions col-sm-12 col-md-12 col-lg-12">
@@ -19,23 +19,26 @@
 
         <div class="submit-task col-xs-12 col-md-7 col-lg-7 ">
             <div class="text-h1">Отправить ответ на задание</div>
-            <div class="form-floating">
+            <form action="">
+                <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="min-height: 250px"></textarea>
-                <label for="floatingTextarea2">Введите ваш ответ...</label>
-            </div>
-            <div class="btn-container">
-                <div class="line"></div>
-                <div class="icon-content">
-                    <i class="fas fa-file"></i>
-                    <i class="fas fa-file"></i>
-                    <i class="fas fa-file"></i>
-                    <i class="fas fa-file"></i>
+                          style="min-height: 250px"></textarea>
+                    <label for="floatingTextarea2">Введите ваш ответ...</label>
                 </div>
-                <div class="line"></div>
-                <button class="attach-file">Прекрепить файлы</button>
-                <button class="btn-send">Отправить</button>
-            </div>
+                <div class="btn-container">
+                    <div class="line"></div>
+                    <div class="icon-content">
+                        <i class="fas fa-file"></i>
+                        <i class="fas fa-file"></i>
+                        <i class="fas fa-file"></i>
+                        <i class="fas fa-file"></i>
+                    </div>
+                    <div class="line"></div>
+                    <button class="attach-file">Прекрепить файлы</button>
+                    <input type="submit" class="btn-send" value="Отправить ответ">
+                </div>
+            </form>
+
         </div>
 
 
