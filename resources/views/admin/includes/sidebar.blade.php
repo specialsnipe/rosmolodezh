@@ -114,6 +114,10 @@
                         @if(request()->routeIs('admin.settings.phrases.*') ) active @endif">
                             <i class="nav-icon fas fa-trophy"></i> Фразы
                         </a>
+                        <a href="{{route('admin.settings.team.index')}}" class="nav-link
+                        @if(request()->routeIs('admin.settings.team.*') ) active @endif">
+                           <i class="nav-icon fa fa-users"></i> Команда
+                        </a>
                     </div>
                 </li>
                 <script type="text/javascript" defer>
