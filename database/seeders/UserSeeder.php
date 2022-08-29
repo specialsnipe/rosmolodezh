@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
             'last_name' => 'tutor',
             'first_name' => 'tutor',
             'father_name' => 'tutor',
-            'role_id' => 2,
+            'role_id' => 3,
             'gender_id' => 2,
             'occupation_id' => 2,
             'avatar' => 'default_avatar.jpg',

@@ -35,12 +35,11 @@ class UserController extends Controller
             'tracks' => Track::all(),
         ];
         $data['blocks'] = Block::where('track_id',$data['tracks'][0]->id)->with('exercises')->get();
-        // dd($data['blocks']);
         $role = auth()->user()->role->name;
         if ($role == 'tutor'||$role == 'teacher') {
             $isCurator = Track::where('curator_id', auth()->user()->id)->first();
             $data['isCurator'] = $isCurator;
-            return view('profile.tutor', $data);
+            return view('profile.teacher', $data);
         }
         return view('profile.student', $data);
     }

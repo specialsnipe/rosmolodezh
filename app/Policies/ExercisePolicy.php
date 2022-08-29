@@ -18,7 +18,7 @@ class ExercisePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return in_array('exercise_viewAny', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**
@@ -30,7 +30,7 @@ class ExercisePolicy
      */
     public function view(User $user, Exercise $exercise)
     {
-        //
+        return in_array('exercise_view', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**
@@ -41,7 +41,8 @@ class ExercisePolicy
      */
     public function create(User $user)
     {
-        //
+        return in_array('exercise_create', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -53,7 +54,9 @@ class ExercisePolicy
      */
     public function update(User $user, Exercise $exercise)
     {
-        //
+        return in_array('exercise_create', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->id === $exercise->user_id
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -65,7 +68,9 @@ class ExercisePolicy
      */
     public function delete(User $user, Exercise $exercise)
     {
-        //
+        return in_array('exercise_delete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->id === $exercise->user_id
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -77,7 +82,8 @@ class ExercisePolicy
      */
     public function restore(User $user, Exercise $exercise)
     {
-        //
+        return in_array('exercise_restore', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->role->name === 'admin';
     }
 
     /**
@@ -89,6 +95,7 @@ class ExercisePolicy
      */
     public function forceDelete(User $user, Exercise $exercise)
     {
-        //
+        return in_array('exercise_forceDelete', $user->role->permissions->flatten()->pluck('title')->toArray())
+            || $user->role->name === 'admin';
     }
 }

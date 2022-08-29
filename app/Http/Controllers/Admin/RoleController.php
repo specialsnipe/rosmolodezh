@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Role\StoreRoleRequest;
 use App\Http\Requests\Role\UpdateRoleRequest;
+use App\Models\Permission;
 use App\Models\Role;
 
 class RoleController extends Controller
@@ -25,7 +26,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.settings.roles.create');
+        $permissions = Permission::all();
+        return view('admin.settings.roles.create', compact('permissions'));
     }
 
 
@@ -36,7 +38,11 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $data = $request->validated();
-        Role::firstOrCreate($data);
+
+        $permissions = $data['permission_id'];
+        unset($data['permission_id']);
+        $role = Role::firstOrCreate($data);
+        $role->permissions()->attach($permissions);
         return redirect()->route('admin.settings.roles.index');
     }
 
@@ -58,7 +64,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.settings.roles.edit', compact('role'));
+
+        $permissions = Permission::all();
+
+        return view('admin.settings.roles.edit', compact('role','permissions'));
     }
 
 
@@ -70,6 +79,9 @@ class RoleController extends Controller
     public function update(UpdateRoleRequest $request, Role $role)
     {
         $data = $request->validated();
+
+        $permissions = $data['permission_id'];
+        $role->permissions()->sync($permissions);
         $role->update($data);
         return redirect()->route('admin.settings.roles.index');
     }

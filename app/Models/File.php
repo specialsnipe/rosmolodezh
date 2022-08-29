@@ -12,12 +12,14 @@ class File extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'files';
+
     protected $fillable = [
         'title',
         'url',
         'body',
         'file_name',
         'file_type',
+        'file_size',
         'user_id',
         'track_id',
         'block_id',

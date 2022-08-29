@@ -2,15 +2,16 @@
 
 namespace App\Providers;
 
-use App\Helpers\Telegram;
-use App\Models\Answer;
-use App\Models\Track;
 use Carbon\Carbon;
+use App\Models\Track;
+use App\Models\Answer;
+use App\Helpers\Telegram;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
 
@@ -45,6 +46,6 @@ class AppServiceProvider extends ServiceProvider
                 ->action('Подтвердить почту', $url, 'success')
                 ->line('Если вы не регистрировались на нашем сайте то не нажимайте на кнопку.');
         });
-
+        Schema::defaultStringLength(191);
     }
 }

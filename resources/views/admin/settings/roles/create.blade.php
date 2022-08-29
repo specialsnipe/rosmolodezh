@@ -18,15 +18,29 @@
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        <div class="col-4">
+        <div class="col-6">
             <form action="{{route('admin.settings.roles.store')}}" method="post">
                 @csrf
                 <div class="form-group ml-3 ">
-                    <label for="exampleInputEmail1">Введите роль</label>
+                    <label for="exampleInputEmail1">Введите название роли</label>
                     <input type="text" class="form-control" id="gender" name="name" placeholder="Роль">
                     @error('name')
                     <div class="text-danger">{{$message }}</div>
                     @enderror
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                    <label>Выберите доступы</label>
+                    <select class="select2" name="permission_id[]" multiple="multiple"
+                            data-placeholder="Выберите " style="width: 100%;">
+                        @foreach($permissions as $permission)
+                            <option
+
+                                @if((is_array(request()->permission_id)&& in_array($permission->id,request()->permission_id))) selected
+                                @endif
+                                value="{{$permission->id}}">{{$permission->title}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Создать">

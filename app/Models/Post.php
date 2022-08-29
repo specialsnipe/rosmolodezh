@@ -22,8 +22,8 @@ class Post extends Model
         // Override only the properties you want:
 
         return new SEOData(
-            title: $this->title,
-            tags: ['asdasd', 'Yjdsjq','Some'],
+            title: 'Новость | '. $this->title . '. Росмолодежь, Стирай границы',
+            tags: explode(', ', $this->keywords),
             description: $this->excerpt,
             image: $this->images[0]->thumbnail_image,
         );
