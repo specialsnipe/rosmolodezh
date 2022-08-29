@@ -33,7 +33,7 @@
                 class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
                 @csrf
                 @method('PATCH')
-                <div class="text-header mb-4">Личные данные "{{ $user->first_and_last_names }}"</div>
+                <div class="text-header mb-4">Ваши персональные данные </div>
 
                 <div class="form-group row">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">

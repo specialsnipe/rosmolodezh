@@ -1,4 +1,12 @@
 <aside class="col-sm-12 col-md-3 profile-aside">
+    <ul>
+        <li>
+            <a href="{{ route('profile.data') }}">Персональные данные</a>
+        </li>
+        <li>
+            <a href="{{ route('profile.progress') }}">Профиль</a>
+        </li>
+    </ul>
     <h4 class="h4 col-12 ">Ваши направления:</h4>
     <ul class="track-list">
         @foreach (auth()->user()->tracks as $track)

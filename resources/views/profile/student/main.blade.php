@@ -3,7 +3,7 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endpush
-
+@section('title') Ваша статистика @endsection
 @section('profile_content')
 
         <div class="row">
