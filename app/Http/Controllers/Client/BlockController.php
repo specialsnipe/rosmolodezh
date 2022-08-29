@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Block;
+use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,9 +24,12 @@ class BlockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Track $track)
     {
-        return view('profile.block.create');
+        $user = auth()->user();
+
+        $this->authorize('create', [Block::class, $track]);
+        return view('profile.block.create', ['track' => $track]);
     }
 
     /**

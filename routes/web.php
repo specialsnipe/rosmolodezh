@@ -123,8 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('exercise.create')
         ->can('create', \App\Models\Exercise::class);
     Route::get('profile/tracks/{track}/blocks/create', [\App\Http\Controllers\Client\BlockController::class, 'create'])
-        ->name('blocks.create')
-        ->can('create', \App\Models\Block::class);
+        ->name('blocks.create');
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 

@@ -71,7 +71,8 @@ $user = auth()->user();
                                     <div class="col-sm-12 col-lg-6">
 
                                         <p class="fs-5">
-                                            Блок: {{ $block->title }}
+                                            Блок: {{ $block->title }} <br>
+                                            Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>
                                     </div>
                                     <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
@@ -80,15 +81,15 @@ $user = auth()->user();
                                             action="{{ '' }}"
                                             @else
                                             action="{{ '' }}"
-                                            @endif class="d-inline"></form>
-                                        <button type="submit" class="btn" @if($block->exercises_count < 1) disabled @endif>
-                                            @if($block->exercises_count < 1)
-                                            У данного блока нет упражнений
-                                            @else
-                                            Начать выполение блока
-                                            @endif
-
-                                        </button>
+                                            @endif class="d-inline">
+                                            <button type="submit" class="btn" @if($block->exercises_count < 1) disabled @endif>
+                                                @if($block->exercises_count < 1)
+                                                У данного блока нет упражнений
+                                                @else
+                                                Начать выполение блока
+                                                @endif
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-md-column exercise-block">
