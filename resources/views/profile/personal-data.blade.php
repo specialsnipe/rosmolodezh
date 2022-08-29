@@ -119,6 +119,20 @@
                         <label for="floatingSelect">Занятость:</label>
                         @error('occupation_id') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input name="curator_job" type="text"
+                               class="form-control @error('curator_job') is-invalid @enderror" id="floatingInput"
+                               placeholder="Место работы куратора" value="{{ $user->curator_job }}">
+                        <label for="floatingInput">Место работы куратора</label>
+                        @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input name="last_name" type="text"
+                               class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
+                               placeholder="О кураторе" value="{{ $user->curator_about }}">
+                        <label for="floatingInput">О кураторе</label>
+                        @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                     <div class="form-floating col-sm-12 col-md-6 col-lg-6 float-end">
                         <button type="submit" class="btn-apply">Применить изменения</button>
                     </div>

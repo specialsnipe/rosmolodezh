@@ -108,7 +108,7 @@ $user = auth()->user();
                 <h4 class="h4 col-12 text-sm-center">Ваши направления:</h4>
                 <ul class="track-list">
                     @foreach (auth()->user()->tracks as $track)
-                    <li> <a href="#">{{ $track->title }}</a></li>
+                    <li> <a href="{{route('profile.track.show', $track->id)}}">{{ $track->title }}</a></li>
                     @endforeach
                 </ul>
             </aside>

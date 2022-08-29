@@ -29,6 +29,8 @@ class UpdateUserRequest extends FormRequest
             'age' => ['nullable','numeric'],
             'tg_name' => ['nullable', 'unique:users,tg_name'],
             'vk_url' => ['nullable', 'url'],
+            'curator_job'=> 'nullable',
+            'curator_about'=> 'nullable'
         ];
     }
     public function messages()

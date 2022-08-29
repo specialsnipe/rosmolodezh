@@ -58,9 +58,6 @@ class UserController extends Controller
         ];
         return view('profile.personal-data', $data);
 
-        Track::all()->merge(Track::all()->lessons)->merge()->orderBy('namber');
-
-
     }
     /**
      *
