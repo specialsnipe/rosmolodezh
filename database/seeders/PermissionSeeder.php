@@ -47,7 +47,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create([
             'title' => 'user_viewAny',
-            'readable_title'=>'Просмтр пользователей'
+            'readable_title'=>'Просмотр пользователей'
         ]);
         $user_view = Permission::create([
             'title' => 'user_view',
@@ -103,7 +103,7 @@ class PermissionSeeder extends Seeder
         ]);
         $exercise_viewAny = Permission::create([
             'title' => 'exercise_viewAny',
-            'readable_title'=>'Просмтр упражнений'
+            'readable_title'=>'Просмотр упражнений'
         ]);
         $exercise_view = Permission::create([
             'title' => 'exercise_view',
@@ -129,9 +129,72 @@ class PermissionSeeder extends Seeder
             'title' => 'exercise_forceDelete',
             'readable_title'=>'Удаление упражнения безвозвратно'
         ]);
+        $block_viewAny = Permission::create([
+            'title' => 'block_viewAny',
+            'readable_title'=>'Просмотр блоков'
+        ]);
+        $block_view = Permission::create([
+            'title' => 'block_view',
+            'readable_title'=>'Просмотр блока'
+        ]);
+        $block_create = Permission::create([
+            'title' => 'block_create',
+            'readable_title'=>'Создание блока'
+        ]);
+        $block_update = Permission::create([
+            'title' => 'block_update',
+            'readable_title'=>'Изменения блока'
+        ]);
+        $block_delete = Permission::create([
+            'title' => 'block_delete',
+            'readable_title'=>'Удаление блока'
+        ]);
+        $block_restore = Permission::create([
+            'title' => 'block_restore',
+            'readable_title'=>'Восстановление блока'
+        ]);
+        $block_forceDelete = Permission::create([
+            'title' => 'block_forceDelete',
+            'readable_title'=>'Удаление блока безвозвратно'
+        ]);
+        $answer_viewAny = Permission::create([
+            'title' => 'answer_viewAny',
+            'readable_title'=>'Просмотр ответов'
+        ]);
+        $answer_view = Permission::create([
+            'title' => 'answer_view',
+            'readable_title'=>'Просмотр ответа'
+        ]);
+        $answer_create = Permission::create([
+            'title' => 'answer_create',
+            'readable_title'=>'Создание ответа'
+        ]);
+        $answer_update = Permission::create([
+            'title' => 'answer_update',
+            'readable_title'=>'Изменения ответа'
+        ]);
+        $answer_delete = Permission::create([
+            'title' => 'answer_delete',
+            'readable_title'=>'Удаление ответа'
+        ]);
+        $answer_restore = Permission::create([
+            'title' => 'answer_restore',
+            'readable_title'=>'Восстановление ответа'
+        ]);
+        $answer_forceDelete = Permission::create([
+            'title' => 'answer_forceDelete',
+            'readable_title'=>'Удаление ответа безвозвратно'
+        ]);
 
         $student = Role::find(Role::STUDENT);
         $student->permissions()->toggle($exercise_view);
+        $student->permissions()->toggle($block_view);
+        $student->permissions()->toggle($answer_viewAny);
+        $student->permissions()->toggle($answer_view);
+        $student->permissions()->toggle($answer_create);
+        $student->permissions()->toggle($answer_update);
+        $student->permissions()->toggle($answer_delete);
+
 
         $teacher = Role::find(Role::TEACHER);
         $teacher->permissions()->toggle($user_view);
@@ -149,6 +212,19 @@ class PermissionSeeder extends Seeder
         $teacher->permissions()->toggle($exercise_delete);
         $teacher->permissions()->toggle($exercise_restore);
         $teacher->permissions()->toggle($exercise_forceDelete);
+        $teacher->permissions()->toggle($block_viewAny);
+        $teacher->permissions()->toggle($block_view);
+        $teacher->permissions()->toggle($block_create);
+        $teacher->permissions()->toggle($block_update);
+        $teacher->permissions()->toggle($block_delete);
+        $teacher->permissions()->toggle($block_restore);
+        $teacher->permissions()->toggle($block_forceDelete);
+        $teacher->permissions()->toggle($answer_viewAny);
+        $teacher->permissions()->toggle($answer_view);
+        $teacher->permissions()->toggle($answer_update);
+        $teacher->permissions()->toggle($answer_delete);
+        $teacher->permissions()->toggle($answer_restore);
+        $teacher->permissions()->toggle($answer_forceDelete);
 
         $tutor = Role::find(Role::TUTOR);
         $tutor->permissions()->toggle($user_view);
@@ -166,6 +242,19 @@ class PermissionSeeder extends Seeder
         $tutor->permissions()->toggle($exercise_delete);
         $tutor->permissions()->toggle($exercise_restore);
         $tutor->permissions()->toggle($exercise_forceDelete);
+        $tutor->permissions()->toggle($block_viewAny);
+        $tutor->permissions()->toggle($block_view);
+        $tutor->permissions()->toggle($block_create);
+        $tutor->permissions()->toggle($block_update);
+        $tutor->permissions()->toggle($block_delete);
+        $tutor->permissions()->toggle($block_restore);
+        $tutor->permissions()->toggle($block_forceDelete);
+        $tutor->permissions()->toggle($answer_viewAny);
+        $tutor->permissions()->toggle($answer_view);
+        $tutor->permissions()->toggle($answer_update);
+        $tutor->permissions()->toggle($answer_delete);
+        $tutor->permissions()->toggle($answer_restore);
+        $tutor->permissions()->toggle($answer_forceDelete);
 
 
         $admin = Role::find(Role::ADMIN);

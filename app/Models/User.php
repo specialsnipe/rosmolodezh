@@ -179,6 +179,45 @@ class User extends Authenticatable implements MustVerifyEmail
         return round($result / $i, 1);
     }
 
+    public function getSolvedTrackExercisesAttribute($track)
+    {
+        $track = Track::find($track);
+        $exercises = [];
+        $answers = [];
+        $solvedExercises = 0;
+        foreach($track->blocks as $block) {
+            $exercises[$block->id] = $block->exercises;
+        }
+        $exercises = collect($exercises)->flatten();
+        foreach($exercises as $exercise) {
+            if ($exercise->answers->where('user_id', $this->id)->first()) {
+                $answers[$exercise->id] = $exercise->answers->where('user_id', $this->id);
+                $solvedExercises++;
+            }
+        }
+        return $solvedExercises;
+    }
+    public function getAnswerMarkCountAttribute($track)
+    {
+        $track = Track::find($track);
+        $exercises = [];
+        $answers = [];
+        $solvedExercises = 0;
+        foreach($track->blocks as $block) {
+            $exercises[$block->id] = $block->exercises;
+        }
+        $exercises = collect($exercises)->flatten();
+        foreach($exercises as $exercise) {
+            if ($exercise->answers->where('user_id', $this->id)->whereNotNull('mark')->first()) {
+                $answers[$exercise->id] = $exercise->answers
+                                                    ->where('user_id', $this->id)
+                                                    ->whereNotNull('mark');
+                $solvedExercises++;
+            }
+        }
+        return $solvedExercises;
+    }
+
     /**
      * @return BelongsTo
      */
