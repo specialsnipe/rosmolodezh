@@ -66,9 +66,8 @@ $user = auth()->user();
                                                 <div class="col-sm-12 col-md-6 mt-1">
                                                     <span  class="mt-2"> Ваша оценка:</span>
                                                     <h5 style="display: inline">
-                                                        <span class="badge bg-primary">
-                                                            {{ $exercise->answers->where('user_id', auth()->user()->id)
-                                                                    ->where('exercise_id', $exercise->id)->first()->mark ?? 'не проверено' }}
+                                                        <span class="badge bg-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'primary' }}">
+                                                            {{ auth()->user()->getAnswer($exercise)->mark ? auth()->user()->getAnswer($exercise)->mark: 'не проверено' }}
                                                         </span>
                                                     </h5>
                                                 </div>

@@ -26,7 +26,7 @@ class AnswerFile extends Model
 
     public function getFileOriginalPathAttribute()
     {
-        return 'storage/users/answers/' . $this->file_name;
+        return 'storage/users/answers/uploaded_files/' . $this->file_name;
     }
 
     /**

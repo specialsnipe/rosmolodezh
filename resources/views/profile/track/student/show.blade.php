@@ -106,9 +106,10 @@ $user = auth()->user();
                                     @else
                                     <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
                                         <div>
-                                        <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="btn btn-success d-inline">
-                                            Продолжить выполнение блока
-                                        </a></div>
+                                            <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="btn btn-success d-inline">
+                                                Продолжить выполнение блока
+                                            </a>
+                                        </div>
                                     </div>
                                     @endif
                                 </div>

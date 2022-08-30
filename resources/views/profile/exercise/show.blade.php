@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @push('style')
-@livewireStyles
 <link rel="stylesheet" href="{{ asset('css/exercise-styles.css') }}">
+@livewireStyles
 @endpush
 
 @section('content')
@@ -106,8 +106,6 @@
 </div>
 @endsection
 
-
-
 @push('script')
-@livewireScripts
+    @livewireScripts
 @endpush
