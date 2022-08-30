@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Client;
 use App\Models\Block;
 use App\Models\Track;
 use Illuminate\Http\Request;
+use App\Services\ImageService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Block\StoreBlockRequest;
 
 class BlockController extends Controller
 {
@@ -26,10 +28,8 @@ class BlockController extends Controller
      */
     public function create(Track $track)
     {
-        $user = auth()->user();
-
         $this->authorize('create', [Block::class, $track]);
-        return view('profile.block.create', ['track' => $track]);
+        return view('profile.blocks.create', ['track' => $track]);
     }
 
     /**
@@ -38,9 +38,17 @@ class BlockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlockRequest $request, Track $track)
     {
-        //
+        $this->authorize('create', [Block::class, $track]);
+
+        $data = $request->validated();
+        $data['track_id'] = $track->id;
+        $data['user_id'] = auth()->user()->id;
+        $data['image'] = ImageService::make($request->file('image'), 'blocks/images');
+        $block = Block::create($data);
+
+        return redirect()->route('profile.block.show', $block->id);
     }
 
     /**
@@ -49,9 +57,13 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function show(Block $block)
+    public function show(Track $track, Block $block)
     {
-        return view('profile.blocks.student.show',compact('block'));
+        if(auth()->user()->role->name === 'student') {
+            return view('profile.blocks.student.show',compact('block'));
+        } else {
+            return view('profile.blocks.teacher.show',compact('block'));
+        }
     }
 
     /**
@@ -60,7 +72,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function edit(Block $block)
+    public function edit(Track $track, Block $block)
     {
         //
     }
@@ -72,7 +84,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Block $block)
+    public function update(Request $request,Track $track,  Block $block)
     {
         //
     }
@@ -83,7 +95,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Block $block)
+    public function destroy(Track $track, Block $block)
     {
         //
     }
@@ -94,9 +106,9 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function start(Block $block)
+    public function start(Track $track, Block $block)
     {
         auth()->user()->started_blocks()->toggle($block);
-        return redirect()->route('profile.block.show', $block->id);
+        return redirect()->route('profile.tracks.block.show',[$track->id, $block->id]);
     }
 }

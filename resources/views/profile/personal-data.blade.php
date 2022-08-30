@@ -1,30 +1,28 @@
-@extends('layouts.main')
+@extends('profile.layouts.main')
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endpush
-
-@section('content')
-
-
+@section('flash_messages')
+@if(session()->has('message'))
 <div class="container p-0">
-    @if(session()->has('message'))
-        <div class="container p-0">
 
-            <div class="alert alert-success alert-dismissible fade show w-100 m-0 mt-4" role="alert">
-                {{ session('message') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-        </div>
-    @endif
-    <div class="main-container-directions">
+    <div class="alert alert-success alert-dismissible fade show w-100 m-0 mt-4" role="alert">
+        {{ session('message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+@endif
+@endsection
+
+@section('profile_content')
+
         <div class="row">
             <form action="{{ route('user.update_avatar') }}" method="post"
                 class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <img src="{{ asset(auth()->user()->avatar_original_path) }}" class="img-fluid rounded mb-2"
-                    alt="">
+                <img src="{{ asset(auth()->user()->avatar_original_path) }}" class="img-fluid rounded mb-2" alt="">
                 <button type="button" class="img-btn">Нажмите для загрузки аватара</button>
                 <input type="file" name="file" class="img-btn" hidden>
             </form>
@@ -111,7 +109,8 @@
                         <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
                             id="floatingSelect" aria-label="Floating label select example">
                             @foreach ($occupations as $occupation)
-                            <option value="{{ $occupation->id }}" @if($user->occupation_id == $occupation->id) selected @endif
+                            <option value="{{ $occupation->id }}" @if($user->occupation_id == $occupation->id) selected
+                                @endif
                                 >{{
                                 $occupation->name }}</option>
                             @endforeach
@@ -122,34 +121,34 @@
                     @if(auth()->user()->role->name === 'tutor')
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
                         <input name="curator_job" type="text"
-                               class="form-control @error('curator_job') is-invalid @enderror" id="floatingInput"
-                               placeholder="Место работы куратора" value="{{ $user->curator_job }}">
+                            class="form-control @error('curator_job') is-invalid @enderror" id="floatingInput"
+                            placeholder="Место работы куратора" value="{{ $user->curator_job }}">
                         <label for="floatingInput">Место работы куратора</label>
                         @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
                         <input name="last_name" type="text"
-                               class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
-                               placeholder="О кураторе" value="{{ $user->curator_about }}">
+                            class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
+                            placeholder="О кураторе" value="{{ $user->curator_about }}">
                         <label for="floatingInput">О кураторе</label>
                         @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     @endif
                     @if(auth()->user()->role->name === 'teacher')
-                        <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                            <input name="curator_job" type="text"
-                                   class="form-control @error('curator_job') is-invalid @enderror" id="floatingInput"
-                                   placeholder="Место работы куратора" value="{{ $user->curator_job }}">
-                            <label for="floatingInput">Место работы учителя</label>
-                            @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                        <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                            <input name="curator_about" type="text"
-                                   class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
-                                   placeholder="О кураторе" value="{{ $user->curator_about }}">
-                            <label for="floatingInput">Об учителе</label>
-                            @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input name="curator_job" type="text"
+                            class="form-control @error('curator_job') is-invalid @enderror" id="floatingInput"
+                            placeholder="Место работы куратора" value="{{ $user->curator_job }}">
+                        <label for="floatingInput">Место работы учителя</label>
+                        @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input name="curator_about" type="text"
+                            class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
+                            placeholder="О кураторе" value="{{ $user->curator_about }}">
+                        <label for="floatingInput">Об учителе</label>
+                        @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                     @endif
                     <div class="form-floating col-sm-12 col-md-6 col-lg-6 float-end">
                         <button type="submit" class="btn-apply">Применить изменения</button>
@@ -166,19 +165,22 @@
                 <div class="form-group row">
 
                     <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
-                        <input type="old_password" class="form-control" id="floatingInput" placeholder="Password" name="old_password">
+                        <input type="old_password" class="form-control" id="floatingInput" placeholder="Password"
+                            name="old_password">
                         <label for="floatingPassword">Ваш старый пароль</label>
                         @error('old_password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
-                        <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="floatingInput" placeholder="Password"
+                            name="password">
                         <label for="floatingPassword">Новый пароль</label>
                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password_confirmation">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            name="password_confirmation">
                         <label for="floatingPassword">Повторите новый пароль</label>
                         @error('password_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -190,16 +192,14 @@
                 </div>
             </form>
         </div>
-    </div>
-</div>
 @endsection
 @push('script')
-    <script defer>
-        $('button.img-btn').on('click', function (event) {
+<script defer>
+    $('button.img-btn').on('click', function (event) {
             $('input.img-btn').click()
         })
         $('input.img-btn').on('input', function (event) {
             $('.upload-image').trigger( "submit" );
         })
-    </script>
+</script>
 @endpush

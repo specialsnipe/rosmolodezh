@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('original_file_name');
             $table->string('file_name');
-            $table->float('file_size');
+            $table->double('file_size');
             $table->string('file_type');
             $table->boolean('active')->default(true);
             $table->timestamps();

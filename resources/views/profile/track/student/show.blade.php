@@ -65,8 +65,8 @@ $user = auth()->user();
                     </div>
                     <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
                     <div class="col-sm-12">
-                        @foreach (auth()->user()->tracks[0]->blocks as $block)
-                        <div class="card mb-4
+                        @foreach ($track->blocks as $block)
+                            <div class="card mb-4
                             @if($block->date_start >= Carbon::now())
                                 locked-task
                             @endif
@@ -77,7 +77,7 @@ $user = auth()->user();
                                     <div class="col-sm-12 col-lg-6">
 
                                         <p class="fs-5">
-                                            Блок: {{ $block->title }} <br>
+                                            <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="text-decoration-non">Блок: {{ $block->title }}</a> <br>
                                             Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>
                                     </div>
@@ -88,7 +88,7 @@ $user = auth()->user();
                                                 @if($block->exercises_count < 1)
                                                     action="#"
                                                 @else
-                                                    action="{{ route( 'block.start', $block->id) }}"
+                                                    action="{{ route( 'tracks.block.start', [$block->track_id, $block->id]) }}"
                                                 @endif
                                                 method='post'
                                                 class="d-inline">
@@ -106,7 +106,7 @@ $user = auth()->user();
                                     @else
                                     <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
                                         <div>
-                                        <a href="{{ route('profile.block.show', $block->id) }}" class="btn btn-success d-inline">
+                                        <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="btn btn-success d-inline">
                                             Продолжить выполнение блока
                                         </a></div>
                                     </div>

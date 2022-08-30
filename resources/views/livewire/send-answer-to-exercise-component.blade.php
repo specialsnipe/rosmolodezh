@@ -6,7 +6,7 @@
                 <div class="col-sm-12" wire:ignore>
                     <textarea id="summernote" name="body" wire:model="body"> </textarea>
                 </div>
-                <div class="col-sm-12 mb-4" wire:ignore>
+                <div class="col-sm-12 mb-4" >
                     @error('body')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

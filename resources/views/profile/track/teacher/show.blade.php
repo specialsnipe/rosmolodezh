@@ -129,7 +129,7 @@
         </div>
         <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
         <div class="col-sm-12 mt-2 mb-3">
-            <a href="{{ route('blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать новый блок</a>
+            <a href="{{ route('tracks.blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать новый блок</a>
         </div>
         <div class="col-sm-12">
 
@@ -140,12 +140,12 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
 
-                            <p class="fs-5">
+                            <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}" class="fs-5 text-decoration-none">
                                 Блок: {{ $block->title }}
-                            </p>
+                            </a>
                         </div>
                         <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                            <a href="{{ route('exercise.create', $block->id) }}" class="btn btn-primary"> Добавить новое упражнение </a>
+                            <a href="{{ route('exercise.create', [$block->track_id,$block->id]) }}" class="btn btn-primary"> Добавить новое упражнение </a>
                         </div>
                     </div>
                     <div class="d-flex flex-md-column exercise-block">

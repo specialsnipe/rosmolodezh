@@ -120,17 +120,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
         ->name('user.show')
         ->can('view', 'user');
-    Route::post('profile/blocks/{block}/start', [\App\Http\Controllers\Client\BlockController::class, 'start'])
-        ->name('block.start')
+    Route::post('profile/tracks/{track}/blocks/{block}/start', [\App\Http\Controllers\Client\BlockController::class, 'start'])
+        ->name('tracks.block.start')
         ->can('start', 'block');
-    Route::get('profile/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
-        ->name('profile.block.show')
+    Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
+        ->name('profile.tracks.block.show')
         ->can('view', 'block');
-    Route::get('profile/blocks/{block}/exercises/create', [\App\Http\Controllers\Client\ExerciseController::class, 'create'])
+    Route::get('profile/tracks/{track}/blocks/{block}/exercises/create', [\App\Http\Controllers\Client\ExerciseController::class, 'create'])
         ->name('exercise.create')
         ->can('create', \App\Models\Exercise::class);
     Route::get('profile/tracks/{track}/blocks/create', [\App\Http\Controllers\Client\BlockController::class, 'create'])
-        ->name('blocks.create');
+        ->name('tracks.blocks.create');
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 

@@ -141,6 +141,15 @@ class Track extends Model
     {
         return $this->belongsToMany(User::class)->withTrashed()->withTimestamps();
     }
+    /**
+     * Relation with users (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function students(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)->where('role_id', 1);
+    }
 
 
     public function teachers()

@@ -13,7 +13,7 @@ class StoreBlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->role->name == 'teacher' || auth()->user()->role->name == 'admin';
+        return auth()->check() && auth()->user()->role->name == 'teacher' || auth()->user()->role->name == 'tutor' || auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -28,7 +28,6 @@ class StoreBlockRequest extends FormRequest
             'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
             'body' => ['required'],
             'date_start' => ['required', 'date'],
-            'date_end' => ['required', 'date', 'after_or_equal:date_start'],
         ];
     }
 
@@ -43,9 +42,6 @@ class StoreBlockRequest extends FormRequest
             'body.required'=> 'Заполните поле:Текст блока',
             'date_start.required' => 'Заполните поле: Дата начала блока',
             'date_start.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
-            'date_end.required' => 'Заполните поле: Дата завершения блока',
-            'date_end.date' => 'Данные должны соответствовать формату дд.мм.гггг ',
-            'date_end.after_or_equal' => 'Дата завершения блока не может быть раньше даты начала',
         ];
     }
 }

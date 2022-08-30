@@ -38,7 +38,8 @@ class ExerciseController extends Controller
     public function show(Block $block, Exercise $exercise)
     {
         $this->authorize('view', $exercise);
-        return view('profile.exercise.show', compact('exercise', 'block'));
+        $students = $block->track->students;
+        return view('profile.exercise.show', compact('exercise', 'block', 'students'));
     }
 
     /**

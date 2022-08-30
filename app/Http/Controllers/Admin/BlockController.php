@@ -38,6 +38,7 @@ class BlockController extends Controller
      */
     public function create(Track $track)
     {
+        
         return view('admin.blocks.create', [
             'track' => $track,
             'users' => User::where('role_id', 2)->orWhere('role_id', 3)->get(),

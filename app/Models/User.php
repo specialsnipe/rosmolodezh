@@ -159,7 +159,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAnswer($exercise)
     {
-        return $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
+        $relation = $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
+        if(isset($relation->mark)) {
+            if ($relation->mark <= '2') {
+                $relation->class_name = 'danger';
+            } elseif ($relation->mark == '3') {
+                $relation->class_name = 'warning';
+            } elseif ($relation->mark == '4') {
+                $relation->class_name = 'success';
+            } elseif ($relation->mark == '5') {
+                $relation->class_name = 'success';
+            } else {
+                $relation->class_name = 'dark';
+            }
+        }
+        return $relation;
     }
 
     public function getAverageMarkAttribute($exercise)

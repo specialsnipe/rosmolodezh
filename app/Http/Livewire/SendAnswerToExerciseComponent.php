@@ -72,6 +72,14 @@ class SendAnswerToExerciseComponent extends Component
             'file' => 'required|file|max:2048', // 1MB Max
         ]);
     }
+    public function updatedBody()
+    {
+        $this->validate([
+            'body' => 'required'
+        ],[
+            'body.required' => 'Обязательно оставьте коментарий к задаче'
+        ]);
+    }
     public function saveAnswer()
     {
         $this->validate([
@@ -79,11 +87,12 @@ class SendAnswerToExerciseComponent extends Component
         ],[
             'body.required' => 'Обязательно оставьте коментарий к задаче'
         ]);
+
         $this->answer->update([
             'body' => $this->body
         ]);
 
-        return redirect()->route('profile.block.show', [ $this->block]);
+        return redirect()->route('profile.tracks.block.show', [$this->block->track_id,$this->block->id]);
     }
 
     public function render()
@@ -91,12 +100,8 @@ class SendAnswerToExerciseComponent extends Component
         $this->answer = Answer::where('exercise_id', $this->exercise->id)
                                 ->where('user_id', auth()->user()->id)->first();
 
-        $this->files = AnswerFile::where('user_id', auth()->user()->id)
-                                ->where('answer_id', $this->answer->id)->get();
-        $this->bodyDefault = $this->answer->body;
-        if($this->files->count() < 0) {
-            $this->files = [];
-        }
+        $this->bodyDefault = $this->answer->body ?? '';
+
         if($this->answer == null) {
             $this->answer = Answer::create([
                 'body' => '',
@@ -104,6 +109,12 @@ class SendAnswerToExerciseComponent extends Component
                 'mark' => null,
                 'user_id' => auth()->user()->id
             ]);
+        }
+
+        $this->files = AnswerFile::where('user_id', auth()->user()->id)
+                                ->where('answer_id', $this->answer->id)->get();
+        if($this->files->count() < 0) {
+            $this->files = [];
         }
         return view('livewire.send-answer-to-exercise-component');
     }
