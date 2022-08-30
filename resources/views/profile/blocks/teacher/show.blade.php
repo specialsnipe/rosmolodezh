@@ -19,7 +19,7 @@ $user = auth()->user();
             <h4 class="h4">Задания данного блока:</h4>
         </div>
         <div class="col-12 mb-3">
-            <a class="btn btn-primary">добавить новое задание</a>
+            <a href="{{ route("blocks.exercises.create", $block->id) }}" class="btn btn-primary">добавить новое задание</a>
         </div>
         <div class="col-12">
 

@@ -20,8 +20,10 @@
     </div>
     @endif
 
-    <h5 class="content">Создание нового упражнения к блоку "{{ $block->title }}" | Шаг <span class="badge bg-primary">{{
-            $stepFrame }}/2</span></h5>
+    <div class=" w-100 content d-flex justify-content-between align-items-center">
+        <div class="h5">Создание нового упражнения к блоку "{{ $block->title }}" | Шаг <span class="badge bg-primary">{{
+            $stepFrame }}/2</span> </div>
+                <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}" class="btn btn-secondary">Назад > </a></div>
 
     @if ($stepFrame == 1)
     <section class="row">

@@ -41,7 +41,7 @@ class AnswerPolicy
      */
     public function create(User $user)
     {
-        return in_array('answer_create', $user->permissions->flatten());
+        return in_array('answer_create', $user->permissions->flatten()->pluck('title'));
     }
 
     /**

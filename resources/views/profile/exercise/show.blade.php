@@ -11,7 +11,7 @@
         <div class="header">
             <div class="d-flex justify-content-between">
                 <h3 class="h3">Направление "{{ $block->track->title }}" </h3>
-                <a href="{{ url()->previous() }}" class="btn btn-secondary">Назад > </a>
+                <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}" class="btn btn-secondary">Назад > </a>
             </div>
             <h2 class="h4 w-100">Задание блока "{{ $block->title }}" </h2>
         </div>
@@ -19,7 +19,14 @@
             <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <p class="fs-4">{{ $exercise->title }}</p>
+                        <div class="card-text d-flex justify-content-between">
+                            <span class="h4">{{ $exercise->title }}
+                            </span>
+
+                            @if(auth()->user()->role->id === 2 || auth()->user()->role->id === 3)
+                            <a href="{{ route('blocks.exercises.edit', [$block->id, $exercise->id]) }}" class="btn btn-primary ">Изменить <i class="fa fa-pen"></i></a>
+                            @endif
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <span>Уровень освоения: </span>
