@@ -17,8 +17,9 @@ class TelegramController extends Controller
     public function index(Request $request)
     {
         $all = $request->all();
+        Log::debug($all);
 
-        if(isset($all['my_chat_member'])) {
+        if (isset($all['my_chat_member'])) {
             // New user of telegram bot (? may be not ?)
             $username = $all['my_chat_member']['chat']['username'];
             $id = $all['my_chat_member']['chat']['id'];
@@ -31,29 +32,32 @@ class TelegramController extends Controller
             ];
 
             event(new TelegramBotSubscribed($data));
-
         }
-        if(isset($all['message'])) {
+
+        if (isset($all['message'])) {
             // message to bot from user.  Get message through $all['message']['text']
 
-            if(isset($all['message']['entities'][0]) && $all['message']['entities'][0]['type'] == 'bot_command') {
-
-            // some comand from user. Get comand through $all['message']['text']
+            if (isset($all['message']['entities'][0]) && $all['message']['entities'][0]['type'] == 'bot_command') {
+                // some comand from user. Get comand through $all['message']['text']
             }
+
+            Log::debug($all['message']);
             $chat_id = $all['message']['chat']['id'];
             $username = $all['message']['chat']['username'];
-            $action = $all['message']['text'];
+            $action = array_key_exists('text', $all['message']) ? $all['message']['text'] : '';
             $data = [
                 'username' => $username,
                 'id' => $chat_id,
                 'action' => $action
             ];
-            event(new TelegramBotSubscribed($data));
+
+            // event(new TelegramBotSubscribed($data));
 
             switch ($action) {
                 case '/start':
                     // Log::debug($action);
                     $message = event(new StartBotMessage($chat_id, $username));
+                    event(new TelegramBotSubscribed($data));
                     break;
                 case '/test':
                     // Log::debug($action);
@@ -61,8 +65,6 @@ class TelegramController extends Controller
                     break;
             }
         }
-
-        // Log::debug($request->all());
-
     }
 }
+

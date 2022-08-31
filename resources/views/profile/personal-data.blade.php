@@ -82,7 +82,11 @@
                         <input name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
                             class="form-control @error('tg_name') is-invalid @enderror" placeholder="Telegram Username"
                             aria-label="Username" aria-describedby="basic-addon1" value="{{ $user->tg_name }}">
-                        <label for="floatingPassword" style="margin-left:40px;">Telegram Username</label>
+                        <label for="floatingPassword" style="margin-left:40px;">Telegram Username
+
+
+
+                        </label>
                         @error('tg_name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">

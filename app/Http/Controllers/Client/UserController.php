@@ -9,6 +9,7 @@ use App\Models\Gender;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
+use App\Events\UserTelegramUpdate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -46,8 +47,10 @@ class UserController extends Controller
 
         return view('profile.student.main', compact('data', 'user'));
     }
+
     public function show(User $user)
     {
+        // dd($user, $user->checkStudentIs);
         return view('profile.users.show', compact('user'));
     }
 
@@ -69,6 +72,9 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $data = $request->validated();
+        if (isset($data['tg_name'])) {
+            event(new UserTelegramUpdate($user, $data['tg_name']));
+        }
         $user->updateOrFail($data);
         session()->flash('message', 'Ваши личные данные успешно обновлены');
         return redirect()->route('profile.data');

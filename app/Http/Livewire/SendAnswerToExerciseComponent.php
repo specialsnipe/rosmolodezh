@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Exercise;
 use App\Models\AnswerFile;
 use Livewire\WithFileUploads;
+use App\Events\AnswerToExerciseSended;
 use Illuminate\Support\Facades\Storage;
 
 class SendAnswerToExerciseComponent extends Component
@@ -88,10 +89,15 @@ class SendAnswerToExerciseComponent extends Component
             'body.required' => 'Обязательно оставьте коментарий к задаче'
         ]);
 
+        if(!$this->answer->sended) {
+            $message = "Упражнение '<b>{$this->exercise->title}</b>' / \nБлок '<b>{$this->exercise->block->title}</b>' / \nНаправление '<b>{$this->exercise->block->track->title}</b>'\n";
+            $message .= "\nВы успешно отправили ответ на задание, ждите оценку от преподавателя!";
+            event(new AnswerToExerciseSended($this->answer->user->tg_id, $message));
+        }
         $this->answer->update([
-            'body' => $this->body
+            'body' => $this->body,
+            'sended' => true
         ]);
-
         return redirect()->route('profile.tracks.block.show', [$this->block->track_id,$this->block->id]);
     }
 

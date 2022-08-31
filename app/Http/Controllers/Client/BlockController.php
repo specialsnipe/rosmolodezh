@@ -46,6 +46,11 @@ class BlockController extends Controller
         $data['track_id'] = $track->id;
         $data['user_id'] = auth()->user()->id;
         $data['image'] = ImageService::make($request->file('image'), 'blocks/images');
+        $priority = Block::where('track_id', $track->id)->get()->sortByDesc('id')->first() !== null
+            ? Block::where('track_id', $track->id)->get()->sortByDesc('id')->first()->priority
+            : 0;
+        $priority++;
+        $data['priority'] = $priority;
         $block = Block::create($data);
 
         return redirect()->route('tracks.blocks.show', [$block->track_id,$block->id]);

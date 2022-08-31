@@ -23,7 +23,7 @@ class Block extends Model
         'track_id',
         'user_id',
         'date_start',
-        'date_end',
+        'priority',
     ];
 
     protected $withCount = [

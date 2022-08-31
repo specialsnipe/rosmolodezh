@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->dateTime('date_start');
             $table->boolean('active')->default(true);
+            $table->integer('priority')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

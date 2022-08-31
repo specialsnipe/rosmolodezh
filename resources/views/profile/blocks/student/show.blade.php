@@ -41,7 +41,7 @@ $user = auth()->user();
                                             <div class="row">
                                                 <h4 class="col-8">
                                                     <a class="text-decoration-none link-dark me-2"
-                                                        href="{{ route('admin.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
+                                                        href="{{ route('blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                                         $exercise->title }}</a>
                                                 </h4>
                                             </div>

@@ -39,6 +39,8 @@
                                 <p class="fs-6">Количество часов: <span
                                         class="badge large bg-primary">{{ $track->hours_count }}</span></p>
 
+                                @if (auth()->user()->role_id == 1)
+
                                 @auth
                                 @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
                                     @if($requestToRefuseSended)
@@ -63,6 +65,7 @@
                                     @endif
                                 @endif
                                 @endauth
+                                @endif
 
 
                                 <div class="line mt-3 mb-3"></div>

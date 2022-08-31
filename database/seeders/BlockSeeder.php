@@ -60,6 +60,11 @@ class BlockSeeder extends Seeder
         foreach ($tracks as $track) {
             if ($track->id == 2) {
                 foreach ($block_list as $block){
+
+                    $priority = Block::where('track_id', $track->id)->get()->sortByDesc('id')->first() !== null
+                    ? Block::where('track_id', $track->id)->get()->sortByDesc('id')->first()->priority
+                    : 0;
+                    $priority++;
                     Block::create([
                         'title' => $block['title'],
                         'body' => $block['body'],
@@ -67,9 +72,14 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
+                        'priority' => $priority,
                     ]);
                 }
                 foreach ($block_list as $block){
+                    $priority = Block::where('track_id', $track->id)->get()->sortByDesc('id')->first() !== null
+                    ? Block::where('track_id', $track->id)->get()->sortByDesc('id')->first()->priority
+                    : 0;
+                    $priority++;
                     Block::create([
                         'title' => $block['title'],
                         'body' => $block['body'],
@@ -77,11 +87,16 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
+                        'priority' => $priority,
                     ]);
                 }
             }
             if ($track->id == 1) {
                 foreach ($block_list as $block){
+                    $priority = Block::where('track_id', $track->id)->get()->sortByDesc('id')->first() !== null
+                    ? Block::where('track_id', $track->id)->get()->sortByDesc('id')->first()->priority
+                    : 0;
+                    $priority++;
                     Block::create([
                         'title' => $block['title'],
                         'body' => $block['body'],
@@ -89,10 +104,15 @@ class BlockSeeder extends Seeder
                         'track_id' => $track->id,
                         'user_id' => $track->curator_id,
                         'date_start' => $block['date_start'],
+                        'priority' => $priority,
                     ]);
                 }
             }
             foreach ($block_list as $block){
+                $priority = Block::where('track_id', $track->id)->get()->sortByDesc('id')->first() !== null
+                    ? Block::where('track_id', $track->id)->get()->sortByDesc('id')->first()->priority
+                    : 0;
+                $priority++;
                 Block::create([
                     'title' => $block['title'],
                     'body' => $block['body'],
@@ -100,6 +120,7 @@ class BlockSeeder extends Seeder
                     'track_id' => $track->id,
                     'user_id' => $track->curator_id,
                     'date_start' => $block['date_start'],
+                    'priority' => $priority,
                 ]);
             }
         }

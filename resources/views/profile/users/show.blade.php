@@ -28,7 +28,7 @@
 
             <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
 
-                <div class="text-header mb-4">Личные данные "{{ $user->first_and_last_names }}"</div>
+                <div class="text-header mb-4 d-flex align-items-center justify-content-between">Личные данные "{{ $user->first_and_last_names }}" <a href="{{ url()->previous() }}" class="btn btn-secondary">Назад ></a></div>
 
                 <div class="form-group row">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
@@ -44,7 +44,7 @@
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
                         <span readoly name="father_name" type="text"
                             class="form-control " id="floatingPassword"
-                            placeholder="Отчество" value="{{ $user->father_name ?? 'Не задано'  }}"> </span>
+                            placeholder="Отчество" value="{{ $user->father_name ?? 'Не задано' }}"> </span>
                         <label for="floatinginput readoly">Отчество</label>
 
                     </div>

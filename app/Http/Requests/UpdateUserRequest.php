@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'phone'=> ['required', 'min:17'],
             'occupation_id' => ['required', 'min:1'],
             'age' => ['nullable','numeric'],
-            'tg_name' => ['nullable', 'unique:users,tg_name'],
+            'tg_name' => ['nullable', 'unique:users,tg_name,' . auth()->user()->id],
             'vk_url' => ['nullable', 'url'],
             'curator_job'=> 'nullable',
             'curator_about'=> 'nullable'

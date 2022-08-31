@@ -42,16 +42,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'curator_about'
     ];
 
-    // protected $appends = [
-    //     'avatar_original_path',
-    //     'avatar_thumbnail_path',
-    //     'avatar_medium_path',
-    //     'first_and_last_names',
-    //     'short_name',
-    //     'all_names',
-    //     'tg_url',
-    //     'average_mark'
-    // ];
+    protected $appends = [
+        'avatar_original_path',
+        // 'avatar_thumbnail_path',
+        // 'avatar_medium_path',
+        'first_and_last_names',
+        // 'short_name',
+        // 'all_names',
+        // 'tg_url',
+        // 'average_mark'
+    ];
 
     public function getAvatarOriginalPathAttribute()
     {

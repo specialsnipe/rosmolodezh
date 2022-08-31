@@ -34,9 +34,9 @@ class TrackUserRequestSeeder extends Seeder
                     'action'=>'send',
                 ]);
             } elseif ($user->role->name != 'admin') {
-                $user->tracks()->toggle(Track::find(1));
-                $user->tracks()->toggle(Track::find(2));
-                $user->tracks()->toggle(Track::find(3));
+                $user->tracksWhereTeacher()->toggle(Track::find(1));
+                $user->tracksWhereTeacher()->toggle(Track::find(2));
+                $user->tracksWhereTeacher()->toggle(Track::find(3));
             }
         }
 

@@ -31,7 +31,8 @@ class TrackPolicy
     public function view(User $user, Track $track)
     {
         return in_array('track_view', $user->role->permissions->flatten()->pluck('title')->toArray())
-            && in_array($track->id, $user->tracks->flatten()->pluck('id')->toArray())
+            && (in_array($track->id, $user->tracksWhereTeacher->flatten()->pluck('id')->toArray())
+                || in_array($track->id, $user->tracks->flatten()->pluck('id')->toArray()))
             || $user->role->name === 'admin';
     }
 

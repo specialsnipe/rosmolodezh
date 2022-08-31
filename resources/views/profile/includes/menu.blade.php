@@ -13,21 +13,25 @@
     </ul>
     <h4 class="h4 col-12 ">Ваши направления:</h4>
     <ul class="nav nav-pills nav-sidebar flex-column">
-        @foreach (auth()->user()->tracks as $track)
+
+        @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher' )
+        @foreach (auth()->user()->tracksWhereTeacher as $track)
         <li class="nav-item">
-            @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher' )
             <a href="{{ route('profile.track.show', $track->id) }}" class="nav-link
                 @if(request()->is('profile/progress/track/'. $track->id)) active @endif
                 @if(request()->is('profile/tracks/'. $track->id . '/blocks/create')) active @endif
                 ">{{ $track->title }}</a>
-            @else
-                <a href="{{ route('profile.user.track.show', $track->id) }}" class="nav-link
-                    @if(request()->is('profile/progress/user/track/'. $track->id)) active @endif
-                    ">
-                    {{ $track->title }}</a>
-            @endif
         </li>
         @endforeach
+        @else
+        @foreach (auth()->user()->tracks as $track)
+        <a href="{{ route('profile.user.track.show', $track->id) }}" class="nav-link
+            @if(request()->is('profile/progress/user/track/'. $track->id)) active @endif
+            ">
+            {{ $track->title }}</a>
+            @endforeach
+        @endif
+
     </ul>
     @if(auth()->user()->tracks->where('curator_id', auth()->user()->id)->count() >= 1)
         <h4 class="h4 col-12 ">Направления где вы руководитель:</h4>

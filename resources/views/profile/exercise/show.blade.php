@@ -89,7 +89,7 @@
                             @forelse ($exercise->files as $file)
                             <div>
                                 <a href="{{ asset($file->originalPath) }}" download="{{$file->title.'.'. $file->file_type }}">
-                                    <button class="btn btn-light"><i class="fa fa-download"></i>
+                                    <button class="btn btn-secondary"><i class="fa fa-download"></i>
                                         {{$file->title}}.{{ $file->file_type }} ({{$file->file_size}} КБ.)</button>
                                 </a>
                             </div>

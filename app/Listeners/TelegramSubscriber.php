@@ -10,6 +10,9 @@ use App\Events\StartBotMessage;
 use App\Events\UserTelegramUpdate;
 use Illuminate\Support\Facades\Log;
 use App\Events\TelegramBotSubscribed;
+use App\Events\AnswerToExerciseSended;
+use App\Events\ErrorOnExerciseComplete;
+use App\Events\SendMessageAboutMarkSet;
 
 class TelegramSubscriber
 {
@@ -33,6 +36,13 @@ class TelegramSubscriber
             $user->update([
                 'tg_id' => $event->data['id']
             ]);
+            $this->telegram->sendMessage($event->data['id'],
+                                        (string)view('telegram.success-connect',
+                                        ['username' => $event->data['username']]));
+        } else {
+            $this->telegram->sendMessage($event->data['id'],
+                                        (string)view('telegram.paste-login-on-site',
+                                        ['username' => $event->data['username']]));
         }
     }
 
@@ -56,6 +66,10 @@ class TelegramSubscriber
             $user->update([
                 'tg_id' => $tg_data->u_id
             ]);
+
+            $this->telegram->sendMessage($tg_data->u_id,
+                                        (string)view('telegram.success-connect',
+                                        ['username' => $user->tg_name]));
         }
     }
 
@@ -68,6 +82,22 @@ class TelegramSubscriber
     public function testBotMessage($event)
     {
         $message = $this->telegram->sendMessage($event->chat_id, (string)view('telegram.test_message'));
+        return $message;
+    }
+
+    public function errorOnExerciseComplete($event)
+    {
+        $message = $this->telegram->sendMessage($event->chat_id, $event->message);
+        return $message;
+    }
+    public function sendMessageAboutMarkSet($event)
+    {
+        $message = $this->telegram->sendMessage($event->chat_id, $event->message);
+        return $message;
+    }
+    public function answerToExerciseSended($event)
+    {
+        $message = $this->telegram->sendMessage($event->chat_id, $event->message);
         return $message;
     }
 
@@ -85,6 +115,15 @@ class TelegramSubscriber
         );
         $events->listen(
             TestBotMessage::class, [ TelegramSubscriber::class, 'testBotMessage' ]
+        );
+        $events->listen(
+            ErrorOnExerciseComplete::class, [ TelegramSubscriber::class, 'errorOnExerciseComplete' ]
+        );
+        $events->listen(
+            SendMessageAboutMarkSet::class, [ TelegramSubscriber::class, 'sendMessageAboutMarkSet' ]
+        );
+        $events->listen(
+            AnswerToExerciseSended::class, [ TelegramSubscriber::class, 'answerToExerciseSended' ]
         );
     }
 }

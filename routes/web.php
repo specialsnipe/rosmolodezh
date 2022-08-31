@@ -133,8 +133,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 // todo: telegram webhook
 Route::get('/make/webhook', function () {
-    $url = 'https://d5c6-176-96-82-145.eu.ngrok.io';
-    $http = Http::get('https://api.tlgr.org/bot5501374509:AAGa1MExGsrVvHVrALYiYeym0ww5rbiBYcQ/setWebhook?url=' . $url . '/webhook');
+    $url = 'https://2d00-176-96-82-145.ngrok.io';
+    $http = Http::get('http://api.tlgr.org/bot5501374509:AAGa1MExGsrVvHVrALYiYeym0ww5rbiBYcQ/setWebhook?url=' . $url . '/webhook');
     dd($http->body());
 });
 
