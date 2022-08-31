@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Answer;
 use App\Models\Exercise;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
