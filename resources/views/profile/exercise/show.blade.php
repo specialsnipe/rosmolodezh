@@ -45,14 +45,7 @@
                         </div>
                         <div class="line mt-3 mb-3"></div>
                         <p class="text-p"> {!! $exercise->body !!}</p>
-                        @if ($exercise->files->count() > 0)
-                        <div class="line mt-3 mb-3"></div>
 
-                        Прикреплённые к заданию файлы
-                        @foreach ($exercise->files as $file)
-
-                        @endforeach
-                        @endif
                     </div>
                 </div>
             </div>
@@ -75,7 +68,7 @@
                         <div class="line mt-3 mb-3"></div>
                         <div class="link-content">
                             @forelse ($exercise->links as $link)
-                            <a href="{{ $link->url }}">
+                            <a target="_blank" href="{{ $link->url }}">
                                 <p class="p-header">{{ $link->name }}</p>
                             </a>
                             @empty
@@ -94,9 +87,12 @@
                         <div class="line mt-3 mb-3"></div>
                         <div class="link-content">
                             @forelse ($exercise->files as $file)
-                            <a href="{{ $link->url }}">
-                                <p class="p-header">{{ $link->name }}</p>
-                            </a>
+                            <div>
+                                <a href="{{ asset($file->originalPath) }}" download="{{$file->title.'.'. $file->file_type }}">
+                                    <button class="btn btn-light"><i class="fa fa-download"></i>
+                                        {{$file->title}}.{{ $file->file_type }} ({{$file->file_size}} КБ.)</button>
+                                </a>
+                            </div>
                             @empty
 
                             <span>

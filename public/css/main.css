@@ -40,6 +40,10 @@ body {
     background: #dc3545!important;
     color: white;
 }
+.btn.btn-light {
+    background: var(--main-white-400)!important;
+    color: var(--dark);
+}
 
 .btn.btn-warning {
     background: #ffc107!important;

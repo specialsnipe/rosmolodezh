@@ -48,7 +48,7 @@ class BlockController extends Controller
         $data['image'] = ImageService::make($request->file('image'), 'blocks/images');
         $block = Block::create($data);
 
-        return redirect()->route('profile.block.show', $block->id);
+        return redirect()->route('tracks.blocks.show', [$block->track_id,$block->id]);
     }
 
     /**

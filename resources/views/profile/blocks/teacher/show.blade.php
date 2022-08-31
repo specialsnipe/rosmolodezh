@@ -10,16 +10,16 @@ $user = auth()->user();
 @endpush
 @section('title')
 <span class="fs-2"> Направление "{{ $block->track->title }}"</span> <br>
-<span class="fs-4"> Блок "{{ $block->title }}"</span>
+<span class="fs-4 d-flex justify-content-center align-items-center"> Блок "{{ $block->title }}"</span>
 @endsection
 @section('profile_content')
 <article class="col-sm-12">
     <div class="row">
         <div class="col-12">
-            <h4 class="h4">Задания данного блока:</h4>
+            <h4 class="h4">Задания данного блока: <a class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a></h4>
         </div>
         <div class="col-12 mb-3">
-            <a href="{{ route("blocks.exercises.create", $block->id) }}" class="btn btn-primary">добавить новое задание</a>
+            <a href="{{ route("blocks.exercises.create", $block->id) }}" class="btn btn-primary pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Добавить новое задание</a>
         </div>
         <div class="col-12">
 
@@ -37,8 +37,8 @@ $user = auth()->user();
                                         <a class="text-decoration-none link-dark me-2"
                                             href="{{ route('blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                             $exercise->title }}</a>
-                                        <a href="{{ route('blocks.exercises.edit', [$block->id, $exercise->id]) }}"
-                                            class="btn btn-secondary">Изменить</a>
+                                            <a  href="{{ route('blocks.exercises.edit', [$block->id, $exercise->id]) }}" class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать</a>
+
                                     </h4>
                                 </div>
 

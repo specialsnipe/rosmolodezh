@@ -18,7 +18,8 @@
             position: fixed;
             background: white;
             z-index: 1001;
-
+            max-height: 90%;
+            overflow: auto;
         }
 
         .close-answer-modal {
@@ -75,7 +76,7 @@
     </div>
     <div class="answer-modal card">
         <div class="card-body p-4">
-            <h3>Ответ пользователя <span> {{ $answerUser ? $answerUser->firstAndLastNames : "ВАсенька вамиль" }} </span>
+            <h3>Ответ пользователя <a target="_blank" href="{{ route('user.show', $answerUser->id) }}"> {{ $answerUser->firstAndLastNames }} </a>
             </h3>
             <div class="card-text">
                 <span class="fs-4"> Текст ответа: </span>
@@ -95,7 +96,7 @@
                             </a>
                         </div>
                         @empty
-
+                        <div>Файлы не были приложены</div>
                         @endforelse
                     </div>
                 </div>
@@ -114,55 +115,38 @@
                                     @elseif ($i >= 4)
                                         btn-success
                                     @endif
-                                " wire:click="rateAnswer({{ $i }})">
+                                    " wire:click="rateAnswer({{ $i }})">
                                     @for($s = 1; $s<=$i; $s++)
                                         <i class="fa fa-star"></i>
                                     @endfor
                                 </button>
                             </div>
                         @endfor
-                        {{-- @endfor
-                        <div class="col">
-
-                            <button class="w-100 btn btn-dark">
-                            <i class="fa fa-star"></i>
-                            </button>
+                    </div>
+                </div>
+                <div class="card-body pb-0">
+                    <p class="fs-3">Если ответ не полный, вы можете ему позвонить или отправить сообщение через нашего телеграм бота:</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>Сообщение которое будет отправлено:</h5>
+                                    <p>
+                                        Вы недоделали домашнее задание к упражнению "{{ $exercise->title }}"
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-
-                            <button class="w-100 btn btn-danger">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </button>
+                        <div class="col-12 d-flex justify-content-end">
+                            <a class="btn btn-primary  mt-2">
+                                Отправить сообщение
+                            </a>
                         </div>
-                        <div class="col">
+                        <div class="col-12">
 
-                            <button class="w-100 btn btn-warning">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </button>
-
+                            <p class="text-muted mt-2" style="font-size: 10px"> *Сообщение может быть не отправлено если пользователь не подтвердил свой телеграм,
+                                чтобы узнать подтверил ли он это, зайдите на его личную страницу (нажав на его имя) и в поле "Telegram Username" должна быть галочка</p>
                         </div>
-                        <div class="col">
-
-                            <button class="w-100 btn btn-success">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </button>
-                        </div>
-                        <div class="col">
-
-                            <button class="w-100 btn btn-success">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </button>
-                        </div> --}}
                     </div>
                 </div>
             </div>

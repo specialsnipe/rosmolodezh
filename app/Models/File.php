@@ -26,6 +26,11 @@ class File extends Model
         'exercise_id',
     ];
 
+    public function getOriginalPathAttribute()
+    {
+        return 'storage/exercise/uploaded_files/' . $this->file_name;
+    }
+
     /**
      * Relation with users (one to many)
      * @return BelongsTo
