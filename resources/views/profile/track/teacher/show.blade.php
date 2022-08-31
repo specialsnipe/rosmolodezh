@@ -145,7 +145,7 @@
                             </a>
                         </div>
                         <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                            <a href="{{ route('exercise.create', [$block->track_id,$block->id]) }}" class="btn btn-primary"> Добавить новое упражнение </a>
+                            <a href="{{ route('blocks.exercises.create', [$block->id]) }}" class="btn btn-primary"> Добавить новое упражнение </a>
                         </div>
                     </div>
                     <div class="d-flex flex-md-column exercise-block">

@@ -55,17 +55,18 @@
 
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <span class="form-control">{{ $user->email ?? 'Не задано'  }}</span>
-                        <label for="floatinginput readoly">E-mail</label>
+                        <span class="form-control">{{ $user->phone ?? 'Не задано'  }}</span>
+                        <label for="floatinginput readoly">Номер телефона</label>
 
                     </div>
+
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
                         <span class="form-control ">{{ $user->age ?? 'Не задано'  }}</span>
                         <label for="floatinginput readoly">возраст</label>
 
                     </div>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6" style="display: flex; ">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex; ">
                         <span style="width: 40px; display:flex; justify-content: center; align-items: center; background-color:#4886FF;
                     border-radius: 5px 0 0 5px ; color: white;">@</span>
                         <span readoly name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
@@ -73,8 +74,13 @@
                             aria-label="Username" aria-describedby="basic-addon1" value="">{{ $user->tg_name ?? 'Не задано' }}</span>
                         <label for="floatingPassword" style="margin-left:40px;">Telegram Username</label>
                     </div>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+                        <span class="form-control">{{ $user->email ?? 'Не задано'  }}</span>
+                        <label for="floatinginput readoly">E-mail</label>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                    </div>
+
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
                         <span class="form-control"> <a href="{{ $user->vk_url ?? '#' }}">{{ $user->vk_url ?? 'Не задано' }}</a> </span>
                         <label for="floatinginput readoly">Ссылка на ВКонтакте</label>
                     </div>
@@ -87,9 +93,7 @@
                         <span class="form-control ">{{ $user->occupation->name }}</span>
                         <label for="floatinginput readoly">Занятость</label>
                     </div>
-                    <div class="form-floating col-sm-12 col-md-6 col-lg-6 float-end">
-                        <button type="submit" class="btn-apply">Применить изменения</button>
-                    </div>
+
                 </div>
             </div>
         </div>

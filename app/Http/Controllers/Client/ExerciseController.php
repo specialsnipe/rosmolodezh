@@ -22,10 +22,12 @@ class ExerciseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\Block  $block
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(Block $block)
     {
+        $this->authorize('create', Exercise::class);
         return view('profile.exercise.create',compact('block'));
     }
 
@@ -46,11 +48,11 @@ class ExerciseController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Block $block, Exercise $exercise)
     {
-        return view('profile.exercise.edit');
+        return view('profile.exercise.edit', compact('block', 'exercise'));
     }
 
     /**

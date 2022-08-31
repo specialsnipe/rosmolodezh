@@ -20,7 +20,7 @@
     </div>
     @endif
 
-    <div class=" w-100 content d-flex justify-content-between align-items-center">
+    <div class=" w-100 content d-flex justify-content-between align-items-center mb-3">
         <div class="h5">Создание нового упражнения к блоку "{{ $block->title }}" | Шаг <span class="badge bg-primary">{{
             $stepFrame }}/2</span> </div>
                 <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}" class="btn btn-secondary">Назад > </a></div>
@@ -53,7 +53,7 @@
                     @enderror
                 </div>
                 {{-- * Description --}}
-                <div class="form-group" wire:ignore>
+                <div class="form-group mb-3" wire:ignore>
                     <label for="title">Описание задания</label>
                     <textarea id="summernote" class="form-control" name="exercise_body"
                         placeholder="Название"></textarea>
@@ -66,7 +66,7 @@
                 {{-- * Level complexity and time for complete--}}
                 <div class="row">
                     <div class="form-group col-6">
-                        <label for="complexity_id">Сложность задания для учеников</label>
+                        <label class="mb-4" for="complexity_id">Сложность задания для учеников</label>
                         <select type="" class="form-control @error('complexity_id') is-invalid @enderror" id="title"
                             wire:model="complexity_id">
                             @foreach ($complexities as $level)

@@ -61,6 +61,20 @@
                 </a>
             </div>
         </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <a class="card-body" href="{{route('admin.settings.phrases.index')}}">
+                    <span  class="h5"> <i class="nav-icon fas fa-trophy"></i> Фразы</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card">
+                <a class="card-body" href="{{route('admin.settings.team.index')}}">
+                    <span  class="h5"> <i class="nav-icon fa fa-users"></i> Команда</span>
+                </a>
+            </div>
+        </div>
         {{-- <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-body">

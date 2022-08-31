@@ -126,16 +126,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
         ->name('profile.tracks.block.show')
         ->can('view', 'block');
-    Route::get('profile/tracks/{track}/blocks/{block}/exercises/create', [\App\Http\Controllers\Client\ExerciseController::class, 'create'])
-        ->name('exercise.create')
-        ->can('create', \App\Models\Exercise::class);
+
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 
 
 // todo: telegram webhook
 Route::get('/make/webhook', function () {
-    $url = 'https://5854-176-96-82-145.eu.ngrok.io';
+    $url = 'https://d5c6-176-96-82-145.eu.ngrok.io';
     $http = Http::get('https://api.tlgr.org/bot5501374509:AAGa1MExGsrVvHVrALYiYeym0ww5rbiBYcQ/setWebhook?url=' . $url . '/webhook');
     dd($http->body());
 });
