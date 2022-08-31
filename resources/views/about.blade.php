@@ -1,10 +1,4 @@
 
-@php
-use App\Models\Track;
-
-$tracks = Track::all();
-@endphp
-
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
@@ -37,7 +31,7 @@ $tracks = Track::all();
             <p class="mb-3">ПФКИ-21-1-019363</p>
 
         </div>
-        
+
         <div class="counter">
 
             <p class="h1-counter">Размер гранта</p>
@@ -51,7 +45,7 @@ $tracks = Track::all();
             <p class="h1-counter">Общая сумма расходов на  реализацию проекта</p>
             <p class="h2-counter">450 600, 00  &#8381;</i></p>
 
-            
+
         </div>
 
         <div class="block-info-left">

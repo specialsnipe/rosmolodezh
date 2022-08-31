@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Team;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTeamRequest extends FormRequest
+class UpdateTeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreTeamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check() && auth()->user()->role->name == 'admin';
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'description' => 'required'
         ];
     }
 }

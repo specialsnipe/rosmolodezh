@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Post;
+use App\Models\Team;
 use App\Models\Track;
 use App\Models\Gender;
 use App\Models\Phrase;
@@ -61,7 +62,9 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return view('about');
+
+        $tracks = Track::all();
+        return view('about', compact('tracks'));
     }
 
     /**
@@ -81,7 +84,8 @@ class HomeController extends Controller
      */
     public function teams()
     {
-        return view('teams');
+        $team = Team::all();
+        return view('teams',compact('team'));
     }
 
     /**

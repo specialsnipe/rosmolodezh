@@ -17,7 +17,7 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="row m-3">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -25,22 +25,31 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Название</th>
+                                <th>Аватар</th>
+                                <th>Имя</th>
+                                <th>Описание</th>
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($team as $person)
                                 <tr>
                                     <td>{{$person->id}}</td>
+                                    <td>
+                                        <img src="{{asset($person->avatar_thumbnail_path)}}" alt="Аватар">
+                                    </td>
                                     <td>{{$person->name}}</td>
+                                    <td  >
+                                        <div class="text-truncate" style="width: 600px;">{{$person->description}}</div>
+
+                                    </td>
                                     <td>
                                         <div class="">
-                                            <a href="{{ route('admin.settings.team.edit', $occupation->id) }}"
+                                            <a href="{{ route('admin.settings.team.edit', $person->id) }}"
                                                class="btn btn-block btn-success btn-sm ">Изменить</a>
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.settings.team.destroy', $occupation->id)}}" method="post">
+                                        <form action="{{route('admin.settings.team.destroy', $person->id)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>

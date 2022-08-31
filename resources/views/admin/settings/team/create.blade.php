@@ -13,34 +13,43 @@
                 <ol class="breadcrumb float-sm-right ">
                     <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                     <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('admin.settings.occupations.index')}}">Занятости</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.settings.occupations.index')}}">Занятости</a>
+                    </li>
                     <li class="breadcrumb-item active">Добавление занятости</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
+
+        @if (session('success'))
+            <div class="m-3 alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="col-12">
-            <form action="{{route('admin.settings.team.store')}}" method="post">
+            <form action="{{route('admin.settings.team.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
+                <div class="col-sm-12 col-md-6 col-xl-4 mb-3" >
                     <label for="first_name">Имя </label>
-                    <input type="text" class="form-control " name="first_name" placeholder="Имя"
-                           id="first_name"
-                           value="{{old('first_name')}}">
-                    @error('first_name')
+                    <input type="text" class="form-control " name="name" placeholder="Имя"
+                           id="name"
+                           value="{{old('name')}}">
+                    @error('name')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
 
-                <div class="form-group w-50">
+                <div class="form-group w-50 col-sm-12 col-md-6 col-xl-4 mb-3">
                     <label for="description">Описание члена команды</label>
-                    <textarea type="text" class="form-control" id="description" name="description" placeholder="Описание"> {{old('description')}} </textarea>
+                    <textarea type="text" class="form-control" id="description" name="description"
+                              placeholder="Описание"> {{old('description')}} </textarea>
                     @error('description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-sm-12 col-md-4 text-right ">
+                <div class="form-group row  mb-3">
+                    <div class="col-sm-12 col-md-4 text-right">
                         <div class="row">
                             <img src=""
                                  class="col-12 rounded img-fluid img-thumbnail mb-2 preview_avatar"
@@ -54,8 +63,7 @@
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" id="avatar" class="custom-file-input" name="file"
-                                       id="avatar"
-                                       value="Выбирите">
+                                       value="Выберите">
                                 @error('file')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
@@ -65,12 +73,10 @@
                         </div>
                     </div>
                 </div>
-
                 <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Создать">
             </form>
         </div>
     </div>
-
 
 @endsection
 

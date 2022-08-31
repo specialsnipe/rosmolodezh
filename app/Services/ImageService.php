@@ -28,6 +28,8 @@ class ImageService
             $destinationPath = Storage::disk('public')->path($path) . '/thumbnail';
             $imgFile = Image::make($file->getRealPath());
 
+
+
             if (!is_dir($destinationPath)) mkdir($destinationPath);
 
             $imgFile->resize(150, 150, function ($constraint) {

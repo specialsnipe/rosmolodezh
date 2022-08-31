@@ -22,7 +22,7 @@ class ExerciseController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create(Block $block)
     {
@@ -33,7 +33,7 @@ class ExerciseController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Block $block, Exercise $exercise)
     {
@@ -48,9 +48,9 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exercise $exercise)
+    public function edit(Block $block, Exercise $exercise)
     {
-        //
+        return view('profile.exercise.edit');
     }
 
     /**

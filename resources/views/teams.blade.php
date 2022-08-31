@@ -8,23 +8,26 @@
 <p class="h1-content">Наша команда</p>
 <section class="container">
     <div class="row row-cols-1 row-cols-md-2 w-card">
-        <div class="col">
-            <div class="card mb-3">
-                <div class="row g-0 card-height">
-                    <div class="col-md-5">
-                        <img src="/images/1.jpg" class="img-fluid" alt="...">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h5 class="card-title">Петров Василий Петрович</h5>
-                            <div class="line"></div>
-                            <p class="card-text">Он профессионал своего профессионализма, и профессионально профессионалит и тут, своими проф. навыками шокирует других
-                                недопрофессионалов которые не достаточно профессиональны для того чтобы состязаться с Василием Петровичем.</p>
+            @foreach($team as $person)
+            <div class="col">
+                <div class="card mb-3">
+                    <div class="row g-0 card-height">
+                        <div class="col-md-5">
+                            <img src="{{asset($person->avatarMediumPath)}}" class="img-fluid rounded" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$person->name}}</h5>
+                                <div class="line mt-3 mb-3"></div>
+                                <p class="card-text">{{$person->description}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
+
+        @endforeach
 
     </div>
 </section>

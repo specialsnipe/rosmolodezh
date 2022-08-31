@@ -7,33 +7,109 @@
         <!-- Content Header (Page header) -->
         <div class="row d-flex justify-content-between mr-3 ml-3">
             <div class="col-sm-6">
-                <h1 class="">Изменение занятости: {{ $occupation->name }}</h1>
+                <h1 class="">Изменение члена команды: {{ $person->name }}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right ">
                     <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.settings.roles.index')}}">Занятости</a></li>
-                            <li class="breadcrumb-item active">Изменение занятости: {{ $occupation->name }}</li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.settings.roles.index')}}">Занятости</a></li>
+                    <li class="breadcrumb-item active">Изменение члена команды: {{ $person->name }}</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        <div class="col-4">
-            <form action="{{route('admin.settings.occupations.update', $occupation->id)}}" method="post">
-                @csrf
-                @method('patch')
-                <div class="form-group ml-3 ">
-                    <label for="exampleInputEmail1">Введите занятость</label>
-                    <input type="text" class="form-control" id="gender" name="name" value="{{$occupation->name}}" placeholder="Занятость">
-                    @error('name')
-                    <div class="text-danger">{{$message }}</div>
-                    @enderror
-                </div>
+        @if (session('success'))
+            <div class="m-3 alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="m-3 alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('error') }}
+            </div>
+        @endif
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('admin.settings.team.update', $person->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('patch')
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="col-sm-12 mb-3">
+                                    <label for="first_name">Имя </label>
+                                    <input type="text" class="form-control " name="name" placeholder="Имя"
+                                           id="name"
+                                           value="{{$person->name}}">
+                                    @error('name')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
 
-                <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Изменить">
-            </form>
+                                <div class="form-group col-sm-12 mb-3">
+                                    <label for="description">Описание члена команды</label>
+                                    <textarea type="text" class="form-control" id="description" name="description"
+                                              placeholder="Описание"> {{$person->description}} </textarea>
+                                    @error('description')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group row  mb-3">
+                                    <div class="col-sm-12">
+                                            <label for="description">Превью аватара</label> <br>
+                                            <img src="{{asset($person->avatarThumbnailPath)}}"
+                                                 class="col-6 rounded  img-thumbnail mb-2 preview_avatar"
+                                                 height="100" alt="новый аватар пользователя">
+                                    </div>
+
+                                    <div class="col-sm-12">
+
+                                        <label for="avatar">Аватар пользователя</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" id="avatar" class="custom-file-input" name="file"
+                                                       value="Выберите">
+                                                @error('file')
+                                                <div class="text-danger">{{$message}}</div>
+                                                @enderror
+                                                <label class="custom-file-label" for="avatar">Выберите
+                                                    картинку</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Изменить">
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
-
 @endsection
+@push('script')
+    <script>
+        let input = document.querySelector('.custom-file-input');
+        console.log(document);
+        let preview = document.querySelector(".preview_avatar")
+        input.addEventListener('change', function (event) {
+            if (event.target.files.length > 0) {
+                let src = URL.createObjectURL(event.target.files[0]);
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        })
+
+        preview.addEventListener('click', function () {
+            input.click();
+        });
+
+    </script>
+@endpush
