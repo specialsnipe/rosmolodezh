@@ -69,8 +69,7 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        $trackId = $data['track_id'];
-        unset($data['track_id']);
+
         if (!$request->hasFile('file')) {
             $user= User::firstOrCreate ($data);
             $user->tracks()->attach($trackId);
@@ -88,8 +87,6 @@ class UserController extends Controller
 
         $data['avatar'] = $filename;
         $user = User::create($data);
-        $user->tracks()->attach($trackId);
-
 
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
