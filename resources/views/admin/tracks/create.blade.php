@@ -81,7 +81,7 @@
                                 @enderror
                             </div>
                             <div class="form-group w-50 mt-5">
-                                <label for="curator_id">Куратор направления (все пользователи с ролью 2,3)</label>
+                                <label for="curator_id">Куратор направления (все пользователи с ролью Учитель, Куратор)</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option disabled selected> Выберите куратора</option>
                                     @foreach($users as $user)
