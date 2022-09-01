@@ -20,11 +20,6 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $roles = Role::all();
-        $roles_ids = [];
-        foreach ($roles as $role) {
-            $roles_ids[] = $role->id;
-        }
 
         $genders = Gender::all();
         $genders_ids = [];
@@ -43,7 +38,7 @@ class UserFactory extends Factory
             'email' => fake()->safeEmail(),
             'last_name' => fake()->lastName(),
             'father_name' => fake()->firstNameMale() . 'вич',
-            'role_id' => $roles_ids[array_rand($roles_ids)],
+            'role_id' => 1,
             'gender_id' => $genders_ids[array_rand($genders_ids)],
             'occupation_id' => $occupations_ids[array_rand($occupations_ids)],
             'avatar' => 'default_avatar.jpg',
