@@ -93,7 +93,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-                                <label for="teacher_id">Преподаватель направления (все пользователи с ролью 3)</label>
+                                <label for="teacher_id">Преподаватель направления (все пользователи с ролью Учитель)</label>
                                 <select class="select2" name="teacher_id[]" multiple="multiple"
                                         data-placeholder="Выберите преподавателя" style="width: 100%;">
 
