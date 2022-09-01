@@ -10,56 +10,16 @@
     @if(isset($track))
     <div class="row">
 
+        @if(auth()->user()->id == $track->curator_id)
+            @if( $track->users_requests->where('action', 'send')->where('joining', true)->count() > 0 )
 
-        @if( $track->users_requests->where('action', 'send')->where('joining', true)->count() > 0 )
-
-            <div class="col-sm-12 col-md-6 mb-3">
-                <div class="card">
-                    <h4 class="h4 col-12 text-center m-3">Заявки студентов на участие в направлении
-                        "{{ $track->title }}"</h4>
-                    <div class="card-body requests-to-track">
-                        {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
-                        @forelse ($track->users_requests->where('action', 'send')->where('joining', true) as $user_request)
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12 align-self-center">
-                                        <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
-                                            class="img img-thumbnail" alt="" style="height: 50px">
-                                            {{ $user_request->user->allNames }}
-                                    </div>
-                                    <div class="col-md-6 col-sm-12 align-self-center">
-                                        <div class="row justify-content-end">
-
-                                            <div class="col justify-content-end">
-                                                <form action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}" method="post" class="d-inline ">
-                                                    @csrf
-                                                    @method('put')
-                                                    <button class="w-100 btn btn-success">Принять</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @empty
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-        @else
-            <h4 class="h4 col-sm-12 col-md-6 text-center ">Новых заявок на это направление нет </h4>
-        @endif        @if( $track->users_requests->where('action', 'send')->where('refused', true)->count() > 0 )
-
-            <div class="col-sm-12 col-md-6 mb-3">
-                <div class="card">
-                    <h4 class="h4 col-12 text-center m-3">Заявки студентов на отмену участия в направлении
-                        "{{ $track->title }}"</h4>
-                    <div class="card-body requests-to-track">
-                        {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
-                        @forelse ($track->users_requests->where('action', 'send')->where('refused', true) as $user_request)
-                            @if(auth()->user()->id !== $user_request->user->id)
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <div class="card">
+                        <h4 class="h4 col-12 text-center m-3">Заявки студентов на участие в направлении
+                            "{{ $track->title }}"</h4>
+                        <div class="card-body requests-to-track">
+                            {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
+                            @forelse ($track->users_requests->where('action', 'send')->where('joining', true) as $user_request)
                             <div class="card mb-2">
                                 <div class="card-body">
                                     <div class="row">
@@ -83,15 +43,58 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
-                        @empty
-                        @endforelse
+                            @empty
+                            @endforelse
+                        </div>
                     </div>
                 </div>
-            </div>
-        @else
-            <h4 class="h4 col-sm-12 col-md-6 text-center ">Заявок на выход из направления нет </h4>
+            @else
+                <h4 class="h4 col-sm-12 col-md-6 text-center ">Новых заявок на это направление нет </h4>
+            @endif
+            @if( $track->users_requests->where('action', 'send')->where('refused', true)->count() > 0 )
+
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <div class="card">
+                        <h4 class="h4 col-12 text-center m-3">Заявки студентов на отмену участия в направлении
+                            "{{ $track->title }}"</h4>
+                        <div class="card-body requests-to-track">
+                            {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
+                            @forelse ($track->users_requests->where('action', 'send')->where('refused', true) as $user_request)
+                                @if(auth()->user()->id !== $user_request->user->id)
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 align-self-center">
+                                                <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
+                                                    class="img img-thumbnail" alt="" style="height: 50px">
+                                                    {{ $user_request->user->allNames }}
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 align-self-center">
+                                                <div class="row justify-content-end">
+
+                                                    <div class="col justify-content-end">
+                                                        <form action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}" method="post" class="d-inline ">
+                                                            @csrf
+                                                            @method('put')
+                                                            <button class="w-100 btn btn-success">Принять</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            @empty
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            @else
+                <h4 class="h4 col-sm-12 col-md-6 text-center ">Заявок на выход из направления нет </h4>
+            @endif
         @endif
+
         <div class="col-sm-12 mb-3">
 
             <div class="card">

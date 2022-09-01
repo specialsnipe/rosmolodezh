@@ -96,7 +96,9 @@ class Exercise extends Model
             }
         }
         $users_count = $this->block->track->users()->count();
-
+        if ($users_count === 0) {
+            return 0;
+        }
         return round($positive_ratings*100/$users_count, 1);
     }
     public function getAverageScoreAttribute()
@@ -113,7 +115,7 @@ class Exercise extends Model
         if ($i === 0) {
             return 0;
         }
-        return round($score/ $i, 1);
+        return round($score/$i, 1);
     }
     /**
      *  Relation with users (one to many)
