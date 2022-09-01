@@ -23,19 +23,19 @@ class DatabaseSeeder extends Seeder
         $this->call(InformationSeeder::class);
         $this->call(InformationEmailSeeder::class);
         $this->call(InformationPhoneSeeder::class);
-        $this->call(TrackSeeder::class);
-        $this->call(BlockSeeder::class);
+//        $this->call(TrackSeeder::class);
+//        $this->call(BlockSeeder::class);
         $this->call(ComplexitySeeder::class);
         $this->call(ComplexityTimeSeeder::class);
         $this->call(PhraseSeeder::class);
         $this->call(SliderSeeder::class);
-        $this->call(TrackUserRequestSeeder::class);
+//        $this->call(TrackUserRequestSeeder::class);
         $this->call(PermissionSeeder::class);
         // $this->call(PostSeeder::class);
 
-
-        Exercise::factory(30)->create();
-        Answer::factory(30)->create();
+//
+//        Exercise::factory(30)->create();
+//        Answer::factory(30)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

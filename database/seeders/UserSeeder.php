@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
             'occupation_id' => 1,
             'avatar' => 'default_avatar.jpg',
             'login' => 'student',
-            'password' => Hash::make('student'),
+            'password' => Hash::make('p4ssw0rd'),
             'phone' => '+7 (999) 989 9999',
             'email' => 'student@mail.ru',
         ]);
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             'occupation_id' => 2,
             'avatar' => 'default_avatar.jpg',
             'login' => 'tutor',
-            'password' => Hash::make('tutor'),
+            'password' => Hash::make('p4ssw0rd'),
             'phone' => '+7 (999) 989 9999',
             'email' => 'tutor@mail.ru',
         ]);
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'occupation_id' => 3,
             'avatar' => 'default_avatar.jpg',
             'login' => 'teacher',
-            'password' => Hash::make('teacher'),
+            'password' => Hash::make('p4ssw0rd'),
             'phone' => '+7 (999) 989 9999',
             'email' => 'teacher@mail.ru',
         ]);
@@ -96,11 +96,9 @@ class UserSeeder extends Seeder
             'occupation_id' => 3,
             'avatar' => 'default_avatar.jpg',
             'login' => 'admin',
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('p4ssw0rd'),
             'phone' => '+7 (999) 989 9999',
             'email' => 'admin@mail.ru',
         ]);
-
-        User::factory()->count(100)->create();
     }
 }
