@@ -93,9 +93,9 @@
                                 @enderror
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-                                <label for="teacher_id">Преподаватель направления</label>
-                                <select class="select2" name="teacher_id[]" multiple="multiple"
-                                        data-placeholder="Выберите преподавателя" style="width: 100%;">
+                                <label for="teacher_id">Преподаватели направления</label>
+                                <select class="select2 w-100" name="teacher_id[]" multiple="multiple"
+                                        data-placeholder="Выберите преподавателей" style="width: 100%;">
 
                                     @foreach($users as $user)
                                         <option {{ is_array(old('teacher_id')) &&
