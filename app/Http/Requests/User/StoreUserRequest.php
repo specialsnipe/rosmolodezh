@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'father_name' => 'required',
+            'father_name' => '',
             'gender_id' => ['required', 'min:1'],
             'email' => ['required', 'unique:users', 'email:dns'],
             'login' => ['required', 'unique:users'],
@@ -35,10 +35,9 @@ class StoreUserRequest extends FormRequest
             'role_id' => ['required', 'min:1'],
             'age' => 'numeric',
             'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'tg_name' => '',
+            'tg_name' => 'nullable',
             'vk_url' => ['nullable', 'url'],
             'phone' => ['required', 'min:17'],
-            'track_id' => ['required', 'min:1'],
         ];
     }
 

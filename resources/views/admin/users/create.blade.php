@@ -144,20 +144,6 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                        <label for="track_id">Направление</label>
-                                        <select class="form-control " name="track_id" id="track_id">
-                                            <option value="0" disabled selected>Выберите направление</option>
-                                            @foreach($tracks as $track)
-                                                <option value="{{$track->id}}"
-                                                        @if(old('track_id') == $track->id) selected @endif>{{$track->title}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('track_id')
-                                        <div class="text-danger">{{$message}}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                         <div>
                                             <label for="phone">Телефон</label>
                                         </div>
@@ -168,6 +154,9 @@
                                             name="phone"
                                             id="phone"
                                             placeholder="+7(000)000-00-00" value="{{old('phone')}}"/>
+                                            @error('phone')
+                                            <div class="text-danger">{{$message}}</div>
+                                            @enderror
                                     </div>
 
                                 </div>
