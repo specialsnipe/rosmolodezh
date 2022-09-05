@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\Block;
 use App\Models\User;
 use App\Models\Track;
 use Illuminate\Http\Request;
@@ -52,6 +53,8 @@ class TrackController extends Controller
 
         $requestToJoinSended = false;
         $requestToRefuseSended = false;
+
+        if (isset(auth()->user()->tracks_requests)) {
         foreach (auth()->user()->tracks_requests as $trackRequest) {
             if ($track->id == $trackRequest->track_id && $trackRequest->joining) {
                 $requestToJoinSended = true;
@@ -60,6 +63,10 @@ class TrackController extends Controller
                 $requestToRefuseSended = true;
             }
         }
+        }
+
+        $track= $track->load('blocks');
+
         return view('tracks.show', compact('track', 'requestToJoinSended', 'requestToRefuseSended'));
     }
 

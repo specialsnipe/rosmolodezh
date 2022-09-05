@@ -52,6 +52,11 @@ class User extends Authenticatable implements MustVerifyEmail
         // 'tg_url',
         // 'average_mark'
     ];
+    protected $with = [
+        'role',
+        'occupation',
+        'tracks'
+    ];
 
     public function getAvatarOriginalPathAttribute()
     {

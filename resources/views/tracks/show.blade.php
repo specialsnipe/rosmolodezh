@@ -33,13 +33,13 @@
                                 <h1 class="h2">О направлении:</h1>
                                 <p class="fs-6">{{ $track->body }}</p>
                                 <p class="fs-6">Количество блоков: <span
-                                        class="badge large bg-primary">{{ $track->blocks_count }}</span></p>
+                                        class="badge large bg-primary">{{ $track->blocksCount }}</span></p>
                                 <p class="fs-6">Количество заданий: <span
-                                        class="badge large bg-primary">{{ $track->exercises_count }}</span></p>
+                                        class="badge large bg-primary">{{ $track->exercisesCount }}</span></p>
                                 <p class="fs-6">Количество часов: <span
-                                        class="badge large bg-primary">{{ $track->hours_count }}</span></p>
+                                        class="badge large bg-primary">{{ $track->hoursCount }}</span></p>
 
-                                @if (auth()->user()->role_id == 1)
+                                @if (isset(auth()->user()->role_id) && auth()->user()->role_id == 1)
 
                                 @auth
                                 @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)

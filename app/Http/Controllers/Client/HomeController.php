@@ -106,11 +106,13 @@ class HomeController extends Controller
         foreach ($posts as $post) {
             $post['table'] = 'posts';
         }
-        $exercises = Exercise::filter($filterExercises)->get();
+        $exercises = Exercise::filter($filterExercises)->get()->load('block', );
+
         foreach ($exercises as $exercise) {
             $exercise['table'] = 'exercises';
         }
         $unionCollection = $posts->merge($exercises);
+
         $results = CollectionHelper::paginate($unionCollection, 20);
 
         $search = $data['search'];

@@ -12,6 +12,10 @@ class Information extends Model
 
     protected $table = 'information';
     protected $guarded = false;
+    protected $with = [
+        'emails',
+        'phones'
+    ];
 
     public function emails()
     {

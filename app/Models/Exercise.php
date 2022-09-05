@@ -25,13 +25,16 @@ class Exercise extends Model
     ];
 
     protected $appends = [
-        'complexityClassName',
-        'complexityTimeClassName',
-        'name_minute_count',
-        'answers_added_count',
-        'academic_performance_percent',
-        'average_score',
-        'mark_count'
+//        'complexityClassName',
+//        'complexityTimeClassName',
+//        'name_minute_count',
+//        'answers_added_count',
+//        'academic_performance_percent',
+//        'average_score',
+//        'mark_count'
+    ];
+    protected $with = [
+      'answers'
     ];
 
 
@@ -152,6 +155,8 @@ class Exercise extends Model
     {
         return $this->belongsTo(Block::class);
     }
+
+
     /**
      *  Relation with answers (one to many)
      * @return HasMany

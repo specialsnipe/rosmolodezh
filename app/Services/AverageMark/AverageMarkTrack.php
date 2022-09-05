@@ -9,12 +9,12 @@ class AverageMarkTrack
     public static function getMark($track)
     {
         $score = 0;
-        $blocks = $track->blocks;
+        $blocks = $track->blocks->load('exercises');
         $i = 0;
         foreach ($blocks as $block) {
-            $exercises = $block->exercises;
+            $exercises = $block->exercises->load('answers');
             foreach ($exercises as $exercise) {
-                $answers = Answer::where('exercise_id', $exercise->id)->get();
+                $answers = $exercise->answers;
                 foreach ($answers as $answer) {
                     if ($answer->mark) {
                         $score += $answer->mark;

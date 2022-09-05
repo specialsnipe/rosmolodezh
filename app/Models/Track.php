@@ -26,7 +26,7 @@ class Track extends Model
     ];
 
     protected $appends = [
-        'name_users_count',
+//        'name_users_count',
         'image_original',
         'image_medium',
         'image_thumbnail',
@@ -34,8 +34,8 @@ class Track extends Model
         'url_image_medium',
         'url_image_thumbnail',
         'icon_thumbnail',
-        'exercises_count',
-        'hours_count',
+//        'exercises_count',
+//        'hours_count',
         // 'average_score',
 
     ];

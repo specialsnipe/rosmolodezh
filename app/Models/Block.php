@@ -29,14 +29,17 @@ class Block extends Model
     protected $withCount = [
         'exercises'
     ];
+    protected $with = [
+        'exercises'
+    ];
     protected $appends = [
         'image_original',
         'image_medium',
         'image_thumbnail',
-        'name_exercises_count',
-        'average_score',
-        'duration',
-        'name_duration'
+//        'name_exercises_count',
+//        'average_score',
+//        'duration',
+//        'name_duration'
     ];
     protected $dates = [
         'created_at',
@@ -44,6 +47,9 @@ class Block extends Model
         'date_end',
         'date_start',
     ];
+//    protected $with = [
+//        'exercises'
+//    ];
 
 
     public function getDurationAttribute()

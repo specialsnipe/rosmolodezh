@@ -25,7 +25,7 @@ class TrackController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $tracks = Track::all();
+        $tracks = Track::with('blocks')->get();
         $allAverageMark = [];
         foreach ($tracks as $track) {
             $allAverageMark[] = AverageMarkTrack::getMark($track);
