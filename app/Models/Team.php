@@ -24,8 +24,19 @@ class Team extends Model
     {
         return 'storage/team/avatars/medium/medium_'. $this->avatar;
     }
-    public function getAvatarThumbnailPathAttribute()
+
+    public function getAvatarSmallPathAttribute()
     {
-        return 'storage/team/avatars/thumbnail/thumbnail_'. $this->avatar;
+        return 'storage/team/avatars/small/small_'. $this->avatar;
+    }
+
+    public function getImageNormalAttribute()
+    {
+        return 'storage/team/avatars/normal/normal_' . $this->image;
+    }
+
+    public function getAvatarBigPathAttribute()
+    {
+        return 'storage/team/avatars/big/big_'. $this->avatar;
     }
 }

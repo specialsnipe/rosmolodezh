@@ -13,24 +13,48 @@ class PostImage extends Model
     protected $guarded = false;
 
     protected $appends = [
-        'original_image',
-        'medium_image',
-        'thumbnail_image',
+        // 'original_image',
+        // 'medium_image',
+        // 'thumbnail_image',
+        'image_original',
+        'image_big',
+        'image_normal',
+        'image_medium',
+        'image_small',
+        'image_thumbnail',
         'get_filename',
     ];
 
-    public function getOriginalImageAttribute()
+    public function getImageOriginalAttribute()
     {
         return asset('storage/posts/images/originals/' . $this->name);
     }
-    public function getThumbnailImageAttribute()
+
+    public function getImageThumbnailAttribute()
     {
         return asset('storage/posts/images/thumbnail/thumbnail_' . $this->name);
     }
-    public function getMediumImageAttribute()
+
+    public function getImageMediumAttribute()
     {
         return asset('storage/posts/images/medium/medium_' . $this->name);
     }
+
+    public function getImageSmallAttribute()
+    {
+        return asset('storage/posts/images/small/small_' . $this->name);
+    }
+
+    public function getImageNormalAttribute()
+    {
+        return asset('storage/posts/images/normal/normal_' . $this->name);
+    }
+
+    public function getImageBigAttribute()
+    {
+        return asset('storage/posts/images/big/big_' . $this->name);
+    }
+
     public function getGetFilenameAttribute()
     {
         return $this->name;

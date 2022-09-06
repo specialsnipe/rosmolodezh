@@ -38,7 +38,7 @@ class BlockController extends Controller
      */
     public function create(Track $track)
     {
-        
+
         return view('admin.blocks.create', [
             'track' => $track,
             'users' => User::where('role_id', 2)->orWhere('role_id', 3)->get(),
@@ -98,7 +98,7 @@ class BlockController extends Controller
         $data = $request->validated();
 
         $image = $data['image'] ?? null;
-        unset($data['file']);
+        // dd($data['image']);
         if (!$image) {
             try {
                 $block->updateOrFail($data);
@@ -109,7 +109,8 @@ class BlockController extends Controller
         }
 
         ImageService::deleteOld($block->image, 'blocks/images');
-        $data['image'] = ImageService::make($image, 'posts/images');
+        unset($data['image']);
+        $data['image'] = ImageService::make($image, 'blocks/images');
         try {
             $block->updateOrFail($data);
             return redirect()->route('admin.tracks.blocks.show', [$track->id, $block->id]);

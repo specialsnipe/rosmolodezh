@@ -36,6 +36,8 @@ class Block extends Model
         'image_original',
         'image_medium',
         'image_thumbnail',
+        'image_small',
+        'image_big',
 //        'name_exercises_count',
 //        'average_score',
 //        'duration',
@@ -116,17 +118,32 @@ class Block extends Model
 
     public function getImageOriginalAttribute()
     {
-        return 'storage/blocks/images/originals/' . $this->image;
+        return asset('storage/blocks/images/originals/' . $this->image);
+    }
+
+    public function getImageNormalAttribute()
+    {
+        return asset('storage/blocks/images/normal/normal_' . $this->image);
     }
 
     public function getImageThumbnailAttribute()
     {
-        return 'storage/blocks/images/thumbnail/thumbnail_' . $this->image;
+        return asset('storage/blocks/images/thumbnail/thumbnail_' . $this->image);
     }
 
     public function getImageMediumAttribute()
     {
-        return 'storage/blocks/images/medium/medium_' . $this->image;
+        return asset('storage/blocks/images/medium/medium_' . $this->image);
+    }
+
+    public function getImageSmallAttribute()
+    {
+        return asset('storage/blocks/images/small/small_' . $this->image);
+    }
+
+    public function getImageBigAttribute()
+    {
+        return asset('storage/blocks/images/big/big_' . $this->image);
     }
 
     /**

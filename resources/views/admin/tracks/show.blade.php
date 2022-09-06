@@ -58,7 +58,7 @@
                     <div class="card-body ">
                         <div class="row">
                             <div class="track_image col-sm-12 col-md-6">
-                                <img src="{{ asset($track->image_original) }}" alt="дизайн" height="150">
+                                <img src="{{ asset($track->imageNormal) }}" alt="дизайн" height="150">
                             </div>
                             <table class="tack_text track_table">
                                 <tr>

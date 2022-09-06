@@ -26,17 +26,10 @@ class Track extends Model
     ];
 
     protected $appends = [
-//        'name_users_count',
         'image_original',
         'image_medium',
         'image_thumbnail',
-        'url_image_original',
-        'url_image_medium',
-        'url_image_thumbnail',
         'icon_thumbnail',
-//        'exercises_count',
-//        'hours_count',
-        // 'average_score',
 
     ];
 
@@ -89,32 +82,29 @@ class Track extends Model
 
     public function getImageOriginalAttribute()
     {
-        return 'storage/tracks/originals/' . $this->image;
+        return asset('storage/tracks/originals/' . $this->image);
     }
 
     public function getImageMediumAttribute()
     {
-        return 'storage/tracks/medium/' . $this->image;
+        return asset('storage/tracks/medium/medium_' . $this->image);
     }
 
     public function getImageThumbnailAttribute()
     {
-        return 'storage/tracks/thumbnail/thumbnail_' . $this->image;
-    }
-
-    public function getUrlImageOriginalAttribute()
-    {
-        return asset('storage/tracks/originals/' . $this->image);
-    }
-
-    public function getUrlImageMediumAttribute()
-    {
-        return asset('storage/tracks/medium/' . $this->image);
-    }
-
-    public function getUrlImageThumbnailAttribute()
-    {
         return asset('storage/tracks/thumbnail/thumbnail_' . $this->image);
+    }
+    public function getImageSmallAttribute()
+    {
+        return asset('storage/tracks/small/small_' . $this->image);
+    }
+    public function getImageNormalAttribute()
+    {
+        return asset('storage/tracks/normal/normal_' . $this->image);
+    }
+    public function getImageBigAttribute()
+    {
+        return asset('storage/tracks/big/big_' . $this->image);
     }
 
     public function getIconThumbnailAttribute()

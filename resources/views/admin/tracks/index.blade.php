@@ -85,7 +85,7 @@
 
                                 <div class="card-body row">
                                     <div class="col-sm-12 col-md-4">
-                                        <img src="{{ asset($track->image_original) }}" alt="дизайн" height="150px">
+                                        <img src="{{ asset($track->imageNormal ) }}" alt="дизайн" height="150px">
                                     </div>
                                     <table class="col-sm-12 col-md-8">
                                         <tr>

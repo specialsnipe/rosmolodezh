@@ -36,7 +36,7 @@
                                         @foreach ($post->images as $image)
                                         <div class="slider__item">
                                             <div>
-                                                <img src="{{ asset($image->original_image) }}"
+                                                <img src="{{ asset($image->imageMedium) }}"
                                                     class="d-block w-100 rounded" alt="..." height="500"
                                                     style="object-fit: cover">
                                             </div>
@@ -51,7 +51,7 @@
                             </div>
                             @else
                             @foreach ($post->images as $image)
-                            <img src="{{asset($image->thumbnail_image) }}" class="d-block w-100" alt="..." height="500"
+                            <img src="{{asset($image->imageMedium) }}" class="d-block w-100" alt="..." height="500"
                                 style="object-fit: cover">
                             @endforeach
                             @endif

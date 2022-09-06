@@ -21,7 +21,7 @@
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
                                     <div class="slider__item" style="max-height: 500px">
-                                        <img src="{{ asset($image->original_image) }}"  class="img-fluid rounded w-100"  alt="">
+                                        <img src="{{ $image->imageMedium }}"  class="img-fluid rounded w-100"  alt="">
                                     </div>
                                 @endforeach
                             </div>
@@ -33,7 +33,7 @@
 
 
                     @else
-                    <img src="{{ asset($post->images[0]->original_image) }}" class="img-fluid rounded" alt="">
+                    <img src="{{ asset($post->images[0]->imageMedium) }}" class="img-fluid rounded" alt="">
                     @endif
                 </div>
                     <div class="col-sm-12 col-md-4">

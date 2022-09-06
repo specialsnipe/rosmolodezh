@@ -14,7 +14,7 @@
                 @forelse ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <div class="card post_card mb-4">
-                            <img src="{{ asset($post->images['0']->thumbnail_image) }}" class="rounded img-fluid"
+                            <img src="{{ asset($post->images['0']->imageNormal) }}" class="rounded img-fluid"
                                 style="min-height: 200px; max-height:200px"
                                 alt="Изображение поста '{{ $post->title }}'" height="100">
                             <div class="card-body">

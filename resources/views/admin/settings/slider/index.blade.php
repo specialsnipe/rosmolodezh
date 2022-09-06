@@ -42,15 +42,15 @@
                             @foreach ($slides as $slide)
                             <div class="slider__item">
                                 <div class="slide__img">
-                                    <img class="img-fluid" src="{{ $slide->img_url }}" alt="">
+                                    <img class="img-fluid w-100" src="{{ $slide->img_url }}" alt="">
                                 </div>
                                 <div class="slide__text">
                                     <h3>{{ $slide->title }} </h3>
                                     <span>{!! $slide->body !!}</span>
-                                    <a target="_blank" href="{{ $slide->button_link }}" class="btn btn-primary">{!! $slide->button_name !!}</a>
-                                    <div>
-                                        <a target="_blank" href="{{route('admin.settings.slider.edit', $slide->id)}}" class="btn btn-primary">Изменить слайд</a>
-                                    </div>
+                                    <a target="_blank" href="{{ $slide->button_link }}" style="background: white; padding: 10px 20px; box-sizing:content-box; border-radius:5px; margin-bottom:20px" >{!! $slide->button_name !!}</a>
+
+                                        <a target="_blank" href="{{route('admin.settings.slider.edit', $slide->id)}}" style="background: white; padding:10px 20px; border-radius:5px; width:auto">Изменить слайд</a>
+
                                 </div>
                             </div>
                             @endforeach
