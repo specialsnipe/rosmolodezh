@@ -32,7 +32,7 @@
                     </div>
                     <div class="line mt-1 mb-1 mt-1 mb-1"></div>
 
-                    <a href="#">{{$settings->location}}</a>
+                    <a target="_blank" href="https://yandex.ru/search/?text={{ $settings->location }}">{{$settings->location}}</a>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                         <p class="card-text">{{$settings->vk_description}}</p>
                     </div>
                     <div class="line mt-1 mb-1"></div>
-                    <a href="{{$settings->vk_url}}">Группа вконтакте</a>
+                    <a target="_blank" href="{{$settings->vk_url}}">Группа вконтакте</a>
                 </div>
             </div>
 
@@ -56,13 +56,13 @@
                         <p class="card-text">{{$settings->tg_description}}</p>
                     </div>
                     <div class="line mt-1 mb-1"></div>
-                    <a href="{{$settings->tg_url}}">Перейти в телеграм</a>
+                    <a target="_blank" href="{{$settings->tg_url}}">Перейти в телеграм</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<iframe src="{{$settings->location_url}}" width="100%" height="450" frameborder="0">
+<iframe src="{{$settings->location_url}}" style="width:100%; border:0" height="450">
 </iframe>
 
 @guest

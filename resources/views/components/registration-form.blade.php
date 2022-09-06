@@ -8,7 +8,7 @@ $occupations = Occupation::all();
 $tracks = Track::all();
 @endphp
 
-<section class="registr-form mt-3">
+<div class="registr-form mt-3">
     <div class="line"></div>
 
     @if (session()->has('error'))
@@ -22,7 +22,7 @@ $tracks = Track::all();
         </div>
     </div>
     @endif
-    <h1>Регистрация</h1>
+    <span class="h1 text-uppercase mb-2">Регистрация</span>
     <form action="{{ route('auth.register.store') }}" method="post" class="w-100">
 
         @csrf
@@ -30,8 +30,8 @@ $tracks = Track::all();
             {{-- f name --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
                 <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-                    id="floatingInput" placeholder="Фамилия" value="{{ old('first_name') }}">
-                <label for="floatingInput">Фамилия</label>
+                    id="first_name" placeholder="Фамилия" value="{{ old('first_name') }}">
+                <label for="first_name">Фамилия</label>
                 @error('first_name')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
@@ -39,8 +39,8 @@ $tracks = Track::all();
             {{-- s name --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
                 <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror "
-                    id="floatingPassword" placeholder="Имя" value="{{ old('last_name') }}">
-                <label for="floatingPassword">Имя</label>
+                    id="last_name" placeholder="Имя" value="{{ old('last_name') }}">
+                <label for="last_name">Имя</label>
                 @error('last_name')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
@@ -48,8 +48,8 @@ $tracks = Track::all();
             {{-- father name --}}
             <div class="form-floating mb-3 col-sm-12 col-lg-4">
                 <input type="text" name="father_name" class="form-control @error('father_name') is-invalid @enderror"
-                    id="floatingPassword" placeholder="Отчество" value="{{ old('father_name') }}">
-                <label for="floatingPassword">Отчество</label>
+                    id="father_name" placeholder="Отчество" value="{{ old('father_name') }}">
+                <label for="father_name">Отчество</label>
 
                 @error('father_name')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -58,8 +58,8 @@ $tracks = Track::all();
             {{-- Login --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-6">
                 <input type="text" name="login" class="form-control @error('login') is-invalid @enderror"
-                    id="floatingInput" placeholder="name@example.com" value="{{ old('login') }}">
-                <label for="floatingInput">Логин</label>
+                    id="login" placeholder="name@example.com" value="{{ old('login') }}">
+                <label for="login">Логин</label>
 
                 @error('login')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -68,8 +68,8 @@ $tracks = Track::all();
             {{-- Email --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-6">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                    id="floatingPassword" placeholder="E-mail" value="{{ old('email') }}">
-                <label for="floatingPassword">E-mail</label>
+                    id="email" placeholder="E-mail" value="{{ old('email') }}">
+                <label for="email">E-mail</label>
 
                 @error('email')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -77,7 +77,7 @@ $tracks = Track::all();
             </div>
             {{-- gender --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                <select class="form-select @error('track_id') is-invalid @enderror" id="floatingSelect" name="track_id"
+                <select class="form-select @error('track_id') is-invalid @enderror" id="track_id" name="track_id"
                     aria-label="Floating label select example">
                     <option value="0" selected disabled hidden>Выберите желаемое направление</option>
                     @foreach ($tracks as $track)
@@ -86,7 +86,7 @@ $tracks = Track::all();
                     @endforeach
 
                 </select>
-                <label for="floatingSelect">Направление:</label>
+                <label for="track_id">Направление:</label>
 
                 @error('track_id')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -95,14 +95,14 @@ $tracks = Track::all();
             {{-- ocupation --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
                 <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
-                    name="'occupation_id" id="floatingSelect" aria-label="Floating label select example">
+                    id="occupation_id" aria-label="Floating label select example">
                     <option value="0" selected disabled hidden>Занятость</option>
                     @foreach ($occupations as $occupation)
                     <option value="{{ $occupation->id }}" @if (old('occupation_id')==$occupation->id) selected
                         @endif>{{ $occupation->name }}</option>
                     @endforeach
                 </select>
-                <label for="floatingSelect">Занятость:</label>
+                <label for="occupation_id">Занятость:</label>
 
                 @error('occupation_id')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -113,7 +113,7 @@ $tracks = Track::all();
 
                 <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone"
                     placeholder="+7(999)999 9999" value="{{ old('phone') }}">
-                <label for="floatingSelect">Номер телефона</label>
+                <label for="phone">Номер телефона</label>
                 @error('phone')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
@@ -121,8 +121,8 @@ $tracks = Track::all();
             {{-- pass --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-6">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                    id="floatingInput" placeholder="Password">
-                <label for="floatingInput">Пароль</label>
+                    id="password" placeholder="Password">
+                <label for="password">Пароль</label>
                 @error('password')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
@@ -130,16 +130,16 @@ $tracks = Track::all();
             {{-- re pass --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-6">
                 <input type="password" name="password_confirmation"
-                    class="form-control @error('password_confirmation') is-invalid @enderror" id="floatingPassword"
+                    class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
                     placeholder="Password">
-                <label for="floatingPassword">Повторите пароль</label>
+                <label for="password_confirmation">Повторите пароль</label>
 
                 @error('password_confirmation')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
             </div>
             {{-- checkbox allowed --}}
-            <div class="form-check-label col-sm-12  col-lg-12 " for="flexCheckDefault">
+            <div class="form-check-label col-sm-12  col-lg-12 ">
                 <div class="col-sm-12 col-md-6">
                     <div class="checkbox">
                         <input name="allowed" class="form-check-input @error('allowed') is-invalid @enderror"
@@ -197,4 +197,4 @@ $tracks = Track::all();
 
        });
     </script>
-</section>
+</div>

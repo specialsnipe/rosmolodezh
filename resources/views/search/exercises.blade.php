@@ -1,6 +1,5 @@
 @extends('layouts.main')
-
-@section('content')
+@push('styles')
 <style>
     #img {
         width: 400px;
@@ -9,23 +8,26 @@
         margin-right: auto;
     }
 </style>
+@endpush
+@section('content')
+
 
 <div class="container">
     <div class="main-container-directions">
         <h1 class="h1-content mt-0 mb-4">Поиск по сайту</h1>
         <form action="{{route('exercises.search')}}" method="get"
             class="d-flex justify-content-between form-floating col-sm-12 col-md-10 col-lg-12">
-            <input type="text" class="mr-3 form-control" name="search" value="{{request('search')}}" placeholder="search">
-            <label for="floatingInput">Введите текст</label>
+            <input type="text" class="mr-3 form-control" name="search" value="{{request('search')}}" placeholder="search" id="search">
+            <label for="search">Введите текст</label>
             <button class=" search col-sm-12 col-md-2 col-lg-2">Искать</button>
         </form>
         <div class="mt-2">
-            <a class="btn" role="tab" href="{{route('search', ['search'=>request('search')])}}">Все</a>
+            <a class="btn" href="{{route('search', ['search'=>request('search')])}}">Все</a>
 
-            <a class="btn btn-search-active" role="tab"
+            <a class="btn btn-search-active"
                 href="{{route('exercises.search', ['search'=>request('search')])}}">Упражнения</a>
 
-            <a class="btn" role="tab"
+            <a class="btn"
                 href="{{route('posts.search', ['search'=>request('search')])}}">Новости</a>
         </div>
         <div class="search-content">

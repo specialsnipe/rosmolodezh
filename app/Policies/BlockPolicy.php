@@ -48,6 +48,8 @@ class BlockPolicy
      */
     public function create(User $user, Track $track)
     {
+        dd($user->permissions->flatten()->pluck('title')->toArray(),
+            $user->role->permissions->flatten()->pluck('title')->toArray() );
         return in_array('block_create', $user->role->permissions->flatten()->pluck('title')->toArray())
             && $user->tracks->where('id', $track->id)->first()
                 ? $user->tracks->where('id', $track->id)->first()->id

@@ -1,9 +1,3 @@
-@php
-    use App\Models\Track;
-
-    $tracks = Track::all()->random(3);
-@endphp
-
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
@@ -149,10 +143,8 @@
                             </div>
                         @endforeach
                     </div>
-                    </div>
-                <div class="container">
+                    <div class="container p-0">
                         @guest
-
                             <div class="screen register-screen">
                                 <x-registration-form></x-registration-form>
                             </div>
@@ -160,7 +152,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </div>
     @guest
 

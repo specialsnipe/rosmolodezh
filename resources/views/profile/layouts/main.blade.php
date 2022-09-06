@@ -16,9 +16,9 @@
         <div class="row">
 
             @include('profile.includes.menu')
-            <article class="col-sm-12 col-md-9">
+            <div class="col-sm-12 col-md-9">
                 @yield('profile_content')
-            </article>
+            </div>
         </div>
     </div>
 </div>

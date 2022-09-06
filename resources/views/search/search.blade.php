@@ -4,8 +4,6 @@
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
-@endpush
-
 <style>
     #img {
         width: 400px;
@@ -14,6 +12,9 @@
         margin-right: auto;
     }
 </style>
+@endpush
+
+
 
 <div class="container">
     <div class="main-container-directions">
@@ -21,17 +22,17 @@
         <form action="{{route('search')}}" method="get"
             class="d-flex justify-content-between form-floating search-flex col-sm-12 col-md-12 col-lg-12">
             <input type="text" class="mr-3 form-control" name="search" value="{{request('search')}}"
-                placeholder="search">
-            <label for="floatingInput">Введите текст</label>
+                placeholder="search" id="search">
+            <label for="search">Введите текст</label>
             <button class=" search col-sm-12 col-md-2 col-lg-2">Искать</button>
         </form>
         <div class="mt-2">
-            <a class="btn mb-2 btn-search-active" role="tab" href="{{route('search', ['search'=>request('search')])}}">Все</a>
+            <a class="btn mb-2 btn-search-active" href="{{route('search', ['search'=>request('search')])}}">Все</a>
 
-            <a class="btn mb-2" role="tab"
+            <a class="btn mb-2"
                 href="{{route('exercises.search', ['search'=>request('search')])}}">Упражнения</a>
 
-            <a class="btn mb-2" role="tab"
+            <a class="btn mb-2"
                 href="{{route('posts.search', ['search'=>request('search')])}}">Новости</a>
         </div>
         <div class="search-content">

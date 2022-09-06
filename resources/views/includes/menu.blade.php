@@ -15,10 +15,10 @@
                         href="{{ route('home') }}">Главная</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="about-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         О проекте
                       </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="about-dropdown">
                         <li><a class="dropdown-item" href="{{ route('teams') }}">Команда</a></li>
                         <li><a class="dropdown-item" href="{{ route('contacts') }}">Контакты</a></li>
                         <li><hr class="dropdown-divider" /></li>
@@ -35,15 +35,15 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center @if(Request::route()->getName() == 'search') active @endif " href="{{ route('search') }}" class="nav-link"> Поиск по сайту <i class="fas fa-search"></i></a>
+                    <a class="nav-link d-flex align-items-center @if(Request::route()->getName() == 'search') active @endif " href="{{ route('search') }}"> Поиск по сайту <i class="fas fa-search"></i></a>
                 </li>
                 @auth
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="nav-link dropdown-toggle" id="profile-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ auth()->user()->login }}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    </span>
+                    <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
 
                     @if(auth()->user()->role->name == 'admin')
                         <li><a class="dropdown-item" aria-current="page" href="{{ route('admin.main.index') }}">Администрирование</a></li>
@@ -66,4 +66,5 @@
             </ul>
 
         </div>
+    </div>
 </nav>

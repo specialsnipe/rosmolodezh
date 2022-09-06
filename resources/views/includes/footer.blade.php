@@ -3,7 +3,7 @@
         <img src="images/logo.png" alt="">
     </div>
 
-    <section>
+    <div class="right-side">
         <div class="line-top"></div>
         <div class="links-footer">
             <a href="{{ route('home') }}">Главная</a>
@@ -20,7 +20,7 @@
             <a href="{{route('auth.register')}}">Регистрация</a>
             @endauth
         </div>
-    </section>
+    </div>
 
     <div class="icons">
 

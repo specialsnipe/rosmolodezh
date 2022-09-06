@@ -50,6 +50,11 @@ class TrackController extends Controller
      */
     public function show(Track $track)
     {
+        $tracks = Track::all();
+        $track_count = $track->count();
+        if($track_count >= 3) {
+            $tracks->random(3);
+        }
 
         $requestToJoinSended = false;
         $requestToRefuseSended = false;
@@ -67,7 +72,7 @@ class TrackController extends Controller
 
         $track= $track->load('blocks');
 
-        return view('tracks.show', compact('track', 'requestToJoinSended', 'requestToRefuseSended'));
+        return view('tracks.show', compact('track','tracks', 'requestToJoinSended', 'requestToRefuseSended'));
     }
 
     /**

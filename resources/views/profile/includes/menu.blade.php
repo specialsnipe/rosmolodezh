@@ -3,7 +3,7 @@
         <li class="nav-item">
             <a href="{{ route('profile.progress') }}" class="nav-link
             @if(request()->routeIs('profile.progress')) active @endif
-            ">Главная<a>
+            ">Главная</a>
         </li>
         <li class="nav-item">
             <a href="{{ route('profile.data') }}" class="nav-link
@@ -25,10 +25,11 @@
         @endforeach
         @else
         @foreach (auth()->user()->tracks as $track)
-        <a href="{{ route('profile.user.track.show', $track->id) }}" class="nav-link
-            @if(request()->is('profile/progress/user/track/'. $track->id)) active @endif
-            ">
-            {{ $track->title }}</a>
+        <li class="nav-item">
+            <a href="{{ route('profile.user.track.show', $track->id) }}" class="nav-link
+                @if(request()->is('profile/progress/user/track/'. $track->id)) active @endif
+                ">{{ $track->title }}</a>
+        </li>
             @endforeach
         @endif
 
