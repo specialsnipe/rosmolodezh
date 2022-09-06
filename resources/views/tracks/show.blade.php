@@ -134,7 +134,7 @@
                                 <div class="card d-flex flex-column justify-content-between mb-4">
 
                                     <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
-                                        <img src="{{ asset($track->imageSmall ) }}" class="card-img-top rounded" alt="...">
+                                        <img src="{{ asset($track->imageNormal ) }}" class="card-img-top rounded" alt="...">
                                     </a>
                                     <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer bg-primary">
                                         <div class="">{{ $track->title }}</div>
