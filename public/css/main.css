@@ -928,9 +928,10 @@ header form .btn {
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    padding: 40px 0px 30px 0px;
     border: 0;
     border-radius: 15px;
+    height: 350px;
+
 }
 
 .contact-form .line {
@@ -961,7 +962,7 @@ header form .btn {
 }
 
 .contact-form h5 {
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 .img-fluid {
@@ -1009,6 +1010,7 @@ header form .btn {
 
 .card {
     border: 0;
+    padding: 30px 0;
 }
 
 .block-info-right,
@@ -1816,3 +1818,11 @@ header form .btn {
     object-fit: contain;
 }
 
+
+.track-title{
+    text-decoration: none;
+}
+.track-title:hover{
+    text-decoration: underline;
+    color: #fff;
+}

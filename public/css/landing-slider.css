@@ -79,8 +79,8 @@
 }
 
 .slide__text .btn {
-    min-width: 30%;
-    max-width: 50%;
+    padding: 1rem;
+    width: 300px;
     background: var(--main-white) !important;
     border: 1px solid var(--main-white-400) !important;
     color:  var(--main-black) !important;
@@ -92,14 +92,11 @@
     -o-transition: 200ms;
 }
 .slide__text .btn:hover {
-    min-width: 35%;
-    max-width: 55%;
     background: var(--main-white) !important;
     border: 1px solid var(--main-white-400) !important;
     color:  var(--main-black) !important;
     opacity: 1;
     text-decoration: none;
-
 }
 .slide__text span {
     margin-bottom: 0.5rem;

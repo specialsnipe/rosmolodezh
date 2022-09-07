@@ -10,7 +10,7 @@
     }
     .logo {
         margin: 1.5rem 0;
-        width: 80%;
+        width: 100%;
     }
     footer{
         height:auto;
@@ -52,9 +52,11 @@
         width: 300px;
     }
     .slide__text .btn{
-        width: 300px;
+        padding: .5rem;
+        width: 210px;
         max-width: none;
         min-width: none;
+        font-size: 14px;
     }
     .contact-form{
         flex-direction: column;
@@ -91,6 +93,21 @@
         -moz-border-radius: 0;
         -ms-border-radius: 0;
         -o-border-radius: 0;
+    }
+    .slide__text span{
+        font-size: 14px;
+    }
+    .line-top{
+        width: 100%;
+    }
+    .right-side{
+    width: 100%;
+    }
+    .search-not-found img{
+        left: 20%;
+    }
+    .search-not-found span{
+        font-size: 24px;
     }
 }
 
