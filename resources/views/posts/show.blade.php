@@ -41,11 +41,11 @@
                             <div class="h2">Другие интересные статьи</div>
                             <div class="line mt-3 mb-3"></div>
                             <div class="link-content">
-                                @foreach ($posts as $post)
+                                @foreach ($posts as $postx)
 
-                                <a href="{{ route('posts.show', $post->id) }}" class="">
-                                    <p class="h5">{{ $post->title }}</p>
-                                    <p class="text-truncate">{{ $post->excerpt }}</p>
+                                <a href="{{ route('posts.show', $postx->id) }}" class="">
+                                    <p class="h5">{{ $postx->title }}</p>
+                                    <p class="text-truncate">{{ $postx->excerpt }}</p>
                                 </a>
                                 @endforeach
                             </div>
