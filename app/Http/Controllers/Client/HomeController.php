@@ -41,9 +41,42 @@ class HomeController extends Controller
     {
         $slides = SliderItem::all();
         $phrases = Phrase::all();
+        $phraseSize;
+        $phraseBG;
         $phrasesCount = ($phrases->count() >= 4) ? 4 : $phrases->count();
         $phrases = $phrases->random($phrasesCount)->values();
         $posts = Post::latest()->limit(4)->get();
+
+        switch ($phrasesCount) {
+            case '1':
+                $phraseSize = 'col-md-12';
+                break;
+
+            default:
+                $phraseSize = 'col-md-6';
+                break;
+        }
+        switch ($phrasesCount) {
+            case '1':
+                $phraseSize .= ' col-lg-12';
+                $phraseBG = 'phrase-bg_large';
+                break;
+
+            case '2':
+                $phraseSize .= ' col-lg-6';
+                $phraseBG = 'phrase-bg_big';
+                break;
+
+            case '3':
+                $phraseSize .= ' col-lg-4';
+                $phraseBG = 'phrase-bg_normal';
+                break;
+
+            default:
+                $phraseSize .= ' col-lg-3';
+                $phraseBG = 'phrase-bg_small';
+                break;
+        }
 
         return view('welcome', [
             'posts' => $posts,
@@ -52,7 +85,9 @@ class HomeController extends Controller
             'genders' => $this->genders,
             'slides' => $slides,
             'phrases' => $phrases,
-            'phrases_count' => $phrasesCount
+            'phrases_count' => $phrasesCount,
+            'phraseSize' => $phraseSize,
+            'phraseBG' => $phraseBG
         ]);
     }
 

@@ -20,7 +20,7 @@
     {{--
     <link rel="stylesheet" href="{{ asset('css/media.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('/css/simple-adaptive-slider.min.css') }}" />
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/favicon.ico') }}">
 
     {{-- <script data-cfasync="false">
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

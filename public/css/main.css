@@ -433,20 +433,24 @@ main .carousel-inner img {
     -ms-transition: 200ms;
     -o-transition: 200ms;
 }
+.phrase-bg {
+    background-size: cover;
+    background-position: top;
+}
+.phrase-bg_large {
+    background: url('../images/phback_1320.webp');
+}
+.phrase-bg_big {
+    background: url('../images/phback_640.webp');
+}
+.phrase-bg_normal {
+    background: url('../images/phback_480.webp');
+}
+.phrase-bg_small {
+    background: url('../images/phback_320.webp');
+}
 .card-text-main span {
     z-index: 3;
-}
-.card-text-main svg {
-    position: absolute;
-    width: 70%;
-    right: -20px;
-    fill: hsl(0, 0%, 95%);
-    z-index: 2;
-    transition: 200ms;
-    -webkit-transition: 200ms;
-    -moz-transition: 200ms;
-    -ms-transition: 200ms;
-    -o-transition: 200ms;
 }
 .card-text-main:hover {
     transform: scale(1.05);
