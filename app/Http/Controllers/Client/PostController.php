@@ -29,7 +29,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $posts = Post::limit(5)->get();
-        dd($post);
         return view('posts.show', [
             'post' => $post,
             'posts' => $posts
