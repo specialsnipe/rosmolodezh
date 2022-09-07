@@ -434,7 +434,20 @@ main .carousel-inner img {
     -o-transition: 200ms;
 }
 .phrase-bg {
-    background: url('images/phrase_bg.png') center ;
+    background-size: cover;
+    background-position: top;
+}
+.phrase-bg_large {
+    background: url('../images/phback_1320.webp');
+}
+.phrase-bg_big {
+    background: url('../images/phback_640.webp');
+}
+.phrase-bg_normal {
+    background: url('../images/phback_480.webp');
+}
+.phrase-bg_small {
+    background: url('../images/phback_320.webp');
 }
 .card-text-main span {
     z-index: 3;

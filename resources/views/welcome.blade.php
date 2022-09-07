@@ -38,7 +38,7 @@
         <div class="row">
             @foreach ($phrases as $phrase)
             <div class="col-sm-12 {{ $phraseSize }}">
-                <div class="card-text-main phrase-bg d-flex align-items-center justify-content-center m-0 mb-4">
+                <div class="card-text-main d-flex align-items-center justify-content-center m-0 mb-4 {{ $phraseBG }}">
                     <span>{{$phrase->body }}</span>
                 </div>
             </div>
