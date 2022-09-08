@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <a class="navbar-brand mr-2" href="{{ route('home') }}">Здесь будет лого</a>
+    <div class="container" style="height: 70px">
+        <a class="navbar-brand mr-2" href="{{ route('home') }}" style="height: 100%;">
+        <img src="{{ asset('images/logo.png') }}" alt=""  style="height:100%;object-fit:contain">
+        </a>
 
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
