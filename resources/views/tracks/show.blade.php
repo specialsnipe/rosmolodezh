@@ -136,7 +136,7 @@
                                     <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
                                         <img src="{{ asset($track->imageNormal ) }}" class="card-img-top rounded" alt="...">
                                     </a>
-                                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer track-title bg-primary">
+                                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer track-title bg-primary-light">
                                         <div>{{ $track->title }}</div>
                                     </a>
                                 </div>

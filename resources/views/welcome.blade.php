@@ -49,7 +49,7 @@
 
 <section class="screen news-blocks">
     <div class="container p-0">
-        <h2 class="text-light d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
+        <h2 class="dark-text d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
         <div class="row">
             @foreach ($tracks as $track)
             <div class="col-md-4 col-lg-4 col-sm-12">

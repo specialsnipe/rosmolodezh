@@ -1,3 +1,13 @@
+:root {
+    --main-white: hsl(0 0% 100%);
+    --main-white-400: hsl(0 0% 83%);
+    --main-black: hsl(0 0% 25%);
+    --main-primary-bg: #daef14;
+    --main-primary-bg-light: rgb(241, 255, 83);
+    --main-primary-footer: #8c64d8;
+    --main-primary-ligh-2: #6936c8;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +18,14 @@ body {
 }
 
 input, select {
-    border: 1px solid #4886FF !important;
+    border: 1px solid var(--main-primary-bg) !important;
 }
 
 .btn {
-    background: #4886FF !important;
+    background: var(--main-primary-footer) !important;
+}
+.btn:hover {
+    background: var(--main-primary-ligh-2) !important;
 }
 
 .text {
@@ -83,7 +96,7 @@ main {
 
 .input-group-text {
     border: 0;
-    background-color: #085aff;
+    background-color: var(--main-primary-footer);
     color: #fff;
 }
 
@@ -149,7 +162,7 @@ main {
     margin: 1rem 0;
     width: 315px;
     height: 50px;
-    background: #4886FF;
+    background: var(--main-primary-footer);
     border-radius: 5px;
     border: 0;
     color: #fff;
@@ -157,12 +170,12 @@ main {
 }
 
 .edit-btn:hover {
-    background: #085aff;
+    background: var(--main-primary-ligh-2);
     text-decoration: underline;
 }
 
 .img-btn {
-    background: #4886FF;
+    background: var(--main-primary-footer);
     color: #fff;
     border-radius: 5px;
     border: 0;
@@ -172,7 +185,7 @@ main {
 }
 
 .img-btn:hover {
-    background: #085aff;
+    background: var(--main-primary-ligh-2);
     text-decoration: underline;
 }
 
@@ -590,20 +603,27 @@ td:nth-last-child(1) {
 }
 
 .btn-apply {
-    background: #4886FF;
+    background: var(--main-primary-footer);
     border-radius: 5px;
     border: 0;
     color: #fff;
-    height: 100%;
     width: 100%;
     transition: 250ms;
-
-    padding: 16px;
+    padding: 18px;
+}
+.btn-apply-pass {
+    background: var(--main-primary-footer);
+    border-radius: 5px;
+    border: 0;
+    color: #fff;
+    width: 100%;
+    transition: 250ms;
+    padding: 12px;
+    height: 100%;
 }
 
-
-.btn-apply:hover {
-    background: #1863fa;
+.btn-apply:hover, .btn-apply-pass:hover {
+    background: var(--main-primary-ligh-2);
     text-decoration: underline;
 }
 
@@ -713,3 +733,15 @@ td:nth-last-child(1) {
     max-height: 450px;
     overflow-y: scroll;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background: var(--main-primary-footer)!important;
+}
+
+
+@media (min-width:770px) and (max-width: 1300px) {
+    .form-floating>.form-control, .form-floating>.form-control-plaintext{
+        height: 100%;
+    }
+}
+

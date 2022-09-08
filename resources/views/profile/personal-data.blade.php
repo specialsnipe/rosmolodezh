@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex; ">
-                        <span style="width: 40px; display:flex; justify-content: center; align-items: center; background-color:#4886FF;
+                        <span style="width: 40px; display:flex; justify-content: center; align-items: center; background-color:#8c64d8;
                     border-radius: 5px 0 0 5px ; color: white;">@</span>
                         <input name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
                             class="form-control @error('tg_name') is-invalid @enderror" placeholder="Telegram Username"
@@ -196,7 +196,7 @@
                     </div>
 
                     <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
-                        <button type="submit" class="btn-apply">Сохранить новый пароль</button>
+                        <button type="submit" class="btn-apply-pass">Сохранить новый пароль</button>
                     </div>
 
                 </div>
