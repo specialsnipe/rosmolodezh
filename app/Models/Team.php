@@ -12,6 +12,9 @@ class Team extends Model
     protected $fillable = [
       'name',
       'description',
+      'tg_link',
+      'vk_link',
+      'email',
       'avatar'
     ];
 
@@ -30,9 +33,14 @@ class Team extends Model
         return 'storage/team/avatars/small/small_'. $this->avatar;
     }
 
-    public function getImageNormalAttribute()
+    public function getAvatarNormalPathAttribute()
     {
-        return 'storage/team/avatars/normal/normal_' . $this->image;
+        return 'storage/team/avatars/normal/normal_' . $this->avatar;
+    }
+
+    public function getAvatarThumbnailPathAttribute()
+    {
+        return 'storage/team/avatars/thumbnail/thumbnail_' . $this->avatar;
     }
 
     public function getAvatarBigPathAttribute()

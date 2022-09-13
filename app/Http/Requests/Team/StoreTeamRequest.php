@@ -25,8 +25,25 @@ class StoreTeamRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'tg_link' => 'nullable',
+            'vk_link' => ['nullable', 'url'],
+            'email' => ['nullable', 'email:dns'],
             'file' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'description' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Обязательно заполните имя',
+            'vk_link.url' => 'Это должна быть ссылка',
+            'email.email' => 'Это должна быть действительная почта',
+            'file.required' => 'Обязательно загрузите аватарку',
+            'file.image' => 'Это должно быть изображение',
+            'file.mimes' => 'Тип файла не подходит. Разрешенные:.jpg, .jpeg, .png',
+            'file.max' => 'Максимальный размер файла 2мб',
+            'description.required' => 'Обязательно заполните описание'
         ];
     }
 }
