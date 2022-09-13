@@ -9,6 +9,7 @@
     --main-primary-footer: #8c64d8;
     --main-primary-ligh-1: #6936c8;
     --main-primary-ligh-2: #a78adb;
+    --main-primary-ligh-3: #5a27bb;
 }
 
 * {
@@ -30,10 +31,17 @@ body {
 
 .btn {
     border: 0;
-    background-color: var(--main-primary-ligh-2);
+    background-color: var(--main-primary-ligh-1);
     color: var(--main-white);
     padding: .7rem;
     transition: 200ms;
+}
+
+.btn:hover {
+    background: var(--main-primary-ligh-3);
+    color: var(--main-white);
+    text-decoration: underline;
+    border: 0;
 }
 
 .btn.btn-primary {
@@ -103,13 +111,6 @@ body {
 
 .bg-light {
     color: var(--dark) !important;
-}
-
-.btn:hover {
-    background: var(--main-primary-footer);
-    text-decoration: underline;
-    color: var(--main-white);
-    border: 0;
 }
 
 .slider,
@@ -1728,7 +1729,11 @@ header form .btn {
     border: 1px solid var(--main-black);
     color: var(--main-black);
 }
-
+.btn-search-active:hover{
+    background: var(--main-primary-ligh-1);
+    border: 1px solid var(--main-primary-ligh-1);
+    color: var(--main-white);
+}
 .search-item {
     padding: 15px;
     border: #f7f7f7 solid 1px;

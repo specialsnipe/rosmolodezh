@@ -87,14 +87,16 @@
     <div class="row">
         @foreach ($tracks as $track )
         <div class="col-sm-12 col-md-6 col-xl-4 mb-4">
-            <div class="card">
-                <img src="{{ asset($track->imageNormal) }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $track->title }}</h5>
-                    <p class="card-text">{{ $track->body }}</p>
-                    <a href="{{ route('tracks.show', $track->id) }}" class="btn">Подробнее...</a>
+            <a class="text-decoration-none" style="color: #000;" href="{{ route('tracks.show', $track->id) }}">
+                <div class="card">
+                    <img src="{{ asset($track->imageNormal) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $track->title }}</h5>
+                        <p class="card-text">{{ $track->body }}</p>
+                        <a href="{{ route('tracks.show', $track->id) }}" class="btn">Подробнее...</a>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         @endforeach
     </div>
