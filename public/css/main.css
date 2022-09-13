@@ -1019,7 +1019,7 @@ header form .btn {
 
 .card {
     border: 0;
-    padding: 30px 0;
+    padding: 0;
 }
 
 .block-info-right,
@@ -1783,6 +1783,7 @@ header form .btn {
 }
 
 .card-track {
+    padding: 0;
     border-radius: 15px ;
     box-shadow: 0 20px 40px hsl(0 0% 0%/ 0.1);
     -webkit-border-radius: 15px ;
@@ -1808,8 +1809,8 @@ header form .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--main-primary-ligh-2);
-    color: var(--main-black);
+    background: var(--main-black);
+    color: var(--main-white);
     font-weight: 700;
     border: 0;
     -webkit-border-radius: 0 0 15px 15px;
