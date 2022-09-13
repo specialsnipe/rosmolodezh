@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use App\Models\Information;
 use App\Models\InformationEmail;
 use App\Models\InformationPhone;
-use Livewire\Component;
+use App\Models\InformationTelegram;
 
 class InformationEditComponent extends Component
 {
@@ -13,12 +14,10 @@ class InformationEditComponent extends Component
     public $tg_url;
     public $vk_url;
     public $ok_url;
-    public $phone_title;
-    public $email_title;
     public $email;
     public $email_description;
-    public $phone;
-    public $phone_description;
+    public $tg_username;
+    public $tg_description;
     public $changedEmail;
 
 
@@ -27,7 +26,7 @@ class InformationEditComponent extends Component
         $this->setting = $setting;
         $this->vk_url = $setting->vk_url;
         $this->tg_url = $setting->tg_url;
-        $this->ok_url = $setting->ok_url;
+        $this->zen_url = $setting->zen_url;
     }
     public function render()
     {
@@ -35,21 +34,14 @@ class InformationEditComponent extends Component
         return view('livewire.admin.settings.information.information-edit-component');
     }
 
-    public function update()
-    {
-
-    }
-
-
-
     public function DeleteEmail($email)
     {
         InformationEmail::find($email)->delete();
         $this->setting = Information::first();
     }
-    public function DeletePhone($phone)
+    public function DeleteTelegram($tg)
     {
-        InformationPhone::find($phone)->delete();
+        InformationTelegram::find($tg)->delete();
         $this->setting = Information::first();
     }
 
@@ -74,23 +66,22 @@ class InformationEditComponent extends Component
         $this->setting = Information::first();
     }
 
-    public function AddPhone()
+    public function AddTelegram()
     {
         $this->validate([
-            'phone' => ['required','min:17'],
-            'phone_description' => ['required'],
+            'tg_username' => ['required'],
+            'tg_description' => ['required'],
         ], [
-            'phone.required' => 'Поле обязательно для заполнения',
-            'phone.min:17' => 'В номере телефона не хватает цифр',
-            'phone_description.required' => "Обязательно добавтье описание",
+            'tg_username.required' => 'Поле обязательно для заполнения',
+            'tg_description.required' => "Обязательно добавтье описание",
         ]);
-        InformationPhone::create([
-            'phone' => $this->phone,
-            'description' => $this->phone_description,
-            'setting_id' => $this->setting->id
+        InformationTelegram::create([
+            'username' => $this->tg_username,
+            'description' => $this->tg_description,
+            'information_id' => $this->setting->id
         ]);
-        $this->phone = '';
-        $this->phone_description = '';
+        $this->tg_username = '';
+        $this->tg_description = '';
         $this->setting = Information::first();
     }
 }

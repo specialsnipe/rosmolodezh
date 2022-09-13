@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Setting;
+namespace App\Http\Requests\Information;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSettingRequest extends FormRequest
+class UpdateInformationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,8 @@ class UpdateSettingRequest extends FormRequest
             'tg_description'=>'required',
             'vk_url'=>['required', 'url'],
             'vk_description'=>'required',
-            'ok_url'=> '',
-            'ok_description'=>'',
+            'zen_url'=> '',
+            'zen_description'=>'',
             'location' => ['required'],
             'location_description'=>['required'],
             'location_url'=>['required', 'url']

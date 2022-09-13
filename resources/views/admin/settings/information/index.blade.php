@@ -8,20 +8,20 @@
     <!-- Content Header (Page header) -->
     <div class="row d-flex justify-content-between mr-3 ml-3">
         <div class="col-sm-6">
-            <h1 class="">Редактирование настроек</h1>
+            <h1 class="">Редактирование информации</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right ">
                 <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                 <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
-                <li class="breadcrumb-item active">Редактирование настроек</li>
+                <li class="breadcrumb-item active">Редактирование информации</li>
             </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
 
     <div class="card m-3 сol-sm-12">
         <div class="card-body">
-            <form action="{{route('admin.settings.update',$setting->id )}}" method="post" class="row">
+            <form action="{{route('admin.settings.information.update',$setting->id )}}" method="post" class="row">
                 @method('put')
                 @csrf
                 <div class="form-group  col-sm-12 col-md-4">

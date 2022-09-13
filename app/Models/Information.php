@@ -25,4 +25,8 @@ class Information extends Model
     {
         return $this->hasMany(InformationPhone::class);
     }
+    public function telegrams()
+    {
+        return $this->hasMany(InformationTelegram::class);
+    }
 }
