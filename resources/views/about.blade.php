@@ -91,9 +91,6 @@
 
 
         <div class="mt-2 d-flex justify-content-center">
-            <p>
-                Текcт для того чтобы пояснить что вообще зачем тут это и всё
-            </p>
         </div>
     </div>
 </section>

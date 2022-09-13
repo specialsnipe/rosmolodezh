@@ -1,7 +1,7 @@
 <div class="footer-block container">
-    <div class=" logo">
+    <a href="{{ route('home') }}" class=" logo" >
         <img src="images/logo.png" alt="">
-    </div>
+    </a>
 
     <div class="right-side">
         <div class="line-top"></div>
