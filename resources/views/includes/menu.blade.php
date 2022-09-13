@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container" style="height: 70px">
-        <a class="navbar-brand mr-2" href="{{ route('home') }}" style="height: 100%;">
-        <img src="{{ asset('images/logo.png') }}" alt=""  style="height:100%;object-fit:contain">
+    <div class="container" >
+        <a class="navbar-brand mr-2" href="{{ route('home') }}" >
+            <img src="{{ asset('images/logo.png') }}" alt=""  style="height: 70px;object-fit:contain">
         </a>
 
 
