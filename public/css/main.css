@@ -246,12 +246,11 @@ body {
 
 .form-floating input,
 .form-select {
-    border: 2px solid var(--main-primary-ligh-1);
-    opacity: 0.3;
+    border: 2px solid hsl(261 57% 50% / 0.4);
 }
 .form-control:focus {
-    border-color: var(--main-primary-ligh-1);
-    box-shadow: 0 0 0 0.2rem rgba(225, 70, 236, 0.4);
+    border-color: hsl(261 57% 50% / 0.4);
+    box-shadow: 0 0 0 0.2rem hsl(261 57% 50% / 0.4);
 } 
 
 .form-floating label {
@@ -954,12 +953,14 @@ header form .btn {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+
 }
 
 #btn-back-to-top:hover {
-    background-color: #fff;
+    background-color: rgb(216, 216, 216) !important;
     border: 0;
-    color: #8c64d8;
+    color: #444;
+
 }
 
 .contact-form .card i {
