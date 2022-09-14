@@ -31,7 +31,7 @@ body {
 
 .btn {
     border: 0;
-    background-color: var(--main-primary-ligh-1);
+    background-color: var(--main-primary-footer);
     color: var(--main-white);
     padding: .7rem;
     transition: 200ms;
@@ -1511,10 +1511,6 @@ header form .btn {
     margin: 0;
 }
 
-.main-container-directions .text-container li {
-    color: #F19324;
-}
-
 .main-container-directions .text-container ul {
     font-weight: 400;
     font-size: 20px;
@@ -1907,6 +1903,7 @@ header form .btn {
 
 .bg-primary-light {
     background: var(--main-primary-ligh-2);
+    color: var(--main-white);
 }
 
 .dropdown-item.active,
@@ -1916,4 +1913,14 @@ header form .btn {
 
 .bg-primary {
     background-color: var(--main-primary-footer) !important;
+}
+.card-body .icon:hover{
+
+}
+
+.card-body .icon{
+    font-size: 2.5rem;
+    color: var(--main-black);
+    margin-right: 1.5rem;
+    
 }

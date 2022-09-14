@@ -37,6 +37,7 @@ use App\Models\Information;
         </div>
         <div class="icon">
             <a target="_blank" href="{{ $information->zen_url }}"><i class="fas fa-phone-alt"></i></a>
+
         </div>
 
     </div>

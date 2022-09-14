@@ -22,19 +22,20 @@
                             <p class="card-text">{{$person->description}}</p>
                             <div>
                                 @if(isset($person->tg_link))
-                                <a href="https://t.me/{{ $person->tg_link }}">
+                                <div class="d-flex d-flex">
+                                <a target="_blank" href="https://t.me/{{ $person->tg_link }}">
                                     <div class="icon">
                                         <i class="fab fa-telegram-plane" aria-hidden="true"></i>
                                     </div>
                                 </a>
                                 @endif
                                 @if(isset($person->vk_link))
-                                <a href="{{ $person->vk_link }}">
+                                <a target="_blank" href="{{ $person->vk_link }}">
                                     <div class="icon">
                                         <i class="fab fa-vk" aria-hidden="true"></i>
                                     </div>
                                 </a>
-
+                                </div>
 
                                 @endif
                                 @if(isset($person->email))
