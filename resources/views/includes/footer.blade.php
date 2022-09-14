@@ -29,14 +29,14 @@ use App\Models\Information;
 
     <div class="icons">
 
-        <div class="icon">
-            <a target="_blank" href="{{ $information->vk_url }}"><i class="fab fa-vk"></i></a>
+        <div>
+            <a class="icon text-decoration-none" target="_blank" href="{{ $information->vk_url }}"><i class="fab fa-vk"></i></a>
         </div>
-        <div class="icon">
-            <a target="_blank" href="https://t.me/{{ $information->tg_url }}"><i class="fab fa-telegram-plane"></i></a>
+        <div>
+            <a class="icon text-decoration-none" target="_blank" href="https://t.me/{{ $information->tg_url }}"><i class="fab fa-telegram-plane"></i></a>
         </div>
-        <div class="icon">
-            <a target="_blank" href="{{ $information->zen_url }}"><i class="fas fa-phone-alt"></i></a>
+        <div>
+            <a class="icon text-decoration-none" target="_blank" href="{{ $information->zen_url }}"><i class="fas fa-phone-alt"></i></a>
 
         </div>
 

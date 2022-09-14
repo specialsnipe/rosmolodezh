@@ -23,8 +23,8 @@
                             <div>
                                 @if(isset($person->tg_link))
                                 <div class="d-flex d-flex">
-                                <a target="_blank" href="https://t.me/{{ $person->tg_link }}">
-                                    <div class="icon">
+                                <a class="icon text-decoration-none" target="_blank" href="https://t.me/{{ $person->tg_link }}">
+                                    <div>
                                         <i class="fab fa-telegram-plane" aria-hidden="true"></i>
                                     </div>
                                 </a>
