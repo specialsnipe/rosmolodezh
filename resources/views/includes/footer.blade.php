@@ -1,3 +1,8 @@
+
+@php
+use App\Models\Information;
+    $information = Information::all()[0];
+@endphp
 <div class="footer-block container">
     <a href="{{ route('home') }}" class=" logo" >
         <img src="images/logo.png" alt="">
@@ -25,13 +30,13 @@
     <div class="icons">
 
         <div class="icon">
-            <i class="fab fa-vk"></i>
+            <a target="_blank" href="{{ $information->vk_url }}"><i class="fab fa-vk"></i></a>
         </div>
         <div class="icon">
-            <a href=""></a>    <i class="fab fa-telegram-plane"></i>
+            <a target="_blank" href="https://t.me/{{ $information->tg_url }}"><i class="fab fa-telegram-plane"></i></a>
         </div>
         <div class="icon">
-            <i class="fas fa-phone-alt"></i>
+            <a target="_blank" href="{{ $information->zen_url }}"><i class="fas fa-phone-alt"></i></a>
         </div>
 
     </div>
