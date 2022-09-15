@@ -78,7 +78,7 @@ $user = auth()->user();
 
                                         <p class="fs-5">
                                             @if(!($block->date_start >= Carbon::now()))
-                                                <span  class="text-decoration-non">Блок: {{ $block->title }}</span> <br>
+                                                <a href="{{ route( 'tracks.blocks.show', [$block->track_id, $block->id]) }}" class="h5 text-decoration-none">Блок: {{ $block->title }}</a> <br>
                                             @endif
                                             Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>

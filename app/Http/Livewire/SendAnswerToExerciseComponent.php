@@ -109,6 +109,7 @@ class SendAnswerToExerciseComponent extends Component
                                 ->where('user_id', auth()->user()->id)->first();
 
         $this->bodyDefault = $this->answer->body ?? '';
+        $this->body = $this->answer->body ?? '';
 
         if($this->answer == null) {
             $this->answer = Answer::create([
