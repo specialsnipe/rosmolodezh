@@ -85,21 +85,7 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 mt-3">
-                <div class="card">
-                    <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-
-                    <div class="card-body pb-0">
-                        <h5 class="card-title">Наши аккаунты в телеграм</h5>
-                    </div>
-                    <div class="row">
-                        @foreach($settings->telegrams as $telegram)
-                        <div class="col">
-                            <a class="text-decoration-none" target="_blank"
-                            href="https://t.me/{{ $telegram->username }}">
-                            <div class="card " style="height: 120px !important">
+            </div> wire:
                                 <span class="text-center">
                                     <svg class="pr-2"
                                             style="width:30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
