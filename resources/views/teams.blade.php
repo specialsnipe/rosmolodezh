@@ -20,28 +20,31 @@
                             <h5 class="card-title">{{$person->name}}</h5>
                             <div class="line mt-3 mb-3"></div>
                             <p class="card-text">{{$person->description}}</p>
-                            <div>
-                                @if(isset($person->tg_link))
-                                <div class="d-flex d-flex">
-                                <a class="icon text-decoration-none" target="_blank" href="https://t.me/{{ $person->tg_link }}">
-                                    <div>
-                                        <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-                                    </div>
-                                </a>
-                                @endif
-                                @if(isset($person->vk_link))
-                                <a target="_blank" href="{{ $person->vk_link }}">
-                                    <div class="icon">
-                                        <i class="fab fa-vk" aria-hidden="true"></i>
-                                    </div>
-                                </a>
+                            <div class="row">
+                                <div class="col-3">
+                                    @if(isset($person->tg_link))
+                                    
+                                    <a class="icon text-decoration-none" target="_blank" href="https://t.me/{{ $person->tg_link }}">
+                                        <div>
+                                            <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    
+                                    @endif
                                 </div>
-
-                                @endif
+                                <div class="col-3">
+                                    @if(isset($person->vk_link))
+                                    <a target="_blank" href="{{ $person->vk_link }}">
+                                        <div class="icon">
+                                            <i class="fa-brands fa-vk" aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    @endif
+                                </div>
+                            </div>
                                 @if(isset($person->email))
                                     Почта: {{ $person->email }}
                                 @endif
-                            </div>
                         </div>
                     </div>
                 </div>

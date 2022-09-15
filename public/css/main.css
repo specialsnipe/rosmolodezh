@@ -983,7 +983,7 @@ header form .btn {
     border: 0;
     border-radius: 15px;
     height: 350px;
-    padding: 20px 0;
+    padding: 20px 10px;
 }
 
 .contact-form .line {
@@ -1920,7 +1920,5 @@ header form .btn {
 
 .card-body .icon{
     font-size: 2.5rem;
-    color: var(--main-primary-footer);
-    margin-right: 1.5rem;
-    
+    color: var(--main-primary-footer);    
 }
