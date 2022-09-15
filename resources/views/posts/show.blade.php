@@ -62,15 +62,15 @@
             <div class="col-12 mt-3">
                 <span class="h2">{{ $post->title }}</span>
                 <p class="mt-3">{!! $post->body !!}</p>
-                <div class="line mt-2 mb-2"></div>
+                {{-- <div class="line mt-2 mb-2"></div> --}}
 
-                <p class="h2">Полезные ссылки:</p>
+                {{-- <p class="h2">Полезные ссылки:</p>
                 <div class="row">
                     <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                     <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                     <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                     <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
-                </div>
+                </div> --}}
 
             </div>
         </div>
