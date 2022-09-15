@@ -39,14 +39,17 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="">
                             <div class="h2">Другие интересные статьи</div>
-                            <div class="line mt-3 mb-3"></div>
+                            <div class="line mt-3 mb-0"></div>
                             <div class="link-content">
                                 @foreach ($posts as $postx)
-
-                                <a href="{{ route('posts.show', $postx->id) }}" class="">
-                                    <p class="h5">{{ $postx->title }}</p>
-                                    <p class="text-truncate">{{ $postx->excerpt }}</p>
-                                </a>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <a href="{{ route('posts.show', $postx->id) }}" class="">
+                                            <p class="h5">{{ $postx->title }}</p>
+                                            <p class="text-truncate">{{ $postx->excerpt }}</p>
+                                        </a>
+                                    </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
