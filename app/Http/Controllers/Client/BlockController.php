@@ -64,7 +64,12 @@ class BlockController extends Controller
      */
     public function show(Track $track, Block $block)
     {
+
         if(auth()->user()->role->name === 'student') {
+            if (!auth()->user()->started_blocks->where('block_id', $block->id)->first()) {
+                auth()->user()->started_blocks()->toggle($block);
+            }
+
             return view('profile.blocks.student.show',compact('block'));
         } else {
             return view('profile.blocks.teacher.show',compact('block'));

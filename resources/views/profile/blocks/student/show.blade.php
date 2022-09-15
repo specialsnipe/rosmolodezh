@@ -17,7 +17,17 @@ $user = auth()->user();
     <div class="main-container-directions">
 
         <div class="row">
-            <h1 class="col-12 text-center mb-5">Блок "{{ $block->title }}"</h1>
+            @if($block->beforeBlockUrl)
+                <div class="col-2 btn-primary "><a  href="{{ $block->beforeBlockUrl }}" class="btn btn-primary w-100">Предыдущий блок</a></div>
+            @else
+                <div class="col-2"></div>
+            @endif
+            <h1 class="col-8 text-center mb-5">Блок "{{ $block->title }}"</h1>
+            @if($block->nextBlockUrl)
+                <div class="col-2"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a></div>
+            @else
+                <div class="col-2"></div>
+            @endif
         </div>
         <div class="row">
 
@@ -32,7 +42,7 @@ $user = auth()->user();
                         <div class="card-body table-responsive">
                             <ul class="list-group">
                                 @forelse($block->exercises as $exercise)
-                                <li class="list-group-item">
+                                <li class="list-group-item border-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'light' }}">
                                     <div class="row my-2">
                                         <div class="col-1 text-center">
                                             <div class="h3 fw-light">{{ $loop->index + 1 }}</div>
@@ -77,7 +87,7 @@ $user = auth()->user();
                                             </div>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 @if ($exercise->answers->where('user_id', auth()->user()->id)->where('exercise_id', $exercise->id)->first() != null)
-                                                <span> Вы уже оставили ответ    </span><a href="{{ route("blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
+                                                <span> Вы уже оставили ответ &nbsp&nbsp</span> <a href="{{ route("blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
 
                                                 @else
 
@@ -92,6 +102,17 @@ $user = auth()->user();
                                 @endforelse
                             </ul>
                         </div>
+                        <div class="row mt-3">
+                        @if($block->beforeBlockUrl)
+                            <div class="col-6"><a  href="{{ $block->beforeBlockUrl }}" class="btn btn-secondary w-100">Предыдущий блок</a></div>
+                        @else
+                            <div class="col-6"></div>
+                        @endif
+                        @if($block->nextBlockUrl)
+                            <div class="col-6"><a href="{{ $block->nextBlockUrl }}" class="btn btn-secondary w-100">Следущий блок</a></div>
+                        @else
+                            <div class="col-6"></div>
+                        @endif</div>
                     </div>
 
                 </div>

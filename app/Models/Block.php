@@ -54,6 +54,29 @@ class Block extends Model
 //    ];
 
 
+    public function getNextBlockUrlAttribute()
+    {
+        $block = Block::where('track_id', $this->track_id)
+                    ->where('priority', $this->priority + 1)
+                    ->first();
+        if ($block) {
+            return route('tracks.blocks.show',[$block->track_id,$block->id]);
+        }
+        return false;
+    }
+
+
+    public function getBeforeBlockUrlAttribute()
+    {
+        $block = Block::where('track_id', $this->track_id)
+                    ->where('priority', $this->priority - 1)
+                    ->first();
+        if ($block) {
+            return route('tracks.blocks.show',[$block->track_id,$block->id]);
+        }
+        return false;
+    }
+
     public function getDurationAttribute()
     {
         $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();

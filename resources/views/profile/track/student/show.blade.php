@@ -77,41 +77,57 @@ $user = auth()->user();
                                     <div class="col-sm-12 col-lg-6">
 
                                         <p class="fs-5">
-                                            <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="text-decoration-non">Блок: {{ $block->title }}</a> <br>
+                                            @if(!($block->date_start >= Carbon::now()))
+                                                <span  class="text-decoration-non">Блок: {{ $block->title }}</span> <br>
+                                            @endif
                                             Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>
                                     </div>
-                                    @if(auth()->user()->started_blocks->where('id', $block->id)->first() == null)
+
                                         @if(!($block->date_start >= Carbon::now()))
                                         <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
                                             <form
                                                 @if($block->exercises_count < 1)
                                                     action="#"
                                                 @else
-                                                    action="{{ route( 'tracks.block.start', [$block->track_id, $block->id]) }}"
+                                                    action="{{ route( 'tracks.blocks.show', [$block->track_id, $block->id]) }}"
                                                 @endif
-                                                method='post'
+                                                method='get'
                                                 class="d-inline">
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary" @if($block->exercises_count < 1) disabled @endif>
+                                                <button type="submit" class="btn
+                                                @if(auth()->user()->started_blocks->where('id', $block->id)->first() == null)
+                                                btn-primary
+                                                @else
+                                                btn-success
+                                                @endif
+                                                " @if($block->exercises_count < 1) disabled @endif>
                                                     @if($block->exercises_count < 1)
                                                     У данного блока нет упражнений
                                                     @else
-                                                    Начать выполение блока
+                                                        @if(auth()->user()->started_blocks->where('id', $block->id)->first() == null)
+                                                            Начать выполение блока
+                                                        @else
+                                                        Продолжить выполнение блока
+                                                        @endif
                                                     @endif
+                                                </button>
+
+                                            </form>
+                                        </div>
+                                        @else
+                                        <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
+                                            <form
+                                                action="#"
+                                                method='post'
+                                                class="d-inline">
+
+                                                <button type="submit" class="btn btn-primary" disabled>
+                                                    Блок ещё не начался
                                                 </button>
                                             </form>
                                         </div>
                                         @endif
-                                    @else
-                                    <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                                        <div>
-                                            <a href="{{ route('tracks.blocks.show', [$track->id, $block->id]) }}" class="btn btn-success d-inline">
-                                                Продолжить выполнение блока
-                                            </a>
-                                        </div>
-                                    </div>
-                                    @endif
                                 </div>
                                 <div class="d-flex flex-md-column exercise-block">
 
