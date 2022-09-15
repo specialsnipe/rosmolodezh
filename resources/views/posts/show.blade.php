@@ -74,13 +74,14 @@
 
             </div>
         </div>
+        @guest
+            <div class="screen register-screen">
+                <x-registration-form></x-registration-form>
+            </div>
+        @endguest
     </div>
 
-    @guest
-    <div class="screen register-screen">
-        <x-registration-form></x-registration-form>
-    </div>
-    @endguest
+
 </div>
 </div>
 
