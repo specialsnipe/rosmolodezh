@@ -23,6 +23,7 @@ class SendAnswerToExerciseComponent extends Component
 
     public function uploadFile()
     {
+        $body = $this->body;
         $this->validate([
             'file' => ['required','file','max:2048'],
         ],[
@@ -48,6 +49,7 @@ class SendAnswerToExerciseComponent extends Component
         if($this->files->count() < 0) {
             $this->files = [];
         }
+        $this->body = $body;
     }
     public function deleteFile($file_id)
     {
