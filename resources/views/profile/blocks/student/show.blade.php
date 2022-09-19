@@ -18,13 +18,13 @@ $user = auth()->user();
 
         <div class="row">
             @if($block->beforeBlockUrl)
-                <div class="col-2 btn-primary "><a  href="{{ $block->beforeBlockUrl }}" class="btn btn-primary w-100">Предыдущий блок</a></div>
+                <div class="col-sm-12 col-md-2 mb-5"><a  href="{{ $block->beforeBlockUrl }}" class="btn btn-primary w-100">Предыдущий блок</a></div>
             @else
                 <div class="col-2"></div>
             @endif
-            <h1 class="col-8 text-center mb-5">Блок "{{ $block->title }}"</h1>
+            <h1 class="col-sm-12 col-md-8 text-center mb-5">"{{ $block->title }}"</h1>
             @if($block->nextBlockUrl)
-                <div class="col-2"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a></div>
+                <div class="col-sm-12 col-md-2"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a></div>
             @else
                 <div class="col-2"></div>
             @endif

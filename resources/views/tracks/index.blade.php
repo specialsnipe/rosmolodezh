@@ -92,8 +92,8 @@
                     <img src="{{ asset($track->imageNormal) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $track->title }}</h5>
-                        <p class="card-text">{{ $track->body }}</p>
-                        <a href="{{ route('tracks.show', $track->id) }}" class="btn">Подробнее...</a>
+                        <p class="card-text text-truncat" >{{ $track->body }}</p>
+                        <a href="{{ route('tracks.show', $track->id) }}" class="btn" style="width:100%;">Подробнее...</a>
                     </div>
                 </div>
             </a>

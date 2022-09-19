@@ -23,6 +23,7 @@
                     <ul class="dropdown-menu" aria-labelledby="about-dropdown">
                         <li><a class="dropdown-item" href="{{ route('teams') }}">Команда</a></li>
                         <li><a class="dropdown-item" href="{{ route('contacts') }}">Контакты</a></li>
+                        <li><a class="dropdown-item" href="{{ route('contacts') }}">Партнёрство</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{{ route('about') }}">Страница о проекте</a></li>
                     </ul>

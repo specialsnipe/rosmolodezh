@@ -18,7 +18,7 @@ body {
 }
 
 input, select {
-    border: 1px solid var(--main-primary-bg) !important;
+    border: 1px solid hsl(261 57% 50% / 0.4);
 }
 
 .btn {
