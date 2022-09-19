@@ -30,7 +30,7 @@
                         <form action="{{route('admin.tracks.blocks.store',$track->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="form-group col-sm-12 col-md-6">
+                                <div class="form-group col-sm-12 col-md-8">
                                     <label for="title">Название блока</label>
                                     <input type="text" class="form-control " id="title" name="title" placeholder="Название" value="{{old('title')}}">
                                     @error('title')
@@ -38,18 +38,11 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group col-sm-12 col-md-3">
+                                <div class="form-group col-sm-12 col-md-4">
                                     <label for="date_start">Дата начала блока</label>
                                     <input type="date" class="form-control" name="date_start" value="{{old('date_begin', date('Y-m-d'))}}">
                                     @error('date_start')
                                         <div class="text-danger">{{$message}}</div>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-sm-12 col-md-3">
-                                    <label for="date_end">Дата окончания блока</label>
-                                    <input type="date" class="form-control" name="date_end" value="{{old('date_end', date('Y-m-d'))}}">
-                                    @error('date_end')
-                                        <div class="text-danger">{{$message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col-sm-12 ">

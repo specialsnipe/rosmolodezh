@@ -25,7 +25,7 @@ class StoreBlockRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['required', 'file', 'mimes:mimes:jpg,jpeg,png,webp', 'max:2048'],
             'body' => ['required'],
             'date_start' => ['required', 'date'],
         ];

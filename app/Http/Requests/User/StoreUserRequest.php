@@ -34,7 +34,7 @@ class StoreUserRequest extends FormRequest
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => 'numeric',
-            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'tg_name' => 'nullable',
             'vk_url' => ['nullable', 'url'],
             'phone' => ['required', 'min:17'],

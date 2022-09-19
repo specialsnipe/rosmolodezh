@@ -25,7 +25,7 @@ class UpdateTrackRequest extends FormRequest
     {
         return [
             'title' => ['nullable', 'unique:tracks,title,' . $this->track->id],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'icon' => '',
             'body' => ['required'],
             'tg_url' => ['required','url'],
