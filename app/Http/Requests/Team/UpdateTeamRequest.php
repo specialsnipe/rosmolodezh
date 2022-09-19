@@ -28,7 +28,7 @@ class UpdateTeamRequest extends FormRequest
             'tg_link' => 'nullable',
             'vk_link' => ['nullable', 'url'],
             'email' => ['nullable', 'email:dns'],
-            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'description' => 'required'
         ];
     }

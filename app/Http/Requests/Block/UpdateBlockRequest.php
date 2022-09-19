@@ -25,7 +25,7 @@ class UpdateBlockRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'image' => ['nullable', 'file', 'mimes:mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['nullable', 'file', 'mimes:mimes:jpg,jpeg,png,webp', 'max:2048'],
             'body' => ['required'],
             'date_start' => ['required', 'date'],
         ];

@@ -2,10 +2,10 @@
 
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper p-0">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="ml-3">Блок: {{ $block->title }}</h1>
@@ -28,10 +28,11 @@
                     {{ session('error') }}
                 </div>
             @endif
-
-            <div class="row">
-                <div class="col-12 m-3">
-                    <div class="card ">
+        </div>
+        <div class="container-fluid">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card">
                         <div class="card-body">
                             <div class="row ">
                                 <div class="col-6 track_image">
@@ -76,11 +77,11 @@
                             <div class="row">
                                 <div class="col-sm-12 col-mb-6">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6 row">
+                                        <div class="col-sm-12 col-md-6">
                                             <a href="{{ route('admin.tracks.blocks.edit', [$track->id, $block->id]) }}"
                                                 class="col-12 btn btn-warning ">Изменить</a>
                                         </div>
-                                        <div class="col-sm-12 col-md-6 row">
+                                        <div class="col-sm-12 col-md-6">
                                             <button type="button" class="col-12 btn btn-danger" data-toggle="modal"
                                                     data-target="#modalBlock">Удалить
                                             </button>
@@ -98,11 +99,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12">
                     {{-- Add new blokc button --}}
-                    <div class="col-sm-12 col-md-6 ml-2 mb-3">
+                    <div class="col-sm-12 col-md-6 mb-3">
                         <a href="{{ route('admin.blocks.exercises.create', $block->id) }}"
                            class="btn btn-block btn-primary">Добавить новое упражнение</a>
                     </div>

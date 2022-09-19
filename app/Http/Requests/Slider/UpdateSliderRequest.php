@@ -29,7 +29,7 @@ class UpdateSliderRequest extends FormRequest
             'body'=>['required'],
             'button_name'=>['required'],
             'button_link'=>['required', 'url'],
-            'image'=>['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048']
+            'image'=>['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048']
         ];
     }
     public function messages()

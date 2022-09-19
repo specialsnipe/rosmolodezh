@@ -29,7 +29,7 @@ class StoreSliderRequest extends FormRequest
             'body'=>['required'],
             'button_name'=>['required'],
             'button_link'=>['required', 'url'],
-            'image'=>['required', 'image', 'mimes:jpg,jpeg,png']
+            'image'=>['required', 'image', 'mimes:jpg,jpeg,png,webp']
         ];
     }
 }

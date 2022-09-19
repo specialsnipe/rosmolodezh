@@ -28,7 +28,7 @@ class StoreTeamRequest extends FormRequest
             'tg_link' => 'nullable',
             'vk_link' => ['nullable', 'url'],
             'email' => ['nullable', 'email:dns'],
-            'file' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'file' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'description' => 'required'
         ];
     }

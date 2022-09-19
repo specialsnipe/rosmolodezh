@@ -25,7 +25,7 @@ class StoreTrackRequest extends FormRequest
     {
         return [
             'title' => ['required','unique:tracks'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'icon' => '',
             'body' => ['required'],
             'tg_url' => ['required','url'],

@@ -34,7 +34,7 @@ class UpdateUserRequest extends FormRequest
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => ['nullable','numeric'],
-            'file'=>['nullable','image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'file'=>['nullable','image', 'mimes:jpg,jpeg,png,webp,webp', 'max:2048'],
             'track_id' => '',
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
