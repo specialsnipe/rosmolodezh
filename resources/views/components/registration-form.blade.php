@@ -144,7 +144,7 @@ $tracks = Track::all();
                     <div class="checkbox">
                         <input name="allowed" class="form-check-input @error('allowed') is-invalid @enderror"
                             type="checkbox" id="checkboxNoLabel" aria-label="..." checked>
-                        Согласен с <a href="#">правилами пользования</a>
+                        Согласен с <a href="{{ route('rules') }}">правилами пользования</a>
                     </div>
 
                     @error('allowed')

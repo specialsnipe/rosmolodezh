@@ -122,7 +122,7 @@ class HomeController extends Controller
      */
     public function partnership()
     {
-        return view('teams',compact('team'));
+        return view('partnership');
     }
     /**
      *Сontacts page
@@ -130,7 +130,7 @@ class HomeController extends Controller
      */
     public function rules()
     {
-        return view('teams',compact('team'));
+        return view('rules');
     }
 
     /**
