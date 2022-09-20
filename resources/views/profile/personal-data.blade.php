@@ -4,15 +4,15 @@
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endpush
 @section('flash_messages')
-@if(session()->has('message'))
-<div class="container p-0">
+    @if(session()->has('message'))
+    <div class="container p-0">
 
-    <div class="alert alert-success alert-dismissible fade show w-100 m-0 mt-4" role="alert">
-        {{ session('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert alert-success alert-dismissible fade show w-100 m-0 mt-4" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
-</div>
-@endif
+    @endif
 @endsection
 
 @section('profile_content')

@@ -6,6 +6,7 @@
 <div class="container">
 
 
+    @yield('flash_messages')
     <div class="main-container-directions">
         <div class="row">
             <h1 class="col-12 text-center mb-5">
