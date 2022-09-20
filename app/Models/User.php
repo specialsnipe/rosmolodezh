@@ -152,15 +152,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasManyThrough(Permission::class, Role::class);
     }
 
-    /**
-     * Relation with tracks (many to many)
-     *
-     * @return BelongsToMany
-     */
-    public function tracks(): BelongsToMany
-    {
-        return $this->belongsToMany(Track::class)->withTimestamps();
-    }
 
     public function getAnswer($exercise)
     {
@@ -272,11 +263,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Block::class);
     }
+/**
+     * Relation with tracks (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function tracks(): BelongsToMany
+    {
+        return $this->belongsToMany(Track::class, 'track_user',
+        'user_id', 'track_id', 'id', 'id')->withTimestamps();
+    }
 
     public function tracksWhereTeacher()
     {
         return $this->belongsToMany(Track::class, 'track_teachers',
-            'user_id', 'track_id', 'id', 'id');
+            'user_id', 'track_id', 'id', 'id')->withTimestamps();
     }
 
 }
