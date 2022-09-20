@@ -116,6 +116,22 @@ class HomeController extends Controller
         $team = Team::all();
         return view('teams',compact('team'));
     }
+    /**
+     *Сontacts page
+     *
+     */
+    public function partnership()
+    {
+        return view('teams',compact('team'));
+    }
+    /**
+     *Сontacts page
+     *
+     */
+    public function rules()
+    {
+        return view('teams',compact('team'));
+    }
 
     /**
      *Сontacts page

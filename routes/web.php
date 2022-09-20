@@ -91,6 +91,8 @@ Route::get('/test/mail/message', [\App\Http\Controllers\TestController::class, '
 Route::get('/about', [\App\Http\Controllers\Client\HomeController::class, 'about'])->name('about');
 Route::get('/contacts', [\App\Http\Controllers\Client\HomeController::class, 'contacts'])->name('contacts');
 Route::get('/teams', [\App\Http\Controllers\Client\HomeController::class, 'teams'])->name('teams');
+Route::get('/partnership', [\App\Http\Controllers\Client\HomeController::class, 'partnership'])->name('partnership');
+Route::get('/rules-of-usable', [\App\Http\Controllers\Client\HomeController::class, 'rules'])->name('rules');
 Route::get('/search', [\App\Http\Controllers\Client\HomeController::class, 'search'])->name('search');
 Route::get('/search/exercises', [\App\Http\Controllers\Client\HomeController::class, 'exercisesSearch'])->name('exercises.search');
 Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class, 'postsSearch'])->name('posts.search');
