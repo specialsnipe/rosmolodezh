@@ -41,7 +41,7 @@ use App\Models\Information;
           </p>
 
           <a href="{{ route('home') }}" class="mt-4 logo" >
-              <img src="images/logo.png" alt="">
+              <img src="{{ asset('images/logo.png') }}" alt="">
           </a>
         </div>
 

@@ -37,11 +37,7 @@ class Block extends Model
         'image_medium',
         'image_thumbnail',
         'image_small',
-        'image_big',
-//        'name_exercises_count',
-//        'average_score',
-//        'duration',
-//        'name_duration'
+        'image_big'
     ];
     protected $dates = [
         'created_at',
@@ -49,9 +45,6 @@ class Block extends Model
         'date_end',
         'date_start',
     ];
-//    protected $with = [
-//        'exercises'
-//    ];
 
 
     public function getNextBlockUrlAttribute()

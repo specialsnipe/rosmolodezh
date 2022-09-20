@@ -21,7 +21,7 @@
                                 <input type="password" name="password" class="form-control" id="recipient-name">
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id='closeModal'>Отмена</button>
                                 <button type="submit" class="btn btn-danger">Удалить</button>
                             </div>
                         </form>

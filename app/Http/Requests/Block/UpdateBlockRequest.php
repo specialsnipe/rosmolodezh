@@ -13,7 +13,7 @@ class UpdateBlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->role->name == 'teacher' || auth()->user()->role->name == 'admin';
+        return auth()->check() && auth()->user()->role->name == 'teacher' || auth()->user()->role->name == 'tutor' || auth()->user()->role->name == 'admin';
     }
 
     /**

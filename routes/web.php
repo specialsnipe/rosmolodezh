@@ -120,12 +120,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
         ->name('user.show')
         ->can('view', 'user');
-    Route::post('profile/tracks/{track}/blocks/{block}/start', [\App\Http\Controllers\Client\BlockController::class, 'start'])
-        ->name('tracks.block.start')
-        ->can('start', 'block');
-    Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
-        ->name('profile.tracks.block.show')
-        ->can('view', 'block');
+    // Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
+    //     ->name('profile.tracks.block.show')
+    //     ->can('view', 'block');
+    // Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'edit'])
+    //     ->name('profile.tracks.block.edit')
+    //     ->can('edit', 'block');
+    // Route::match(['put', 'patch'], 'profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'update'])
+    //     ->name('profile.tracks.block.edit')
+    //     ->can('edit', 'block');
+    // Route::delete('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'destroy'])
+    //     ->name('profile.tracks.block.edit')
+    //     ->can('delete', 'block');
 
 });
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified

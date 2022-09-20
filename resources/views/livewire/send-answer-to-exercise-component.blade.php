@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card-body">
         <div class="text-h1">Отправить ответ на задание</div>
-        <form action="" wire:submit.prevent='saveAnswer'>
+        <form action="#" wire:submit.prevent='saveAnswer'>
             <div class="row">
                 <div class="col-sm-12" wire:ignore>
-                    <textarea id="summernote" name="body" wire:model="body"> </textarea>
+                    <textarea id="summernote" name="body" > </textarea>
                 </div>
                 <div class="col-sm-12 mb-4" >
                     @error('body')
@@ -12,26 +12,29 @@
                     @enderror
                 </div>
 
-                <script defer>
-                    $('#summernote').summernote({
-                            tabsize: 2,
-                            height: 150,
-                            toolbar: [
-                                ['style', ['style']],
-                                ['font', ['bold', 'underline', 'clear']],
-                                ['color', ['color']],
-                                ['para', ['ul', 'ol', 'paragraph']],
-                                ['table', ['table']],
-                                ['insert', ['link', 'picture', 'video']],
-                                ['view', ['fullscreen', 'codeview', 'help']]
-                            ],
-                            callbacks: {
-                                onChange: function(contents, $editable) {
-                                    @this.set('body', contents);
+                <script>
+                    $(document).ready(function (params) {
+
+                        $('#summernote').summernote({
+                                tabsize: 2,
+                                height: 150,
+                                toolbar: [
+                                    ['style', ['style']],
+                                    ['font', ['bold', 'underline', 'clear']],
+                                    ['color', ['color']],
+                                    ['para', ['ul', 'ol', 'paragraph']],
+                                    ['table', ['table']],
+                                    ['insert', ['link', 'picture', 'video']],
+                                    ['view', ['fullscreen', 'codeview', 'help']]
+                                ],
+                                callbacks: {
+                                    onChange: function(contents, $editable) {
+                                        @this.set('body', contents);
+                                    }
                                 }
-                            }
-                        });
-                    $('#summernote').summernote('pasteHTML', @js($bodyDefault))
+                            });
+                        $('#summernote').summernote('pasteHTML', @js($bodyDefault))
+                    });
                 </script>
                 <div class="col-sm-12 col-md-8 ">
                     <input type="file" name="file" class="form-control w-100 @error('file') is-invalid @enderror" wire:model='file'>
@@ -73,7 +76,7 @@
                 <div class="col-sm-12 d-flex align-items-center justify-content-between">
                     <div class="col-sm-12 col-md-9">
                         <span class="text-muted"> *Не переживайте, если случайно выйдете с этого упражнения, вы в любой
-                            момент сможете его добавить и изменить </span>
+                            момент сможете дополнить или изменить свой ответ</span>
                     </div>
                     <div class="col-sm-12 col-md-3">
                         <button type="submit" class="btn btn-primary ml-3 w-100"> Сохранить ответ</button>

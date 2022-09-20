@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Block\StoreBlockRequest;
+use App\Http\Requests\Block\UpdateBlockRequest;
 
 class BlockController extends Controller
 {
@@ -84,7 +85,8 @@ class BlockController extends Controller
      */
     public function edit(Track $track, Block $block)
     {
-        //
+        $this->authorize('edit', [$block]);
+        return view('profile.blocks.teacher.edit',compact('block'));
     }
 
     /**
@@ -94,9 +96,30 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Track $track,  Block $block)
+    public function update(UpdateBlockRequest $request,Track $track,  Block $block)
     {
-        //
+        $this->authorize('edit', [$block]);
+        $data = $request->validated();
+
+        $image = $data['image'] ?? null;
+        if (!$image) {
+            try {
+                $block->updateOrFail($data);
+                return redirect()->route('tracks.blocks.show', [$block->track_id, $block->id]);
+            } catch (\Exception $exception) {
+                return abort(501);
+            }
+        }
+
+        ImageService::deleteOld($block->image, 'blocks/images');
+        unset($data['image']);
+        $data['image'] = ImageService::make($image, 'blocks/images');
+        try {
+            $block->updateOrFail($data);
+            return redirect()->route('tracks.blocks.show', [$block->track_id, $block->id]);
+        } catch (\Exception $exception) {
+            return abort(501, $exception);
+        }
     }
 
     /**
@@ -107,7 +130,20 @@ class BlockController extends Controller
      */
     public function destroy(Track $track, Block $block)
     {
-        //
+        $this->authorize('delete', $block);
+
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
+        }
+
+        try {
+            $block->deleteOrFail();
+            return redirect()->route('profile.track.show',$track->id);
+        } catch (\Exception $exception) {
+            abort(501);
+            // dd( $exception);
+        }
     }
 
     /**

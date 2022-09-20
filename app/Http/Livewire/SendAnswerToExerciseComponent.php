@@ -23,7 +23,6 @@ class SendAnswerToExerciseComponent extends Component
 
     public function uploadFile()
     {
-        $body = $this->body;
         $this->validate([
             'file' => ['required','file','max:2048'],
         ],[
@@ -42,14 +41,12 @@ class SendAnswerToExerciseComponent extends Component
         $this->file->storeAs('public/users/answers/uploaded_files', $this->file->hashName());
 
         $this->file = null;
-        $this->body = '';
 
         $this->files = AnswerFile::where('user_id', auth()->user()->id)
                                     ->where('answer_id', $this->answer->id)->get();
         if($this->files->count() < 0) {
             $this->files = [];
         }
-        $this->body = $body;
     }
     public function deleteFile($file_id)
     {
@@ -61,7 +58,6 @@ class SendAnswerToExerciseComponent extends Component
         $file->delete();
 
         $this->file = '';
-        $this->body = '';
 
         $this->files = AnswerFile::where('user_id', auth()->user()->id)
                                     ->where('answer_id', $this->answer->id)->get();
@@ -77,6 +73,7 @@ class SendAnswerToExerciseComponent extends Component
     }
     public function updatedBody()
     {
+        $this->bodyDefault = $this->body;
         $this->validate([
             'body' => 'required'
         ],[
@@ -100,13 +97,14 @@ class SendAnswerToExerciseComponent extends Component
             'body' => $this->body,
             'sended' => true
         ]);
-        return redirect()->route('profile.tracks.block.show', [$this->block->track_id,$this->block->id]);
+        return redirect()->route('tracks.blocks.show', [$this->block->track_id,$this->block->id]);
     }
 
-    public function render()
+    public function mount()
     {
         $this->answer = Answer::where('exercise_id', $this->exercise->id)
                                 ->where('user_id', auth()->user()->id)->first();
+
 
         $this->bodyDefault = $this->answer->body ?? '';
         $this->body = $this->answer->body ?? '';
@@ -125,6 +123,10 @@ class SendAnswerToExerciseComponent extends Component
         if($this->files->count() < 0) {
             $this->files = [];
         }
+    }
+
+    public function render()
+    {
         return view('livewire.send-answer-to-exercise-component');
     }
 }

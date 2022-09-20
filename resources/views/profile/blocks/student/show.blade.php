@@ -35,6 +35,11 @@ $user = auth()->user();
             <article class="col-sm-12 col-md-9">
                 <div class="row">
                     <div class="col-12">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ $block->imageNormal }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-12">
                         <h4 class="">Задания данного блока:</h4>
                     </div>
                     <div class="col-12">
