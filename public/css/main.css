@@ -908,7 +908,7 @@ header form .btn {
     right: 20px;
     display: none;
     color: #fff;
-    background-color: #444 !important;
+    background-color: #666 !important;
     border: 0;
     z-index: 9999;
     border-radius: 50%;
@@ -1861,7 +1861,7 @@ header form .btn {
 }
 
 .bg-primary-light {
-    background: var(--main-primary-ligh-2);
+    background: #444;
     color: var(--main-white);
 }
 
@@ -1872,9 +1872,6 @@ header form .btn {
 
 .bg-primary {
     background-color: var(--main-primary-footer) !important;
-}
-.card-body .icon:hover{
-
 }
 
 .card-body .icon{

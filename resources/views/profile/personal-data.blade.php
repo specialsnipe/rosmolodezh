@@ -22,7 +22,7 @@
                 class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-2" alt="">
+                <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3" style="min-height: 352px; object-fit:cover;" alt="">
                 <button type="button" class="img-btn">Нажмите для загрузки аватара</button>
                 <input type="file" name="file" class="img-btn" hidden>
             </form>

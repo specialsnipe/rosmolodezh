@@ -179,7 +179,7 @@ main {
     color: #fff;
     border-radius: 5px;
     border: 0;
-    padding: 1rem;
+    padding: .3rem;
     width: 100%;
     transition: 250ms;
 }
@@ -609,7 +609,7 @@ td:nth-last-child(1) {
     color: #fff;
     width: 100%;
     transition: 250ms;
-    padding: 18px;
+    padding: 1rem;
 }
 .btn-apply-pass {
     background: var(--main-primary-footer);
@@ -630,7 +630,10 @@ td:nth-last-child(1) {
 .main-container .row {
     justify-content: flex-end;
 }
-
+.d-flex-btn{
+    display: flex;
+    justify-content: end;
+}
 /*
     Класс для заблокированного задания
 */
@@ -696,22 +699,6 @@ td:nth-last-child(1) {
 */
 
 @media (min-width:280px) and (max-width: 770px) {
-    .footer-block {
-        flex-direction: column;
-    }
-    .icons{
-        flex-direction: row;
-        height: auto;
-        width: 65%;
-        margin-bottom: 1.5rem;
-    }
-    .logo {
-        margin: 1.5rem 0;
-        width: 80%;
-    }
-    footer{
-        height:auto;
-    }
     .links-footer{
     align-content: space-around
     }
@@ -719,9 +706,15 @@ td:nth-last-child(1) {
         flex-direction: column;
     }
     .card .btn{
-        width: 100%;
+        width: 100%!important;
         margin-bottom: 1rem;
         padding: 1rem;
+    }
+    .img-btn , .btn-apply-pass, .btn-apply{
+        padding: 1rem;
+    }
+    .d-flex-btn{
+        display: block;
     }
 }
 

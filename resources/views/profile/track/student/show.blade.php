@@ -30,22 +30,22 @@ $user = auth()->user();
                     <div class="col-sm-12 col-md-6 table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr>
+                                <tr class="p-3">
                                     <td class="p-3">Куратор направления</td>
-                                    <td>{{ auth()->user()->tracks[0]->curator->all_names }}</td>
+                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->all_names }}</td>
                                 </tr>
                                 <tr class="p-3">
                                     <td class="p-3">Номер телефона куратора</td>
-                                    <td>{{ auth()->user()->tracks[0]->curator->phone }}</td>
+                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->phone }}</td>
                                 </tr>
                                 <tr class="p-3">
                                     <td class="p-3">Телеграм куратора</td>
-                                    <td>{{ auth()->user()->tracks[0]->curator->tg_name }}</td>
+                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->tg_name }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-sm-12 col-md-6 ">
+                    <div class="col-sm-12 col-md-6">
                         <table class="table table-responsive">
                             <tbody>
                                 <tr>
@@ -85,7 +85,7 @@ $user = auth()->user();
                                     </div>
 
                                         @if(!($block->date_start >= Carbon::now()))
-                                        <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
+                                        <div class="col-sm-12 col-lg-6 d-flex-btn">
                                             <form
                                                 @if($block->exercises_count < 1)
                                                     action="#"
