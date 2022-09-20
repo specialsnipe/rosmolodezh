@@ -7,6 +7,7 @@ use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Block\StoreBlockRequest;
 use App\Http\Requests\Block\UpdateBlockRequest;
 
@@ -85,7 +86,7 @@ class BlockController extends Controller
      */
     public function edit(Track $track, Block $block)
     {
-        $this->authorize('edit', [$block]);
+        $this->authorize('update', $block);
         return view('profile.blocks.teacher.edit',compact('block'));
     }
 
@@ -98,7 +99,7 @@ class BlockController extends Controller
      */
     public function update(UpdateBlockRequest $request,Track $track,  Block $block)
     {
-        $this->authorize('edit', [$block]);
+        $this->authorize('update', [$block]);
         $data = $request->validated();
 
         $image = $data['image'] ?? null;
@@ -128,7 +129,7 @@ class BlockController extends Controller
      * @param  \App\Models\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Track $track, Block $block)
+    public function destroy(Request $request,Track $track, Block $block)
     {
         $this->authorize('delete', $block);
 

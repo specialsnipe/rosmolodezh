@@ -48,13 +48,15 @@ class BlockPolicy
      */
     public function create(User $user, Track $track)
     {
-        dd($user->permissions->flatten()->pluck('title')->toArray(),
-            $user->role->permissions->flatten()->pluck('title')->toArray() );
         return in_array('block_create', $user->role->permissions->flatten()->pluck('title')->toArray())
-            && $user->tracks->where('id', $track->id)->first()
-                ? $user->tracks->where('id', $track->id)->first()->id
-                : null
-            === $track->id;
+            && (($user->tracks->where('id', $block->track->id)->first()
+                    ? $user->tracks->where('id', $block->track->id)->first()->id
+                    : null)
+                === $block->track->id
+                || ($user->tracksWhereTeacher->where('id', $block->track->id)->first()
+                    ? $user->tracksWhereTeacher->where('id', $block->track->id)->first()->id
+                    : null)
+                === $block->track->id);;
     }
 
     /**
@@ -68,10 +70,14 @@ class BlockPolicy
     public function update(User $user, Block $block)
     {
         return in_array('block_update', $user->role->permissions->flatten()->pluck('title')->toArray())
-            && $user->tracks->where('id', $block->track->id)->first()
+            && (($user->tracks->where('id', $block->track->id)->first()
                 ? $user->tracks->where('id', $block->track->id)->first()->id
-                : null
-            === $block->track->id;
+                : null)
+            === $block->track->id
+            || ($user->tracksWhereTeacher->where('id', $block->track->id)->first()
+                ? $user->tracksWhereTeacher->where('id', $block->track->id)->first()->id
+                : null)
+            === $block->track->id);
     }
 
     /**
@@ -84,10 +90,14 @@ class BlockPolicy
     public function delete(User $user, Block $block)
     {
         return in_array('block_delete', $user->role->permissions->flatten()->pluck('title')->toArray())
-            && $user->tracks->where('id', $block->track->id)->first()
-                ? $user->tracks->where('id', $block->track->id)->first()->id
-                : null
-            === $block->track->id;
+            && (($user->tracks->where('id', $block->track->id)->first()
+                    ? $user->tracks->where('id', $block->track->id)->first()->id
+                    : null)
+                === $block->track->id
+                || ($user->tracksWhereTeacher->where('id', $block->track->id)->first()
+                    ? $user->tracksWhereTeacher->where('id', $block->track->id)->first()->id
+                    : null)
+                === $block->track->id);
     }
 
     /**
