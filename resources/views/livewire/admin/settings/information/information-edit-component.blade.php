@@ -34,7 +34,7 @@
                     <h4> Уже добавленные почты</h4>
                 </div>
                 <div class="card-body">
-                    @forelse($setting->emails as $email)
+                    @forelse($information->emails as $email)
                     <div class="card  bg-gradient-light ">
                         <div class="card-body">
                             <div class="row form-group  mb-0 col-sm-12 d-flex justify-content-between align-items-center">
@@ -101,7 +101,7 @@
                     <h4> Уже добавленные телеграм аккаунты</h4>
                 </div>
                 <div class="card-body">
-                    @forelse($setting->telegrams as $tg)
+                    @forelse($information->telegrams as $tg)
 
                     <div class="card  bg-gradient-light">
                         <div class="card-body">

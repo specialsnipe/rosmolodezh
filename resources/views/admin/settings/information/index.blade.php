@@ -21,12 +21,12 @@
 
     <div class="card m-3 сol-sm-12">
         <div class="card-body">
-            <form action="{{route('admin.settings.information.update',$setting->id )}}" method="post" class="row">
+            <form action="{{route('admin.settings.information.update',$information->id )}}" method="post" class="row">
                 @method('put')
                 @csrf
                 <div class="form-group  col-sm-12 col-md-4">
                     <label for="vk_url">Вконтакте url</label>
-                    <input type="text" class="form-control " name="vk_url" value="{{$setting->vk_url}}"
+                    <input type="text" class="form-control " name="vk_url" value="{{$information->vk_url}}"
                         placeholder="Название">
                     @error('vk_url')
                     <div class="text-danger">{{$message}}</div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group col-sm-12 col-md-8">
                     <label for="vk_description">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="vk_description" >{{$setting->vk_description}}</textarea>
+                    <textarea type="text" class="form-control " name="vk_description" >{{$information->vk_description}}</textarea>
                     @error('vk_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -42,14 +42,14 @@
                 <hr class="col-12" style="padding: 0">
                 <div class="form-group  col-sm-12 col-md-4 ">
                     <label for="tg_url">Телеграм url</label>
-                    <input type="text" class="form-control " name="tg_url" value="{{$setting->tg_url}}">
+                    <input type="text" class="form-control " name="tg_url" value="{{$information->tg_url}}">
                     @error('tg_url')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group col-sm-12 col-md-8 ">
                     <label for="tg_description">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="tg_description" >{{$setting->tg_description}}</textarea>
+                    <textarea type="text" class="form-control " name="tg_description" >{{$information->tg_description}}</textarea>
                     @error('tg_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -57,14 +57,14 @@
                 <hr class="col-12"  style="padding: 0">
                 <div class="form-group  col-sm-12 col-md-4">
                     <label for="zen_url">Яндекс.Дзен url</label>
-                    <input type="text" class="form-control " name="zen_url" value="{{$setting->zen_url}}">
+                    <input type="text" class="form-control " name="zen_url" value="{{$information->zen_url}}">
                     @error('zen_url')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group col-sm-12 col-md-8">
                     <label for="zen_description">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="zen_description" >{{$setting->zen_description}}</textarea>
+                    <textarea type="text" class="form-control " name="zen_description" >{{$information->zen_description}}</textarea>
                     @error('zen_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -73,21 +73,21 @@
 
                 <div class="form-group  col-sm-12 col-md-6">
                     <label for="location">Адрес</label>
-                    <input type="text" class="form-control " name="location" value="{{$setting->location}}">
+                    <input type="text" class="form-control " name="location" value="{{$information->location}}">
                     @error('location')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group  col-sm-12 col-md-6">
                     <label for="location_url">url адреса</label>
-                    <input type="text" class="form-control " name="location_url" value="{{$setting->location_url}}">
+                    <input type="text" class="form-control " name="location_url" value="{{$information->location_url}}">
                     @error('location_url')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
                 <div class="form-group col-sm-12 col-md-12">
                     <label for="location_description">Краткое описание</label>
-                    <textarea type="text" class="form-control " name="location_description" >{{$setting->location_description}}</textarea>
+                    <textarea type="text" class="form-control " name="location_description" >{{$information->location_description}}</textarea>
                     @error('location_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -99,7 +99,7 @@
             </form>
         </div>
     </div>
-    @livewire('information-edit-component', ['setting' => $setting])
+    @livewire('information-edit-component', ['information' => $information])
     <div class="card m-3">
         <div class="card-body">
             <a href="{{ url()->previous() }}" class="btn btn-primary"> Назад</a>

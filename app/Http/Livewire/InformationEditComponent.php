@@ -10,7 +10,7 @@ use App\Models\InformationTelegram;
 
 class InformationEditComponent extends Component
 {
-    public $setting;
+    public $information;
     public $tg_url;
     public $vk_url;
     public $ok_url;
@@ -21,12 +21,12 @@ class InformationEditComponent extends Component
     public $changedEmail;
 
 
-    public function mount(Information $setting)
+    public function mount(Information $information)
     {
-        $this->setting = $setting;
-        $this->vk_url = $setting->vk_url;
-        $this->tg_url = $setting->tg_url;
-        $this->zen_url = $setting->zen_url;
+        $this->information = $information;
+        $this->vk_url = $information->vk_url;
+        $this->tg_url = $information->tg_url;
+        $this->zen_url = $information->zen_url;
     }
     public function render()
     {
@@ -37,12 +37,12 @@ class InformationEditComponent extends Component
     public function DeleteEmail($email)
     {
         InformationEmail::find($email)->delete();
-        $this->setting = Information::first();
+        $this->information = Information::first();
     }
     public function DeleteTelegram($tg)
     {
         InformationTelegram::find($tg)->delete();
-        $this->setting = Information::first();
+        $this->information = Information::first();
     }
 
 
@@ -59,11 +59,11 @@ class InformationEditComponent extends Component
         InformationEmail::create([
             'email' => $this->email,
             'description' => $this->email_description,
-            'setting_id' => $this->setting->id
+            'information_id' => $this->information->id
         ]);
         $this->email = '';
         $this->email_description = '';
-        $this->setting = Information::first();
+        $this->information = Information::first();
     }
 
     public function AddTelegram()
@@ -78,10 +78,10 @@ class InformationEditComponent extends Component
         InformationTelegram::create([
             'username' => $this->tg_username,
             'description' => $this->tg_description,
-            'information_id' => $this->setting->id
+            'information_id' => $this->information->id
         ]);
         $this->tg_username = '';
         $this->tg_description = '';
-        $this->setting = Information::first();
+        $this->information = Information::first();
     }
 }

@@ -1,7 +1,10 @@
 
 @php
+use App\Models\Track;
 use App\Models\Information;
     $information = Information::all()[0];
+    $tracks = Track::limit(3)->get();
+
 @endphp
 <footer class="text-center text-muted" style="color: #fff!important;">
   <section>
@@ -33,25 +36,20 @@ use App\Models\Information;
           <h6 class="text-uppercase fw-bold mb-4">
             Направления
           </h6>
-          <p>
-            <a href="#!" class="text-reset">Дизайн</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Программирование</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Верстка</a>
-          </p>
+          @foreach ($tracks as $track)
+            <p>
+                <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="text-reset">{{ $track->title }}</a>
+            </p>
+          @endforeach
         </div>
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">Контакты</h6>
-          <p><i class="fas fa-home me-3"></i>г.Курган, ул.Куйбышева, 36</p>
+          <p><i class="fas fa-home me-3"></i>{{ $information->location }}</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            {{ $information->emails->first()->email }}
           </p>
-          <p><i class="fas fa-phone-alt me-3"></i> + 01 234 567 88</p>
         </div>
       </div>
     </div>
@@ -84,7 +82,7 @@ use App\Models\Information;
       </div>
     </div>
   </section>
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+  <div class="text-center p-4" style="">
     © 2022 Copyright:
     <a class="text-reset fw-bold" href="">Росмолодежь</a>
   </div>

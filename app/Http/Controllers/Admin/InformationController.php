@@ -12,8 +12,8 @@ class InformationController extends Controller
 
     public function index()
     {
-        $setting = Information::first();
-        return view('admin.settings.information.index', compact('setting'));
+        $information = Information::first();
+        return view('admin.settings.information.index', compact('information'));
     }
     /**
      * @param UpdateSliderRequest $request
