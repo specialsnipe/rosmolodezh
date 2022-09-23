@@ -14,6 +14,7 @@ $user = auth()->user();
 <div class="container">
 
 
+    @include('profile.includes.flesh-messages')
     <div class="main-container-directions">
 
         <div class="row">

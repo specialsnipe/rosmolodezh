@@ -143,7 +143,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/set/webhook', function () {
     $url = 'https://nethammer.online';
     $bot_token = config('bots.bot');
-    $http = Http::get('http://api.tlgr.org/' . $bot_token .'/setWebhook?url=' . $url . '/webhook');
+    $http = Http::get('http://api.tlgr.org/bot' . $bot_token .'/setWebhook?url=' . $url . '/webhook');
     dd($http->body());
 });
 

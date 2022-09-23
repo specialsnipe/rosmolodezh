@@ -38,9 +38,8 @@ class UpdateUserRequest extends FormRequest
             'track_id' => '',
             'tg_name' => '',
             'vk_url' => ['nullable', 'url'],
-            'track_id' => ['required', 'min:1'],
-            'curator_job' => ['required'],
-            'curator_about' => ['required'],
+            'curator_job' => ['nullable'],
+            'curator_about' => ['nullable'],
             'phone' => ['required', 'min:17'],
         ];
     }
