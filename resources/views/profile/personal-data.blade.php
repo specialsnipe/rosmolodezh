@@ -20,7 +20,7 @@
 
 <div class="row">
     <form action="{{ route('user.update_avatar') }}" method="post"
-        class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
+        class="col-xs-12 col-md-8 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3"
@@ -73,15 +73,17 @@
                 @error('age') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex">
+            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex; height: 58px;">
                     <span class="form-control" style="
                             width: 40px;
                             height: auto;
                             display:flex;
-                            ustify-content: center;
+                            justify-content: center;
                             align-items: center;
                             background-color:#8c64d8;
                             border-radius: 5px 0 0 5px;
+                            border: 0;
+                            padding: 1rem;
                             color: white;">@
                     </span>
                     <input name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
@@ -90,13 +92,19 @@
                     <label for="floatingPassword" style="margin-left:40px;">Telegram Username</label>
 
                     @if(isset($user->tg_id))
-                    <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg" >
                         <path fill="#8c64d8"
                             d="M61.7353 32.3518L55.2286 24.9118L56.1353 15.0718L46.5086 12.8851L41.4686 4.35181L32.4019 8.24514L23.3353 4.35181L18.2953 12.8585L8.6686 15.0185L9.57527 24.8851L3.0686 32.3518L9.57527 39.7918L8.6686 49.6585L18.2953 51.8451L23.3353 60.3518L32.4019 56.4318L41.4686 60.3251L46.5086 51.8185L56.1353 49.6318L55.2286 39.7918L61.7353 32.3518ZM27.3086 44.9385L17.1753 34.7785L21.1219 30.8318L27.3086 37.0451L42.9086 21.3918L46.8553 25.3385L27.3086 44.9385Z"
                             fill="black" />
                     </svg>
                     @else
-                    <span class="text-danger" title="Вы не запустили бота"><i class="fa fa-times"></i></span>
+                    <span class="text-danger" title="Вы не запустили бота" 
+                    style="
+                        display: flex;
+                        align-items: center;
+                        width: 20px;
+                        justify-content: end;
+                        "><i class="fa fa-times"></i></span>
                     @endif
                 @error('tg_name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
@@ -187,27 +195,27 @@
         <div class="text-header mb-2">Смена пароля</div>
         <div class="form-group row">
 
-            <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                 <input type="old_password" class="form-control" id="floatingInput" placeholder="Password"
                     name="old_password">
                 <label for="floatingPassword">Ваш старый пароль</label>
                 @error('old_password') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                 <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password">
                 <label for="floatingPassword">Новый пароль</label>
                 @error('password') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
                     name="password_confirmation">
                 <label for="floatingPassword">Повторите новый пароль</label>
                 @error('password_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                 <button type="submit" class="btn-apply-pass">Сохранить новый пароль</button>
             </div>
 
