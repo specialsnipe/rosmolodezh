@@ -140,10 +140,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 // todo: telegram webhook
-// Route::get('/set/webhook', function () {
-//     $url = 'https://nethammer.online';
-//     $http = Http::get('http://api.tlgr.org/bot5501374509:AAGa1MExGsrVvHVrALYiYeym0ww5rbiBYcQ/setWebhook?url=' . $url . '/webhook');
-//     dd($http->body());
-// });
+Route::get('/set/webhook', function () {
+    $url = 'https://nethammer.online';
+    $bot_token = config('bots.bot');
+    $http = Http::get('http://api.tlgr.org/bot' . $bot_token .'/setWebhook?url=' . $url . '/webhook');
+    dd($http->body());
+});
 
 Route::post('/webhook', [\App\Http\Controllers\TelegramController::class, 'index']);
