@@ -732,9 +732,5 @@ td:nth-last-child(1) {
 }
 
 
-@media (min-width:770px) and (max-width: 1300px) {
-    .form-floating>.form-control, .form-floating>.form-control-plaintext{
-        height: 100%;
-    }
-}
+
 

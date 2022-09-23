@@ -19,7 +19,7 @@
                                 <span class="badge fs-8 bg-secondary"> Вы являетесь участником</span>
                             @endif
                             @endauth
-                        <img class="w-100" src="{{ asset($track->imageMedium) }}" alt="">
+                        <img class="rounded w-100" src="{{ asset($track->imageMedium) }}" alt="">
                     </div>
                     <div class="col-sm-12 col-md-6 pr-0">
                         <div class="flex-container">
@@ -134,7 +134,7 @@
                                 <div class="card d-flex flex-column justify-content-between mb-4">
 
                                     <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
-                                        <img src="{{ asset($track->imageNormal ) }}" class="card-img-top rounded" alt="...">
+                                        <img src="{{ asset($track->imageNormal ) }}" class="card-img-top" alt="...">
                                     </a>
                                     <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer track-title bg-primary-light">
                                         <div>{{ $track->title }}</div>

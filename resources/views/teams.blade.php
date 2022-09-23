@@ -13,7 +13,7 @@
             <div class="card mb-3">
                 <div class="row g-0 card-height">
                     <div class="col-md-5">
-                        <img src="{{asset($person->avatarMediumPath)}}" class="img-fluid rounded" alt="...">
+                        <img src="{{asset($person->avatarMediumPath)}}" class="img-teams rounded" alt="...">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
@@ -56,17 +56,6 @@
 
     </div>
 </section>
-<div class="screen news-blocks mt-4">
-    <section class="container  d-flex justify-content-center ">
-        <div class="directions-block">
-            <div class="mt-2 d-flex justify-content-center">
-                <p>
-                    Возможно этот блок и не нужен, но его сверстали
-                </p>
-            </div>
-        </div>
-    </section>
-</div>
 @guest
 <div class="container">
     <x-registration-form></x-registration-form>

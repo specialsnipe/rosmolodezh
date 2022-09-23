@@ -40,7 +40,7 @@
 
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" viewBox="0 0 56 56" fill="none" style="margin-top: .6rem;">
                         <path
                             d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
                             fill="black" />

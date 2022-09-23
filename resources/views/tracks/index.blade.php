@@ -42,7 +42,7 @@
 
     @media (min-width: 768px) {
         .card img {
-            height: 400px;
+            height: 425px;
         }
     }
 

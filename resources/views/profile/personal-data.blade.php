@@ -19,7 +19,7 @@
 
         <div class="row">
             <form action="{{ route('user.update_avatar') }}" method="post"
-                class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
+                class="col-xs-12 col-md-8 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3" style="min-height: 352px; object-fit:cover;" alt="">
@@ -76,9 +76,9 @@
                         @error('age') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex; ">
-                        <span style="width: 40px; display:flex; justify-content: center; align-items: center; background-color:#8c64d8;
-                    border-radius: 5px 0 0 5px ; color: white;">@</span>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4" style="display: flex; height: 58px;">
+                        <div style="width: 40px; height: 100%; display:flex; justify-content: center; align-items: center; background-color:#8c64d8;
+                    border-radius: 5px 0 0 5px ; color: white;">@</div>
                         <input name="tg_name" style="border-radius: 0 5px 5px 0;" type="text" id="telegram"
                             class="form-control @error('tg_name') is-invalid @enderror" placeholder="Telegram Username"
                             aria-label="Username" aria-describedby="basic-addon1" value="{{ $user->tg_name }}">
@@ -174,28 +174,28 @@
                 <div class="text-header mb-2">Смена пароля</div>
                 <div class="form-group row">
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                         <input type="old_password" class="form-control" id="floatingInput" placeholder="Password"
                             name="old_password">
                         <label for="floatingPassword">Ваш старый пароль</label>
                         @error('old_password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                         <input type="password" class="form-control" id="floatingInput" placeholder="Password"
                             name="password">
                         <label for="floatingPassword">Новый пароль</label>
                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                         <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
                             name="password_confirmation">
                         <label for="floatingPassword">Повторите новый пароль</label>
                         @error('password_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-floating mb-3 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-3">
                         <button type="submit" class="btn-apply-pass">Сохранить новый пароль</button>
                     </div>
 

@@ -47,8 +47,8 @@
                             <a href="{{ route('posts.show', $postx->id) }}" class="">
                                 <div class="card mt-3">
                                     <div class="card-body">
-                                        <p class="h5">{{ $postx->title }}</p>
-                                        <p class="text-truncate">{{ $postx->excerpt }}</p>
+                                        <p class="h5"><i class="fas fa-external-link-alt" style="font-size: 16px;"></i> {{ $postx->title }} </p>
+                                        <p class="text-truncat-1 ">{{ $postx->excerpt }} </p>
                                     </div>
                                 </div>
                             </a>
