@@ -119,12 +119,21 @@
         </div>
     </div>
 </section>
-<iframe src="{{$settings->location_url}}" style="width:100%; border:0" height="450">
-</iframe>
+<div id="wrapMap">
+    <iframe
+        src="{{$settings->location_url}}" style="width:100%; border:0; pointer-events: none;" height="450" >
+    </iframe>
+</div>
+
 
 @guest
 <div class="container">
     <x-registration-form></x-registration-form>
 </div>
 @endguest
+@push('script')
+    <script>
+       let myWrap = new
+    </script>
+@endpush
 @endsection

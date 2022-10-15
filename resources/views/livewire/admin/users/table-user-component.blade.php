@@ -5,7 +5,10 @@
         <td wire:click='openMore' >{{$user->id}}</td>
         <td wire:click='openMore' ><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px alt="image">
         </td>
-        <td wire:click='openMore' >{{$user->all_names}}</td>
+        <td  wire:click='openMore' >
+            <div class ="text-truncate" style="width: 200px;">
+                {{$user->all_names}}
+            </div></td>
         <td wire:click='openMore' >{{$user->occupation->name}}</td>
         <td><span style="padding: 5px 10px; background: #72c07d; border-radius: 5px">{{$user->role->name}}</span>
         </td>

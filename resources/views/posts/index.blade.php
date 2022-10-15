@@ -9,12 +9,12 @@
 <section class="container">
     <p class="h1-content">Новости</p>
     <div class="news-block container-fluid">
-        <div class="card-form row d-flex justify-content-between">
-            <div class="row justify-content-between">
+        <div class="card-form">
+            <div class="row justify-content-start">
                 @forelse ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <a class="text-decoration-none" style="color: #000;" target="_blank" href="{{ route('posts.show', $post->id) }}">
-                            <div class="card post_card mb-4">
+                            <div class="card post_card mb-4 mr-0">
                                 <img src="{{ asset($post->images['0']->imageNormal) }}" class="rounded img-fluid"
                                     style="min-height: 200px; max-height:200px"
                                     alt="Изображение поста '{{ $post->title }}'" height="100">
@@ -23,7 +23,7 @@
                                     <p class="card-text post__card-text">{{ $post->excerpt }}</p>
                                 </div>
                             </div>
-                        </a>    
+                        </a>
                     </div>
 
                 @empty
