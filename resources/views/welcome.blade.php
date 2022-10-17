@@ -104,6 +104,6 @@
                 swipe: true,
             });
         }
-    }
+    })
 </script>
 @endpush
