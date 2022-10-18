@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
         $slides = SliderItem::all();
         $phrases = Phrase::all();
-        $phraseSize;
+        $phraseSize = '';
         $phrasesCount = ($phrases->count() >= 4) ? 4 : $phrases->count();
         $phrases = $phrases->random($phrasesCount)->values();
         $posts = Post::latest()->limit(4)->get();
@@ -151,12 +151,18 @@ class HomeController extends Controller
         foreach ($posts as $post) {
             $post['table'] = 'posts';
         }
-        $exercises = Exercise::filter($filterExercises)->get()->load('block', );
+        $exercises = Exercise::filter($filterExercises)
+            ->get()
+            ->load('block')
+            ->filter(function ($item) {
+            return $item->block != null;
+        });
+
 
         foreach ($exercises as $exercise) {
             $exercise['table'] = 'exercises';
         }
-        $unionCollection = $posts->merge($exercises);
+        $unionCollection = $posts->union($exercises);
 
         $results = CollectionHelper::paginate($unionCollection, 20);
 
@@ -174,7 +180,13 @@ class HomeController extends Controller
             return view('search.exercises', compact('exercises'));
         }
         $filterExercises = app()->make(SearchFilter::class, ['queryParams' => array_filter($data)]);
-        $exercises = Exercise::filter($filterExercises)->paginate(20);
+        $exercises = Exercise::filter($filterExercises)
+            ->get()
+            ->load('block')
+            ->filter(function ($item) {
+                return $item->block != null;
+            });
+        $exercises = CollectionHelper::paginate($exercises, 20);
         $search = $data['search'];
         return view('search.exercises', compact('exercises', 'search'));
     }

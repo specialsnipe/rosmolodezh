@@ -47,7 +47,7 @@ class AnswerController extends Controller
      * @param Exercise $exercise
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreAnswerRequest $request, Exercise $exercise)
+    public function store (StoreAnswerRequest $request, Exercise $exercise)
     {
         $data = $request->validated();
         $files = $data['file'];

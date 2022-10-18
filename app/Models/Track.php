@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +14,10 @@ use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Track extends Model
 {
-    use HasFactory, SoftDeletes, HasSEO;
+    use HasFactory, SoftDeletes, HasSEO, CascadeSoftDeletes;
 
+    protected $cascadeDeletes = ['blocks'];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'

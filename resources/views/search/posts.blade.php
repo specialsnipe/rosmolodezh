@@ -40,7 +40,7 @@
                     style="text-decoration: none">
                     <span class="text-muted">Новость</span>
                     <p class="h1">{{$post->title}} </p>
-                    <p>{!! str_replace("$search","<b>$search</b>", $post->body) !!}</p>
+                    <p>{!! str_replace("$search","<b>$search</b>", $post->excerpt) !!}</p>
                 </a>
 
                 @empty

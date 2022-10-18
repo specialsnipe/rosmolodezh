@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,9 +13,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Block extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes;
 
     protected $table = 'blocks';
+    protected $cascadeDeletes = ['exercises'];
 
     protected $fillable = [
         'title',
@@ -44,6 +46,7 @@ class Block extends Model
         'updated_at',
         'date_end',
         'date_start',
+        'deleted_at'
     ];
 
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Exercise extends Model
 {
-    use HasFactory, SoftDeletes,  Filterable;
+    use HasFactory, SoftDeletes,  Filterable, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['answers'];
+    protected $dates = ['deleted_at'];
+
 
     protected $fillable = [
         'title',
@@ -167,6 +172,14 @@ class Exercise extends Model
     }
 
     /**
+     * @return Track
+     */
+    public function track(): Track
+    {
+        return $this->block->track;
+    }
+
+    /**
      *  Relation with videos (one to many)
      * @return HasMany
      */
@@ -192,5 +205,6 @@ class Exercise extends Model
     {
         return $this->hasMany(File::class);
     }
+
 
 }

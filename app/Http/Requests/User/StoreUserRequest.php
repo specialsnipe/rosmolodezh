@@ -33,7 +33,7 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'min:6'],
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
-            'age' => 'numeric',
+            'age' => ['numeric', 'min:0'],
             'file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'tg_name' => 'nullable',
             'vk_url' => ['nullable', 'url'],
@@ -44,6 +44,7 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
+            'age.min'=>'Возраст не может быть отрицательным',
             'first_name.required' => 'Поле имя обязательно.',
             'last_name.required' => 'Поле фамилия обязательно.',
             'father_name.required' => 'Поле отчество обязательно.',
