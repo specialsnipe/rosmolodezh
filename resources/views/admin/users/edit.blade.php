@@ -187,9 +187,9 @@
                                 @enderror
                             </div>
                             <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                <label for="tg_username">Телеграм id</label>
-                                <input type="text" class="form-control" name="tg_username"
-                                    placeholder="Когда пользователь подтвердит свою учетную запись" id="tg_id"
+                                <label for="tg_id">Телеграм id</label>
+                                <input type="text" class="form-control" name="tg_id"
+                                    placeholder="После подтверждения TG" id="tg_id"
                                     aria-describedby="tg_id" value="{{ $user->tg_id }}" readonly>
                             </div>
 

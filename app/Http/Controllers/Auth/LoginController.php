@@ -34,6 +34,9 @@ class LoginController extends Controller
         $data = $request->validated();
         $user = User::where('login', $data['login'])->withTrashed()->first();
 
+        if ($user->deleted_at !== NULL) {
+            return back()->withErrors(['login'=>'Пользователь с таким логином заблокирован.'])->withInput(['login'=>$data['login']]);
+        }
 
         if (Hash::check($data['password'], $user->password)) {
             auth()->login($user);
