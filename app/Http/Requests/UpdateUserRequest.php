@@ -56,6 +56,7 @@ class UpdateUserRequest extends FormRequest
             'track_id.required' => 'Обязательно выберите траекторию.',
             'track_id.min' => 'Обязательно выберите траекторию.',
             'vk_url.url' => 'Это должно быть ссылкой',
+            'tg_name.unique' => 'Такой username уже занят',
         ];
     }
 }

@@ -34,157 +34,168 @@
             @method('PATCH')
             <div class="text-header mb-4">Ваши персональные данные</div>
 
-            <div class="form-group row">
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+        <div class="form-group row">
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
                     <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
-                           id="floatingInput" placeholder="Фамилия" value="{{ $user->last_name }}">
+                        id="floatingInput" placeholder="Фамилия" value="{{ $user->last_name }}">
                     <label for="floatingInput">Фамилия</label>
                     @error('last_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
                     <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror"
-                           id="floatingPassword" placeholder="Имя" value="{{ $user->first_name }}">
+                        id="floatingPassword" placeholder="Имя" value="{{ $user->first_name }}">
                     <label for="floatingInput">Имя</label>
                     @error('first_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                    <input name="father_name" type="text"
-                           class="form-control @error('father_name') is-invalid @enderror"
-                           id="floatingPassword" placeholder="Отчество" value="{{ $user->father_name }}">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
+                    <input name="father_name" type="text" class="form-control @error('father_name') is-invalid @enderror"
+                        id="floatingPassword" placeholder="Отчество" value="{{ $user->father_name }}">
                     <label for="floatingInput">Отчество</label>
                     @error('father_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
+            </div>
 
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
                     <input name="login" type="text" class="form-control @error('login') is-invalid @enderror"
-                           id="floatingInput" placeholder="Username" value="{{ $user->login }}">
+                        id="floatingInput" placeholder="Username" value="{{ $user->login }}">
                     <label for="floatingInput">Логин</label>
                     @error('login') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
                     <input name="phone" type="text" class="form-control @error('email') is-invalid @enderror" id="phone"
-                           placeholder="+7(000)000-00-00" value="{{ $user->phone }}">
+                        placeholder="+7(000)000-00-00" value="{{ $user->phone }}">
                     <label for="floatingInput">Номер телефона</label>
                     @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                    <input name="age" type="number" maxlength="10"
-                           class="form-control @error('age') is-invalid @enderror"
-                           placeholder="18" value="{{ $user->age }}">
+            </div>
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-floating">
+                    <input name="age" type="number" maxlength="10" class="form-control @error('age') is-invalid @enderror"
+                        placeholder="18" value="{{ $user->age }}">
                     <label for="floatingInput">Ваш возраст</label>
                     @error('age') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
+            </div>
 
-                <div class="mb-3 col-sm-12 col-md-6 col-lg-4" style="height: 58px;">
-{{--                    <div class="input-group">--}}
-{{--                        <span class="input-group-text" >@ </span>--}}
-{{--                        <div class="form-floating">--}}
-{{--                            <input name="tg_name" type="text" id="telegram"--}}
-{{--                                   class="form-control @error('tg_name') is-invalid @enderror" placeholder="Telegram Username"--}}
-{{--                                   aria-label="Username" value="{{ $user->tg_name }}">--}}
-{{--                            <label for="telegram" >Telegram Username</label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-                    <span class="input-group-text">@</span>
-                    <div class="form-floating is-invalid">
-                        <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
-                        <label for="floatingInputGroup2">Username</label>
-                    </div>
-                    <div class="invalid-feedback">
-                        Please choose a username.
+            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class="input-group has-validation">
+                    <span class="input-group-text" style="width: 20%;">@</span>
+                    <div class="form-floating @error('tg_name') is-invalid @enderror" style="width: 80%;">
+                        <input name="tg_name" type="text" class="form-control @error('tg_name') is-invalid @enderror" id="telegram" value="{{ $user->tg_name }}" placeholder="Username">
+                        <label for="telegram">Username</label>
                     </div>
                     @error('tg_name') <span class="text-danger">{{ $message }}</span> @enderror
+
+
                     @if(isset($user->tg_id))
-                        <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#8c64d8"
-                                  d="M61.7353 32.3518L55.2286 24.9118L56.1353 15.0718L46.5086 12.8851L41.4686 4.35181L32.4019 8.24514L23.3353 4.35181L18.2953 12.8585L8.6686 15.0185L9.57527 24.8851L3.0686 32.3518L9.57527 39.7918L8.6686 49.6585L18.2953 51.8451L23.3353 60.3518L32.4019 56.4318L41.4686 60.3251L46.5086 51.8185L56.1353 49.6318L55.2286 39.7918L61.7353 32.3518ZM27.3086 44.9385L17.1753 34.7785L21.1219 30.8318L27.3086 37.0451L42.9086 21.3918L46.8553 25.3385L27.3086 44.9385Z"
-                                  fill="black"/>
-                        </svg>
+                        <span class="text-success">
+                            Сконнектились!
+                            <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#8c64d8"
+                                    d="M61.7353 32.3518L55.2286 24.9118L56.1353 15.0718L46.5086 12.8851L41.4686 4.35181L32.4019 8.24514L23.3353 4.35181L18.2953 12.8585L8.6686 15.0185L9.57527 24.8851L3.0686 32.3518L9.57527 39.7918L8.6686 49.6585L18.2953 51.8451L23.3353 60.3518L32.4019 56.4318L41.4686 60.3251L46.5086 51.8185L56.1353 49.6318L55.2286 39.7918L61.7353 32.3518ZM27.3086 44.9385L17.1753 34.7785L21.1219 30.8318L27.3086 37.0451L42.9086 21.3918L46.8553 25.3385L27.3086 44.9385Z"
+                                    fill="black"/>
+                            </svg>
+                        </span>
                     @else
-                        <span class="text-danger" title="Вы не запустили бота"
-                              style="
-                        display: flex;
-                        align-items: center;
-                        width: 20px;
-                        justify-content: end;
-                        "><i class="fa fa-times"></i></span>
+                        @if(!$errors->has('tg_name'))
+                            <span class="text-danger" title="Вы не запустили бота"><i class="fa fa-times"></i> Телеграм не подтвержден</span>
+                        @endif
                     @endif
+
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                           id="floatingPassword" placeholder="example@yandex.ru" value="{{ $user->email }}">
-                    <label for="floatingInput">E-mail</label>
-                    @if(isset($user->email_verified_at))
-                        <span class="text-muted">(почта подтверждена: {{ $user->email_verified_at }})</span>
-                    @else
-                        <span class="text-danger"> (почта не подтверждена)</span>
-                    @endif
-                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                <div class=" mb-3 col-sm-12 col-md-6 col-lg-4">
+                    <div class="form-floating">
+                        <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            id="floatingPassword" placeholder="example@yandex.ru" value="{{ $user->email }}">
+                        <label for="floatingInput">E-mail</label>
+                        @if(isset($user->email_verified_at))
+                            <span class="text-muted">(почта подтверждена: {{ $user->email_verified_at }})</span>
+                        @else
+                            <span class="text-danger"> (почта не подтверждена)</span>
+                        @endif
+                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                 </div>
 
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                    <input name="vk_url" type="text" class="form-control @error('vk_url') is-invalid @enderror"
-                           id="floatingPassword" placeholder="вконтакте">
-                    <label for="floatingInput">Ссылка на ВКонтакте</label>
-                    @error('vk_url') <span class="text-danger">{{ $message }}</span> @enderror
+                <div class=" mb-3 col-sm-12 col-md-6 col-lg-4">
+                    <div class="form-floating">
+                        <input name="vk_url" type="text" class="form-control @error('vk_url') is-invalid @enderror"
+                            id="floatingPassword" placeholder="вконтакте">
+                        <label for="floatingInput">Ссылка на ВКонтакте</label>
+                        @error('vk_url') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                 </div>
 
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                    <select name="gender_id" class="form-select @error('gender_id') is-invalid @enderror"
-                            id="floatingSelect" aria-label="Floating label select example">
-                        @foreach ($genders as $gender)
-                            <option value="{{ $gender->id }}" @if($user->gender_id == $gender->id) selected @endif >{{
-                        $gender->name
-                        }}</option>
-                        @endforeach
-                    </select>
-                    <label for="floatingSelect">Ваш пол:</label>
-                    @error('gender_id') <span class="text-danger">{{ $message }}</span> @enderror
+                <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-floating">
+                        <select name="gender_id" class="form-select @error('gender_id') is-invalid @enderror"
+                                id="floatingSelect" aria-label="Floating label select example">
+                            @foreach ($genders as $gender)
+                                <option value="{{ $gender->id }}" @if($user->gender_id == $gender->id) selected @endif >{{
+                            $gender->name
+                            }}</option>
+                            @endforeach
+                        </select>
+                        <label for="floatingSelect">Ваш пол:</label>
+                        @error('gender_id') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                 </div>
-                <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                    <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
-                            id="floatingSelect" aria-label="Floating label select example">
-                        @foreach ($occupations as $occupation)
-                            <option value="{{ $occupation->id }}" @if($user->occupation_id == $occupation->id) selected
-                                @endif
-                            >{{
-                        $occupation->name }}</option>
-                        @endforeach
-                    </select>
-                    <label for="floatingSelect">Занятость:</label>
-                    @error('occupation_id') <span class="text-danger">{{ $message }}</span> @enderror
+                <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-floating">
+                        <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
+                                id="floatingSelect" aria-label="Floating label select example">
+                            @foreach ($occupations as $occupation)
+                                <option value="{{ $occupation->id }}" @if($user->occupation_id == $occupation->id) selected
+                                    @endif
+                                >{{
+                            $occupation->name }}</option>
+                            @endforeach
+                        </select>
+                        <label for="floatingSelect">Занятость:</label>
+                        @error('occupation_id') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                 </div>
-                @if(auth()->user()->role->name === 'tutor')
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <input name="curator_job" type="text"
-                               class="form-control @error('curator_job') is-invalid @enderror"
-                               id="floatingInput" placeholder="Место работы куратора" value="{{ $user->curator_job }}">
-                        <label for="floatingInput">Место работы куратора</label>
-                        @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
+                @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher')
+                    <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input name="curator_job" type="text"
+                                class="form-control @error('curator_job') is-invalid @enderror"
+                                id="floatingInput" placeholder="Место работы куратора" value="{{ $user->curator_job }}">
+                            <label for="floatingInput">
+                            @if(auth()->user()->role->name === 'tutor')
+                                Место работы куратора
+                            @endif
+                            @if(auth()->user()->role->name === 'teacher')
+                                Место работы учителя
+                            @endif
+                            </label>
+                            @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
                     </div>
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <input name="curator_about" type="text"
-                               class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
-                               placeholder="О кураторе" value="{{ $user->curator_about }}">
-                        <label for="floatingInput">О кураторе</label>
-                        @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                @endif
-                @if(auth()->user()->role->name === 'teacher')
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <input name="curator_job" type="text"
-                               class="form-control @error('curator_job') is-invalid @enderror"
-                               id="floatingInput" placeholder="Место работы куратора" value="{{ $user->curator_job }}">
-                        <label for="floatingInput">Место работы учителя</label>
-                        @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
-                        <input name="curator_about" type="text"
-                               class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
-                               placeholder="О кураторе" value="{{ $user->curator_about }}">
-                        <label for="floatingInput">Об учителе</label>
-                        @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
+                    <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input name="curator_about" type="text"
+                                class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
+                                placeholder="О кураторе" value="{{ $user->curator_about }}">
+                            <label for="floatingInput">
+                            @if(auth()->user()->role->name === 'tutor')
+                                О кураторе
+                            @endif
+                            @if(auth()->user()->role->name === 'teacher')
+                                Об учителе
+                            @endif
+                            </label>
+                            @error('curator_about') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
                     </div>
                 @endif
                 <div class="form-floating col-sm-12 col-md-6 col-lg-6 float-end">
