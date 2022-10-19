@@ -69,7 +69,7 @@ class BlockController extends Controller
 
         if(auth()->user()->role->name === 'student') {
             if ($block->exercises_count > 0 && !auth()->user()->started_blocks->where('block_id', $block->id)->first()) {
-                auth()->user()->started_blocks()->toggle($block);
+                auth()->user()->started_blocks()->attach($block);
             }
 
             return view('profile.blocks.student.show',compact('block'));
