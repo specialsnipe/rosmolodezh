@@ -75,18 +75,19 @@ $tracks = Track::all();
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
             </div>
-            {{-- gender --}}
+            {{-- track --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                <select class="form-select @error('track_id') is-invalid @enderror" id="track_id" name="track_id"
-                    aria-label="Floating label select example">
-                    <option value="0" selected disabled hidden>Выберите желаемое направление</option>
+                <select
+                    name="track_id"
+                    class="form-select @error('track_id') is-invalid @enderror"
+                    id="track_id">
                     @foreach ($tracks as $track)
                     <option value="{{ $track->id }}" @if( old('track_id')==$track->id) selected @endif>
                         {{$track->title }}</option>
                     @endforeach
 
                 </select>
-                <label for="track_id">Направление:</label>
+                <label for="track_id">Выберите направление:</label>
 
                 @error('track_id')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
@@ -94,15 +95,15 @@ $tracks = Track::all();
             </div>
             {{-- ocupation --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
-                    id="occupation_id" aria-label="Floating label select example">
-                    <option value="0" selected disabled hidden>Занятость</option>
+                <select name="occupation_id"
+                    class="form-select @error('occupation_id') is-invalid @enderror"
+                    id="occupation_id">
                     @foreach ($occupations as $occupation)
                     <option value="{{ $occupation->id }}" @if (old('occupation_id')==$occupation->id) selected
                         @endif>{{ $occupation->name }}</option>
                     @endforeach
                 </select>
-                <label for="occupation_id">Занятость:</label>
+                <label for="occupation_id">Выберите вашу занятость:</label>
 
                 @error('occupation_id')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
