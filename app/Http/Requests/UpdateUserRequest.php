@@ -22,7 +22,6 @@ class UpdateUserRequest extends FormRequest
             'first_name' => 'required',
             'login' => ['required',  'unique:users,login,'. auth()->user()->id],
             'last_name' => 'required',
-            'father_name' => '',
             'gender_id' => ['required', 'min:1'],
             'email' => ['required',  'unique:users,email,'. auth()->user()->id, 'email:dns'],
             'phone'=> ['required', 'min:17'],
@@ -38,7 +37,6 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'first_name.required' => 'Поле имя обязательно.',
-            'father_name.required' => 'Поле отчество обязательно.',
             'last_name.required' => 'Поле фамилия обязательно.',
             'gender_id.required' => 'Выберите пол.',
             'gender_id.min' => 'Выберанный пол не верный.',

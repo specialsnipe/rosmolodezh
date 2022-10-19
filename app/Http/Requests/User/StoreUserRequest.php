@@ -26,7 +26,6 @@ class StoreUserRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'father_name' => '',
             'gender_id' => ['required', 'min:1'],
             'email' => ['required', 'unique:users', 'email:dns'],
             'login' => ['required', 'unique:users'],
@@ -47,7 +46,6 @@ class StoreUserRequest extends FormRequest
             'age.min'=>'Возраст не может быть отрицательным',
             'first_name.required' => 'Поле имя обязательно.',
             'last_name.required' => 'Поле фамилия обязательно.',
-            'father_name.required' => 'Поле отчество обязательно.',
             'gender_id.required' => 'Выберите пол.',
             'gender_id.min' => 'Выберанный пол не верный.',
             'email.required' => 'Введите почту.',

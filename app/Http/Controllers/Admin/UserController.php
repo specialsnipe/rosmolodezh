@@ -133,19 +133,12 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-        $trackId = $data['track_id'];
-        unset($data['track_id']);
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
 
         if (!$request->hasFile('file')) {
-
             $user->updateOrFail($request->validated());
-            // check setter 'track_id' and delete old if it needed
-            // dd($user->tracks[0]);
-            $user->tracks()->sync($trackId);
-
             return redirect()->route('admin.users.show', $user->id);
         }
 
@@ -155,8 +148,6 @@ class UserController extends Controller
         unset($data['file']);
 
         $user->updateOrFail($data);
-        // check setter  'track_id' and delete old if it needed
-        $user->tracks()->sync($trackId);
         return redirect()->route('admin.users.show', $user->id);
     }
 
