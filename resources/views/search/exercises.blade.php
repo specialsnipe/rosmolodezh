@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @push('styles')
+    <link rel="stylesheet" href="{{ asset('css/media.css') }}">
     <style>
         #img {
             width: 400px;
@@ -51,7 +52,10 @@
                             </div>
                         @endforelse
                     @else
-                        <img src="{{asset('images/search/search.png')}}" class="mt-3" id="img" alt="Поиcк">
+                        <div class="search-not-found">
+                        <span>Начнём поиск?</span>
+                        <img src="{{asset('images/start_search.svg')}}" class="mt-3" id="img" alt="Поиcк">
+                        </div>
                     @endif
                 </div>
             </div>
