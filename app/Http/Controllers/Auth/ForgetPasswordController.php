@@ -75,6 +75,7 @@ class ForgetPasswordController extends Controller
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => 'Что-то пошло не так']);
         }
+        ChangePassword::where('user_id', $user->id)->delete();
         session()->flash('message', "Вы успешно обновлили пароль, теперь вы можете <a href='" . route('auth.login')  . "'> войти на стайт </a>");
         return redirect()->route('home');
     }

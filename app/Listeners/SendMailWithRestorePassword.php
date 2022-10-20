@@ -37,7 +37,6 @@ class SendMailWithRestorePassword
             'token'=>$token,
             'expiration_min'=>Carbon::now()->addMinutes(15),
         ]);
-
         Mail::to($user->email)->send(new RestoredPasswordShipped($user, $token));
     }
 }

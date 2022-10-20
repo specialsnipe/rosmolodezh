@@ -62,10 +62,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return 'storage/users/avatars/originals/' . $this->avatar;
     }
-    public function getCheckStudentIsAttribute()
-    {
-        return  $this->role_id == 1;
-    }
     public function getAvatarMediumPathAttribute()
     {
         return 'storage/users/avatars/medium/medium_'. $this->avatar;
@@ -73,6 +69,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAvatarThumbnailPathAttribute()
     {
         return 'storage/users/avatars/thumbnail/thumbnail_'. $this->avatar;
+    }
+
+    public function getAvatarBigPathAttribute()
+    {
+        return 'storage/users/avatars/big/big_'. $this->avatar;
+    }
+
+    public function getCheckStudentIsAttribute()
+    {
+        return  $this->role_id == 1;
     }
     public function getFirstAndLastNamesAttribute()
     {

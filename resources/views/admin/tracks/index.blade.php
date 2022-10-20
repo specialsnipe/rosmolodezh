@@ -53,19 +53,19 @@
                                         @endif
                                     @endforeach
 
-{{--                                        @if($is_added)--}}
-{{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
-{{--                                                @csrf--}}
-{{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
-{{--                                                        class="fa fa-eye"></i>Удалить траекторию</button>--}}
-{{--                                            </form>--}}
-{{--                                        @else--}}
-{{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
-{{--                                                @csrf--}}
-{{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
-{{--                                                        class="fa fa-eye"></i>Добавить тракторию себе</button>--}}
-{{--                                            </form>--}}
-{{--                                        @endif--}}
+                                    {{--                                        @if($is_added)--}}
+                                    {{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
+                                    {{--                                                @csrf--}}
+                                    {{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
+                                    {{--                                                        class="fa fa-eye"></i>Удалить траекторию</button>--}}
+                                    {{--                                            </form>--}}
+                                    {{--                                        @else--}}
+                                    {{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
+                                    {{--                                                @csrf--}}
+                                    {{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
+                                    {{--                                                        class="fa fa-eye"></i>Добавить тракторию себе</button>--}}
+                                    {{--                                            </form>--}}
+                                    {{--                                        @endif--}}
 
 
                                     <a class="btn btn-outline-secondary mr-3"
@@ -79,7 +79,8 @@
                                     </button>
 
                                     <x-modal name="Вы уверены что хотите удалить?" type="delete"
-                                             action="{{ route('admin.tracks.destroy', [$track->id]) }}" targetid="deleteTrack{{$track->id}}">
+                                             action="{{ route('admin.tracks.destroy', [$track->id]) }}"
+                                             targetid="deleteTrack{{$track->id}}">
                                     </x-modal>
                                 </div>
 
@@ -108,11 +109,14 @@
                                         </tr>
                                         <tr>
                                             <td>Средний балл:</td>
-                                            <td><span class="status_block status_success">{{$allAverageMark[$loop->index]}}</span></td>
+                                            <td><span
+                                                    class="status_block status_success">{{$allAverageMark[$loop->index]}}</span>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="open_blocks mb-3"><img src="{{ asset('images/arrow.png') }}" alt="Открыть блок" width="30px"></div>
+                                <div class="open_blocks mb-3"><img src="{{ asset('images/arrow.png') }}"
+                                                                   alt="Открыть блок" width="30px"></div>
 
                                 <div class="card collapse bg-dark mb-3">
                                     <div class="card-body row border-dark">
@@ -131,7 +135,9 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Количество заданий:</td>
-                                                                    <td><b>{{ $block->exercises_count }} {{ $block->name_exercises_count }}</b></td>
+                                                                    <td>
+                                                                        <b>{{ $block->exercises_count }} {{ $block->name_exercises_count }}</b>
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Уровень освоения:</td>
@@ -152,8 +158,7 @@
                                                 </div>
                                             </div>
                                         @empty
-                                            <div class="track_block">
-
+                                            <div class="">
                                                 <h5>Блоков у этого направления ещё нет</h5>
                                             </div>
                                         @endforelse

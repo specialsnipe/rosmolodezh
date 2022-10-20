@@ -19,16 +19,16 @@
     @endif
     <div class="main-container-directions">
         <div class="row">
-            <div method="post"
-                class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
+            <div class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image">
 
-                <img src="{{ asset(auth()->user()->avatar_original_path) }}" class="img-fluid rounded mb-2 img-bordered"
+                <img src="{{ asset($user->avatarBigPath) }}" class="img-fluid rounded mb-2 img-bordered"
+                     style="object-fit: contain"
                     alt="">
             </div>
 
             <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
 
-                <div class="text-header mb-4 d-flex align-items-center justify-content-between">Личные данные "{{ $user->first_and_last_names }}" <a href="{{ url()->previous() }}" class="btn btn-secondary">Назад ></a></div>
+                <div class="text-header mb-4 d-flex align-items-center justify-content-between">Личные данные "{{ $user->firstAndLastNames }}" <a href="{{ url()->previous() }}" class="btn btn-secondary">Назад ></a></div>
 
                 <div class="form-group row">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
