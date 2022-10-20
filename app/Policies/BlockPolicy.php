@@ -48,15 +48,7 @@ class BlockPolicy
      */
     public function create(User $user, Track $track)
     {
-        return in_array('block_create', $user->role->permissions->flatten()->pluck('title')->toArray())
-            && (($user->tracks->where('id', $block->track->id)->first()
-                    ? $user->tracks->where('id', $block->track->id)->first()->id
-                    : null)
-                === $block->track->id
-                || ($user->tracksWhereTeacher->where('id', $block->track->id)->first()
-                    ? $user->tracksWhereTeacher->where('id', $block->track->id)->first()->id
-                    : null)
-                === $block->track->id);;
+        return in_array('block_create', $user->role->permissions->flatten()->pluck('title')->toArray());
     }
 
     /**
