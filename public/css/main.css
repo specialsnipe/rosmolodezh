@@ -966,7 +966,7 @@ header form .btn {
     flex-direction: column;
     border: 0;
     border-radius: 15px;
-    padding: 20px 10px;
+    padding: 20px;
 }
 
 .contact-form .line {
