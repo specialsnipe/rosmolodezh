@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <th>Контактный номер</th>
-                            <td>{{$user->phone ?? "<span class='text-secondary'>Не указано</span>"}}</td>
+                            <td>{!! $user->phone ?? "<span class='text-secondary'>Не указано</span>"!!}</td>
                         </tr>
                         <tr>
                             <th>Возраст</th>
@@ -86,11 +86,11 @@
                         </tr>
                         <tr>
                             <th>Пол</th>
-                            <td>{{$user->gender ? $user->gender->name : "<span class='text-secondary'>Не указано</span>"}}</td>
+                            <td>{!! $user->gender ? $user->gender->name : "<span class='text-secondary'>Не указано</span>" !!}</td>
                         </tr>
                         <tr>
                             <th>Деятельность</th>
-                            <td>{{$user->occupation ? $user->occupation->name : "<span class='text-secondary'>Не указано</span>"}}</td>
+                            <td>{!! $user->occupation ? $user->occupation->name : "<span class='text-secondary'>Не указано</span>"!!}</td>
                         </tr>
                         <tr>
                             <th>Роль</th>

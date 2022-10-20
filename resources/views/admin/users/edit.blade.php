@@ -125,19 +125,6 @@
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                <label for="track_id">Направление</label>
-                                <select class="form-control " name="track_id" id="track_id">
-                                    <option value="0" disabled selected>Выберите направление</option>
-                                    @foreach($tracks as $track)
-                                    <option value="{{$track->id}}" @if(isset($user->tracks[0]->id) && $user->tracks[0]->id == $track->id) selected
-                                        @endif>{{$track->title}}</option>
-                                    @endforeach
-                                </select>
-                                @error('occupation_id')
-                                <div class="text-danger">{{$message}}</div>
-                                @enderror
-                            </div>
                             @if($isCurator)
                             <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
                                 <label for="title">Место работы куратора</label>
@@ -187,9 +174,9 @@
                                 @enderror
                             </div>
                             <div class="col-sm-12 col-md-6 col-xl-4 mb-3">
-                                <label for="tg_username">Телеграм id</label>
-                                <input type="text" class="form-control" name="tg_username"
-                                    placeholder="Когда пользователь подтвердит свою учетную запись" id="tg_id"
+                                <label for="tg_id">Телеграм id</label>
+                                <input type="text" class="form-control" name="tg_id"
+                                    placeholder="После подтверждения TG" id="tg_id"
                                     aria-describedby="tg_id" value="{{ $user->tg_id }}" readonly>
                             </div>
 
