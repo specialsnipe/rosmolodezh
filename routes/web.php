@@ -110,8 +110,6 @@ Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class,
 
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
-Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
-Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
 // manage tracks' user
 Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
 Route::post('user/add/tracks/{track}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
@@ -120,33 +118,26 @@ Route::match(['put', 'patch'], 'user/add/tracks/{track}/user/{user}/accept', [\A
 
 // Profile
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('profile/data', [\App\Http\Controllers\Client\UserController::class, 'data'])->name('profile.data');
-    Route::get('profile/progress', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('profile.progress');
-    Route::get('profile/progress/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'show'])
-        ->name('profile.track.show')
-        ->can('view','track');
-    Route::get('profile/progress/user/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'userShow'])
-        ->name('profile.user.track.show');
-    Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
-    Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
-    Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');
-    Route::get('profile/user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
-        ->name('user.show')
-        ->can('view', 'user');
-    // Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'show'])
-    //     ->name('profile.tracks.block.show')
-    //     ->can('view', 'block');
-    // Route::get('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'edit'])
-    //     ->name('profile.tracks.block.edit')
-    //     ->can('edit', 'block');
-    // Route::match(['put', 'patch'], 'profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'update'])
-    //     ->name('profile.tracks.block.edit')
-    //     ->can('edit', 'block');
-    // Route::delete('profile/tracks/{track}/blocks/{block}', [\App\Http\Controllers\Client\BlockController::class, 'destroy'])
-    //     ->name('profile.tracks.block.edit')
-    //     ->can('delete', 'block');
+    Route::group(['as' => 'profile.',  'prefix' => 'profile'], function () {
 
+        Route::get('data', [\App\Http\Controllers\Client\UserController::class, 'data'])->name('data');
+        Route::get('progress', [\App\Http\Controllers\Client\UserController::class, 'profile'])->name('progress');
+        Route::get('progress/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'show'])
+            ->name('track.show')
+            ->can('view','track');
+        Route::get('progress/user/track/{track}', [\App\Http\Controllers\Client\ProfileTrackController::class, 'userShow'])
+            ->name('user.track.show');
+        Route::match(['put', 'patch'], 'user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('user.update');
+        Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
+        Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');
+        Route::get('user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
+            ->name('user.show')
+            ->can('view', 'user');
+        Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
+        Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
+    });
 });
+
 // todo: Сделать пути которые будут защищены от пользователей которые не подтвердили почту, middleware:verified
 
 

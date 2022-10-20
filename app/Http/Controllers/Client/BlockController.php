@@ -55,7 +55,7 @@ class BlockController extends Controller
         $data['priority'] = $priority;
         $block = Block::create($data);
 
-        return redirect()->route('tracks.blocks.show', [$block->track_id,$block->id]);
+        return redirect()->route('profile.tracks.blocks.show', [$block->track_id,$block->id]);
     }
 
     /**
@@ -106,7 +106,7 @@ class BlockController extends Controller
         if (!$image) {
             try {
                 $block->updateOrFail($data);
-                return redirect()->route('tracks.blocks.show', [$block->track_id, $block->id]);
+                return redirect()->route('profile.tracks.blocks.show', [$block->track_id, $block->id]);
             } catch (\Exception $exception) {
                 return abort(501);
             }
@@ -117,7 +117,7 @@ class BlockController extends Controller
         $data['image'] = ImageService::make($image, 'blocks/images');
         try {
             $block->updateOrFail($data);
-            return redirect()->route('tracks.blocks.show', [$block->track_id, $block->id]);
+            return redirect()->route('profile.tracks.blocks.show', [$block->track_id, $block->id]);
         } catch (\Exception $exception) {
             return abort(501, $exception);
         }

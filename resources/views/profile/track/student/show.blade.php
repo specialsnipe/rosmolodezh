@@ -78,7 +78,7 @@ $user = auth()->user();
 
                                         <p class="fs-5">
                                             @if(!($block->date_start >= Carbon::now()))
-                                                <a href="{{ route( 'tracks.blocks.show', [$block->track_id, $block->id]) }}" class="h5 text-decoration-none">Блок: {{ $block->title }}</a> <br>
+                                                <a href="{{ route('profile.tracks.blocks.show', [$block->track_id, $block->id]) }}" class="h5 text-decoration-none">Блок: {{ $block->title }}</a> <br>
                                             @endif
                                             Начало блока: {{  $block->date_start->format('d.m.Y') }}
                                         </p>
@@ -90,7 +90,7 @@ $user = auth()->user();
                                                 @if($block->exercises_count < 1)
                                                     action="#"
                                                 @else
-                                                    action="{{ route( 'tracks.blocks.show', [$block->track_id, $block->id]) }}"
+                                                    action="{{ route('profile.tracks.blocks.show', [$block->track_id, $block->id]) }}"
                                                 @endif
                                                 method='get'
                                                 class="d-inline">
@@ -134,7 +134,7 @@ $user = auth()->user();
 
                                     @forelse ($block->exercises as $exercise)
                                         @if($loop->first) <div class="fs-6 mt-0 mb-2">Задания блока:</div> @endif
-                                        <a href="{{ route('blocks.exercises.show', [$block->id,$exercise->id]) }}" class="fs-6">{{ $exercise->title }}</a>
+                                        <a href="{{ route('profile.blocks.exercises.show', [$block->id,$exercise->id]) }}" class="fs-6">{{ $exercise->title }}</a>
                                     @empty
                                     <div class="fs-6 mt-0 mb-2">К данному блоку ещё не добавили заданий :(</div>
                                     @endforelse

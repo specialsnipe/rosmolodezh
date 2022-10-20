@@ -11,7 +11,7 @@
             <div class="header">
                 <div class="d-flex justify-content-between">
                     <h3 class="h3">Направление "{{ $block->track->title }}" </h3>
-                    <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}"
+                    <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
                        class="btn btn-secondary">Назад > </a>
                 </div>
                 <h2 class="h4 w-100">Задание блока "{{ $block->title }}" </h2>
@@ -28,7 +28,7 @@
                                         <div class="col-12">
                                             @if((auth()->user()->role->id === 2 || auth()->user()->role->id === 3) && $exercise->user_id === auth()->user()->id)
                                                 <form class="d-inline"
-                                                    action="{{route('blocks.exercises.destroy', [$block->id, $exercise->id])}} "
+                                                    action="{{route('profile.blocks.exercises.destroy', [$block->id, $exercise->id])}} "
                                                     method="post">
                                                     @csrf
                                                     @method('delete')
@@ -36,7 +36,7 @@
                                                 </form>
                                             @endif
                                             @if((auth()->user()->role_id === 2 || auth()->user()->role_id === 3) && $exercise->user_id === auth()->user()->id)
-                                                <a href="{{ route('blocks.exercises.edit', [$block->id, $exercise->id]) }}"
+                                                <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
                                                    class="btn btn-primary ">Изменить <i class="fa fa-pen"></i></a>
                                             @endif
                                         </div>

@@ -36,7 +36,7 @@
                     @if($exercises)
                         @forelse($exercises as $exercise)
                             @if($exercise->block != null)
-                                <a href="{{route('blocks.exercises.show', [$exercise['block_id'],$exercise['id']] )}}"
+                                <a href="{{route('profile.blocks.exercises.show', [$exercise['block_id'],$exercise['id']] )}}"
                                    class="col-sm-12 col-md-5 search-item" style="text-decoration: none">
                                     <span class="text-muted">Направление: "{{$exercise->block->track->title}}"</span>
                                     <p class="text-muted">Блок: "{{$exercise->block->title}}"</p>

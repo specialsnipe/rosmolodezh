@@ -97,7 +97,7 @@ class SendAnswerToExerciseComponent extends Component
             'body' => $this->body,
             'sended' => true
         ]);
-        return redirect()->route('tracks.blocks.show', [$this->block->track_id,$this->block->id]);
+        return redirect()->route('profile.tracks.blocks.show', [$this->block->track_id,$this->block->id]);
     }
 
     public function mount()

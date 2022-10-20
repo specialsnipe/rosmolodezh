@@ -56,7 +56,7 @@ class Block extends Model
                     ->where('priority', $this->priority + 1)
                     ->first();
         if ($block) {
-            return route('tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
         }
         return false;
     }
@@ -68,7 +68,7 @@ class Block extends Model
                     ->where('priority', $this->priority - 1)
                     ->first();
         if ($block) {
-            return route('tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
         }
         return false;
     }
