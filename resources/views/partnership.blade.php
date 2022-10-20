@@ -36,7 +36,7 @@
                     <div class="card content-info">
                     <div class="card-body content-body">
                         <h5 class="card-title">Заголовок</h5>
-                        <p class="card-text">Если ваши клиенты подключают наши продукты и сервисы, платим вам до 60 000 ₽ за каждого</p>
+                        <p class="card-text text-truncated ">Если ваши клиенты подключают наши продукты и сервисы, платим вам до 60 000 ₽ за каждого</p>
                         <div class="phrase-bg-img-1"></div>
                     </div>
 

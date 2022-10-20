@@ -92,6 +92,7 @@
     -o-transition: 200ms;
 }
 .slide__text .btn:hover {
+    transform: scale(1.03);
     background: var(--main-white) !important;
     border: 1px solid var(--main-white-400) !important;
     color:  var(--main-black) !important;

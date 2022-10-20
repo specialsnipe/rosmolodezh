@@ -471,7 +471,9 @@ main .carousel-inner img {
     -ms-transition: 200ms;
     -o-transition: 200ms;
 }
-
+.card-text-main:hover .phrase-bg-img{
+    transform: scale(1.05) rotate(-30deg);
+}
 .phrase-bg-img {
     transition: 200ms;
     position: absolute;
@@ -1957,6 +1959,10 @@ header form .btn {
 #myBtn:hover{
     color: #000;
     text-decoration: underline;
+
+}
+.card:hover .phrase-bg-img-2, .card:hover .phrase-bg-img-1{
+    transform: scale(1.05) rotate(-25deg);
 
 }
 footer p a{
