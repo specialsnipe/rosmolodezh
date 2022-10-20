@@ -19,23 +19,14 @@
 @section('profile_content')
 
     <div class="row">
-        <form action="{{ route('user.update_avatar') }}" method="post"
-              class="col-xs-12 col-md-8 col-lg-3 d-flex flex-column upload-image" enctype="multipart/form-data">
-            @csrf
-            @method('PATCH')
-            <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3"
-                 style="min-height: 352px; object-fit:cover;" alt="">
-            <button type="button" class="img-btn">Нажмите для загрузки аватара</button>
-            <input type="file" name="file" class="img-btn" hidden>
-        </form>
 
-        <form action="{{ route('user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
+        <form action="{{ route('profile.user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-8">
             @csrf
             @method('PATCH')
             <div class="text-header mb-4">Ваши персональные данные</div>
 
         <div class="form-group row">
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
                         id="floatingInput" placeholder="Фамилия" value="{{ $user->last_name }}">
@@ -43,7 +34,7 @@
                     @error('last_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror"
                         id="floatingPassword" placeholder="Имя" value="{{ $user->first_name }}">
@@ -51,7 +42,7 @@
                     @error('first_name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="father_name" type="text" class="form-control @error('father_name') is-invalid @enderror"
                         id="floatingPassword" placeholder="Отчество" value="{{ $user->father_name }}">
@@ -60,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="login" type="text" class="form-control @error('login') is-invalid @enderror"
                         id="floatingInput" placeholder="Username" value="{{ $user->login }}">
@@ -68,7 +59,7 @@
                     @error('login') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="phone" type="text" class="form-control @error('email') is-invalid @enderror" id="phone"
                         placeholder="+7(000)000-00-00" value="{{ $user->phone }}">
@@ -76,7 +67,7 @@
                     @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
+            <div class="mb-3 col-sm-12">
                 <div class="form-floating">
                     <input name="age" type="number" maxlength="10" class="form-control @error('age') is-invalid @enderror"
                         placeholder="18" value="{{ $user->age }}">
@@ -85,34 +76,32 @@
                 </div>
             </div>
 
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
-                <div class="input-group has-validation">
-                    <span class="input-group-text" style="width: 20%;">@</span>
-                    <div class="form-floating @error('tg_name') is-invalid @enderror" style="width: 80%;">
-                        <input name="tg_name" type="text" class="form-control @error('tg_name') is-invalid @enderror" id="telegram" value="{{ $user->tg_name }}" placeholder="Username">
+            <div class="mb-3 col-sm-12">
+                <div class="input-group mb-2">
+                    <span class="input-group-text d-flex" style="width: 10% !important; justify-content: center">@</span>
+                    <div class="form-floating  @error('tg_name') is-invalid @enderror"  style="width: 90% !important">
+                        <input name="tg_name" type="text"  class="form-control w-100 @error('tg_name') is-invalid @enderror" id="telegram" value="{{ $user->tg_name }}" placeholder="Username">
                         <label for="telegram">Username</label>
                     </div>
-                    @error('tg_name') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
 
-
-                    @if(isset($user->tg_id))
-                        <span class="text-success">
-                            Сконнектились!
-                            <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#8c64d8"
-                                    d="M61.7353 32.3518L55.2286 24.9118L56.1353 15.0718L46.5086 12.8851L41.4686 4.35181L32.4019 8.24514L23.3353 4.35181L18.2953 12.8585L8.6686 15.0185L9.57527 24.8851L3.0686 32.3518L9.57527 39.7918L8.6686 49.6585L18.2953 51.8451L23.3353 60.3518L32.4019 56.4318L41.4686 60.3251L46.5086 51.8185L56.1353 49.6318L55.2286 39.7918L61.7353 32.3518ZM27.3086 44.9385L17.1753 34.7785L21.1219 30.8318L27.3086 37.0451L42.9086 21.3918L46.8553 25.3385L27.3086 44.9385Z"
-                                    fill="black"/>
-                            </svg>
-                        </span>
-                    @else
-                        @if(!$errors->has('tg_name'))
-                            <span class="text-danger" title="Вы не запустили бота"><i class="fa fa-times"></i> Телеграм не подтвержден</span>
-                        @endif
+                @error('tg_name') <span class="text-danger m-2 ">{{ $message }}</span> @enderror
+                @if(isset($user->tg_id))
+                    <span class="text-success">
+                        Сконнектились!
+                        <svg width="65" height="65" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#8c64d8"
+                                d="M61.7353 32.3518L55.2286 24.9118L56.1353 15.0718L46.5086 12.8851L41.4686 4.35181L32.4019 8.24514L23.3353 4.35181L18.2953 12.8585L8.6686 15.0185L9.57527 24.8851L3.0686 32.3518L9.57527 39.7918L8.6686 49.6585L18.2953 51.8451L23.3353 60.3518L32.4019 56.4318L41.4686 60.3251L46.5086 51.8185L56.1353 49.6318L55.2286 39.7918L61.7353 32.3518ZM27.3086 44.9385L17.1753 34.7785L21.1219 30.8318L27.3086 37.0451L42.9086 21.3918L46.8553 25.3385L27.3086 44.9385Z"
+                                fill="black"/>
+                        </svg>
+                    </span>
+                @else
+                    @if(!$errors->has('tg_name'))
+                        <span class="text-danger" title="Вы не запустили бота"><i class="fa fa-times"></i> Телеграм не подтвержден</span>
                     @endif
-
+                @endif
                 </div>
-                </div>
-                <div class=" mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class=" mb-3 col-sm-12">
                     <div class="form-floating">
                         <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             id="floatingPassword" placeholder="example@yandex.ru" value="{{ $user->email }}">
@@ -126,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class=" mb-3 col-sm-12 col-md-6 col-lg-4">
+                <div class=" mb-3 col-sm-12">
                     <div class="form-floating">
                         <input name="vk_url" type="text" class="form-control @error('vk_url') is-invalid @enderror"
                             id="floatingPassword" placeholder="вконтакте">
@@ -135,7 +124,7 @@
                     </div>
                 </div>
 
-                <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                <div class="mb-3 col-sm-12">
                     <div class="form-floating">
                         <select name="gender_id" class="form-select @error('gender_id') is-invalid @enderror"
                                 id="floatingSelect" aria-label="Floating label select example">
@@ -149,7 +138,7 @@
                         @error('gender_id') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                <div class="mb-3 col-sm-12">
                     <div class="form-floating">
                         <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
                                 id="floatingSelect" aria-label="Floating label select example">
@@ -165,7 +154,7 @@
                     </div>
                 </div>
                 @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher')
-                    <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                    <div class="mb-3 col-sm-12">
                         <div class="form-floating">
                             <input name="curator_job" type="text"
                                 class="form-control @error('curator_job') is-invalid @enderror"
@@ -181,7 +170,7 @@
                             @error('curator_job') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                     </div>
-                    <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                    <div class="mb-3 col-sm-12">
                         <div class="form-floating">
                             <input name="curator_about" type="text"
                                 class="form-control @error('curator_about') is-invalid @enderror" id="floatingInput"
@@ -198,14 +187,23 @@
                         </div>
                     </div>
                 @endif
-                <div class="form-floating col-sm-12 col-md-6 col-lg-6 float-end">
+                <div class="form-floating col-sm-12 float-end">
                     <button type="submit" class="btn-apply">Применить изменения</button>
                 </div>
             </div>
         </form>
+        <form action="{{ route('profile.user.update_avatar') }}" method="post"
+              class="col-xs-12 col-md-8 col-lg-4 d-flex flex-column upload-image" enctype="multipart/form-data">
+            @csrf
+            @method('PATCH')
+            <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3"
+                 style="max-height: 352px; object-fit:cover;" alt="">
+            <button type="button" class="img-btn">Нажмите для загрузки аватара</button>
+            <input type="file" name="file" class="img-btn" hidden>
+        </form>
     </div>
     <div class="row mt-4">
-        <form action="{{ route('user.change_password') }}" method="post"
+        <form action="{{ route('profile.user.change_password') }}" method="post"
               class="form-content col-xs-12 col-md-12 col-lg-12">
             @csrf
             @method('put')

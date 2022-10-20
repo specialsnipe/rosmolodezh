@@ -105,12 +105,12 @@
                     <div class="row">
                         @forelse ($track->users as $user)
 
-                        <div class="col-2">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
                             <div class="card mb-2 bg-dark text-center">
                                 <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                 class="img-thumbnail" alt="">
                                 <div class="card-body">
-                                    <a href="{{ route('user.show', $user->id) }}" class="card-text text-white">{{ $user->allNames }}</a>
+                                    <a href="{{ route('profile.user.show', $user->id) }}" class="card-text text-white">{{ $user->allNames }}</a>
                                 </div>
 
                             </div>
@@ -132,7 +132,7 @@
         </div>
         <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
         <div class="col-sm-12 mt-2 mb-3">
-            <a href="{{ route('tracks.blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать новый блок</a>
+            <a href="{{ route('profile.tracks.blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать новый блок</a>
         </div>
         <div class="col-sm-12">
 
@@ -143,12 +143,12 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
 
-                            <a href="{{ route('tracks.blocks.show', [$block->track_id,$block->id]) }}" class="fs-5 text-decoration-none">
+                            <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}" class="fs-5 text-decoration-none">
                                 Блок: {{ $block->title }}
                             </a>
                         </div>
                         <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                            <a href="{{ route('blocks.exercises.create', [$block->id]) }}" class="btn btn-primary"> Добавить новое упражнение </a>
+                            <a href="{{ route('profile.blocks.exercises.create', [$block->id]) }}" class="btn btn-primary"> Добавить новое упражнение </a>
                         </div>
                     </div>
                     <div class="d-flex flex-md-column exercise-block">
@@ -156,7 +156,7 @@
 
                         @forelse ($block->exercises as $exercise)
                         @if($loop->first) <div class="fs-6 mt-0 mb-2">Задания блока:</div> @endif
-                        <a href="{{ route('blocks.exercises.show', [$exercise->block_id, $exercise->id]) }}" class="fs-6">{{ $exercise->title }}</a>
+                        <a href="{{ route('profile.blocks.exercises.show', [$exercise->block_id, $exercise->id]) }}" class="fs-6">{{ $exercise->title }}</a>
                         @empty
                         <div class="fs-6 mt-0 mb-2">К данному блоку ещё не добавили заданий :(</div>
                         @endforelse

@@ -49,7 +49,7 @@
                                 </a>
                             @elseif($result['table'] == 'exercises')
                                 @if($result->block != null)
-                                    <a href="{{route('blocks.exercises.show', [$result['block_id'],$result['id']] )}}"
+                                    <a href="{{route('profile.blocks.exercises.show', [$result['block_id'],$result['id']] )}}"
                                        class="col-sm-12 col-md-5 search-item" style="text-decoration: none">
                                         <span class="text-muted">Направление: "{{$result->block->track->title}}"</span>
                                         <p class="text-muted">Блок: "{{$result->block->title}}"</p>

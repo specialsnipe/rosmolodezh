@@ -53,19 +53,19 @@
                                         @endif
                                     @endforeach
 
-                                        @if($is_added)
-                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">
-                                                @csrf
-                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i
-                                                        class="fa fa-eye"></i>Удалить траекторию</button>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">
-                                                @csrf
-                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i
-                                                        class="fa fa-eye"></i>Добавить тракторию себе</button>
-                                            </form>
-                                        @endif
+{{--                                        @if($is_added)--}}
+{{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
+{{--                                                @csrf--}}
+{{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
+{{--                                                        class="fa fa-eye"></i>Удалить траекторию</button>--}}
+{{--                                            </form>--}}
+{{--                                        @else--}}
+{{--                                            <form action="{{ route('admin.tracks.addTrackForUser', $track->id) }}" method="post" style="display: inline">--}}
+{{--                                                @csrf--}}
+{{--                                                <button class="btn btn-outline-secondary mr-3" type="submit"> <i--}}
+{{--                                                        class="fa fa-eye"></i>Добавить тракторию себе</button>--}}
+{{--                                            </form>--}}
+{{--                                        @endif--}}
 
 
                                     <a class="btn btn-outline-secondary mr-3"

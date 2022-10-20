@@ -57,7 +57,7 @@ $user = auth()->user();
                                             <div class="row">
                                                 <h4 class="col-8">
                                                     <a class="text-decoration-none link-dark me-2"
-                                                        href="{{ route('blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
+                                                        href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                                         $exercise->title }}</a>
                                                 </h4>
                                             </div>
@@ -93,11 +93,11 @@ $user = auth()->user();
                                             </div>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 @if ($exercise->answers->where('user_id', auth()->user()->id)->where('exercise_id', $exercise->id)->first() != null)
-                                                <span> Вы уже оставили ответ &nbsp&nbsp</span> <a href="{{ route("blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
+                                                <span> Вы уже оставили ответ &nbsp&nbsp</span> <a href="{{ route("profile.blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
 
                                                 @else
 
-                                                <a href="{{ route("blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-primary align-self-end">Просмотреть и выполнить задание</a>
+                                                <a href="{{ route("profile.blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-primary align-self-end">Просмотреть и выполнить задание</a>
                                                 @endif
                                             </div>
                                         </div>

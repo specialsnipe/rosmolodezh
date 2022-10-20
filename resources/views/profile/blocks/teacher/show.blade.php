@@ -41,14 +41,14 @@ $user = auth()->user();
         </div>
         <div class="col-12">
             <h4 class="h4">Задания данного блока:
-                <a href="{{ route('tracks.blocks.edit', [$block->track_id, $block->id]) }}"
+                <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
                     class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
                 <button role="button" class="btn btn-danger pl-2 pt-1 pb-1 pr-2" style="font-size:10px"
                     data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
 
             </h4>
             <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
-                action="{{ route('tracks.blocks.destroy', [$block->track_id, $block->id]) }}" targetid="deleteBlock">
+                action="{{ route('profile.tracks.blocks.destroy', [$block->track_id, $block->id]) }}" targetid="deleteBlock">
             </x-modal>
             <script>
                 $('#delete').on('click', function (ev) {
@@ -61,7 +61,7 @@ $user = auth()->user();
             </script>
         </div>
         <div class="col-12 mb-3">
-            <a href="{{ route('blocks.exercises.create', $block->id) }}" class="btn btn-primary pl-2 pt-1 pb-1 pr-2"
+            <a href="{{ route('profile.blocks.exercises.create', $block->id) }}" class="btn btn-primary pl-2 pt-1 pb-1 pr-2"
                 style="font-size:10px">Добавить новое задание</a>
         </div>
         <div class="col-12">
@@ -78,9 +78,9 @@ $user = auth()->user();
                                 <div class="row">
                                     <h4 class="col-12 d-flex justify-content-between">
                                         <a class="text-decoration-none link-dark me-2"
-                                            href="{{ route('blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
+                                            href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                             $exercise->title }}</a>
-                                        <a href="{{ route('blocks.exercises.edit', [$block->id, $exercise->id]) }}"
+                                        <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
                                             class="btn btn-light pl-2 pt-1 pb-1 pr-2"
                                             style="font-size:10px">Редактировать</a>
 
@@ -107,7 +107,7 @@ $user = auth()->user();
                                     {!! $exercise->excerpt !!}
                                 </div>
                                 <div class="d-flex justify-content-end align-items-center">
-                                    <a href="{{ route('blocks.exercises.show',[$block->id, $exercise->id]) }}"
+                                    <a href="{{ route('profile.blocks.exercises.show',[$block->id, $exercise->id]) }}"
                                         class="btn btn-primary align-self-end"> Просмотр упражнений и ответов</a>
                                 </div>
                             </div>

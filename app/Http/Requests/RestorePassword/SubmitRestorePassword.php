@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\RestorePassword;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangePasswordUserRequest extends FormRequest
+class SubmitRestorePassword extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ChangePasswordUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->role->name == 'admin';
+        return true;
     }
 
     /**
