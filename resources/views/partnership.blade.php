@@ -38,6 +38,9 @@
         height: 200px;
         z-index: 1;
     }
+    .fa-angle-up.reverse {
+        transform: rotate(180deg);
+    }
     .phrase-bg-img-2 {
         transition: 200ms;
     }
@@ -81,7 +84,7 @@
                                 Sed dapibus pulvinar nibh tempor porta.
                         </p>
 
-                        <a class="show-more">Подробнее</a>
+                        <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
 
                     </div>
 
@@ -101,7 +104,7 @@
                                 dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis.
                                 Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</p>
 
-                            <a class="show-more">Подробнее</a>
+                            <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
                         </div>
 
                     <div class="bg-icon w-100">
@@ -124,12 +127,15 @@
         let moreButtons = document.querySelectorAll('.show-more');
         moreButtons.forEach((button) => {
             button.addEventListener('click',(event)=>{
+                let arrow = button.querySelector("i");
+                let buttonText = button.querySelector("span");
+                arrow.classList.toggle('reverse');
                 let text = button.parentNode.querySelector('.text-about');
                 let content = button.parentNode;
                 text.style.height = text.style.height.split('px')[0] == text.scrollHeight
                     ? "70px"
                     : text.scrollHeight + "px";
-                button.innerHTML = button.innerHTML === 'Подробнее' ? 'Скрыть' : 'Подробнее';
+                buttonText.innerHTML = buttonText.innerHTML === 'Подробнее' ? 'Скрыть' : 'Подробнее';
             });
         });
     }
