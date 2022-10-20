@@ -481,7 +481,32 @@ main .carousel-inner img {
     top: -20%;
     right: -20px;
     transform: rotate(-30deg);
+    background-repeat: no-repeat;
     background-image: url("../images/phrases_bg.svg");
+}
+.phrase-bg-img-1 {
+    transition: 200ms;
+    position: absolute;
+    width: 50%;
+    height: 150%;
+    color: hsl(0 0% 0%/0.2);
+    top: -50%;
+    right: -220px;
+    transform: rotate(-25deg);
+    background-repeat: no-repeat;
+    background-image: url("../images/handshake-solid.svg");
+}
+.phrase-bg-img-2 {
+    transition: 200ms;
+    position: absolute;
+    width: 60%;
+    height: 150%;
+    color: hsl(0 0% 0%/0.2);
+    top: -10%;
+    right: -90px;
+    transform: rotate(-25deg);
+    background-repeat: no-repeat;
+    background-image: url("../images/globe-solid.svg");
 }
 
 .phrase-bg {
@@ -501,7 +526,7 @@ main .carousel-inner img {
     -o-transform: scale(1.05);
 }
 
-.card-text-main:hover svg {
+.card-text-main:hover svg .content-info:hover svg {
     transform: scale(.82);
     -webkit-transform: scale(.82);
     -moz-transform: scale(.82);
@@ -1899,6 +1924,40 @@ header form .btn {
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 1rem!important;
+}
+.content-info{
+    border: 0!important;
+    overflow: hidden;
+    position: relative;
+    min-height: 180px;
+    color: var(--main-black);
+    background: var(--main-white);
+    text-align: left;
+    box-shadow: 0 1rem 2rem hsl(0 0% 0% / 0.1);
+    padding: 1.5rem 1.5rem .5rem 1.5rem;
+    margin-top: 1rem;
+    transition: 200ms;
+    -webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -ms-transition: 200ms;
+    -o-transition: 200ms;    
+}
+#more {display: none;}
+
+#myBtn{
+
+    border: 0;
+    padding: 5px 15px 5px 0;
+
+    color: var(--main-black);
+    background: transparent;
+    transition: 250ms;
+    cursor: pointer;
+}
+#myBtn:hover{
+    color: #000;
+    text-decoration: underline;
+
 }
 footer p a{
     transition: 200ms;

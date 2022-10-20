@@ -91,7 +91,6 @@
 
 
 @push('script')
-
 <script src="{{  asset('scripts/simple-adaptive-slider.min.js') }}"></script>
 <script>
     window.addEventListener("DOMContentLoaded", function() {
