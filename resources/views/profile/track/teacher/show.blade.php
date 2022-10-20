@@ -105,7 +105,7 @@
                     <div class="row">
                         @forelse ($track->users as $user)
 
-                        <div class="col-2 col-md-6 col-sm-12">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
                             <div class="card mb-2 bg-dark text-center">
                                 <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                 class="img-thumbnail" alt="">
