@@ -68,6 +68,17 @@ Route::group(['as' => 'auth.'], function () {
             Route::get('/', [\App\Http\Controllers\Auth\RegisterController::class, 'index']);
             Route::post('/', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('.store');
         });
+
+        //Forget password
+        Route::group(['as' => 'forget.', 'prefix' => 'forget'], function () {
+            Route::get('/', [\App\Http\Controllers\Auth\ForgetPasswordController::class, 'index'])->name('index');
+            Route::post('/', [\App\Http\Controllers\Auth\ForgetPasswordController::class, 'restore'])->name('restore');
+            Route::get('/change-password', [\App\Http\Controllers\Auth\ForgetPasswordController::class, 'changePassword'])->name('change-password');
+            Route::post('/{user}/change-password', [\App\Http\Controllers\Auth\ForgetPasswordController::class, 'submit'])->name('submit.change-password');
+        });
+
+
+
     });
     // logout
     Route::group(['middleware' => 'auth'], function () {

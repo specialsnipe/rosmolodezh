@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\ReturnForgetPassword;
 use App\Events\UserRegistration;
+use App\Listeners\SendMailWithRestorePassword;
 use App\Listeners\TelegramSubscriber;
+use App\Mail\RestoredPasswordShipped;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\SendRegistrationEmailMessage;
@@ -23,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserRegistration::class => [
             SendRegistrationEmailMessage::class,
+        ],
+        ReturnForgetPassword::class => [
+            SendMailWithRestorePassword::class,
         ],
 
     ];

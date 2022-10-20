@@ -4,9 +4,17 @@
 <link rel="stylesheet" href="{{ asset('css/landing-slider.css') }}">
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
+@section('flash')
+    @if(session()->has('message'))
+        <div class="container p-0">
+            <div class="alert alert-success fade show w-100 m-0 mt-4 d-flex justify-content-between" role="alert">
+                <span>{!! session('message')  !!}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+@endsection
 @section('content')
-
-
 
 <section class="container p-0 mt-4">
 

@@ -86,14 +86,14 @@
                                 </tr>
 
                                 <tr>
-                                    <td>Преподы направления:</td>
+                                    <td>Преподаватели направления:</td>
                                     <td>
                                         @forelse($track->teachers as $teacher)
                                             <a href="{{ route('admin.users.show', $teacher->id) }}"
                                                class="badge bg-primary">
                                                 {{$teacher->allNames}}</a> <br>
                                         @empty
-                                            хоть что
+                                            У этого направление еще нет преподавателей
                                         @endforelse
                                     </td>
 

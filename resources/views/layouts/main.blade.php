@@ -42,6 +42,7 @@
     </header>
 
     <main>
+        @yield('flash')
         @yield('content')
     </main>
 

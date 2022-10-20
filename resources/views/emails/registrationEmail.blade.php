@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Привет, ты только что создал свой аккаунт</title>
+    <title>Привет, ты забыл пароль от своего аккаунта?</title>
 </head>
 <body>
     <h1>{{ $mailData['title'] }}</h1>
