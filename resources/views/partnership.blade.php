@@ -131,10 +131,11 @@
                 let buttonText = button.querySelector("span");
                 arrow.classList.toggle('reverse');
                 let text = button.parentNode.querySelector('.text-about');
-                let content = button.parentNode;
+
                 text.style.height = text.style.height.split('px')[0] == text.scrollHeight
                     ? "70px"
                     : text.scrollHeight + "px";
+
                 buttonText.innerHTML = buttonText.innerHTML === 'Подробнее' ? 'Скрыть' : 'Подробнее';
             });
         });

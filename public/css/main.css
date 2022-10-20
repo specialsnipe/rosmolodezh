@@ -966,7 +966,6 @@ header form .btn {
     flex-direction: column;
     border: 0;
     border-radius: 15px;
-    height: 300px;
     padding: 20px 10px;
 }
 
@@ -1942,7 +1941,7 @@ header form .btn {
     -webkit-transition: 200ms;
     -moz-transition: 200ms;
     -ms-transition: 200ms;
-    -o-transition: 200ms;    
+    -o-transition: 200ms;
 }
 #more {display: none;}
 
