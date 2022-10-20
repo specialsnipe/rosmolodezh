@@ -82,8 +82,8 @@ use App\Models\Information;
       </div>
     </div>
   </section>
-  <div class="text-center p-4" style="">
+  <div class="text-center p-4">
     © 2022 Copyright:
-    <a class="text-reset fw-bold" href="">Росмолодежь</a>
+    <a class="text-reset fw-bold" href="http://rosmolodezh.test">Росмолодежь</a>
   </div>
 </footer>

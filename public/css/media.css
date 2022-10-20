@@ -121,6 +121,14 @@
         width: 100%;
         height: 95%;
     }
+    .phrase-bg-img-1 {
+        width: 60%;
+        top: -25px;
+        right: -90px;
+    }
+    .text-about{
+        max-width: 95%!important;
+    }
 }
 
 @media (min-width:770px) and (max-width: 1000px) {
