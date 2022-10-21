@@ -38,6 +38,10 @@
         height: 200px;
         z-index: 1;
     }
+    .fa-angle-up {
+        transition: 100ms;
+    }
+
     .fa-angle-up.reverse {
         transform: rotate(180deg);
     }
@@ -123,15 +127,13 @@
 
 <script>
     window.onload = function() {
-
         let moreButtons = document.querySelectorAll('.show-more');
         moreButtons.forEach((button) => {
             button.addEventListener('click',(event)=>{
                 let arrow = button.querySelector("i");
-                let buttonText = button.querySelector("span");
                 arrow.classList.toggle('reverse');
+                let buttonText = button.querySelector("span");
                 let text = button.parentNode.querySelector('.text-about');
-
                 text.style.height = text.style.height.split('px')[0] == text.scrollHeight
                     ? "70px"
                     : text.scrollHeight + "px";
