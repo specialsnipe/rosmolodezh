@@ -7,6 +7,13 @@ $user = auth()->user();
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+<style>
+    @media (min-width:280px) and (max-width: 770px) {
+        .fs-4{
+        margin-bottom: 3rem!important;
+    }
+}
+</style>
 @endpush
 @section('title')
 <div class="row">
@@ -22,7 +29,7 @@ $user = auth()->user();
         <span class="fs-4 d-flex justify-content-center align-items-center"> Блок "{{ $block->title }}"</span>
     </div>
     @if($block->nextBlockUrl)
-    <div class="col-sm-12 col-md-2 mt-3"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a>
+    <div class="col-sm-12 col-md-2"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a>
     </div>
     @else
     <div class="col-2"></div>
@@ -76,7 +83,7 @@ $user = auth()->user();
                             </div>
                             <div class="col-11">
                                 <div class="row">
-                                    <h4 class="col-12 d-flex justify-content-between">
+                                    <h4 class="col-12 d-flex justify-content-between align-items-center">
                                         <a class="text-decoration-none link-dark me-2"
                                             href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                             $exercise->title }}</a>
@@ -122,7 +129,7 @@ $user = auth()->user();
         <div class="col-12">
             <div class="row mt-3">
                 @if($block->beforeBlockUrl)
-                <div class="col-6"><a href="{{ $block->beforeBlockUrl }}" class="btn btn-secondary w-100">Предыдущий
+                <div class="col-md-6 col-sm-12 mb-5"><a href="{{ $block->beforeBlockUrl }}" class="btn btn-secondary w-100">Предыдущий
                         блок</a></div>
                 @else
                 <div class="col-6"></div>
