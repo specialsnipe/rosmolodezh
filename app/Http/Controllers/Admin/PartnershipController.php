@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Partnership;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePartnershipRequest;
 use App\Http\Requests\UpdatePartnershipRequest;
 
@@ -15,7 +16,8 @@ class PartnershipController extends Controller
      */
     public function index()
     {
-        //
+        $partnership = Partnership::first();
+        return view('admin.settings.partnership.index', compact('partnership'));
     }
 
     /**

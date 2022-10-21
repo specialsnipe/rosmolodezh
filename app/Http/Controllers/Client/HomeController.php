@@ -11,6 +11,7 @@ use App\Models\Exercise;
 use App\Models\Occupation;
 use App\Models\SliderItem;
 use App\Models\Information;
+use App\Models\Partnership;
 use App\Http\Filters\SearchFilter;
 use App\Http\Controllers\Controller;
 use App\Helpers\General\CollectionHelper;
@@ -122,7 +123,10 @@ class HomeController extends Controller
      */
     public function partnership()
     {
-        return view('partnership');
+
+        return view('partnership', [
+            'partnership' => Partnership::first(),
+        ]);
     }
     /**
      *Сontacts page

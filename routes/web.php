@@ -37,6 +37,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
         Route::resource('/phrases', App\Http\Controllers\Admin\PhraseController::class);
         Route::resource('/team', App\Http\Controllers\Admin\TeamController::class);
         Route::resource('/partnership', App\Http\Controllers\Admin\PartnershipController::class);
+        Route::resource('/partnership/{partnership}/item', App\Http\Controllers\Admin\PartnershipItemController::class, ['as'=>'partnership'])->except(['index', 'show']);
     });
 
 
