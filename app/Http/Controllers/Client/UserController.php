@@ -72,9 +72,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $data = $request->validated();
-        if (isset($data['tg_name'])) {
-            event(new UserTelegramUpdate($user, $data['tg_name']));
-        }
+        event(new UserTelegramUpdate($user, $data['tg_name']));
         $user->updateOrFail($data);
         session()->flash('message', 'Ваши личные данные успешно обновлены');
         return redirect()->route('profile.data');

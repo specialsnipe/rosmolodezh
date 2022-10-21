@@ -22,6 +22,11 @@ class CheckUserAnswerComponent extends Component
     public $requiredToMessage;
     public $messageToStudent;
 
+    protected $rules = [
+        'messageToStudent'=> ['max:600'],
+    ];
+
+
     public function openAnswerModal($answerId)
     {
         $answer = Answer::find($answerId);
@@ -43,8 +48,14 @@ class CheckUserAnswerComponent extends Component
         $this->modalInfoOpened = false;
     }
 
+    public function updated($messageToStudent)
+    {
+        $this->validateOnly('messageToStudent');
+    }
+
     public function sendToTgAboutError()
     {
+        $this->validate();
         $message = event(new ErrorOnExerciseComplete($this->answer->user->tg_id, (string)view('telegram.message-from-teacher', [
             'teacherName' => auth()->user()->firstAndLastNames,
             'data' => $this->requiredToMessage,

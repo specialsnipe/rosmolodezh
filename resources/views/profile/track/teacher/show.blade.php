@@ -142,7 +142,7 @@
 
                                                 @if(isset($user->avatar))
                                                     <img src="{{ asset($user->avatar_thumbnail_path) }}"
-                                                         class="img-thumbnail border-0" alt="" style="object-fit: cover; height: 100%" >
+                                                         class="img-thumbnail border-0" alt="" style="object-fit: contain; height: 100%" >
                                                 @else
                                                     <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                                          class="img border-0" alt="">

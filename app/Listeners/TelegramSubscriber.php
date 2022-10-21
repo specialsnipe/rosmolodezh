@@ -39,6 +39,8 @@ class TelegramSubscriber
             $this->telegram->sendMessage($event->data['id'],
                                         (string)view('telegram.success-connect',
                                         ['username' => $event->data['username']]));
+
+
         } else {
             $this->telegram->sendMessage($event->data['id'],
                                         (string)view('telegram.paste-login-on-site',

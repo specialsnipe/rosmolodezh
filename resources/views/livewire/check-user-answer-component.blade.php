@@ -151,9 +151,9 @@
                                         <h5>Сообщение которое будет отправлено:</h5>
                                         <p>В начале сообщения будет вот это:</p>
                                         <p>{!! $requiredToMessage !!}</p>
-                                        <textarea class="form-control" wire:model='messageToStudent'>
-
+                                        <textarea class="form-control @error('messageToStudent') is-invalid @enderror" wire:model='messageToStudent'>
                                         </textarea>
+                                        @error('messageToStudent') <p class="text-danger"> Слишком много символов </p> @enderror
                                     </div>
                                 </div>
                             </div>

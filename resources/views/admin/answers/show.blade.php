@@ -107,26 +107,7 @@
         </div>
 
         {{--        Body of exercise--}}
-        <div class="row">
-            <form class="form-inline" action="{{route('admin.exercises.answers.changeMark',[$exercise->id, $answer->id])}}" method="post">
-                @csrf
-                @method('put')
-                <div class="form-group ml-5 mr-2 mt-3">
-                    <label for="mark">Выставить оценку: </label>
-                    <select type="number" class="form-control ml-1" name="mark" id="mark">
-                        <option value="1" >1</option>
-                        <option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                        <option value="5" >5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary col-sm-12 mt-3" value="Оценить">
-                </div>
 
-            </form>
-        </div>
         <div class="p-2 p-md-4 card">
             <div class="card-body p-2 p-md-3">
                 <div class="hexlet-markdown-body overflow-hidden">
