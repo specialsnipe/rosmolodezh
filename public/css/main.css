@@ -28,7 +28,9 @@ body {
 .screen {
     width: 100%;
 }
-
+.btn.btn-light:hover{
+    color: #fff!important;
+}
 .btn {
     border: 0;
     background-color: var(--main-primary-footer);

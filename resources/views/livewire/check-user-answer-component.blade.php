@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-4">
     <style>
         .modal_bg {
             position: fixed;
@@ -37,6 +37,35 @@
             transform: translate(-50%, -50%);
 
         }
+        .close-answer-modal.btn-danger{
+                padding: 5px 11px;
+            }
+        .btn.btn-success{
+            padding: .7rem 0;
+        }
+        @media (min-width:280px) and (max-width: 767px) {
+            .answer-modal{
+                width: 90%;
+            }
+            .close-answer-modal{
+                top: 55px;
+                right: 32px;
+
+            }
+            h3{
+                margin-top: 2rem;
+            }
+            button.btn{
+                margin-top: 1rem;
+            }
+            .fs-3{
+                margin-bottom: 0;
+            }
+            .btn.btn-primary{
+                width: 100%;
+            }
+
+        }
     </style>
     <div class="card-body">
         <h3>Студенты направления:</h3>
@@ -66,7 +95,7 @@
                             Не оценено
                         </span>
                         @endif
-                        <button type="button" class="btn btn-primary mt-2 " style="font-size: .8rem"
+                        <button type="button" class="btn btn-primary mt-2 " style="font-size: .8rem; width: 100%;"
                             wire:click="openAnswerModal({{ $student->getAnswer($exercise)->id }})">Посмотреть
                             ответ</button>
                         @else
@@ -119,9 +148,9 @@
                     </div>
                     <div class="card-body">
                         <p class="fs-3">Оцените решение задания</p>
-                        <div class="row">
+                        <div class="row d-flex justify-content-between">
                             @for ($i = 1; $i <= 5; $i++)
-                                <div class="col">
+                                <div class="col-md-2 col-sm-12">
                                     <button class="w-100 btn
                                         @if ($i === 1)
                                             btn-dark

@@ -22,7 +22,7 @@ $user = auth()->user();
         <span class="fs-4 d-flex justify-content-center align-items-center"> Блок "{{ $block->title }}"</span>
     </div>
     @if($block->nextBlockUrl)
-    <div class="col-sm-12 col-md-2"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a>
+    <div class="col-sm-12 col-md-2 mt-3"><a href="{{ $block->nextBlockUrl }}" class="btn btn-primary w-100">Следущий блок</a>
     </div>
     @else
     <div class="col-2"></div>
@@ -81,7 +81,7 @@ $user = auth()->user();
                                             href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
                                             $exercise->title }}</a>
                                         <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
-                                            class="btn btn-light pl-2 pt-1 pb-1 pr-2"
+                                            class="btn btn-light"
                                             style="font-size:10px">Редактировать</a>
 
                                     </h4>
@@ -128,7 +128,7 @@ $user = auth()->user();
                 <div class="col-6"></div>
                 @endif
                 @if($block->nextBlockUrl)
-                <div class="col-6"><a href="{{ $block->nextBlockUrl }}" class="btn btn-secondary w-100">Следущий
+                <div class="col-md-6 col-sm-12"><a href="{{ $block->nextBlockUrl }}" class="btn btn-secondary w-100">Следущий
                         блок</a></div>
                 @else
                 <div class="col-6"></div>
