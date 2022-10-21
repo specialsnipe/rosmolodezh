@@ -118,6 +118,10 @@
                         @if(request()->routeIs('admin.settings.team.*') ) active @endif">
                            <i class="nav-icon fa fa-users"></i> Команда
                         </a>
+                        <a href="{{route('admin.settings.partnership.index')}}" class="nav-link
+                        @if(request()->routeIs('admin.settings.partnership.*') ) active @endif">
+                           <i class="nav-icon fa fa-users"></i> Партнёрство
+                        </a>
                     </div>
                 </li>
                 <script type="text/javascript" defer>

@@ -36,6 +36,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
         Route::resource('/complexity', App\Http\Controllers\Admin\ComplexityController::class)->only('index');
         Route::resource('/phrases', App\Http\Controllers\Admin\PhraseController::class);
         Route::resource('/team', App\Http\Controllers\Admin\TeamController::class);
+        Route::resource('/partnership', App\Http\Controllers\Admin\PartnershipController::class);
     });
 
 
