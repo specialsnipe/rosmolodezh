@@ -8,9 +8,9 @@ if (!isset($posts)) {
 
 @endphp
 
-<div class="row justify-content-between">
+<div class="row">
     @forelse ($posts as $post)
-    <div class="col-sm-12 col-md-6 col-lg-3">
+    <div class="col-sm-12 col-md-6 col-lg-3 h-100">
         <a class="text-decoration-none" style="color: #000;" target="_blank" href="{{ route('posts.show', $post->id) }}">
             <div class="card post_card mb-4">
                 <img src="{{ $post->images[0]->imageNormal }}" class="rounded img-fluid"
