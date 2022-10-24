@@ -21,7 +21,7 @@
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
                                 <div class="slider__item" style="max-height: 500px">
-                                    <img src="{{ $image->imageMedium }}" class="img-fluid rounded w-100" alt="">
+                                    <img src="{{ $image->imageMedium }}" class="img-fluid rounded w-100" alt="" style="object-fit: contain;">
                                 </div>
                                 @endforeach
                             </div>
@@ -35,7 +35,7 @@
 
 
                     @else
-                    <img src="{{ asset($post->images[0]->imageMedium) }}" class="img-fluid rounded" alt="">
+                    <img src="{{ asset($post->images[0]->imageMedium) }}" class="img-fluid rounded" alt="" style="object-fit: contain;">
                     @endif
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -88,11 +88,25 @@
 @endsection
 @push('script')
 <script defer>
-    const sldier = new SimpleAdaptiveSlider('.slider', {
+    let sliderBlock = document.querySelector('.slider');
+    if (sliderBlock) {
+        const slider = new SimpleAdaptiveSlider('.slider', {
             loop: true,
             autoplay: false,
             interval: 5000,
             swipe: true,
         });
+    }
+
+    const spans = document.querySelectorAll('span');
+    const p = document.querySelectorAll('p');
+
+    spans.forEach(span => {
+        span.style.fontFamily = '';
+    });
+
+    p.forEach(span => {
+        span.style.fontFamily = '';
+    });
 </script>
 @endpush
