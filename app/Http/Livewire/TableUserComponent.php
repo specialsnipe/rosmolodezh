@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class TableUserComponent extends Component
 {
-    public $user;
+    public User $user;
     public $active;
     public $opened = false;
 
@@ -35,6 +35,13 @@ class TableUserComponent extends Component
     public function openMore()
     {
         redirect()->route('admin.users.show', $this->user->id);
+    }
+
+
+    public function forceDelete()
+    {
+        $this->user->forceDelete();
+        return redirect(request()->header('Referer'));
     }
 
 

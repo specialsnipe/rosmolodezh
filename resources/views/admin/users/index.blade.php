@@ -111,6 +111,9 @@
                                 <th>Роль</th>
                                 <th>Траектория</th>
                                 <th>Статус</th>
+                                @if(request()->routeIs('admin.users.deleted'))
+                                    <th>Перманентное удаление</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>

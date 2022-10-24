@@ -25,10 +25,19 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('admin.users.index') }}"
-                        class="nav-link @if(request()->routeIs('admin.users.*')) active @endif">
+                        class="nav-link @if(request()->routeIs('admin.users.*') && !request()->routeIs('admin.users.deleted')) active @endif">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Пользователи
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.users.deleted') }}"
+                       class="nav-link @if(request()->routeIs('admin.users.deleted')) active @endif">
+                        <i class="nav-icon fa fa-users"></i>
+                        <p>
+                            Удаленные Пользователи
                         </p>
                     </a>
                 </li>

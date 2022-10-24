@@ -1,6 +1,6 @@
 
     <tr @if (!$user->active)
-        class="bg-dark"
+        class="bg-dark" style="cursor: pointer;"
         @endif >
         <td wire:click='openMore' >{{$user->id}}</td>
         <td wire:click='openMore' ><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px alt="image">
@@ -18,7 +18,7 @@
 
         @if (auth()->user()->id != $user->id)
 
-            <td style="width: 200px" class="d-flex justify-content-end align-items-center">
+            <td style="width: 200px" >
 
                 <div class="mr-2 badge
                         @if($active) badge-success @else badge-secondary @endif">
@@ -43,6 +43,14 @@
                     @if($active) btn-primary @else btn-secondary @endif">
                     @if($active) Это текущий пользователь @else Деактивирован @endif
                 </div>
+            </td>
+        @endif
+        @if(request()->routeIs('admin.users.deleted'))
+            <td>
+                <button wire:click='forceDelete'
+                         class="border-0 change-status text-center btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </button>
             </td>
         @endif
     </tr>
