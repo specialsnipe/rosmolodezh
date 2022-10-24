@@ -12,9 +12,11 @@
         <div class="row contact-form">
 
 
-            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
-                <div class="card">
-                    <i class="fas fa-map-marker-alt"></i>
+            <div class="col-sm-12 col-md-12 col-lg-4 mb-3">
+                <div class="card  h-100">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Наш адрес</h5>
                         <p class="card-text" style="min-height: 50px">{{$settings->location_description}}</p>
@@ -26,9 +28,11 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
-                <div class=" card">
-                    <i class="fab fa-vk"></i>
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                    <div class="contact-icon">
+                        <i class="fab fa-vk"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Мы в Вконтакте</h5>
                         <p class="card-text" style="min-height: 50px">{{$settings->vk_description}}</p>
@@ -38,16 +42,18 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
-                <div class="card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" viewBox="0 0 56 56" fill="none" style="margin-top: .6rem;">
-                        <path
-                            d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
-                            fill="black" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M27.4334 0C27.3011 11.5194 26.5478 17.9662 22.257 22.257C17.9662 26.5478 11.5194 27.3011 0 27.4334V29.1051C11.5194 29.2373 17.9662 29.9906 22.257 34.2814C26.4805 38.5049 27.2766 44.8173 27.4267 56H29.1118C29.2618 44.8173 30.0579 38.5049 34.2814 34.2814C38.5049 30.0579 44.8173 29.2618 56 29.1118V27.4266C44.8173 27.2766 38.5049 26.4805 34.2814 22.257C29.9906 17.9662 29.2373 11.5194 29.1051 0H27.4334Z"
-                            fill="white" />
-                    </svg>
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" viewBox="0 0 56 56" fill="none">
+                            <path
+                                d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
+                                fill="black" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M27.4334 0C27.3011 11.5194 26.5478 17.9662 22.257 22.257C17.9662 26.5478 11.5194 27.3011 0 27.4334V29.1051C11.5194 29.2373 17.9662 29.9906 22.257 34.2814C26.4805 38.5049 27.2766 44.8173 27.4267 56H29.1118C29.2618 44.8173 30.0579 38.5049 34.2814 34.2814C38.5049 30.0579 44.8173 29.2618 56 29.1118V27.4266C44.8173 27.2766 38.5049 26.4805 34.2814 22.257C29.9906 17.9662 29.2373 11.5194 29.1051 0H27.4334Z"
+                                fill="white" />
+                        </svg>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Мы в Дзене</h5>
                         <p class="card-text" style="min-height: 50px">{{$settings->zen_description}}</p>
@@ -57,16 +63,17 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-6  mb-3">
+            <div class="col-sm-12  mb-3">
                 <div class="card">
-                    <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+                    </div>
                     <div class="card-body pb-0">
                         <h5 class="card-title">Наши аккаунты в телеграм</h5>
                     </div>
                     <div class="row">
                         @foreach($settings->telegrams as $telegram)
-                        <div class="col-12 mt-3">
+                        <div class="col-sm-12 col-xl-6  mt-3">
                             <a class="text-decoration-none" target="_blank"
                             href="https://t.me/{{ $telegram->username }}">
                             <div class="card text-left">
