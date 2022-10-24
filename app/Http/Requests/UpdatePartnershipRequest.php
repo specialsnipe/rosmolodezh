@@ -13,7 +13,7 @@ class UpdatePartnershipRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->role->name === 'admin';
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdatePartnershipRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required',],
+            'body' => ['required']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required'=> 'Поле "Заголовок" обязательно для заполнения.',
+            'body.required'=> 'Поле "Описание" обязательно для заполнения.',
         ];
     }
 }
