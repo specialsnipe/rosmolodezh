@@ -111,9 +111,4 @@
     <x-registration-form></x-registration-form>
 </div>
 @endguest
-@push('script')
-    <script>
-       let myWrap = new
-    </script>
-@endpush
 @endsection
