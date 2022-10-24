@@ -33,29 +33,31 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{route('admin.settings.partnership.update', $partnership->id)}}" method="post">
-                        @csrf
-                        @method('patch')
-                        <div class="form-group w-50 ">
-                            <label for="title">Заголовок</label>
-                            <input type="text" class="form-control" id="title" name="title"
-                                   value="{{$partnership->title}}" placeholder="Заголовок">
-                            @error('title')
-                            <div class="text-danger">{{$message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group ">
-                            <label for="summernote">Описание</label>
-                            <textarea id="summernote" name="body">{{ $partnership->body }}</textarea>
-                            @error('body')
-                            <div class="text-danger">{{$message}}</div>
-                            @enderror
-                        </div>
-                        <input type="submit" class="btn btn-success  col-sm-12" value="Сохранить">
-                    </form>
+        <div class="row mr-3 ml-3">
+            <div class="col-sm-12 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('admin.settings.partnership.update', $partnership->id)}}" method="post">
+                            @csrf
+                            @method('patch')
+                            <div class="form-group ">
+                                <label for="title">Заголовок</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="{{$partnership->title}}" placeholder="Заголовок">
+                                @error('title')
+                                <div class="text-danger">{{$message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group ">
+                                <label for="summernote">Описание</label>
+                                <textarea id="summernote" name="body">{{ $partnership->body }}</textarea>
+                                @error('body')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <input type="submit" class="btn btn-success  col-sm-12" value="Сохранить">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
