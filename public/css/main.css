@@ -1936,15 +1936,14 @@ header form .btn {
     margin-bottom: 1rem!important;
 }
 .content-info{
-    border: 0!important;
     overflow: hidden;
     position: relative;
     min-height: 180px;
     color: var(--main-black);
     background: var(--main-white);
     text-align: left;
-    box-shadow: 0 1rem 2rem hsl(0 0% 0% / 0.1);
-    padding: 1.5rem 1.5rem .5rem 1.5rem;
+    padding: 1.5rem ;
+    border: 1px solid #d1d1d1;
     margin-top: 1rem;
     transition: 200ms;
     -webkit-transition: 200ms;

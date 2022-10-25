@@ -49,67 +49,65 @@
 
 @section('content')
 
-<div class="container">
-        <div class="main-container-directions">
-            <h1 class="h1-content mt-0 mb-4">ИНФОРМАЦИЯ ПАРТНЁРАМ</h1>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-12">
-                    <div class="card content-info">
-                        <div class="card-body content-body">
-                            <h5 class="card-title">{{ $partnership->title }}</h5>
-                            <p class="card-text">{!! $partnership->body !!}</p>
-                        </div>
-                        <div class="bg-icon w-100">
-                            <div class="phrase-bg-img-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row d-flex justify-content-center mt-1">
-                @forelse ($partnership->partnershipItems as $item)
-                <div class="col-md-6">
-                    <div class="card content-info">
-
+<div class="container mb-5 mt-5">
+        <h1 class="h1-content mt-0 mb-4">ИНФОРМАЦИЯ ПАРТНЁРАМ</h1>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+                <div class="card content-info">
                     <div class="card-body content-body">
-
-                        <h5 class="card-title">{{ $item->title }}</h5>
-                        <p class="text-about text-truncated card-text">
-                            {!! $item->body !!}
-                        </p>
-
-                        <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
+                        <h5 class="card-title">{{ $partnership->title }}</h5>
+                        <p class="card-text">{!! $partnership->body !!}</p>
                     </div>
-
                     <div class="bg-icon w-100">
-                        <div class="phrase-bg-img-2"></div>
-                    </div>
+                        <div class="phrase-bg-img-1"></div>
                     </div>
                 </div>
-                @empty
-                <div class="col-md-12">
-                    <div class="card content-info">
-
-                    <div class="card-body content-body">
-
-                        <h5 class="card-title">Пока что нам нечего вам покаазть</h5>
-                        <p class="text-about text-truncated card-text">
-                        </p>
-
-                        <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
-
-                    </div>
-
-                    <div class="bg-icon w-100">
-                        <div class="phrase-bg-img-2"></div>
-                    </div>
-                    </div>
-                </div>
-                @endforelse
-
             </div>
         </div>
-    </div>
+
+        <div class="row d-flex justify-content-center mt-1">
+            @forelse ($partnership->partnershipItems as $item)
+            <div class="col-md-6">
+                <div class="card content-info">
+
+                <div class="card-body content-body">
+
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="text-about text-truncated card-text">
+                        {!! $item->body !!}
+                    </p>
+
+                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
+                </div>
+
+                <div class="bg-icon w-100">
+                    <div class="phrase-bg-img-2"></div>
+                </div>
+                </div>
+            </div>
+            @empty
+            <div class="col-md-12">
+                <div class="card content-info">
+
+                <div class="card-body content-body">
+
+                    <h5 class="card-title">Пока что нам нечего вам покаазть</h5>
+                    <p class="text-about text-truncated card-text">
+                    </p>
+
+                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
+
+                </div>
+
+                <div class="bg-icon w-100">
+                    <div class="phrase-bg-img-2"></div>
+                </div>
+                </div>
+            </div>
+            @endforelse
+
+        </div>
+</div>
 
 @endsection
 
