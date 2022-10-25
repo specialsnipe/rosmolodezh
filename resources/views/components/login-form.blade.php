@@ -31,9 +31,8 @@
             <label class="form-check-label " for="flexCheckDefault">
                 <div>
                     <span>Ещё нет аккаунта? <a href="{{ route('auth.register') }}"> Зарегистрируйтесь</a></span><br>
-                    <a href="{{ route('auth.forget.index',['23123123=123']) }}">Забыли пароль?</a>
+                    <a href="{{ route('auth.forget.index') }}">Забыли пароль?</a>
                 </div>
-
                 <button class="auth-btn" type="submit">Войти</button>
             </label>
         </div>

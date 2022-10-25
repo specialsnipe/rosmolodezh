@@ -6,6 +6,10 @@ use App\Models\Partnership;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePartnershipRequest;
 use App\Http\Requests\UpdatePartnershipRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PartnershipController extends Controller
 {
@@ -52,27 +56,33 @@ class PartnershipController extends Controller
         //
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Partnership  $partnership
-     * @return \Illuminate\Http\Response
+     * @param Partnership $partnership
+     * @return Application|Factory|View
      */
     public function edit(Partnership $partnership)
     {
-        //
+        return view('admin.settings.partnership.edit', compact('partnership'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePartnershipRequest  $request
-     * @param  \App\Models\Partnership  $partnership
-     * @return \Illuminate\Http\Response
+     * @param UpdatePartnershipRequest $request
+     * @param Partnership $partnership
+     * @return RedirectResponse
      */
     public function update(UpdatePartnershipRequest $request, Partnership $partnership)
     {
-        //
+        $data = $request->validated();
+        try{
+            $partnership->update($data);
+            return back()
+                ->with('success', 'Данные успешно обновлены');
+        }catch (\Exception $e){
+            return back()
+                ->with('error', 'Что-то пошло не так');
+        }
     }
 
     /**

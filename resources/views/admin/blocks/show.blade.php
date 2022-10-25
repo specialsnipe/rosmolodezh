@@ -1,5 +1,7 @@
 @extends('admin.layouts.main')
-
+<style>
+    
+</style>
 
 @section('content')
     <div class="content-wrapper p-0">

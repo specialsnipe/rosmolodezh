@@ -24,8 +24,8 @@ class UpdatePartnershipItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=> ['required','max:60'],
-            'body'=> ['required','max:450'],
+            'title'=> ['required'],
+            'body'=> ['required'],
         ];
     }
 
@@ -34,9 +34,7 @@ class UpdatePartnershipItemRequest extends FormRequest
     {
         return [
             'title.required'=> 'Поле "Заголовок" обязательно для заполнения.',
-            'title.max'=> 'Слишком много символов, максимально  60.',
             'body.required'=> 'Поле "Описание" обязательно для заполнения.',
-            'body.max'=> 'Слишком много символов, максимально 450.',
         ];
     }
 }

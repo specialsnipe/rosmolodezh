@@ -25,13 +25,13 @@ class UpdateInformationRequest extends FormRequest
     {
         return [
             'tg_url'=>['required', 'url'],
-            'tg_description'=>'required',
+            'tg_description'=>['required', 'max:129'],
             'vk_url'=>['required', 'url'],
-            'vk_description'=>'required',
+            'vk_description'=>['required', 'max:129'],
             'zen_url'=> '',
-            'zen_description'=>'',
+            'zen_description'=>['nullable', 'max:129'],
             'location' => ['required'],
-            'location_description'=>['required'],
+            'location_description'=>['required', 'max:129'],
             'location_url'=>['required', 'url']
         ];
     }
