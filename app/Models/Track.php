@@ -133,6 +133,14 @@ class Track extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)->withTrashed()->withTimestamps();
+    }/**
+     * Relation with users (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function usersWithoutTrashed(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
     /**
      * Relation with users (many to many)

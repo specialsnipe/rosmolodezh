@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -158,8 +159,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasManyThrough(Permission::class, Role::class);
     }
 
-
-    public function getAnswer($exercise)
+    /**
+     *
+     * @param Exercise
+     * @return HasMany
+     *
+     */
+    public function getAnswer(Exercise $exercise)
     {
         $relation = $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
         if(isset($relation->mark)) {

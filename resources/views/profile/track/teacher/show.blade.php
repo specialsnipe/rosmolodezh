@@ -15,7 +15,7 @@
         <div class="row">
 
             @if(auth()->user()->id == $track->curator_id)
-                @if( $track->users_requests->where('action', 'send')->where('joining', true)->count() > 0 )
+                @if( $requestsToJoin->count() > 0 )
 
                     <div class="col-sm-12 col-md-6 mb-3">
                         <div class="card">
@@ -23,7 +23,7 @@
                                 "{{ $track->title }}"</h4>
                             <div class="card-body requests-to-track">
                                 {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
-                                @forelse ($track->users_requests->where('action', 'send')->where('joining', true) as $user_request)
+                                @forelse ($requestsToJoin as $user_request)
                                     <div class="card mb-2">
                                         <div class="card-body">
                                             <div class="row">
@@ -65,7 +65,7 @@
                 @else
                     <h4 class="h4 col-sm-12 col-md-6 text-center ">Новых заявок на это направление нет </h4>
                 @endif
-                @if( $track->users_requests->where('action', 'send')->where('refused', true)->count() > 0 )
+                @if( $requestsToRefused->count() > 0 )
 
                     <div class="col-sm-12 col-md-6 mb-3">
                         <div class="card">
@@ -73,7 +73,7 @@
                                 "{{ $track->title }}"</h4>
                             <div class="card-body requests-to-track">
                                 {{-- Здесь заявки студентов на этот курс, их можно принять или отклонить --}}
-                                @forelse ($track->users_requests->where('action', 'send')->where('refused', true) as $user_request)
+                                @forelse ($requestsToRefused as $user_request)
                                     @if(auth()->user()->id !== $user_request->user->id)
                                         <div class="card mb-2">
                                             <div class="card-body">
@@ -133,7 +133,7 @@
                     <div class="card-body track-users">
                         {{-- Студенты которые участвуют в этом напрвлении --}}
                         <div class="row">
-                            @forelse ($track->users as $user)
+                            @forelse ($users as $user)
                                 <div class="col-md-6 col-sm-12">
                                     <a href="{{ route('profile.user.show', $user->id) }}" class="text-decoration-none text-black">
                                     <div class="card mb-2">

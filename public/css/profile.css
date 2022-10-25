@@ -716,7 +716,7 @@ td:nth-last-child(1) {
     .d-flex-btn{
         display: block;
     }
-    
+
 }
 
 .requests-to-track {
@@ -732,6 +732,16 @@ td:nth-last-child(1) {
     background: var(--main-primary-footer)!important;
 }
 
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 3px;
+    display:inline-flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
