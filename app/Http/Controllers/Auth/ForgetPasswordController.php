@@ -58,6 +58,7 @@ class ForgetPasswordController extends Controller
      */
     public function restore(ForgetPasswordRequest $request): RedirectResponse
     {
+        
         $data = $request->validated();
         $user = User::where('email', $data['email'])->first();
         event(new ReturnForgetPassword($user));

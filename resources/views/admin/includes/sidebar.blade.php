@@ -35,9 +35,9 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.users.deleted') }}"
                        class="nav-link @if(request()->routeIs('admin.users.deleted')) active @endif">
-                        <i class="nav-icon fa fa-users"></i>
+                        <i class="nav-icon fa fa-users-slash"></i>
                         <p>
-                            Удаленные Пользователи
+                            Удаленные пользователи
                         </p>
                     </a>
                 </li>
