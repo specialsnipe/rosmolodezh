@@ -46,7 +46,6 @@ class TrackController extends Controller
      * Display the specified resource.
      *
      * @param  int  Track $track
-     * @return \Illuminate\Http\Response
      */
     public function show(Track $track)
     {
@@ -60,17 +59,18 @@ class TrackController extends Controller
         $requestToRefuseSended = false;
 
         if (isset(auth()->user()->tracks_requests)) {
-        foreach (auth()->user()->tracks_requests as $trackRequest) {
-            if ($track->id == $trackRequest->track_id && $trackRequest->joining) {
-                $requestToJoinSended = true;
-            }
-            if ($track->id == $trackRequest->track_id && $trackRequest->refused) {
-                $requestToRefuseSended = true;
+            foreach (auth()->user()->tracks_requests as $trackRequest) {
+                if ($track->id == $trackRequest->track_id && $trackRequest->joining) {
+                    $requestToJoinSended = true;
+                }
+                if ($track->id == $trackRequest->track_id && $trackRequest->refused) {
+                    $requestToRefuseSended = true;
+                }
             }
         }
-        }
-
         $track= $track->load('blocks');
+
+
 
         return view('tracks.show', compact('track','tracks', 'requestToJoinSended', 'requestToRefuseSended'));
     }
