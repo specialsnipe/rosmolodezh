@@ -21,7 +21,7 @@
                             <div class="slider__items">
                                 @foreach ($post->images as $image)
                                 <div class="slider__item" style="max-height: 500px">
-                                    <img src="{{ $image->imageMedium }}" class="img-fluid rounded w-100" alt="" style="object-fit: contain;">
+                                    <img src="{{ $image->imageMedium }}" class="w-100 rounded" alt="" style="object-fit: contain; max-height: 650px">
                                 </div>
                                 @endforeach
                             </div>
@@ -35,7 +35,9 @@
 
 
                     @else
-                    <img src="{{ asset($post->images[0]->imageMedium) }}" class="img-fluid rounded" alt="" style="object-fit: contain;">
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset($post->images[0]->imageMedium) }}" class="rounded single-image" alt="" style="object-fit: contain; max-height: 650px; max-width: 100%">
+                    </div>
                     @endif
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -108,5 +110,25 @@
     p.forEach(span => {
         span.style.fontFamily = '';
     });
+    const singleImage = document.querySelector('.single-image');
+    if (singleImage) {
+        const y = singleImage.scrollHeight;
+        const x = singleImage.scrollWidth;
+        if (y > x) {
+            let ghostingImage = singleImage.cloneNode(true);
+            ghostingImage.style.maxWidth = '100%';
+            ghostingImage.style.width = '100%';
+            ghostingImage.style.maxHeight = '100%';
+            ghostingImage.style.height = '100%';
+            ghostingImage.style.position = 'absolute';
+            ghostingImage.style.objectFit = 'cover';
+            ghostingImage.style.zIndex = '1';
+            ghostingImage.style.opacity = '0.2';
+
+            singleImage.parentNode.style.position = 'relative';
+            singleImage.style.zIndex = '10';
+            singleImage.parentNode.appendChild(ghostingImage);
+        }
+    }
 </script>
 @endpush
