@@ -38,7 +38,7 @@
                                             <div>
                                                 <img src="{{ asset($image->imageMedium) }}"
                                                     class="d-block w-100 rounded" alt="..." height="500"
-                                                    style="object-fit: cover">
+                                                    style="object-fit: cover; max-height: 100%">
                                             </div>
                                         </div>
                                         @endforeach
@@ -50,10 +50,10 @@
                                     data-slide="next"></a>
                             </div>
                             @else
-                            @foreach ($post->images as $image)
-                            <img src="{{asset($image->imageMedium) }}" class="d-block w-100" alt="..." height="500"
-                                style="object-fit: cover">
-                            @endforeach
+                                @foreach ($post->images as $image)
+                                <img src="{{asset($image->imageMedium) }}" class="d-block w-100" alt="..."
+                                    style="object-fit: cover; max-height: 100%">
+                                @endforeach
                             @endif
                         </div>
                         <div class="card-body">

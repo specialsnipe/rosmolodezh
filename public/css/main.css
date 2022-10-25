@@ -180,14 +180,14 @@ body {
 
 .slider__item>*>.btn,
 .slider__indicator_active {
-    background: hsl(32, 88%, 54%) !important;
-    border: 1px solid hsl(32, 100%, 65%) !important;
+    background: #a78adb !important;
+    border: 1px solid #bfa5ee !important;
 }
 
 .slider__item>*>.btn:hover,
 .slider__indicator_active:hover {
-    background: hsl(32, 91%, 64%) !important;
-    border: 1px solid hsl(32, 100%, 74%) !important;
+    background: #bfa5ee !important;
+    border: 1px solid #c8b3f0 !important;
 }
 
 
