@@ -7,93 +7,166 @@
 
 @section('content')
 
-<p class="h1-content">О нашем проекте </p>
-<section class="counter-block container">
-    <div class="counter-content">
-        <div class="block-info-right">
-            <p class="text-h1">Конкурс</p>
-            <p class="mb-3">Первый конкурс 2021</p>
-
-            <p class="text-h1">Тип проекта</p>
-            <p class="mb-3">Образовательные натавнические проекты в
-                области культуры, искусства и ркеативных
-                индустрий (включая цифровые технологии)</p>
-
-            <p class="text-h1">Тематическое направление</p>
-            <p class="mb-3">Культурный код. Проекты по продвижению через
-                культуру и креативные индустрии традиционных
-                духовно-нравственных ценностей.</p>
-
-            <p class="text-h1">Рейтинг заявки</p>
-            <p class="mb-3">73,75</p>
-
-            <p class="text-h1">Номер заявки</p>
-            <p class="mb-3">ПФКИ-21-1-019363</p>
-
-        </div>
-
-        <div class="counter">
-
-            <p class="h1-counter">Размер гранта</p>
-            <p class="h2-counter">450 600, 00  &#8381;</i></p>
-
-            <div class="line"></div>
-            <p class="h1-counter">Софинансирование</p>
-            <p class="h2-counter">0, 00  &#8381;</i></p>
-
-            <div class="line"></div>
-            <p class="h1-counter">Общая сумма расходов на  реализацию проекта</p>
-            <p class="h2-counter">450 600, 00  &#8381;</i></p>
-
-
-        </div>
-
-        <div class="block-info-left">
-
-            <p class="text-h1">Дата подачи</p>
-            <p class="mb-3">30.07.2021</p>
-
-            <p class="text-h1">Сроки реализации</p>
-            <p class="mb-3">01.10.2021 - 26.12.2022</p>
-
-            <p class="text-h1">Заявитель</p>
-            <p class="mb-3">МУНИЦИПАЛЬНОЕ АВТОНОМНОЕ УЧРЕЖДЕНИЕ ГОРОДСКОГО ОКРУГА КРАСНОУРАЛЬСК “ДВОРЕЦ КУЛЬТУРЫ МУТАЛУРГ”
-            </p>
-
-            <p class="text-h1">ИНН</p>
-            <p class="mb-3">6620015110</p>
-
-            <p class="text-h1">ОГРН/ОГРНИП</p>
-            <p class="mb-3">01966200000267</p>
-
-        </div>
-    </div>
-</section>
-<section class="screen news-blocks">
-    <div class="container p-0">
-        <h2 class="text-light d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
-        <div class="row">
-            @foreach ($tracks as $track)
-            <div class="col-md-4 col-lg-4 col-sm-12">
-                <div class="card card-track d-flex flex-column justify-content-between mb-4">
-
-                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
-                        <img src="{{ asset($track->imageMedium ) }}" class="card-img-top rounded" alt="...">
-                    </a>
-                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer">
-                        <div class="">{{ $track->title }}</div>
-                    </a>
+<div class="container mb-5 mt-5">
+        <h1 class="h1-content mt-0 mb-4">О нашем проекте</h1>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+                <div class="card content-info">
+                    <div class="card-body content-body">
+                        <h5 class="card-title">Коротко о проетке</h5>
+                        <p class="card-text">IT компания по разработке и поддержки веб-проектов.</p>
+                    </div>
+                    <div class="bg-icon w-100">
+                        <div class="phrase-bg-img-about"></div>
+                    </div>
                 </div>
             </div>
-            @endforeach
+
+            <div class="col-md-6">
+                <div class="card content-info">
+                    <div class="card-body content-body">
+                        <h5 class="card-title">Nethamer.lab</h5>
+                        <p class="card-text">IT компания по разработке и поддержки веб-проектов.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-img img-bg-about"></div>
+            </div>
+            <section class="row fix-adaptiv">
+            <div class="col-md-6">
+                <div class="content-img img-bg-about-1"></div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card content-info-1">
+                    <div class="card-body content-body">
+                        <h5 class="card-title">Главные приимущества комании Nethamer</h5>
+                        <p class="card-text">Опыт и постоянное соверсшенствовние навыков программирования сотрудников</p>
+                        <p class="card-text">А также индивидуальный подход к каждому клиенту.</p>
+                        <p class="card-text">IT компания по разработке и поддержки веб-проектов.</p>
+                        <p class="card-text">А также индивидуальный подход к каждому клиенту.</p>
+                        <p class="card-text">IT компания по разработке и поддержки веб-проектов.</p>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <div class="col-md-3 mt-3 d-flex flex-column align-items-center">
+                <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
+                <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+                <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
+                <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+                <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
+                <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+                <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
+                <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
+            </div>
+
+            <div class="col-md-6">
+                <div class="content-img img-bg-about-2"></div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card content-info-2">
+                    <div class="card-body content-body">
+                        <h5 class="card-title">Дата подачи</h5>
+                        <p class="card-text">30.07.2021</p>
+                        <h5 class="card-title">Сроки реализации</h5>
+                        <p class="card-text">01.10.2021 - 26.12.2022</p>
+                        <h5 class="card-title">Заявитель</h5>
+                        <p class="card-text">
+                            МУНИЦИПАЛЬНОЕ АВТОНОМНОЕ 
+                            УЧРЕЖДЕНИЕ ГОРОДСКОГО ОКРУГА
+                            КРАСНОУРАЛЬСК “ДВОРЕЦ КУЛЬТУРЫ
+                            МУТАЛУРГ”
+                        </p>
+                        <h5 class="card-title">ИНН</h5>
+                        <p class="card-text">6620015110</p>
+                        <h5 class="card-title">ОГРН/ОГРНИП</h5>
+                        <p class="card-text">01966200000267</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card content-info-3">
+                    <div class="card-body content-body row">
+                        <div class="col-md-6">  
+                            <h5 class="card-title">Конкурс</h5>
+                            <p class="card-text">Первый конкурс 2021</p>
+                            <h5 class="card-title">Тип проекта</h5>
+                            <p class="card-text">
+                                Образовательные натавнические проекты в 
+                                области культуры, искусства и ркеативных 
+                                индустрий (включая цифровые технологии)
+                            </p>
+                            <h5 class="card-title">Рейтинг заявки</h5>
+                            <p class="card-text">73,75</p>
+                        </div>
+                        <div class="col-md-6">  
+                            <h5 class="card-title">Тематическое направление</h5>
+                            <p class="card-text">
+                                Культурный код. Проекты по продвижению через 
+                                культуру и креативные индустрии традиционных 
+                                духовно-нравственных ценностей.”
+                            </p>
+                            <h5 class="card-title">Номер заявки</h5>
+                            <p class="card-text">ПФКИ-21-1-019363</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
 
         </div>
 
+        <!-- <div class="row d-flex justify-content-center mt-1">
+            
+            <div class="col-md-6">
+                <div class="card content-info">
 
-        <div class="mt-2 d-flex justify-content-center">
-        </div>
-    </div>
-</section>
+                <div class="card-body content-body">
+
+                    <h5 class="card-title"></h5>
+                    <p class="text-about text-truncated card-text">
+                        
+                    </p>
+
+                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
+                </div>
+
+                <div class="bg-icon w-100">
+                    <div class="phrase-bg-img-2"></div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card content-info">
+
+                <div class="card-body content-body">
+
+                    <h5 class="card-title">Пока что нам нечего вам покаазть</h5>
+                    <p class="text-about text-truncated card-text">
+                    </p>
+
+                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
+
+                </div>
+
+                <div class="bg-icon w-100">
+                    <div class="phrase-bg-img-2"></div>
+                </div>
+                </div>
+            </div>
+
+        </div> -->
+</div>
 
 @guest
 <section class="container">

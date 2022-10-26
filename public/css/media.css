@@ -121,13 +121,21 @@
         width: 100%;
         height: 95%;
     }
-    .phrase-bg-img-1 {
+    .phrase-bg-img-1{
         width: 60%;
         top: -25px;
         right: -90px;
     }
+    .phrase-bg-img-about{
+        width: 60%;
+        top: -45px;
+        right: -80px;
+    }
     .text-about{
         max-width: 95%!important;
+    }
+    .fix-adaptiv{
+        flex-direction: column-reverse;
     }
     
 }
@@ -170,5 +178,10 @@
     .counter .h2-counter {
 
         font-size: 1.8vw;
+    }
+    .phrase-bg-img-about{
+        width: 24%;
+        top: -80px;
+        right: -80px;
     }
 }

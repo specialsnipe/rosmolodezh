@@ -42,18 +42,24 @@ $user = auth()->user();
         <div class="col-12">
             <div class="col-12">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ $block->imageNormal }}" alt="" class="img-fluid">
+                    <img src="{{ $block->imageNormal }}" alt="" class="img-fluid single-image rounded">
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <h4 class="h4">Задания данного блока:
-                <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
+        <div class="col-12 mt-3">
+            <div class="d-flex justify-content-end mb-3">
+                <div class="p-2" style="padding-top: 0 !important;padding-bottom: 0 !important;">
+                    <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
                     class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
-                <button role="button" class="btn btn-danger pl-2 pt-1 pb-1 pr-2" style="font-size:10px"
-                    data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
+                </div>
+                <div class="p-2" style="padding-top: 0 !important;padding-bottom: 0 !important;padding-right: 0 !important;">
+                    <button role="button" class="btn btn-danger pl-3 pt-1 pb-1 pr-2" style="font-size:10px"
+                        data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
+                </div>
+            </div>
 
-            </h4>
+
+            <h4 class="h4 text-center">Задания данного блока:</h4>
             <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
                 action="{{ route('profile.tracks.blocks.destroy', [$block->track_id, $block->id]) }}" targetid="deleteBlock">
             </x-modal>
@@ -153,5 +159,22 @@ $user = auth()->user();
           return false;
           }
       });
+    const singleImage = document.querySelector('.single-image');
+    if (singleImage) {
+        let ghostingImage = singleImage.cloneNode(true);
+        ghostingImage.style.maxWidth = '100%';
+        ghostingImage.style.width = '100%';
+        ghostingImage.style.maxHeight = '100%';
+        ghostingImage.style.height = '100%';
+        ghostingImage.style.position = 'absolute';
+        ghostingImage.style.objectFit = 'cover';
+        ghostingImage.style.zIndex = '1';
+        ghostingImage.style.opacity = '0.2';
+
+        singleImage.parentNode.style.position = 'relative';
+        singleImage.style.zIndex = '10';
+        singleImage.parentNode.appendChild(ghostingImage);
+
+    }
 </script>
 @endpush
