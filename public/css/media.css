@@ -134,6 +134,9 @@
     .text-about{
         max-width: 95%!important;
     }
+    .fix-adaptiv{
+        flex-direction: column-reverse;
+    }
     
 }
 

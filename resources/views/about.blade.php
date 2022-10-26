@@ -33,7 +33,7 @@
             <div class="col-md-6">
                 <div class="content-img img-bg-about"></div>
             </div>
-
+            <section class="row fix-adaptiv">
             <div class="col-md-6">
                 <div class="content-img img-bg-about-1"></div>
             </div>
@@ -50,6 +50,7 @@
                     </div>
                 </div>
             </div>
+            </section>
             <div class="col-md-3 mt-3 d-flex flex-column align-items-center">
                 <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
                 <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
