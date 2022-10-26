@@ -46,12 +46,16 @@ $user = auth()->user();
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="d-flex justify-content-end mb-5">
-                <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
-                   class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
-                <button role="button" class="btn btn-danger pl-3 pt-1 pb-1 pr-2 ml-3" style="font-size:10px"
+        <div class="col-12 mt-3">
+            <div class="d-flex justify-content-end mb-3">
+                <div class="p-2" style="padding-top: 0 !important;padding-bottom: 0 !important;">
+                    <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
+                    class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
+                </div>
+                <div class="p-2" style="padding-top: 0 !important;padding-bottom: 0 !important;padding-right: 0 !important;">
+                    <button role="button" class="btn btn-danger pl-3 pt-1 pb-1 pr-2" style="font-size:10px"
                         data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
+                </div>
             </div>
 
 
