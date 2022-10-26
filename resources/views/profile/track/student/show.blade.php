@@ -28,41 +28,39 @@
                 <article class="col-sm-12 col-md-9">
                     <div class="row">
                         <h4 class="h4 col-12 text-center mb-5">Направление "{{ $track->title }}"</h4>
-                        <div class="col-sm-12 col-md-6 table-responsive">
-                            <table class="table">
-                                <tbody>
-                                <tr class="p-3">
-                                    <td class="p-3">Куратор направления</td>
-                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->all_names }}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Номер телефона куратора</td>
-                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->phone }}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Телеграм куратора</td>
-                                    <td class="p-3">{{ auth()->user()->tracks[0]->curator->tg_name }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <table class="table table-responsive">
-                                <tbody>
-                                <tr>
-                                    <td class="p-3">Решено задач</td>
-                                    <td>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Средний балл</td>
-                                    <td>{{$user->getAverageMarkTrackAttribute($track->id)}}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Получено оценок</td>
-                                    <td>{{$user->getAnswerMarkCountAttribute($track->id)}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-sm-12">
+                            <div class="row mb-5">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="info-track">
+                                        <span class="info-track__title">Куратор направления</span>
+                                        <span>{{ auth()->user()->tracks[0]->curator->all_names }}</span>
+                                    </div>
+                                    <div class="info-track">
+                                        <span class="info-track__title">Номер телефона куратора</span>
+                                        <span>{{ auth()->user()->tracks[0]->curator->phone }}</span>
+                                    </div>
+                                    <div class="info-track">
+                                        <span class="info-track__title">Телеграм куратора</span>
+                                        <span>{{ auth()->user()->tracks[0]->curator->tg_name
+                                                ? "<a href='http://t.me/" . auth()->user()->tracks[0]->curator->tg_name . "'>@" . auth()->user()->tracks[0]->curator->tg_name ."</a>"
+                                                : "не найдено" }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6" style="padding:0 10px 0 10px">
+                                    <div class="info-track">
+                                        <span class="info-track__title">Решено задач</span>
+                                        <span>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</span>
+                                    </div>
+                                    <div class="info-track">
+                                        <span class="info-track__title">Средний балл</span>
+                                        <span>{{$user->getAverageMarkTrackAttribute($track->id)}}</span>
+                                    </div>
+                                    <div class="info-track">
+                                        <span class="info-track__title">Получено оценок</span>
+                                        <span>{{$user->getAnswerMarkCountAttribute($track->id)}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
                         <div class="col-sm-12">

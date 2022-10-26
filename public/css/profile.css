@@ -743,5 +743,30 @@ td:nth-last-child(1) {
     align-items: center;
 }
 
+.info-track {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    margin-bottom: 10px;
+}
+
+.info-track > * {
+    box-sizing: border-box;
+    padding: 15px 15px;
+    width: 100%;
+}
+
+.info-track > *:last-child {
+    text-align: center;
+}
+.info-track__title {
+    flex: 1;
+    background: #e8e8e8;
+    border-radius: 5px;
+
+}
+
 
 
