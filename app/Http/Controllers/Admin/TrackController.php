@@ -65,10 +65,8 @@ class TrackController extends Controller
         $teachers = $data['teacher_id'];
 
         $track = Track::create($data);
-
+        $teachers[] = $track->curator_id;
         $track->teachers()->attach($teachers);
-
-
 
         return redirect()->route('admin.tracks.show', $track->id);
     }
@@ -133,6 +131,8 @@ class TrackController extends Controller
             $data['image'] = $filename;
         }
         $teachers = $data['teacher_id'];
+
+        $teachers[] = $data['curator_id'];
         $track->teachers()->sync($teachers);
         $track->update($data);
 
