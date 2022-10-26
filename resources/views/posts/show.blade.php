@@ -40,7 +40,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-sm-12 col-md-4  d-lg-block d-md-none d-sm-none">
+                <div class="col-sm-12 col-md-4  d-lg-block d-md-none d-sm-none d-none">
                     <div class="">
                         <div class="h2">Другие интересные статьи</div>
                         <div class="line mt-3 mb-0"></div>
