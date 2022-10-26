@@ -9,26 +9,30 @@
         <div class="row">
             @forelse($user->tracks as $track)
 
-                <article class="col-sm-12 col-md-9">
+                <article class="col-sm-12">
                     <div class="row">
-                        <h4 class="h4 col-12 text-center mb-5">Направление: "{{ $track->title }}"</h4>
-                        <div class="col-sm-12 col-md-6 ">
-                            <table class="table table-responsive">
-                                <tbody>
-                                <tr>
-                                    <td class="p-3">Решено задач</td>
-                                    <td>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Средний балл</td>
-                                    <td>{{$user->getAverageMarkTrackAttribute($track->id)}}</td>
-                                </tr>
-                                <tr class="p-3">
-                                    <td class="p-3">Получено оценок</td>
-                                    <td>{{$user->getAnswerMarkCountAttribute($track->id)}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <h4 class="h4 col-12 text-center mb-3">Направление: "{{ $track->title }}"</h4>
+                        <div class="col-12" style="padding:0 10px 0 10px">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="info-track">
+                                        <span class="info-track__title">Решено задач</span>
+                                        <span>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="info-track">
+                                        <span class="info-track__title">Средний балл</span>
+                                        <span>{{$user->getAverageMarkTrackAttribute($track->id)}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="info-track">
+                                        <span class="info-track__title">Получено оценок</span>
+                                        <span>{{$user->getAnswerMarkCountAttribute($track->id)}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>
