@@ -14,7 +14,7 @@
     <div class="main-container-directions">
         <div class="container m-0 p-0">
             <div class="row">
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-lg-8">
                     @if($post->images->count() > 1)
                     <div class="slider" style="max-width: 100% !important">
                         <div class="slider__wrapper">
@@ -40,7 +40,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4  d-lg-block d-md-none d-sm-none">
                     <div class="">
                         <div class="h2">Другие интересные статьи</div>
                         <div class="line mt-3 mb-0"></div>
@@ -74,6 +74,25 @@
                     <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
                 </div> --}}
 
+            </div>
+            <div class="col-sm-12  d-lg-none d-md-block">
+                <div class="">
+                    <div class="h2">Другие интересные статьи</div>
+                    <div class="line mt-3 mb-0"></div>
+                    <div class="link-content">
+                        @foreach ($posts as $postx)
+                        <a href="{{ route('posts.show', $postx->id) }}" class="">
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <p class="h5"><i class="fas fa-external-link-alt" style="font-size: 16px;"></i> {{ $postx->title }} </p>
+                                    <p class="text-truncat-1 ">{{ $postx->excerpt }} </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
         @guest
