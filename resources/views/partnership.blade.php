@@ -50,7 +50,7 @@
 @section('content')
 
 <div class="container mb-5 mt-5">
-        <h1 class="h1-content mt-0 mb-4">ИНФОРМАЦИЯ ПАРТНЁРАМ</h1>
+        <h1 class="h1-content mt-0 mb-4">Информация партнёрам</h1>
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="card content-info">
