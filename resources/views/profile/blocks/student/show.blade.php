@@ -35,12 +35,12 @@ $user = auth()->user();
             @include('profile.includes.menu')
             <article class="col-sm-12 col-md-9">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 mb-3">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ $block->imageNormal }}" alt="" class="img-fluid">
+                            <img src="{{ $block->imageNormal }}" alt="" class="img-fluid single-image rounded">
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-3">
                         <h4 class="">Задания данного блока:</h4>
                     </div>
                     <div class="col-12">
@@ -135,5 +135,21 @@ $user = auth()->user();
           return false;
           }
       });
+    const singleImage = document.querySelector('.single-image');
+    if (singleImage) {
+        let ghostingImage = singleImage.cloneNode(true);
+        ghostingImage.style.maxWidth = '100%';
+        ghostingImage.style.width = '100%';
+        ghostingImage.style.maxHeight = '100%';
+        ghostingImage.style.height = '100%';
+        ghostingImage.style.position = 'absolute';
+        ghostingImage.style.objectFit = 'cover';
+        ghostingImage.style.zIndex = '1';
+        ghostingImage.style.opacity = '0.2';
+
+        singleImage.parentNode.style.position = 'relative';
+        singleImage.style.zIndex = '10';
+        singleImage.parentNode.appendChild(ghostingImage);
+    }
 </script>
 @endpush

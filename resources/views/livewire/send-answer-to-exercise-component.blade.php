@@ -82,8 +82,49 @@
                         <button type="submit" class="btn btn-primary ml-3 w-100"> Сохранить ответ</button>
                     </div>
                 </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-danger" wire:click="toggleModalDelete"> Выйти без сохранения</button>
+                </div>
 
             </div>
         </form>
+        <style>
+            .modal-window {
+                position: fixed;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                background: hsl(0 0% 0% / 0.2);
+                z-index: 1;
+            }
+            .modal-block {
+                position: fixed;
+                top:50%;
+                left:50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+            }
+        </style>
+        @if($modalDeleteAnswer)
+            <div class="modal-window" wire:click="toggleModalDelete"></div>
+            <div class="modal-block card">
+                <div class="card-header">
+                    <span class="fs-5 d-flex justify-content-between align-items-center">
+                        Вы уверены что хотите выйти без сохранения?
+                        <i class="fa fa-times text-danger" wire:click="toggleModalDelete"
+                            style="cursor: pointer;"></i>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <p>Если вы выйдите из этой страницы таким образом, то ваш ответ будет навсегда удалён!</p>
+                    <hr >
+                    <div class="d-flex justify-content-between align-items-center">
+                        Вы уверены?
+                        <div class="btn btn-danger" wire:click="outWithoutSave"> Удалить</div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

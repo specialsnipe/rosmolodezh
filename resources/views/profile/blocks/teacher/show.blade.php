@@ -41,8 +41,8 @@ $user = auth()->user();
     <div class="row">
         <div class="col-12">
             <div class="col-12">
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="{{ $block->imageNormal }}" alt="" class="img-fluid">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ $block->imageNormal }}" alt="" class="img-fluid single-image rounded">
                 </div>
             </div>
         </div>
@@ -155,5 +155,22 @@ $user = auth()->user();
           return false;
           }
       });
+    const singleImage = document.querySelector('.single-image');
+    if (singleImage) {
+        let ghostingImage = singleImage.cloneNode(true);
+        ghostingImage.style.maxWidth = '100%';
+        ghostingImage.style.width = '100%';
+        ghostingImage.style.maxHeight = '100%';
+        ghostingImage.style.height = '100%';
+        ghostingImage.style.position = 'absolute';
+        ghostingImage.style.objectFit = 'cover';
+        ghostingImage.style.zIndex = '1';
+        ghostingImage.style.opacity = '0.2';
+
+        singleImage.parentNode.style.position = 'relative';
+        singleImage.style.zIndex = '10';
+        singleImage.parentNode.appendChild(ghostingImage);
+
+    }
 </script>
 @endpush

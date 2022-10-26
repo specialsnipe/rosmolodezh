@@ -20,6 +20,7 @@ class SendAnswerToExerciseComponent extends Component
     public $bodyDefault;
     public $file;
     public $files = [];
+    public $modalDeleteAnswer = false;
 
     public function uploadFile()
     {
@@ -65,12 +66,19 @@ class SendAnswerToExerciseComponent extends Component
             $this->files = [];
         }
     }
+
     public function updatedFile()
     {
         $this->validate([
             'file' => 'required|file|max:2048', // 1MB Max
         ]);
     }
+
+    public function toggleModalDelete()
+    {
+        $this->modalDeleteAnswer = !$this->modalDeleteAnswer;
+    }
+
     public function updatedBody()
     {
         $this->bodyDefault = $this->body;
@@ -97,6 +105,12 @@ class SendAnswerToExerciseComponent extends Component
             'body' => $this->body,
             'sended' => true
         ]);
+        return redirect()->route('profile.tracks.blocks.show', [$this->block->track_id,$this->block->id]);
+    }
+
+    public function outWithoutSave()
+    {
+        $this->answer->forceDelete();
         return redirect()->route('profile.tracks.blocks.show', [$this->block->track_id,$this->block->id]);
     }
 
