@@ -41,19 +41,21 @@ $user = auth()->user();
     <div class="row">
         <div class="col-12">
             <div class="col-12">
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mb-5">
                     <img src="{{ $block->imageNormal }}" alt="" class="img-fluid">
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <h4 class="h4">Задания данного блока:
+            <div class="d-flex justify-content-end mb-5">
                 <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
-                    class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
-                <button role="button" class="btn btn-danger pl-2 pt-1 pb-1 pr-2" style="font-size:10px"
-                    data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
+                   class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
+                <button role="button" class="btn btn-danger pl-3 pt-1 pb-1 pr-2 ml-3" style="font-size:10px"
+                        data-toggle="modal" data-target="#deleteBlock" id="delete"> Удалить блок </button>
+            </div>
 
-            </h4>
+
+            <h4 class="h4 text-center">Задания данного блока:</h4>
             <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
                 action="{{ route('profile.tracks.blocks.destroy', [$block->track_id, $block->id]) }}" targetid="deleteBlock">
             </x-modal>
