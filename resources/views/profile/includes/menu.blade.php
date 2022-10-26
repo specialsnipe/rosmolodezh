@@ -20,7 +20,10 @@
             <a href="{{ route('profile.track.show', $track->id) }}" class="nav-link
                 @if(request()->is('profile/progress/track/'. $track->id)) active @endif
                 @if(request()->is('profile/tracks/'. $track->id . '/blocks/create')) active @endif
-                ">{{ $track->title }}</a>
+                ">
+                {{ $track->title }}
+                @if($track->curator_id === auth()->user()->id) <i class="fa fa-flag"></i> @endif
+            </a>
         </li>
         @endforeach
         @else
