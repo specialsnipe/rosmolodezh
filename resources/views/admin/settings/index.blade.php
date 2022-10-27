@@ -75,13 +75,13 @@
                 </a>
             </div>
         </div>
-        {{-- <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
-                <div class="card-body">
-                    <a  class="h5" href="{{route('admin..index')}}"><i class="fa fa-clock"></i>  </a>
-                </div>
+                <a class="card-body" href="{{route('admin.settings.partnership.index')}}">
+                    <span  class="h5"> <i class="nav-icon fa fa-users"></i> Партнёрство </span>
+                </a>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 
