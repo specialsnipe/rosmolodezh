@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 @else
-                    <h4 class="h4 col-sm-12 col-md-6 text-center ">Новых заявок на это направление нет </h4>
+                    <h4 class="h4 col-sm-12 col-md-6 mt-3 mb-3 text-center ">Новых заявок на это направление нет </h4>
                 @endif
                 @if( $requestsToRefused->count() > 0 )
 
@@ -83,12 +83,12 @@
                                                             @if(isset($user_request->user->avatar))
                                                                 <img
                                                                     src="{{ asset($user_request->user->avatar_thumbnail_path) }}"
-                                                                    class="img " alt="" style="height: 50px">
+                                                                    class="img " alt="" style="height: 50px;min-height: 50px">
                                                             @else
                                                                 <img
                                                                     src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                                                     class="img
-                                                                    " alt="" style="height: 50px">
+                                                                    " alt="" style="height: 50px;min-height: 50px">
                                                             @endif
                                                         </div>
                                                        <div>
@@ -121,16 +121,17 @@
                         </div>
                     </div>
                 @else
-                    <h4 class="h4 col-sm-12 col-md-6 text-center ">Заявок на выход из направления нет </h4>
+                    <h4 class="h4 col-sm-12 col-md-6 text-center mb-3 mt-3">Заявок на выход из направления нет </h4>
                 @endif
             @endif
 
             <div class="col-sm-12 mb-3">
 
-                <div class="card">
-                    <h4 class="h4 col-12 text-center m-3 mb-0">Участники данного направления
-                        "{{ $track->title }}"</h4>
+                <div class="card" style="background: #b59be8">
+
                     <div class="card-body track-users">
+                        <h4 class="h4 col-12 text-center mb-3">Участники направления
+                            "{{ $track->title }}"</h4>
                         {{-- Студенты которые участвуют в этом напрвлении --}}
                         <div class="row">
                             @forelse ($users as $user)
@@ -142,7 +143,7 @@
 
                                                 @if(isset($user->avatar))
                                                     <img src="{{ asset($user->avatar_thumbnail_path) }}"
-                                                         class="img-thumbnail border-0" alt="" style="object-fit: contain; height: 100%" >
+                                                         class="img-thumbnail border-0" alt="" style="object-fit: contain; height: 100%; min-width: 50px" >
                                                 @else
                                                     <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                                          class="img border-0" alt="">

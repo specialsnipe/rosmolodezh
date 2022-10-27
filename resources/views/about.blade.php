@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="card content-info">
+                <div class="card content-info h-100">
                     <div class="card-body content-body">
                         <h5 class="card-title">Nethamer.lab</h5>
                         <p class="card-text">IT компания по разработке и поддержки веб-проектов.</p>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="content-img img-bg-about"></div>
+                <div class="content-img img-bg-about h-100"></div>
             </div>
             <section class="row fix-adaptiv">
             <div class="col-md-6">
@@ -81,7 +81,7 @@
                         <p class="card-text">01.10.2021 - 26.12.2022</p>
                         <h5 class="card-title">Заявитель</h5>
                         <p class="card-text">
-                            МУНИЦИПАЛЬНОЕ АВТОНОМНОЕ 
+                            МУНИЦИПАЛЬНОЕ АВТОНОМНОЕ
                             УЧРЕЖДЕНИЕ ГОРОДСКОГО ОКРУГА
                             КРАСНОУРАЛЬСК “ДВОРЕЦ КУЛЬТУРЫ
                             МУТАЛУРГ”
@@ -97,29 +97,29 @@
             <div class="col-md-12">
                 <div class="card content-info-3">
                     <div class="card-body content-body row">
-                        <div class="col-md-6">  
+                        <div class="col-md-6">
                             <h5 class="card-title">Конкурс</h5>
                             <p class="card-text">Первый конкурс 2021</p>
                             <h5 class="card-title">Тип проекта</h5>
                             <p class="card-text">
-                                Образовательные натавнические проекты в 
-                                области культуры, искусства и ркеативных 
+                                Образовательные натавнические проекты в
+                                области культуры, искусства и ркеативных
                                 индустрий (включая цифровые технологии)
                             </p>
                             <h5 class="card-title">Рейтинг заявки</h5>
                             <p class="card-text">73,75</p>
                         </div>
-                        <div class="col-md-6">  
+                        <div class="col-md-6">
                             <h5 class="card-title">Тематическое направление</h5>
                             <p class="card-text">
-                                Культурный код. Проекты по продвижению через 
-                                культуру и креативные индустрии традиционных 
+                                Культурный код. Проекты по продвижению через
+                                культуру и креативные индустрии традиционных
                                 духовно-нравственных ценностей.”
                             </p>
                             <h5 class="card-title">Номер заявки</h5>
                             <p class="card-text">ПФКИ-21-1-019363</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@
         </div>
 
         <!-- <div class="row d-flex justify-content-center mt-1">
-            
+
             <div class="col-md-6">
                 <div class="card content-info">
 
@@ -135,7 +135,7 @@
 
                     <h5 class="card-title"></h5>
                     <p class="text-about text-truncated card-text">
-                        
+
                     </p>
 
                     <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>

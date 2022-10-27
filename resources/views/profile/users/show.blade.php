@@ -20,15 +20,17 @@
     <div class="main-container-directions">
         <div class="row">
             <div class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image">
-
                 <img src="{{ asset($user->avatarBigPath) }}" class="img-fluid rounded mb-2 img-bordered"
                      style="object-fit: contain"
                     alt="">
             </div>
 
             <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
-
-                <div class="text-header mb-4 d-flex align-items-center justify-content-between">Личные данные "{{ $user->firstAndLastNames }}" <a href="{{ url()->previous() }}" class="btn btn-secondary">Назад ></a></div>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary d-none d-lg-none d-md-none d-sm-block mb-5">< Назад</a>
+                <div class="text-header mb-4 d-flex align-items-center justify-content-between">
+                    Личные данные "{{ $user->firstAndLastNames }}"
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary d-block d-lg-block d-md-block d-sm-none">< Назад</a>
+                </div>
 
                 <div class="form-group row">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
