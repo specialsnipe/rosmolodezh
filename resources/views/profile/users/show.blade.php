@@ -26,10 +26,10 @@
             </div>
 
             <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary d-none d-lg-none d-md-none d-sm-block mb-5">< Назад</a>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary d-block d-lg-none d-md-none d-sm-block mb-5">< Назад</a>
                 <div class="text-header mb-4 d-flex align-items-center justify-content-between">
                     Личные данные "{{ $user->firstAndLastNames }}"
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary d-block d-lg-block d-md-block d-sm-none">< Назад</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary d-none d-lg-block d-md-block d-sm-none">< Назад</a>
                 </div>
 
                 <div class="form-group row">
