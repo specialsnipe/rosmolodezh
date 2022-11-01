@@ -51,19 +51,19 @@
                 </div>
             </div>
             </section>
-            <div class="col-md-3 mt-3 d-flex flex-column align-items-center">
+            <div class="col-md-3 mt-3 d-flex flex-column align-items-center icon-hover">
                 <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
                 <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
             </div>
-            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3 icon-hover">
                 <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
                 <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
             </div>
-            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3 icon-hover">
                 <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
                 <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
             </div>
-            <div class="col-md-3 d-flex flex-column align-items-center mt-3">
+            <div class="col-md-3 d-flex flex-column align-items-center mt-3 icon-hover">
                 <div class="icon-bg"><i class="fas fa-user-graduate"></i></div>
                 <text class="text-center mt-2">Столько то преподавателей в нашем проекте</text>
             </div>
