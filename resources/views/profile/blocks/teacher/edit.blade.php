@@ -1,12 +1,12 @@
 @extends('profile.layouts.main')
 
 @section('title') Изменение блока "{{ $block->title }}"
-<a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
+<a href="{{ route('profile.tracks.blocks.show', [$track->slug,$block->slug]) }}"
     class="btn btn-secondary">Назад > </a>
     @endsection
 
 @section('profile_content')
-<form action="{{route('profile.tracks.blocks.update',[$block->track_id,$block->id])}}" method="post" enctype="multipart/form-data">
+<form action="{{route('profile.tracks.blocks.update',[$track->slug,$block->slug])}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('patch')
     <div class="row">

@@ -2,25 +2,26 @@
 
 namespace App\Models;
 
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Track extends Model
 {
-    use HasFactory, SoftDeletes, HasSEO, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, HasSEO, CascadeSoftDeletes, Sluggable;
 
     protected $cascadeDeletes = ['blocks'];
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'
+        'slug', 'title', 'body', 'image', 'curator_id', 'icon', 'tg_url'
     ];
 
     protected $withCount = [
@@ -35,6 +36,25 @@ class Track extends Model
         'icon_thumbnail',
 
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
 
     public function getNameUsersCountAttribute()

@@ -9,11 +9,11 @@
     <div class="container mt-3">
         <div class="main-container-directions">
             <div class="header">
-                <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
+                <a href="{{ route('profile.tracks.blocks.show', [$track->slug,$block->slug]) }}"
                    class="btn btn-secondary d-none d-lg-none d-md-none d-sm-block mb-5">< Назад</a>
                 <div class="d-flex justify-content-between">
                     <h3 class="h3 text-center">Направление "{{ $block->track->title }}" </h3>
-                    <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
+                    <a href="{{ route('profile.tracks.blocks.show', [$track->slug,$block->slug]) }}"
                        class="btn btn-secondary  d-lg-block d-md-block d-sm-none mb-5">< Назад</a>
                 </div>
                 <h2 class="h4 w-100">Задание блока "{{ $block->title }}" </h2>
@@ -28,7 +28,7 @@
                                     <div class="col-12 d-lg-block d-md-block d-sm-none">
                                         @if((auth()->user()->role->id === 2 || auth()->user()->role->id === 3) && $exercise->user_id === auth()->user()->id)
                                             <form class="d-inline"
-                                                  action="{{route('profile.blocks.exercises.destroy', [$block->id, $exercise->id])}} "
+                                                  action="{{route('profile.blocks.exercises.destroy', [$block->slug, $exercise->slug])}} "
                                                   method="post">
                                                 @csrf
                                                 @method('delete')
@@ -36,7 +36,7 @@
                                             </form>
                                         @endif
                                         @if((auth()->user()->role_id === 2 || auth()->user()->role_id === 3) && $exercise->user_id === auth()->user()->id)
-                                            <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
+                                            <a href="{{ route('profile.blocks.exercises.edit', [$block->slug, $exercise->slug]) }}"
                                                class="btn btn-primary ">Изменить <i class="fa fa-pen"></i></a>
                                         @endif
                                     </div>
@@ -61,10 +61,10 @@
                             <div class="row">
                                 <div class="col-12 d-none d-lg-none d-md-none d-sm-block mt-4">
                                     @if((auth()->user()->role_id === 2 || auth()->user()->role_id === 3) && $exercise->user_id === auth()->user()->id)
-                                        <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
+                                        <a href="{{ route('profile.blocks.exercises.edit', [$block->slug, $exercise->slug]) }}"
                                            class="btn btn-primary ">Изменить <i class="fa fa-pen"></i></a>
                                         <form class="d-inline"
-                                              action="{{route('profile.blocks.exercises.destroy', [$block->id, $exercise->id])}} "
+                                              action="{{route('profile.blocks.exercises.destroy', [$block->slug, $exercise->slug])}} "
                                               method="post">
                                             @csrf
                                             @method('delete')

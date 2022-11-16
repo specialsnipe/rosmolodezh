@@ -4,21 +4,23 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Block extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes, Sluggable;
 
     protected $table = 'blocks';
     protected $cascadeDeletes = ['exercises'];
 
     protected $fillable = [
+        'slug',
         'title',
         'body',
         'image',
@@ -49,14 +51,33 @@ class Block extends Model
         'deleted_at'
     ];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getNextBlockUrlAttribute()
     {
         $block = Block::where('track_id', $this->track_id)
                     ->where('priority', $this->priority + 1)
                     ->first();
+        $track = Track::find($this->track_id);
         if ($block) {
-            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$track->slug,$block->slug]);
         }
         return false;
     }
@@ -67,8 +88,9 @@ class Block extends Model
         $block = Block::where('track_id', $this->track_id)
                     ->where('priority', $this->priority - 1)
                     ->first();
+        $track = Track::find($this->track_id);
         if ($block) {
-            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$track->slug,$block->slug]);
         }
         return false;
     }

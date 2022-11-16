@@ -3,22 +3,24 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Exercise extends Model
 {
-    use HasFactory, SoftDeletes,  Filterable, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes,  Filterable, CascadeSoftDeletes, Sluggable;
 
     protected $cascadeDeletes = ['answers'];
     protected $dates = ['deleted_at'];
 
 
     protected $fillable = [
+        'slug',
         'title',
         'excerpt',
         'body',
@@ -42,6 +44,24 @@ class Exercise extends Model
       'answers'
     ];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getComplexityClassNameAttribute()
     {

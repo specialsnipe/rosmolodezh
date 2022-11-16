@@ -42,11 +42,7 @@ class TrackController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  Track $track
-     */
+    
     public function show(Track $track)
     {
         $tracks = Track::all();
@@ -68,7 +64,7 @@ class TrackController extends Controller
                 }
             }
         }
-        $track= $track->load('blocks');
+        $track = $track->load('blocks');
 
 
 
@@ -109,8 +105,10 @@ class TrackController extends Controller
         //
     }
 
-    public function sendRequest(Track $track)
+    public function sendRequest(int $id)
     {
+        $track = Track::findOrFail($id);
+
         $user_id = auth()->user()->id;
         $trackUserRequest = TrackUserRequest::where('user_id_sender', $user_id)
         ->where('track_id', $track->id)
@@ -135,8 +133,9 @@ class TrackController extends Controller
         return redirect()->route('tracks.show', $track->id);
     }
 
-    public function sendRefuseRequest(Track $track)
+    public function sendRefuseRequest(int $id)
     {
+        $track = Track::findOrFail($id);
         $user_id = auth()->user()->id;
         $trackUserRequest = TrackUserRequest::where('user_id_sender', $user_id)
         ->where('track_id', $track->id)

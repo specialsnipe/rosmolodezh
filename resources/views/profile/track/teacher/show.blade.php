@@ -45,7 +45,7 @@
 
                                                         <div class="col justify-content-end">
                                                             <form
-                                                                action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}"
+                                                                action="{{ route('tracks.userAccepted',[$track->slug, $user_request->user->slug ] ) }}"
                                                                 method="post" class="d-inline ">
                                                                 @csrf
                                                                 @method('put')
@@ -101,7 +101,7 @@
 
                                                             <div class="col justify-content-end">
                                                                 <form
-                                                                    action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}"
+                                                                    action="{{ route('tracks.userAccepted',[$track->slug, $user_request->user->slug ] ) }}"
                                                                     method="post" class="d-inline ">
                                                                     @csrf
                                                                     @method('put')
@@ -136,7 +136,7 @@
                         <div class="row">
                             @forelse ($users as $user)
                                 <div class="col-md-6 col-sm-12">
-                                    <a href="{{ route('profile.user.show', $user->id) }}" class="text-decoration-none text-black">
+                                    <a href="{{ route('profile.user.show', $user->slug) }}" class="text-decoration-none text-black">
                                     <div class="card mb-2">
                                         <div class="row">
                                             <div class="col-2 d-flex align-items-center">
@@ -176,7 +176,7 @@
             </div>
             <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
             <div class="col-sm-12 mt-2 mb-3">
-                <a href="{{ route('profile.tracks.blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать
+                <a href="{{ route('profile.tracks.blocks.create', $track->slug) }}" class="fs-6 btn btn-primary">Создать
                     новый блок</a>
             </div>
             <div class="col-sm-12">
@@ -188,13 +188,13 @@
                             <div class="row">
                                 <div class="col-sm-12 col-lg-6">
 
-                                    <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
+                                    <a href="{{ route('profile.tracks.blocks.show', [$track->slug,$block->slug]) }}"
                                        class="fs-5 text-decoration-none">
                                         Блок: {{ $block->title }}
                                     </a>
                                 </div>
                                 <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                                    <a href="{{ route('profile.blocks.exercises.create', [$block->id]) }}"
+                                    <a href="{{ route('profile.blocks.exercises.create', [$block->slug]) }}"
                                        class="btn btn-primary"> Добавить новое упражнение </a>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                     @if($loop->first)
                                         <div class="fs-6 mt-0 mb-2">Задания блока:</div>
                                     @endif
-                                    <a href="{{ route('profile.blocks.exercises.show', [$exercise->block_id, $exercise->id]) }}"
+                                    <a href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}"
                                        class="fs-6">{{ $exercise->title }}</a>
                                 @empty
                                     <div class="fs-6 mt-0 mb-2">К данному блоку ещё не добавили заданий :(</div>

@@ -98,6 +98,10 @@ Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'emai
 });
 
 
+//Update slug
+Route::get('/update_slug', [\App\Http\Controllers\UpdateController::class, 'update']);
+
+
 // Client side
 
 Route::get('/', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
@@ -114,8 +118,8 @@ Route::get('/search/posts', [\App\Http\Controllers\Client\HomeController::class,
 Route::resource('posts', \App\Http\Controllers\Client\PostController::class);
 Route::resource('tracks', \App\Http\Controllers\Client\TrackController::class);
 // manage tracks' user
-Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
-Route::post('user/add/tracks/{track}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
+Route::post('user/add/tracks/{id}', [\App\Http\Controllers\Client\TrackController::class, 'sendRequest'])->name('tracks.sendRequest');
+Route::post('user/add/tracks/{id}/refuse', [\App\Http\Controllers\Client\TrackController::class, 'sendRefuseRequest'])->name('tracks.sendRefuseRequest');
 Route::match(['put', 'patch'], 'user/add/tracks/{track}/user/{user}/accept', [\App\Http\Controllers\Client\TrackController::class, 'userAccepted'])
     ->name('tracks.userAccepted');
 

@@ -72,9 +72,9 @@ class BlockController extends Controller
                 auth()->user()->started_blocks()->attach($block);
             }
 
-            return view('profile.blocks.student.show',compact('block'));
+            return view('profile.blocks.student.show',compact('block', 'track'));
         } else {
-            return view('profile.blocks.teacher.show',compact('block'));
+            return view('profile.blocks.teacher.show',compact('block', 'track'));
         }
     }
 
@@ -87,7 +87,7 @@ class BlockController extends Controller
     public function edit(Track $track, Block $block)
     {
         $this->authorize('update', $block);
-        return view('profile.blocks.teacher.edit',compact('block'));
+        return view('profile.blocks.teacher.edit',compact('block', 'track'));
     }
 
     /**

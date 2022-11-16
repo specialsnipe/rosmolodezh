@@ -58,7 +58,7 @@
             <div class="col-12 mt-3">
                 <div class="d-flex justify-content-end mb-3">
                     <div class="p-2" style="padding-top: 0 !important;padding-bottom: 0 !important;">
-                        <a href="{{ route('profile.tracks.blocks.edit', [$block->track_id, $block->id]) }}"
+                        <a href="{{ route('profile.tracks.blocks.edit', [$track->slug, $block->slug]) }}"
                            class="btn btn-light pl-2 pt-1 pb-1 pr-2" style="font-size:10px">Редактировать блок</a>
                     </div>
                     <div class="p-2"
@@ -72,7 +72,7 @@
 
                 <h4 class="h4 text-center">Задания данного блока:</h4>
                 <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
-                         action="{{ route('profile.tracks.blocks.destroy', [$block->track_id, $block->id]) }}"
+                         action="{{ route('profile.tracks.blocks.destroy', [$block->slug, $block->slug]) }}"
                          targetid="deleteBlock">
                 </x-modal>
                 <script>
@@ -86,7 +86,7 @@
                 </script>
             </div>
             <div class="col-12 mb-3">
-                <a href="{{ route('profile.blocks.exercises.create', $block->id) }}"
+                <a href="{{ route('profile.blocks.exercises.create', $block->slug) }}"
                    class="btn btn-primary pl-2 pt-1 pb-1 pr-2"
                    style="font-size:10px">Добавить новое задание</a>
             </div>
@@ -104,9 +104,9 @@
                                         <div class="row">
                                             <h4 class="col-12 d-flex justify-content-between align-items-center">
                                                 <a class="text-decoration-none link-dark me-2"
-                                                   href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
+                                                   href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}">{{
                                             $exercise->title }}</a>
-                                                <a href="{{ route('profile.blocks.exercises.edit', [$block->id, $exercise->id]) }}"
+                                                <a href="{{ route('profile.blocks.exercises.edit', [$block->slug, $exercise->slug]) }}"
                                                    class="btn btn-light"
                                                    style="font-size:10px">Редактировать</a>
 
@@ -134,7 +134,7 @@
                                             {!! $exercise->excerpt !!}
                                         </div>
                                         <div class="d-flex justify-content-end align-items-center">
-                                            <a href="{{ route('profile.blocks.exercises.show',[$block->id, $exercise->id]) }}"
+                                            <a href="{{ route('profile.blocks.exercises.show',[$block->slug, $exercise->slug]) }}"
                                                class="btn btn-primary align-self-end"> Просмотр упражнений и ответов</a>
                                         </div>
                                     </div>

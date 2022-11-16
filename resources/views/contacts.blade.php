@@ -101,7 +101,7 @@
 </section>
 <div id="wrapMap">
     <iframe
-        src="{{$settings->location_url}}" style="width:100%; border:0; pointer-events: none;" height="450" >
+        src="{{$settings->location_url}}" style="width:100%; border:0;" height="450" >
     </iframe>
 </div>
 

@@ -17,9 +17,9 @@
         @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher' )
             @foreach (auth()->user()->tracksWhereTeacher as $track)
                 <li class="nav-item">
-                    <a href="{{ route('profile.track.show', $track->id) }}" class="nav-link
-                @if(request()->is('profile/progress/track/'. $track->id)) active @endif
-                @if(request()->is('profile/tracks/'. $track->id . '/blocks/create')) active @endif
+                    <a href="{{ route('profile.track.show', $track->slug) }}" class="nav-link
+                @if(request()->is('profile/progress/track/'. $track->slug)) active @endif
+                @if(request()->is('profile/tracks/'. $track->slug . '/blocks/create')) active @endif
                 ">
                         {{ $track->title }}
                         @if($track->curator_id === auth()->user()->id)
@@ -31,8 +31,8 @@
         @else
             @foreach (auth()->user()->tracks as $track)
                 <li class="nav-item">
-                    <a href="{{ route('profile.user.track.show', $track->id) }}" class="nav-link
-                @if(request()->is('profile/progress/user/track/'. $track->id)) active @endif
+                    <a href="{{ route('profile.user.track.show', $track->slug) }}" class="nav-link
+                @if(request()->is('profile/progress/user/track/'. $track->slug)) active @endif
                 ">{{ $track->title }}</a>
                 </li>
             @endforeach
