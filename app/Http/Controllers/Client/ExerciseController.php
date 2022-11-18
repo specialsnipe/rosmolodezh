@@ -85,7 +85,7 @@ class ExerciseController extends Controller
 
             $track = $block->track;
             DB::commit();
-            return redirect()->route('profile.tracks.blocks.show', [$track->id, $block->id]);
+            return redirect()->route('profile.tracks.blocks.show', [$track->slug, $block->slug]);
         } catch (\Exception $e) {
             DB::rollBack();
             abort(500);

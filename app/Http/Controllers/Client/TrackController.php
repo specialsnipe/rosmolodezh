@@ -42,7 +42,7 @@ class TrackController extends Controller
         //
     }
 
-    
+
     public function show(Track $track)
     {
         $tracks = Track::all();
@@ -130,7 +130,7 @@ class TrackController extends Controller
             ]);
         }
 
-        return redirect()->route('tracks.show', $track->id);
+        return redirect()->route('tracks.show', $track->slug);
     }
 
     public function sendRefuseRequest(int $id)
@@ -157,7 +157,7 @@ class TrackController extends Controller
             ]);
         }
 
-        return redirect()->route('tracks.show', $track->id);
+        return redirect()->route('tracks.show', $track->slug);
     }
 
     public function userAccepted(Track $track, User $user)
