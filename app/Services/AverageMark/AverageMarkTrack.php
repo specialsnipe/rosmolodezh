@@ -2,31 +2,29 @@
 
 namespace App\Services\AverageMark;
 
+use App\Models\Track;
 use App\Models\Answer;
 
 class AverageMarkTrack
 {
-    public static function getMark($track)
+    public static function getMark(Track $track)
     {
         $score = 0;
+        $markCount = 0;
         $blocks = $track->blocks->load('exercises');
-        $i = 0;
-        foreach ($blocks as $block) {
-            $exercises = $block->exercises->load('answers');
-            foreach ($exercises as $exercise) {
-                $answers = $exercise->answers;
-                foreach ($answers as $answer) {
-                    if ($answer->mark) {
-                        $score += $answer->mark;
-                        $i++;
-                    }
-                }
+        
+        if ($blocks->count() <= 0 ) return $score;
+
+        foreach($blocks as $block) {
+            $averageMark = $block->getAverageScoreAttribute();
+            if ($averageMark != 0) {
+                $score += $averageMark;
+                $markCount += 1;
             }
         }
 
-        if ($i === 0) {
-            return 0;
-        }
-        return round($score / $i, 1);
+        if ($markCount <= 0 ) return 0;
+
+        return round($score / $markCount, 1);
     }
 }

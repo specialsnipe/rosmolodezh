@@ -41,7 +41,7 @@ class Exercise extends Model
 //        'mark_count'
     ];
     protected $with = [
-      'answers'
+        'answers'
     ];
 
     /**
@@ -57,7 +57,7 @@ class Exercise extends Model
             ]
         ];
     }
-    
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -132,18 +132,19 @@ class Exercise extends Model
     public function getAverageScoreAttribute()
     {
         $score = 0;
-        $i =0;
-        $answers = Answer::where('exercise_id', $this->id)->get();
+        $answers = Answer::where('exercise_id', $this->id)->whereNotNull('mark')->get();
+
+        if ($answers->count() <= 0) {
+            return $score;
+        }
+
         foreach ($answers as $answer) {
             if($answer->mark) {
                 $score += $answer->mark;
-                $i++;
             }
         }
-        if ($i === 0) {
-            return 0;
-        }
-        return round($score/$i, 1);
+
+        return round($score / $answers->count(), 1);
     }
     /**
      *  Relation with users (one to many)

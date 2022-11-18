@@ -26,7 +26,7 @@ class BlockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Track $track)
+    public function index()
     {
         //
     }
@@ -36,8 +36,10 @@ class BlockController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create(Track $track)
+    public function create($track_id)
     {
+
+        $track = Track::where('id', $track_id)->first();
 
         return view('admin.blocks.create', [
             'track' => $track,
@@ -51,8 +53,10 @@ class BlockController extends Controller
      * @param \App\Http\Requests\Block\StoreBlockRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreBlockRequest $request, Track $track)
+    public function store(StoreBlockRequest $request, $track_id)
     {
+        $track = Track::where('id', $track_id)->first();
+
         $data = $request->validated();
         $data['track_id'] = $track->id;
         $data['user_id'] = auth()->user()->id;
@@ -67,11 +71,15 @@ class BlockController extends Controller
      * @param \App\Models\Block $block
      * @return Application|Factory|View
      */
-    public function show(Track $track, Block $block)
+    public function show($track_id, $block_id)
     {
+        $block = Block::where('id', $block_id)->first();
+        $track = Track::where('id', $track_id)->first();
+
         $duration = DurationBlock::getNameDuration($block);
         $averageMarkBlock = AverageMarkBlock::getMark($block);
         $exercises = Exercise::where('block_id', $block->id)->get();
+
         return view('admin.blocks.show', compact('track', 'block', 'exercises','averageMarkBlock', 'duration'));
     }
 

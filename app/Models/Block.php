@@ -126,24 +126,17 @@ class Block extends Model
     public function getAverageScoreAttribute()
     {
         $score = 0;
-        $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
-//        $exercises = $this->exercises;
-        $i = 0;
+        $exercises = Exercise::where('block_id', $this->id)
+            ->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
 
+        $exercises = $this->exercises;
+        if ($exercises->count() <= 0 ) {
+            return $score;
+        }
         foreach ($exercises as $exercise) {
-            $answers = Answer::where('exercise_id', $exercise->id)->without(['exercise', 'user'])->get();
-//            $answers = $exercise->answers;
-            foreach ($answers as $answer) {
-                if ($answer->mark) {
-                    $score += $answer->mark;
-                    $i++;
-                }
-            }
+            $score += $exercise->getAverageScoreAttribute();
         }
-        if ($i === 0) {
-            return 0;
-        }
-        return round($score / $i, 1);
+        return round($score / $exercises->count(), 1);
     }
 
     public function getNameExercisesCountAttribute()

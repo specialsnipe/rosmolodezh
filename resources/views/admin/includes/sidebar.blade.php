@@ -59,7 +59,16 @@
                         class="nav-link @if(request()->routeIs('admin.tracks.*') || request()->routeIs('admin.blocks.*')) active @endif">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>
-                            Направления
+                            Направления (UI)
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.tracks.table') }}"
+                        class="nav-link @if(request()->routeIs('admin.tracks.table')) active @endif">
+                        <i class="nav-icon fa fa-table"></i>
+                        <p>
+                            Направления (таблица)
                         </p>
                     </a>
                 </li>
