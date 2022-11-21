@@ -48,7 +48,7 @@ $user = auth()->user();
                         <div class="card-body table-responsive">
                             <ul class="list-group">
                                 @forelse($block->exercises as $exercise)
-                                <li class="list-group-item border-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'light' }}">
+                                <li class="list-group-item border-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'light' }}" id="{{ 'exercise_' . $exercise->slug }}" >
                                     <div class="row my-2">
                                         <div class="col-1 text-center">
                                             <div class="h3 fw-light">{{ $loop->index + 1 }}</div>

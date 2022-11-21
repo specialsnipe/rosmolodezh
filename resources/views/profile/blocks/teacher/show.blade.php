@@ -95,7 +95,7 @@
                 <div class="card-body table-responsive">
                     <ul class="list-group">
                         @forelse($block->exercises as $exercise)
-                            <li class="list-group-item">
+                            <li class="list-group-item" id="{{ "exercise_" . $exercise->slug }}">
                                 <div class="row my-2">
                                     <div class="col-1 text-center">
                                         <div class="h3 fw-light">{{ $loop->index + 1 }}</div>

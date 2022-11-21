@@ -16,20 +16,23 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-12">
                                     <div class="info-track">
-                                        <span class="info-track__title">Решено задач</span>
-                                        <span>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</span>
+                                        <div class="info-track__title">Решено задач</div>
+                                        <div>{{$user->getSolvedTrackExercisesAttribute($track->id)}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="info-track">
-                                        <span class="info-track__title">Средний балл</span>
-                                        <span>{{$user->getAverageMarkTrackAttribute($track->id)}}</span>
+                                        <div class="info-track__title">Средний балл</div>
+                                        <div>{{$user->getAverageMarkTrackAttribute($track->id)}}
+                                            <img style="object-fit: contain; width: 100%"
+                                                src="https://raw.githubusercontent.com/NikitaMurugov/PortfolioDex/04f8384659f5129d660ed56aaeab0679a495c02b/Images/star_group.svg" alt="stars">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="info-track">
-                                        <span class="info-track__title">Получено оценок</span>
-                                        <span>{{$user->getAnswerMarkCountAttribute($track->id)}}</span>
+                                        <div class="info-track__title">Получено оценок</div>
+                                        <div>{{$user->getAnswerMarkCountAttribute($track->id)}}</div>
                                     </div>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ use App\Models\Information;
   <section>
     <div class="container text-center pt-4 text-md-start">
       <div class="row mt-3">
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fa-solid fa-book-open-reader me-3 text-secondary"></i>Росмолодежь
           </h6>
@@ -56,12 +56,9 @@ use App\Models\Information;
   </section>
   <section class="d-flex justify-content-center justify-content-lg-between p-4">
     <div class="container">
-      <div class="row">
-        <div class="col me-5 d-none d-lg-block" style="text-align: left; padding-left:2.2rem;">
-          <span>Присоединяйтесь к нам в социальных сетях:</span>
-        </div>
-
-        <div class="col" style="text-align: right; padding-right:6rem;">
+      <div class="d-flex justify-content-md-between justify-content-center" style="flex-wrap: wrap">
+        <div class="d-none d-lg-block">
+          <span class="mr-5">Присоединяйтесь к нам в социальных сетях:</span>
           <a href="{{ $information->vk_url }}" class="me-4 icon">
             <i class="fab fa-vk"></i>
           </a>
@@ -79,11 +76,12 @@ use App\Models\Information;
                         </svg>
           </a>
         </div>
+        <div class="text-center">
+           <span>© 2022 Copyright: <a class="text-reset fw-bold" href="http://rosmolodezh.test">Росмолодежь</a></span>
+        </div>
       </div>
     </div>
   </section>
   <div class="text-center p-4">
-    © 2022 Copyright:
-    <a class="text-reset fw-bold" href="http://rosmolodezh.test">Росмолодежь</a>
   </div>
 </footer>
