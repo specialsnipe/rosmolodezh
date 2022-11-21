@@ -126,8 +126,14 @@
         span.style.fontFamily = '';
     });
 
-    p.forEach(span => {
-        span.style.fontFamily = '';
+    p.forEach(tag => {
+        tag.style.fontFamily = '';
+        let imgs = tag.querySelectorAll("img");
+        imgs.forEach(img => {
+            img.style.width = '100%';
+            img.style.borderRadius = '10px';
+            img.style.marginTop = '20px';
+        });
     });
     const singleImage = document.querySelector('.single-image');
     if (singleImage) {
