@@ -106,25 +106,30 @@
                     <div class="col-lg-8 col-sm-12">
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Содержание направления:</h2>
 
-                    @foreach ($track->blocks as $block)
+                    
                             <div class="card mb-2">
+                            @foreach ($track->blocks as $block)
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-12 col-lg-10">
-                                            <p class="fs-5">
-                                                {{ $block->title }}
-                                            </p>
-                                            <p class="fs-6 mb-0">
-                                                Заданий: {{ $block->exercises_count }}
-                                            </p>
+                                        <div class="col-sm-12 col-lg-8 d-flex align-items-center justify-content-between">
+                                        
+                                                <p class="fs-5 mb-0">
+                                                    {{ $block->title }} :
+                                                </p>
+                                                <p class="fs-6 mb-0">
+                                                    Заданий: {{ $block->exercises_count }}
+                                                </p>
+                                 
                                         </div>
+                                
 
                                     </div>
 
                                 </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                       
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Другие направления</h2>
