@@ -7,10 +7,12 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Services\AverageMark\AverageMarkBlock;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\AcademicPerformance\AcademicPerformanceBlock;
 
 class Block extends Model
 {
@@ -101,8 +103,6 @@ class Block extends Model
 //        $exercises = $this->exercises;
         $time = 0;
 
-
-
         foreach ($exercises as $exercise) {
             $time += $exercise->time;
         }
@@ -123,20 +123,15 @@ class Block extends Model
     }
 
 
-    public function getAverageScoreAttribute()
+    public function getAverageScoreAttribute(): int
     {
-        $score = 0;
-        $exercises = Exercise::where('block_id', $this->id)
-            ->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
-
-        $exercises = $this->exercises;
-        if ($exercises->count() <= 0 ) {
-            return $score;
-        }
-        foreach ($exercises as $exercise) {
-            $score += $exercise->getAverageScoreAttribute();
-        }
-        return round($score / $exercises->count(), 1);
+        ['result'=> $result ] = AverageMarkBlock::getMark($this);
+        return $result;
+    }
+    public function getAcademicPerformanceAttribute()
+    {
+        [ "performance" => $tmpPerformance ] = AcademicPerformanceBlock::getPerformance($this);
+        return $tmpPerformance * 100 . " %";
     }
 
     public function getNameExercisesCountAttribute()

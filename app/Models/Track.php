@@ -7,11 +7,13 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Services\AverageMark\AverageMarkTrack;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Services\AcademicPerformance\AcademicPerformanceTrack;
 
 class Track extends Model
 {
@@ -133,6 +135,21 @@ class Track extends Model
     public function getIconThumbnailAttribute()
     {
         return 'storage/tracks/thumbnail/thumbnail_' . $this->icon;
+    }
+
+    public function getStudentsCountAttribute()
+    {
+        return $this->students()->count();
+    }
+    public function getAverageScoreAttribute()
+    {
+        ['result'=> $result ] = AverageMarkTrack::getMark($this);
+        return $result;
+    }
+    public function getAcademicPerformanceAttribute()
+    {
+        ['performance' => $performance ] = AcademicPerformanceTrack::getPerformance($this);
+        return $performance * 100 . "%";
     }
 
 

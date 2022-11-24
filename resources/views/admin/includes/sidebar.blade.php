@@ -56,7 +56,10 @@
 
                 <li class="nav-item">
                     <a href="{{ route('admin.tracks.index') }}"
-                        class="nav-link @if(request()->routeIs('admin.tracks.*') || request()->routeIs('admin.blocks.*')) active @endif">
+                        class="nav-link @if(
+                        (request()->routeIs('admin.tracks.*') || request()->routeIs('admin.blocks.*'))
+                        && !(request()->routeIs('admin.tracks.table') || request()->routeIs('admin.blocks.table'))
+                        ) active @endif">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>
                             Направления (UI)
@@ -69,6 +72,15 @@
                         <i class="nav-icon fa fa-table"></i>
                         <p>
                             Направления (таблица)
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.blocks.table') }}"
+                        class="nav-link @if(request()->routeIs('admin.blocks.table')) active @endif">
+                        <i class="nav-icon fa fa-table"></i>
+                        <p>
+                            Блоки (таблица)
                         </p>
                     </a>
                 </li>

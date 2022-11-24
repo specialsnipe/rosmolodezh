@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
-use App\Models\User;
-use App\Models\Track;
+use App\Models\Admin\User;
+use App\Models\Admin\Track;
 use App\Models\Gender;
 use App\Models\TrackUser;
 use App\Models\Occupation;

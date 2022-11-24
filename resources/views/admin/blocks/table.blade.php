@@ -15,12 +15,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Таблица "Направления"</h1>
+                    <h1 class="m-0">Таблица "Блоки"</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Главная</a></li>
-                        <li class="breadcrumb-item active">Таблица "Направления"</li>
+                        <li class="breadcrumb-item active">Таблица "Блоки"</li>
                     </ol>
                 </div>
             </div>
@@ -29,9 +29,9 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="m-3" id="accordion" role="tablist" aria-multiselectable="true">
+            {{-- <div class="m-3" id="accordion" role="tablist" aria-multiselectable="true">
 
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header" role="tab" id="headingOne">
                         <h5 class="mb-0">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
@@ -62,8 +62,8 @@
                             </form>
                         </div>
                     </div>
-                </div> --}}
-            </div>
+                </div>
+            </div> --}}
 
             @if(session()->has('error'))
                 <div class="m-3 alert alert-danger alert-dismissible fade show">
@@ -72,8 +72,8 @@
                 </div>
             @endif
             <div class="m-3">
-                <a href="{{route('admin.tracks.create')}}" class="col-sm-12 col-md-4 btn btn-primary">
-                    Добавить направление</a>
+                <a href="{{route('admin.blocks.table.create')}}" class="col-sm-12 col-md-4 btn btn-primary">
+                    Добавить блок</a>
             </div>
 
             <div class="card m-3">
@@ -88,35 +88,35 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Название</th>
-                                <th>Кол-во блоков</th>
-                                <th>Кол-во обучающихся</th>
+                                <th>Направление</th>
+                                <th>Кол-во упражнений</th>
                                 <th>Успеваемость</th>
                                 <th>Средний балл</th>
                                 <th>Управление</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($tracks as $track)
+                            @forelse($blocks as $block)
 
                             <tr>
-                                <td>{{ $track->id }}</td>
-                                <td>{{ $track->title }}</td>
-                                <td>{{ $track->blocks_count }}</td>
-                                <td>{{ $track->users_count }}</td>
-                                <td>{{ $track->academicPerformance }}</td>
-                                <td>{{ $track->averageScore }}</td>
+                                <td>{{ $block->id }}</td>
+                                <td>{{ $block->title }}</td>
+                                <td>{{ $block->track->title }}</td>
+                                <td>{{ $block->exercises_count }}</td>
+                                <td>{{ $block->academicPerformance }}</td>
+                                <td>{{ $block->averageScore }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('admin.tracks.edit', [$track->id]) }}">
+                                    <a class="btn btn-success" href="{{ route('admin.tracks.blocks.edit', [$block->track->id, $block->id]) }}">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <a class="btn btn-danger delete-track" data-track="{{ $track->id }}"  >
+                                    <a class="btn btn-danger delete-block" data-track="{{ $block->id }}"  >
                                         <i class="fa fa-trash"></i>
                                     </a>
-                                    <a class="btn btn-default" href="{{ route('admin.tracks.show', [$track->id]) }}">
+                                    <a class="btn btn-default" href="{{ route('admin.tracks.blocks.show', [$block->track->id, $block->id]) }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                     <x-modal name="Вы уверены что хотите удалить этот трек?" type="delete"
-                                        action="{{ route('admin.tracks.table.destroy', [$track->id]) }}" targetid="{{ 'deleteTrack_' . $track->id }}">
+                                        action="{{ route('admin.blocks.table.destroy', [$block->id]) }}" targetid="{{ 'deleteBlock_' . $block->id }}">
                                     </x-modal>
                                 </td>
                             </tr>
@@ -132,7 +132,7 @@
             </div>
 
             <div class="card m-3 p-3">
-                    {{ $tracks->links() }}
+                    {{ $blocks->links() }}
             </div>
 
         </div>
@@ -144,7 +144,7 @@
         window.onload = () => {
 
             const modals = document.querySelectorAll('.modal');
-            const buttons = document.querySelectorAll('.delete-track');
+            const buttons = document.querySelectorAll('.delete-block');
 
             document.addEventListener('keyup', function(ev) {
                 if (ev.keyCode === 27) {
