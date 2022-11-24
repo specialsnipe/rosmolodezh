@@ -46,7 +46,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
 
     // manage tracks
     Route::get('tracks/table', [\App\Http\Controllers\Admin\TrackTableController::class, 'index'])->name('tracks.table');
+    Route::get('block/table', [\App\Http\Controllers\Admin\BlockTableController::class, 'index'])->name('blocks.table');
     Route::delete('tracks/table/destroy/{track}', [\App\Http\Controllers\Admin\TrackTableController::class, 'destroy'])->name('tracks.table.destroy');
+    Route::get('blocks/table/create', [\App\Http\Controllers\Admin\BlockTableController::class, 'create'])->name('blocks.table.create');
+    Route::post('blocks/table/store', [\App\Http\Controllers\Admin\BlockTableController::class, 'store'])->name('blocks.table.store');
+    Route::delete('blocks/table/destroy/{block}', [\App\Http\Controllers\Admin\BlockTableController::class, 'destroy'])->name('blocks.table.destroy');
     Route::resource('tracks', \App\Http\Controllers\Admin\TrackController::class);
     Route::post('user/add/tracks/{track}', [\App\Http\Controllers\Admin\TrackController::class, 'addTrackForUser'])->name('tracks.addTrackForUser');
     // manage block of the track
