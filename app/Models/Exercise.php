@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use App\Services\AverageMark\AverageMarkExercise;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\AcademicPerformance\AcademicPerformanceExercise;
 
 class Exercise extends Model
 {
@@ -116,35 +118,14 @@ class Exercise extends Model
 
     public function getAcademicPerformancePercentAttribute()
     {
-        $positive_ratings = 0;
-        $answers = Answer::where('exercise_id', $this->id)->get();
-        foreach ($answers as $answer) {
-            if($answer->mark >= 3) {
-                $positive_ratings++;
-            }
-        }
-        $users_count = $this->block->track->users()->count();
-        if ($users_count === 0) {
-            return 0;
-        }
-        return round($positive_ratings*100/$users_count, 1);
+        [ "performance" => $performance ] = AcademicPerformanceExercise::getPerformance($this, $this->studentsCount);
+        return $performance * 100 . "%";
     }
-    public function getAverageScoreAttribute()
+
+    public function getAverageScoreAttribute(): int
     {
-        $score = 0;
-        $answers = Answer::where('exercise_id', $this->id)->whereNotNull('mark')->get();
-
-        if ($answers->count() <= 0) {
-            return $score;
-        }
-
-        foreach ($answers as $answer) {
-            if($answer->mark) {
-                $score += $answer->mark;
-            }
-        }
-
-        return round($score / $answers->count(), 1);
+        ['result'=> $result ] = AverageMarkExercise::getMark($this);
+        return $result;
     }
     /**
      *  Relation with users (one to many)
@@ -161,6 +142,16 @@ class Exercise extends Model
     public function users(): hasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * Relation with users (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function getStudentsCountAttribute()
+    {
+        return $this->block->track->users_count;
     }
 
     /**

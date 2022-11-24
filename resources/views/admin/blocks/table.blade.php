@@ -29,9 +29,9 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="m-3" id="accordion" role="tablist" aria-multiselectable="true">
+            {{-- <div class="m-3" id="accordion" role="tablist" aria-multiselectable="true">
 
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header" role="tab" id="headingOne">
                         <h5 class="mb-0">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
@@ -62,8 +62,8 @@
                             </form>
                         </div>
                     </div>
-                </div> --}}
-            </div>
+                </div>
+            </div> --}}
 
             @if(session()->has('error'))
                 <div class="m-3 alert alert-danger alert-dismissible fade show">
@@ -104,7 +104,7 @@
                                 <td>{{ $block->track->title }}</td>
                                 <td>{{ $block->exercises_count }}</td>
                                 <td>{{ $block->academicPerformance }}</td>
-                                <td>{{ $block->averageMark }}</td>
+                                <td>{{ $block->averageScore }}</td>
                                 <td>
                                     <a class="btn btn-success" href="{{ route('admin.tracks.blocks.edit', [$block->track->id, $block->id]) }}">
                                         <i class="fa fa-pen"></i>

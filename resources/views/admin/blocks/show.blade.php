@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 <style>
-    
+
 </style>
 
 @section('content')
@@ -50,19 +50,19 @@
                                     </tr>
                                     <tr>
                                         <td>Количество упражнений:</td>
-                                        <td>{{ $block->exercises_count }} {{ $block->name_exercises_count }}</td>
+                                        <td>{{ $block->exercises_count }} {{ $block->nameExercisesCount }}</td>
                                     </tr>
                                     <tr>
                                         <td>Всего обучающихся:</td>
-                                        <td>{{ $track->users_count }} {{ $track->name_users_count }}</td>
+                                        <td>{{ $track->users_count }} {{ $track->nameUsersCount }}</td>
                                     </tr>
                                     <tr>
                                         <td>Успеваемость:</td>
-                                        <td><span class="status_block status_success">100%</span></td>
+                                        <td><span class="status_block status_success">{{$block->academicPerformance}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Средний балл:</td>
-                                        <td><span class="status_block status_success">{{$averageMarkBlock}}</span></td>
+                                        <td><span class="status_block status_success">{{$block->averageScore}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Продолжительность:</td>

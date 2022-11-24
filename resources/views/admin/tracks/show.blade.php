@@ -70,19 +70,19 @@
                                 </tr>
                                 <tr>
                                     <td>Количество блоков:</td>
-                                    <td>{{ $track->blocks_count }} {{$track->name_blocks_count}}</td>
+                                    <td>{{ $track->blocks_count }} {{$track->nameBlocksCount}}</td>
                                 </tr>
                                 <tr>
                                     <td>Всего обучающихся:</td>
-                                    <td>{{ $track->users_count }} {{$track->name_users_count}}</td>
+                                    <td>{{ $track->users_count }} {{$track->nameUsersCount}}</td>
                                 </tr>
                                 <tr>
                                     <td>Успеваемость:</td>
-                                    <td><span class="status_block status_success">100%</span></td>
+                                    <td><span class="status_block status_success">{{$track->academicPerformance}}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Средний балл:</td>
-                                    <td><span class="status_block status_success">{{$averageMarkTrack}}</span></td>
+                                    <td><span class="status_block status_success">{{$track->averageScore}}</span></td>
                                 </tr>
 
                                 <tr>

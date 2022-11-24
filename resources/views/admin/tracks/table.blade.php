@@ -104,7 +104,7 @@
                                 <td>{{ $track->blocks_count }}</td>
                                 <td>{{ $track->users_count }}</td>
                                 <td>{{ $track->academicPerformance }}</td>
-                                <td>{{ $track->averageMark }}</td>
+                                <td>{{ $track->averageScore }}</td>
                                 <td>
                                     <a class="btn btn-success" href="{{ route('admin.tracks.edit', [$track->id]) }}">
                                         <i class="fa fa-pen"></i>
