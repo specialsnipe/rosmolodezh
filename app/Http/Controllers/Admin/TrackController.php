@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Track\StoreTrackRequest;
 use App\Http\Requests\Track\UpdateTrackRequest;
-use App\Models\Block;
-use App\Models\Track;
-use App\Models\User;
+use App\Models\Admin\Block;
+use App\Models\Admin\Track;
+use App\Models\Admin\User;
 use App\Services\AverageMark\AverageMarkTrack;
 use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
@@ -74,7 +74,7 @@ class TrackController extends Controller
     /**
      * Display the track.
      *
-     * @param \App\Models\Track $track
+     * @param int $track_id
      * @return Application|Factory|View
      */
     public function show($track_id)
@@ -92,11 +92,12 @@ class TrackController extends Controller
     /**
      * Show the form for editing the track.
      *
-     * @param \App\Models\Track $track
+     * @param int $track_id
      * @return Application|Factory|View
      */
-    public function edit(Track $track)
+    public function edit($track_id)
     {
+        $track = Track::where('id', $track_id)->first();
 //        dd($track->teachers->flatten()->pluck('id'));
 
         $curator = User::findOrFail($track->curator_id);
@@ -112,11 +113,13 @@ class TrackController extends Controller
      * Update the track.
      *
      * @param \App\Http\Requests\Track\UpdateTrackRequest $request
-     * @param \App\Models\Track $track
+     * @param int $track_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateTrackRequest $request, Track $track)
+    public function update(UpdateTrackRequest $request, $track_id)
     {
+
+        $track = Track::where('id', $track_id)->first();
         $data = $request->validated();
 
 
@@ -141,12 +144,13 @@ class TrackController extends Controller
 
 
     /**
-     * @param Track $track
+     * @param int $track_id
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
      * @throws \Throwable
      */
-    public function destroy(Request $request, Track $track)
+    public function destroy(Request $request, $track_id)
     {
+        $track = Track::where('id', $track_id)->first();
         if (!Hash::check($request->input('password'), auth()->user()->password)) {
             session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
             return back();
@@ -160,8 +164,9 @@ class TrackController extends Controller
         }
     }
 
-    public function addTrackForUser(Track $track)
+    public function addTrackForUser($track_id)
     {
+        $track = Track::where('id', $track_id)->first();
         $user = auth()->user()->id;
         $track->users()->toggle($user);
         $tracks = Track::all();

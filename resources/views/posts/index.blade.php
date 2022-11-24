@@ -13,7 +13,7 @@
             <div class="row justify-content-start">
                 @forelse ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
-                        <a class="text-decoration-none" style="color: #000;" target="_blank" href="{{ route('posts.show', $post->id) }}">
+                        <a class="text-decoration-none" style="color: #000;" target="_blank" href="{{ route('posts.show', ['post'=>$post->slug]) }}">
                             <div class="card post_card mb-4 mr-0">
                                 <img src="{{ asset($post->images['0']->imageNormal) }}" class="rounded img-fluid"
                                     style="min-height: 200px; max-height:200px"

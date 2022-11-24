@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,9 +14,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes, Filterable, HasSEO;
+    use HasFactory, SoftDeletes, Filterable, HasSEO, Sluggable;
 
     protected $guarded = false;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getDynamicSEOData(): SEOData
     {

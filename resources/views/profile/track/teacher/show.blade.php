@@ -45,7 +45,7 @@
 
                                                         <div class="col justify-content-end">
                                                             <form
-                                                                action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}"
+                                                                action="{{ route('tracks.userAccepted',[$track->slug, $user_request->user->slug ] ) }}"
                                                                 method="post" class="d-inline ">
                                                                 @csrf
                                                                 @method('put')
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 @else
-                    <h4 class="h4 col-sm-12 col-md-6 text-center ">Новых заявок на это направление нет </h4>
+                    <h4 class="h4 col-sm-12 col-md-6 mt-3 mb-3 text-center ">Новых заявок на это направление нет </h4>
                 @endif
                 @if( $requestsToRefused->count() > 0 )
 
@@ -83,12 +83,12 @@
                                                             @if(isset($user_request->user->avatar))
                                                                 <img
                                                                     src="{{ asset($user_request->user->avatar_thumbnail_path) }}"
-                                                                    class="img " alt="" style="height: 50px">
+                                                                    class="img " alt="" style="height: 50px;min-height: 50px">
                                                             @else
                                                                 <img
                                                                     src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                                                     class="img
-                                                                    " alt="" style="height: 50px">
+                                                                    " alt="" style="height: 50px;min-height: 50px">
                                                             @endif
                                                         </div>
                                                        <div>
@@ -101,7 +101,7 @@
 
                                                             <div class="col justify-content-end">
                                                                 <form
-                                                                    action="{{ route('tracks.userAccepted',[$track->id, $user_request->user->id ] ) }}"
+                                                                    action="{{ route('tracks.userAccepted',[$track->slug, $user_request->user->slug ] ) }}"
                                                                     method="post" class="d-inline ">
                                                                     @csrf
                                                                     @method('put')
@@ -121,28 +121,29 @@
                         </div>
                     </div>
                 @else
-                    <h4 class="h4 col-sm-12 col-md-6 text-center ">Заявок на выход из направления нет </h4>
+                    <h4 class="h4 col-sm-12 col-md-6 text-center mb-3 mt-3">Заявок на выход из направления нет </h4>
                 @endif
             @endif
 
             <div class="col-sm-12 mb-3">
 
-                <div class="card">
-                    <h4 class="h4 col-12 text-center m-3 mb-0">Участники данного направления
-                        "{{ $track->title }}"</h4>
+                <div class="card" style="background: #b59be8">
+
                     <div class="card-body track-users">
+                        <h4 class="h4 col-12 text-center mb-3">Участники направления
+                            "{{ $track->title }}"</h4>
                         {{-- Студенты которые участвуют в этом напрвлении --}}
                         <div class="row">
                             @forelse ($users as $user)
                                 <div class="col-md-6 col-sm-12">
-                                    <a href="{{ route('profile.user.show', $user->id) }}" class="text-decoration-none text-black">
+                                    <a href="{{ route('profile.user.show', $user->slug) }}" class="text-decoration-none text-black">
                                     <div class="card mb-2">
                                         <div class="row">
                                             <div class="col-2 d-flex align-items-center">
 
                                                 @if(isset($user->avatar))
                                                     <img src="{{ asset($user->avatar_thumbnail_path) }}"
-                                                         class="img-thumbnail border-0" alt="" style="object-fit: contain; height: 100%" >
+                                                         class="img-thumbnail border-0" alt="" style="object-fit: contain; height: 100%; min-width: 50px" >
                                                 @else
                                                     <img src="{{ asset('storage/users/avatars/thumbnail/thumbnail_default_avatar.jpg') }}"
                                                          class="img border-0" alt="">
@@ -175,7 +176,7 @@
             </div>
             <h4 class="h4 col-12 text-center mt-3 mb-3">Блоки и задачи этого направления</h4>
             <div class="col-sm-12 mt-2 mb-3">
-                <a href="{{ route('profile.tracks.blocks.create', $track->id) }}" class="fs-6 btn btn-primary">Создать
+                <a href="{{ route('profile.tracks.blocks.create', $track->slug) }}" class="fs-6 btn btn-primary">Создать
                     новый блок</a>
             </div>
             <div class="col-sm-12">
@@ -187,13 +188,13 @@
                             <div class="row">
                                 <div class="col-sm-12 col-lg-6">
 
-                                    <a href="{{ route('profile.tracks.blocks.show', [$block->track_id,$block->id]) }}"
+                                    <a href="{{ route('profile.tracks.blocks.show', [$track->slug,$block->slug]) }}"
                                        class="fs-5 text-decoration-none">
                                         Блок: {{ $block->title }}
                                     </a>
                                 </div>
                                 <div class="col-sm-12 col-lg-6 d-flex justify-content-end">
-                                    <a href="{{ route('profile.blocks.exercises.create', [$block->id]) }}"
+                                    <a href="{{ route('profile.blocks.exercises.create', [$block->slug]) }}"
                                        class="btn btn-primary"> Добавить новое упражнение </a>
                                 </div>
                             </div>
@@ -204,7 +205,7 @@
                                     @if($loop->first)
                                         <div class="fs-6 mt-0 mb-2">Задания блока:</div>
                                     @endif
-                                    <a href="{{ route('profile.blocks.exercises.show', [$exercise->block_id, $exercise->id]) }}"
+                                    <a href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}"
                                        class="fs-6">{{ $exercise->title }}</a>
                                 @empty
                                     <div class="fs-6 mt-0 mb-2">К данному блоку ещё не добавили заданий :(</div>

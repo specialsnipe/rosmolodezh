@@ -62,14 +62,15 @@
         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Все направления</h2>
         <div class="row">
             @foreach ($tracks as $track)
+            
             <div class="col-md-4 col-lg-4 col-sm-12">
                 <div class="card card-track d-flex flex-column justify-content-between mb-4">
 
-                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
+                    <a target="_blank" href="{{ route('tracks.show', ['track' => $track->slug]) }}">
                         <img src="{{ asset($track->imageNormal ) }}" class="card-img-top rounded"
                             alt="{{ $track->title }}">
                     </a>
-                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer">
+                    <a target="_blank" href="{{ route('tracks.show', ['track' => $track->slug]) }}" class="card-footer">
                         <div class="">{{ $track->title }}</div>
                     </a>
                 </div>

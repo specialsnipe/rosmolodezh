@@ -581,6 +581,12 @@ main .carousel-inner img {
     -ms-transform: scale(.82);
     -o-transform: scale(.82);
 }
+.icon-bg i{
+    transition: 200ms;
+}
+.icon-hover:hover .icon-bg i{
+    transform: scale(1.3);
+}
 
 .directions-block .card-img-top {
     transition: 250ms;

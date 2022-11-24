@@ -46,7 +46,7 @@
                         <div class="line mt-3 mb-0"></div>
                         <div class="link-content">
                             @foreach ($posts as $postx)
-                            <a href="{{ route('posts.show', $postx->id) }}" class="">
+                            <a href="{{ route('posts.show', $postx->slug) }}" class="">
                                 <div class="card mt-3">
                                     <div class="card-body">
                                         <p class="h5"><i class="fas fa-external-link-alt" style="font-size: 16px;"></i> {{ $postx->title }} </p>
@@ -81,7 +81,7 @@
                     <div class="line mt-3 mb-0"></div>
                     <div class="link-content">
                         @foreach ($posts as $postx)
-                        <a href="{{ route('posts.show', $postx->id) }}" class="">
+                        <a href="{{ route('posts.show', $postx->slug) }}" class="">
                             <div class="card mt-3">
                                 <div class="card-body">
                                     <p class="h5"><i class="fas fa-external-link-alt" style="font-size: 16px;"></i> {{ $postx->title }} </p>
@@ -126,8 +126,14 @@
         span.style.fontFamily = '';
     });
 
-    p.forEach(span => {
-        span.style.fontFamily = '';
+    p.forEach(tag => {
+        tag.style.fontFamily = '';
+        let imgs = tag.querySelectorAll("img");
+        imgs.forEach(img => {
+            img.style.width = '100%';
+            img.style.borderRadius = '10px';
+            img.style.marginTop = '20px';
+        });
     });
     const singleImage = document.querySelector('.single-image');
     if (singleImage) {

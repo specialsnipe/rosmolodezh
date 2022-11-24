@@ -105,13 +105,13 @@ class SendAnswerToExerciseComponent extends Component
             'body' => $this->body,
             'sended' => true
         ]);
-        return redirect()->route('profile.tracks.blocks.show', [$this->block->track_id,$this->block->id]);
+        return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);
     }
 
     public function outWithoutSave()
     {
         $this->answer->forceDelete();
-        return redirect()->route('profile.tracks.blocks.show', [$this->block->track_id,$this->block->id]);
+        return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);
     }
 
     public function mount()

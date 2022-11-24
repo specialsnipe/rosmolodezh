@@ -1,7 +1,7 @@
 
     <tr @if (!$user->active)
-        class="bg-dark" style="cursor: pointer;"
-        @endif >
+        class="bg-dark"
+        @endif style="cursor: pointer;">
         <td wire:click='openMore' >{{$user->id}}</td>
         <td wire:click='openMore' ><img src="{{asset($user->avatar_thumbnail_path)}}" width=50px height=50px alt="image">
         </td>

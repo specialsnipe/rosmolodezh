@@ -4,21 +4,25 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Services\AverageMark\AverageMarkBlock;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Services\AcademicPerformance\AcademicPerformanceBlock;
 
 class Block extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes, Sluggable;
 
     protected $table = 'blocks';
     protected $cascadeDeletes = ['exercises'];
 
     protected $fillable = [
+        'slug',
         'title',
         'body',
         'image',
@@ -49,14 +53,33 @@ class Block extends Model
         'deleted_at'
     ];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function getNextBlockUrlAttribute()
     {
         $block = Block::where('track_id', $this->track_id)
                     ->where('priority', $this->priority + 1)
                     ->first();
+        $track = Track::find($this->track_id);
         if ($block) {
-            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$track->slug,$block->slug]);
         }
         return false;
     }
@@ -67,8 +90,9 @@ class Block extends Model
         $block = Block::where('track_id', $this->track_id)
                     ->where('priority', $this->priority - 1)
                     ->first();
+        $track = Track::find($this->track_id);
         if ($block) {
-            return route('profile.tracks.blocks.show',[$block->track_id,$block->id]);
+            return route('profile.tracks.blocks.show',[$track->slug,$block->slug]);
         }
         return false;
     }
@@ -78,8 +102,6 @@ class Block extends Model
         $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
 //        $exercises = $this->exercises;
         $time = 0;
-
-
 
         foreach ($exercises as $exercise) {
             $time += $exercise->time;
@@ -101,27 +123,15 @@ class Block extends Model
     }
 
 
-    public function getAverageScoreAttribute()
+    public function getAverageScoreAttribute(): int
     {
-        $score = 0;
-        $exercises = Exercise::where('block_id', $this->id)->without(['creator', 'users', 'complexity', 'block', 'answers'])->get();
-//        $exercises = $this->exercises;
-        $i = 0;
-
-        foreach ($exercises as $exercise) {
-            $answers = Answer::where('exercise_id', $exercise->id)->without(['exercise', 'user'])->get();
-//            $answers = $exercise->answers;
-            foreach ($answers as $answer) {
-                if ($answer->mark) {
-                    $score += $answer->mark;
-                    $i++;
-                }
-            }
-        }
-        if ($i === 0) {
-            return 0;
-        }
-        return round($score / $i, 1);
+        ['result'=> $result ] = AverageMarkBlock::getMark($this);
+        return $result;
+    }
+    public function getAcademicPerformanceAttribute()
+    {
+        [ "performance" => $tmpPerformance ] = AcademicPerformanceBlock::getPerformance($this);
+        return $tmpPerformance * 100 . " %";
     }
 
     public function getNameExercisesCountAttribute()

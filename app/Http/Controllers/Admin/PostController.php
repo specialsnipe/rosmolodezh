@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
-use App\Models\Post;
+use App\Models\Admin\Post;
 use App\Models\PostImage;
 use App\Services\ImageService;
 use Carbon\Carbon;
@@ -46,9 +46,9 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index');
     }
 
-    public function show(Post $post)
+    public function show($post_id)
     {
-
+        $post = Post::findOrFail($post_id);
         $date = Carbon::parse($post->created_at);
         $posts = Post::limit(6)->get();
         return view('admin.posts.show', compact('post','date', 'posts'));

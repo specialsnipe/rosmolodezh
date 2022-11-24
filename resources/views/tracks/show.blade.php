@@ -133,10 +133,10 @@
                             <div class="col-12">
                                 <div class="card d-flex flex-column justify-content-between mb-4">
 
-                                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}">
+                                    <a target="_blank" href="{{ route('tracks.show', ['track' => $track->slug]) }}">
                                         <img src="{{ asset($track->imageNormal ) }}" class="card-img-top" alt="...">
                                     </a>
-                                    <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="card-footer track-title bg-primary-light">
+                                    <a target="_blank" href="{{ route('tracks.show', ['track' => $track->slug]) }}" class="card-footer track-title bg-primary-light">
                                         <div>{{ $track->title }}</div>
                                     </a>
                                 </div>

@@ -7,24 +7,22 @@ use App\Models\Block;
 
 class AverageMarkBlock
 {
-    public static function getMark(Block $block)
+    public static function getMark(Block $block, &$score = 0, &$countMarks = 0): array
     {
-        $score = 0;
-        $exercises = $block->exercises;
-        $i = 0;
+        $exercise = $block->exercises->load('answers');
 
-        foreach ($exercises as $exercise) {
-            $answers = Answer::where('exercise_id', $exercise->id)->get();
-            foreach ($answers as $answer) {
-                if($answer->mark) {
-                    $score += $answer->mark;
-                    $i++;
-                }
-            }
+        foreach ($block->exercises as $exercise) {
+            $exerciseData = AverageMarkExercise::getMark($exercise, $score, $countMarks);
+            $countMarks += $exerciseData['countMarks'];
+            $score += $exerciseData['score'];
         }
-        if($i === 0) {
-            return 0;
-        }
-        return round($score / $i, 1);
+
+        if($countMarks === 0) return BaseAverageMark::getStats();
+
+        return BaseAverageMark::getStats(
+            $countMarks,
+            $score,
+            round($score / $countMarks, 1)
+        );
     }
 }

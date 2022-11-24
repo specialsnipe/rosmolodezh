@@ -28,7 +28,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $posts = Post::limit(3)->get();
+        $posts = Post::all()->shuffle()->slice(0, 3);
+
         return view('posts.show', [
             'post' => $post,
             'posts' => $posts

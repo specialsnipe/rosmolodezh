@@ -108,11 +108,11 @@
                                 <span>Уровень освоения: </span>
                                 <h5 style="display: inline"><span title="Уровень:{{ $exercise->complexity->body }}"
                                         class="badge
-                                                            @if ($exercise->complexity_id == 1) badge badge-primary @endif
-                                                            @if ($exercise->complexity_id == 3) badge badge-warning @endif
-                                                            @if ($exercise->complexity_id == 4) badge badge-danger @endif
-                                                            @if ($exercise->complexity_id == 5) badge badge-danger @endif
-                                                            @if ($exercise->complexity_id == 2) badge badge-success @endif
+                                            @if ($exercise->complexity_id == 1) badge badge-primary @endif
+                                            @if ($exercise->complexity_id == 3) badge badge-warning @endif
+                                            @if ($exercise->complexity_id == 4) badge badge-danger @endif
+                                            @if ($exercise->complexity_id == 5) badge badge-danger @endif
+                                            @if ($exercise->complexity_id == 2) badge badge-success @endif
                                                             ">
                                         {{ $exercise->complexity->level }}
                                     </span>
@@ -151,23 +151,23 @@
                             <tr>
                                 <td>Ответов:</td>
                                 <td>
-                                    {{ $exercise->answers_added_count }}/{{$track->users_count}}
+                                    {{ $exercise->answersAddedCount }}/{{$track->users_count}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Оценено:</td>
-                                <td>{{$exercise->mark_count }}/{{ $track->users_count}}</td>
+                                <td>{{$exercise->markCount }}/{{ $track->users_count}}</td>
                             </tr>
                             <tr>
                                 <td>Успеваемость:</td>
-                                <td><span class="status_block status_success">{{ $exercise->academic_performance_percent
-                                        }} %</span>
+                                <td><span class="status_block status_success">
+                                    {{ $exercise->academic_performance_percent }}</span>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td>Средний балл:</td>
-                                <td><span class="status_block status_success">{{$exercise->average_score}}</span>
+                                <td><span class="status_block status_success">{{$exercise->averageScore}}</span>
                                 </td>
                             </tr>
                         </table>

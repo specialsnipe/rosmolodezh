@@ -55,7 +55,7 @@ class BlockController extends Controller
         $data['priority'] = $priority;
         $block = Block::create($data);
 
-        return redirect()->route('profile.tracks.blocks.show', [$block->track_id,$block->id]);
+        return redirect()->route('profile.tracks.blocks.show', [$block->track->slug,$block->slug]);
     }
 
     /**
@@ -72,9 +72,9 @@ class BlockController extends Controller
                 auth()->user()->started_blocks()->attach($block);
             }
 
-            return view('profile.blocks.student.show',compact('block'));
+            return view('profile.blocks.student.show',compact('block', 'track'));
         } else {
-            return view('profile.blocks.teacher.show',compact('block'));
+            return view('profile.blocks.teacher.show',compact('block', 'track'));
         }
     }
 
@@ -87,7 +87,7 @@ class BlockController extends Controller
     public function edit(Track $track, Block $block)
     {
         $this->authorize('update', $block);
-        return view('profile.blocks.teacher.edit',compact('block'));
+        return view('profile.blocks.teacher.edit',compact('block', 'track'));
     }
 
     /**
@@ -106,7 +106,7 @@ class BlockController extends Controller
         if (!$image) {
             try {
                 $block->updateOrFail($data);
-                return redirect()->route('profile.tracks.blocks.show', [$block->track_id, $block->id]);
+                return redirect()->route('profile.tracks.blocks.show', [$block->track->slug, $block->slug]);
             } catch (\Exception $exception) {
                 return abort(501);
             }
@@ -117,7 +117,7 @@ class BlockController extends Controller
         $data['image'] = ImageService::make($image, 'blocks/images');
         try {
             $block->updateOrFail($data);
-            return redirect()->route('profile.tracks.blocks.show', [$block->track_id, $block->id]);
+            return redirect()->route('profile.tracks.blocks.show', [$block->track->slug, $block->slug]);
         } catch (\Exception $exception) {
             return abort(501, $exception);
         }
@@ -140,7 +140,7 @@ class BlockController extends Controller
 
         try {
             $block->deleteOrFail();
-            return redirect()->route('profile.track.show',$track->id);
+            return redirect()->route('profile.track.show',$track->slug);
         } catch (\Exception $exception) {
             abort(501);
             // dd( $exception);
@@ -156,6 +156,6 @@ class BlockController extends Controller
     public function start(Track $track, Block $block)
     {
         auth()->user()->started_blocks()->toggle($block);
-        return redirect()->route('profile.tracks.block.show',[$track->id, $block->id]);
+        return redirect()->route('profile.tracks.block.show',[$track->slug, $block->slug]);
     }
 }

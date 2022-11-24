@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
-use App\Models\User;
-use App\Models\Track;
+use App\Models\Admin\User;
+use App\Models\Admin\Track;
 use App\Models\Gender;
 use App\Models\TrackUser;
 use App\Models\Occupation;
@@ -126,8 +126,9 @@ class UserController extends Controller
      * @param User $user
      * @return Application|Factory|View
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::withTrashed()->find($id);
         $genders = Gender::all();
         $roles = Role::all();
         $tracks = Track::all();
@@ -143,8 +144,9 @@ class UserController extends Controller
      * @param int $id
      * @return \Exception|RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, $id)
     {
+        $user = User::withTrashed()->find($id);
         $data = $request->validated();
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
@@ -171,8 +173,9 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws \Throwable
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::find($id);
         $user->update([
             'active' => false,
         ]);
@@ -186,9 +189,9 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws \Throwable
      */
-    public function change_status($user)
+    public function change_status($id)
     {
-        $user = User::withTrashed()->find($user);
+        $user = User::withTrashed()->find($id);
 
         if (isset($user->deleted_at)) {
             $user->update([
@@ -204,8 +207,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function change_password(ChangePasswordUserRequest $request, User $user)
+    public function change_password(ChangePasswordUserRequest $request, $id)
     {
+        $user = User::find($id);
         try {
             $user->update([
                 'password' => Hash::make($request->input('password'))

@@ -77,7 +77,7 @@
 
                                                 <p class="fs-5">
                                                     @if(!($block->date_start >= Carbon::now()))
-                                                        <a href="{{ route('profile.tracks.blocks.show', [$block->track_id, $block->id]) }}"
+                                                        <a href="{{ route('profile.tracks.blocks.show', [$track->slug, $block->slug]) }}"
                                                            class="h5 text-decoration-none">Блок: {{ $block->title }}</a>
                                                         <br>
                                                     @endif
@@ -90,7 +90,7 @@
                                                         @if($block->exercises_count < 1)
                                                             action="#"
                                                         @else
-                                                            action="{{ route('profile.tracks.blocks.show', [$block->track_id, $block->id]) }}"
+                                                            action="{{ route('profile.tracks.blocks.show', [$track->slug, $block->slug]) }}"
                                                         @endif
                                                         method='get'
                                                         class="d-inline">
@@ -145,8 +145,8 @@
                                                 <div class="custom-checkbox">
                                                     <i class="fa-solid fa-check"></i>
                                                 </div>
-                                                <a href="{{ route('profile.blocks.exercises.show', [$block->id,$exercise->id]) }}"
-                                                   class="fs-6 text-decoration-none "
+                                                <a href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}"
+                                                   class="fs-6 text-decoration-none"
                                                    style="color: inherit"> {{ $exercise->title }}</a>
 
                                             </span>
@@ -154,7 +154,7 @@
                                                     <span class="d-flex align-items-center">
                                                     <div class="custom-checkbox">
                                                     </div>
-                                                <a href="{{ route('profile.blocks.exercises.show', [$block->id,$exercise->id]) }}"
+                                                <a href="{{ route('profile.blocks.exercises.show', [$block->slug,$exercise->slug]) }}"
                                                    class="fs-6 text-decoration-none "
                                                    style="color: inherit"> {{ $exercise->title }}</a>
                                             </span>

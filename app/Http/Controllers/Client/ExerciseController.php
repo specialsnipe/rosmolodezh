@@ -43,7 +43,8 @@ class ExerciseController extends Controller
     {
         $this->authorize('view', $exercise);
         $students = $block->track->students;
-        return view('profile.exercise.show', compact('exercise', 'block', 'students'));
+        $track = $block->track;
+        return view('profile.exercise.show', compact('track','exercise', 'block', 'students'));
     }
 
     /**
@@ -84,7 +85,7 @@ class ExerciseController extends Controller
 
             $track = $block->track;
             DB::commit();
-            return redirect()->route('profile.tracks.blocks.show', [$track->id, $block->id]);
+            return redirect()->route('profile.tracks.blocks.show', [$track->slug, $block->slug]);
         } catch (\Exception $e) {
             DB::rollBack();
             abort(500);

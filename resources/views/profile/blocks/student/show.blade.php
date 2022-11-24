@@ -48,7 +48,7 @@ $user = auth()->user();
                         <div class="card-body table-responsive">
                             <ul class="list-group">
                                 @forelse($block->exercises as $exercise)
-                                <li class="list-group-item border-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'light' }}">
+                                <li class="list-group-item border-{{ auth()->user()->getAnswer($exercise)->class_name ?? 'light' }}" id="{{ 'exercise_' . $exercise->slug }}" >
                                     <div class="row my-2">
                                         <div class="col-1 text-center">
                                             <div class="h3 fw-light">{{ $loop->index + 1 }}</div>
@@ -57,7 +57,7 @@ $user = auth()->user();
                                             <div class="row">
                                                 <h4 class="col-8">
                                                     <a class="text-decoration-none link-dark me-2"
-                                                        href="{{ route('profile.blocks.exercises.show', [$block->id, $exercise->id]) }}">{{
+                                                        href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}">{{
                                                         $exercise->title }}</a>
                                                 </h4>
                                             </div>
@@ -93,11 +93,11 @@ $user = auth()->user();
                                             </div>
                                             <div class="d-flex justify-content-end align-items-center">
                                                 @if ($exercise->answers->where('user_id', auth()->user()->id)->where('exercise_id', $exercise->id)->first() != null)
-                                                <span> Вы уже оставили ответ &nbsp&nbsp</span> <a href="{{ route("profile.blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
+                                                <span> Вы уже оставили ответ &nbsp&nbsp</span> <a href="{{ route("profile.blocks.exercises.show", [$block->slug, $exercise->slug]) }}" class="btn btn-success align-self-end">Изменить ответ</a>
 
                                                 @else
 
-                                                <a href="{{ route("profile.blocks.exercises.show", [$block->id, $exercise->id]) }}" class="btn btn-primary align-self-end">Просмотреть и выполнить задание</a>
+                                                <a href="{{ route("profile.blocks.exercises.show", [$block->slug, $exercise->slug]) }}" class="btn btn-primary align-self-end">Просмотреть и выполнить задание</a>
                                                 @endif
                                             </div>
                                         </div>

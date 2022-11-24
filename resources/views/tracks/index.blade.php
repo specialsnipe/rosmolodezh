@@ -87,13 +87,13 @@
     <div class="row">
         @foreach ($tracks as $track )
         <div class="col-sm-12 col-md-6 col-xl-4 mb-4">
-            <a class="text-decoration-none" style="color: #000;" href="{{ route('tracks.show', $track->id) }}">
+            <a class="text-decoration-none" style="color: #000;" href="{{ route('tracks.show', ['track' => $track->slug]) }}">
                 <div class="card">
                     <img src="{{ asset($track->imageNormal) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $track->title }}</h5>
                         <p class="card-text text-truncat" >{{ $track->body }}</p>
-                        <a href="{{ route('tracks.show', $track->id) }}" class="btn" style="width:100%;">Подробнее...</a>
+                        <a href="{{ route('tracks.show', ['track' => $track->slug]) }}" class="btn" style="width:100%;">Подробнее...</a>
                     </div>
                 </div>
             </a>
