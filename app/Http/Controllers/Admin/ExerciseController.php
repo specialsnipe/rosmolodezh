@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Exercise\StoreExerciseRequest;
 use App\Http\Requests\Exercise\UpdateExerciseRequest;
-use App\Models\Block;
-use App\Models\Exercise;
+use App\Models\Admin\Block;
+use App\Models\Admin\Exercise;
 
 
 use Illuminate\Http\Request;
