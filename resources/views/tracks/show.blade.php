@@ -16,7 +16,7 @@
                     <div class="col-sm-12 col-md-6 pl-0">
                         <h1 class="h1">{{ $track->title }}</h1>@auth
                             @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
-                                <span class="badge fs-8 bg-secondary"> Вы являетесь участником</span>
+                                <span class="badge fs-8 bg-secondary mb-2"> Вы являетесь участником</span>
                             @endif
                             @endauth
                         <img class="rounded w-100" src="{{ asset($track->imageMedium) }}" alt="">
@@ -24,7 +24,7 @@
                     <div class="col-sm-12 col-md-6 pr-0">
                         <div class="flex-container">
                             <div class="text-container">
-                                <h1 class="h2">О направлении:</h1>
+                                <h1 class="h2" style="margin-bottom: 12px;">О направлении:</h1>
                                 <p class="fs-6">{{ $track->body }}</p>
                                 <p class="fs-6">Количество блоков: <span
                                         class="badge large bg-primary">{{ $track->blocksCount }}</span></p>
@@ -105,32 +105,35 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12">
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Содержание направления:</h2>
-
-                    
-                            <div class="card mb-2">
                             @foreach ($track->blocks as $block)
-
+                            <div class="card mb-2">
+                            
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-12 col-lg-8 d-flex align-items-center justify-content-between">
-                                        
+                                        <div class="col-sm-12 col-lg-8">
                                                 <p class="fs-5 mb-0">
-                                                    {{ $block->title }} :
+                                                    {{ $block->title }}
                                                 </p>
-                                                <p class="fs-6 mb-0">
-                                                    Заданий: {{ $block->exercises_count }}
+                                                <p class="fs-6 mt-2 mb-0 d-flex align-items-center">
+                                                Заданий: 
+                                                <span
+                                                    class="badge large bg-primary" style="margin-left:6px;">{{ $block->exercises_count }}</span>
+                                                    
                                                 </p>
-                                 
+                                                
+                                                <ol>
+                                                    @foreach($block->exercises as $exercise)
+                                                        <li>{{ $exercise->title }} </li>
+                                                    @endforeach
+                                                </ol>
                                         </div>
-                                
-
                                     </div>
-
                                 </div>
-                                @endforeach
+                                
                             </div>
-                       
+                            @endforeach
                     </div>
+
                     <div class="col-lg-4 col-sm-12">
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Другие направления</h2>
 
