@@ -26,12 +26,7 @@ class TrackTableController extends Controller
     public function index(): View|Factory|Application
     {
         $tracks = Track::with('blocks')->paginate(20);
-        $allAverageMark = [];
 
-        foreach ($tracks as $track) {
-            $track->academicPerformance = AverageMarkTrack::getMark($track);
-            $track->averageMark = AverageMarkTrack::getMark($track);
-        }
         return view('admin.tracks.table', [
             'tracks' => $tracks
         ]);
