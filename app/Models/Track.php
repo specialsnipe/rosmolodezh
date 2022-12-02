@@ -143,7 +143,7 @@ class Track extends Model
     }
     public function getAverageScoreAttribute()
     {
-        ['result'=> $result ] = AverageMarkTrack::getMark($this);
+        [ 'result'=> $result ] = AverageMarkTrack::getMark($this);
         return $result;
     }
     public function getAcademicPerformanceAttribute()

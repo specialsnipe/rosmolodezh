@@ -20,12 +20,12 @@ class AverageMarkTrack
             $score += $exerciseData['score'];
         }
 
-        if($countMarks === 0) return 0;
+        if($countMarks === 0) return BaseAverageMark::getStats();
 
         return BaseAverageMark::getStats(
             $countMarks,
             $score,
-            round($score / $countMarks, 1)
+            round($score / $countMarks, 1),
         );
     }
 }
