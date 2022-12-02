@@ -105,7 +105,7 @@ Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'emai
 
 
 //Update slug
-// Route::get('/update_slug', [\App\Http\Controllers\UpdateController::class, 'update']);
+Route::get('/update_slug', [\App\Http\Controllers\UpdateController::class, 'update']);
 
 
 // Client side

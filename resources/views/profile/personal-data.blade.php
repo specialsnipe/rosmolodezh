@@ -18,7 +18,7 @@
 
 @section('profile_content')
 
-    <div class="row">
+    <div class="row fix-center-block">
 
         <form action="{{ route('profile.user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-8">
             @csrf
@@ -197,7 +197,7 @@
             @csrf
             @method('PATCH')
             <img src="{{ asset(auth()->user()->avatarMediumPath) }}" class="img-rounded rounded mb-3"
-                 style="max-height: 352px; object-fit:cover;" alt="">
+                 style="max-height: 395px; object-fit:cover;" alt="">
             <button type="button" class="img-btn">Нажмите для загрузки аватара</button>
             <input type="file" name="file" class="img-btn" hidden>
         </form>

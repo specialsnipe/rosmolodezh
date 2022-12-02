@@ -33,7 +33,7 @@
             <div class="col-md-6">
                 <div class="content-img img-bg-about h-100"></div>
             </div>
-            <section class="row fix-adaptiv">
+            <section class="row fix-adaptiv mt-3 col-md-12">
             <div class="col-md-6">
                 <div class="content-img img-bg-about-1"></div>
             </div>

@@ -10,7 +10,7 @@ use App\Models\Information;
   <section>
     <div class="container text-center pt-4 text-md-start">
       <div class="row mt-3">
-        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+        <div class="col-md-12 col-lg-4 col-xl-3 mb-4">
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fa-solid fa-book-open-reader me-3 text-secondary"></i>Росмолодежь
           </h6>
