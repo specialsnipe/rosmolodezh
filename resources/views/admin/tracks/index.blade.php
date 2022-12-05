@@ -105,12 +105,12 @@
                                         </tr>
                                         <tr>
                                             <td>Успеваемость:</td>
-                                            <td><span class="status_block status_success">{{ $track->averageScore }}</span></td>
+                                            <td><span class="status_block status_success">{{ $track->academicPerformance }}</span></td>
                                         </tr>
                                         <tr>
                                             <td>Средний балл:</td>
                                             <td><span
-                                                    class="status_block status_success">{{ $track->academicPerformance }}</span>
+                                                    class="status_block status_success">{{  $track->averageScore }}</span>
                                             </td>
                                         </tr>
                                     </table>
