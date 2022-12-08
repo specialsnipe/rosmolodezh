@@ -3,20 +3,42 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
+use App\Models\Traits\UserScopes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Collection\Collection;
 
+/**
+ * @property-read Block $block
+ * @property-read Collection|Block[] $started_blocks
+ *
+ *
+ * @property string $last_name
+ * @property string $first_name
+ * @property string $father_name
+ * @property string $tg_name
+ * @property string $avatar
+ * @property int $role_id
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Filterable, Sluggable;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        SoftDeletes,
+        Filterable,
+        Sluggable,
+        UserScopes;
+
 
     /**
      * The attributes that are mass assignable.
@@ -60,63 +82,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'tracks'
     ];
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'login'
-            ]
-        ];
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    public function getAvatarOriginalPathAttribute()
-    {
-        return 'storage/users/avatars/originals/' . $this->avatar;
-    }
-    public function getAvatarMediumPathAttribute()
-    {
-        return 'storage/users/avatars/medium/medium_'. $this->avatar;
-    }
-    public function getAvatarThumbnailPathAttribute()
-    {
-        return 'storage/users/avatars/thumbnail/thumbnail_'. $this->avatar;
-    }
-
-    public function getAvatarBigPathAttribute()
-    {
-        return 'storage/users/avatars/big/big_'. $this->avatar;
-    }
-
-    public function getCheckStudentIsAttribute()
-    {
-        return  $this->role_id == 1;
-    }
-    public function getFirstAndLastNamesAttribute()
-    {
-        return $this->last_name . ' ' . $this->first_name;
-    }
-    public function getAllNamesAttribute()
-    {
-        return $this->last_name . ' ' . $this->first_name . ' ' . $this->father_name;
-    }
-    public function getShortNameAttribute()
-    {
-        return $this->last_name . ' ' . mb_substr($this->first_name, 0, 1) . '. ' . mb_substr($this->father_name, 0, 1) . '.';
-    }
-    public function getTgUrlAttribute()
-    {
-        return 'https://t.me/'.$this->tg_name;
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -138,8 +103,102 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'login'
+            ]
+        ];
+    }
 
-    public function tracks_requests()
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarOriginalPathAttribute(): string
+    {
+        return 'storage/users/avatars/originals/' . $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarMediumPathAttribute(): string
+    {
+        return 'storage/users/avatars/medium/medium_'. $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarThumbnailPathAttribute(): string
+    {
+        return 'storage/users/avatars/thumbnail/thumbnail_'. $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarBigPathAttribute(): string
+    {
+        return 'storage/users/avatars/big/big_'. $this->avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCheckStudentIsAttribute(): string
+    {
+        return  $this->role_id == 1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstAndLastNamesAttribute(): string
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAllNamesAttribute(): string
+    {
+        return $this->last_name . ' ' . $this->first_name . ' ' . $this->father_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortNameAttribute(): string
+    {
+        return $this->last_name . ' ' . mb_substr($this->first_name, 0, 1) . '. ' . mb_substr($this->father_name, 0, 1) . '.';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTgUrlAttribute(): string
+    {
+        return 'https://t.me/'.$this->tg_name;
+    }
+
+
+    /**
+     * @return HasMany
+     */
+    public function tracks_requests(): HasMany
     {
         return $this->hasMany(TrackUserRequest::class, 'user_id_sender', 'id');
     }
@@ -174,7 +233,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Role::class);
     }
 
-    public function permissions()
+    /**
+     * @return HasManyThrough
+     */
+    public function permissions(): HasManyThrough
     {
         return $this->hasManyThrough(Permission::class, Role::class);
     }
@@ -182,29 +244,29 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      *
      * @param Exercise
-     * @return HasMany
-     *
+     * @return Answer|null
      */
-    public function getAnswer(Exercise $exercise)
+    public function getAnswer(Exercise $exercise): Answer |null
     {
+        /** @var Answer $relation */
         $relation = $this->hasMany(Answer::class)->where('exercise_id', $exercise->id)->first();
-        if(isset($relation->mark)) {
-            if ($relation->mark <= '2') {
-                $relation->class_name = 'danger';
-            } elseif ($relation->mark == '3') {
-                $relation->class_name = 'warning';
-            } elseif ($relation->mark == '4') {
-                $relation->class_name = 'success';
-            } elseif ($relation->mark == '5') {
-                $relation->class_name = 'success';
-            } else {
-                $relation->class_name = 'dark';
-            }
-        }
+
+        if (!$relation) return null;
+
+        $relation->class_name = match ($relation->mark) {
+            '2' || '1' => 'danger',
+            '3' => 'warning',
+            '4' || '5' => 'success',
+            default => 'dark',
+        };
+
         return $relation;
     }
 
-    public function getAverageMarkAttribute($exercise)
+    /**
+     * @return float|int
+     */
+    public function getAverageMarkAttribute(): float|int
     {
         $answers = $this->hasMany(Answer::class)->whereNotNull('mark')->get();
         $result = 0;
@@ -220,53 +282,77 @@ class User extends Authenticatable implements MustVerifyEmail
         return round($result / $answers->count(), 1);
     }
 
-    public function getSolvedTrackExercisesAttribute($track)
+    /**
+     * @param int $trackId
+     * @return int
+     */
+    public function getSolvedTrackExercisesAttribute(int $trackId): int
     {
-        $track = Track::find($track);
+        $track = Track::find($trackId);
         $exercises = [];
 
         $solvedExercises = 0;
+
         foreach($track->blocks as $block) {
             $exercises[$block->id] = $block->exercises;
         }
+
         $exercises = collect($exercises)->flatten();
+
         foreach($exercises as $exercise) {
             if ($exercise->answers->where('user_id', $this->id)->first()) {
-
                 $solvedExercises++;
             }
         }
+
         return $solvedExercises;
     }
-    public function getAnswerMarkCountAttribute($track)
+
+    /**
+     * @param int $trackId
+     * @return int
+     */
+    public function getAnswerMarkCountAttribute(int $trackId): int
     {
-        $track = Track::find($track);
+        $track = Track::find($trackId);
+
         $exercises = [];
         $solvedExercises = 0;
+
         foreach($track->blocks as $block) {
             $exercises[$block->id] = $block->exercises;
         }
+
         $exercises = collect($exercises)->flatten();
+
         foreach($exercises as $exercise) {
             if ($exercise->answers->where('user_id', $this->id)->whereNotNull('mark')->first()) {
 
                 $solvedExercises++;
             }
         }
+
         return $solvedExercises;
     }
 
-    public function getAverageMarkTrackAttribute($track)
+    /**
+     * @param $track
+     * @return float|int
+     */
+    public function getAverageMarkTrackAttribute($track): float|int
     {
         $track = Track::find($track);
         $exercises = [];
 
         $solvedExercises = 0;
         $averageMark = 0;
+
         foreach($track->blocks as $block) {
             $exercises[$block->id] = $block->exercises;
         }
+
         $exercises = collect($exercises)->flatten();
+
         foreach($exercises as $exercise) {
             $answer = $exercise->answers->where('user_id', $this->id)->whereNotNull('mark')->first();
             if ($answer) {
@@ -274,6 +360,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 $averageMark += $answer->mark;
             }
         }
+
         if($solvedExercises == 0) {
             return 0;
         }
@@ -284,12 +371,15 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return BelongsTo
      */
-    public function block()
+    public function block(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function started_blocks()
+    /**
+     * @return BelongsToMany
+     */
+    public function started_blocks(): BelongsToMany
     {
         return $this->belongsToMany(Block::class);
     }

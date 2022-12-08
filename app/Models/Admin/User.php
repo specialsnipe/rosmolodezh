@@ -4,9 +4,13 @@ namespace App\Models\Admin;
 
 use App\Models\User as ClientUser;
 
+
 class User extends ClientUser
 {
-    public function getRouteKeyName()
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
     {
         return 'id';
     }

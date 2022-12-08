@@ -96,16 +96,16 @@
                                 @enderror
                             </div>
                             <div class="form-group w-50 mb-3">
-                                <label for="curator_id">Куратор направления (все пользователи с ролью 2)</label>
+                                <label for="curator_id">Куратор направления (все пользователи с ролью "куратор")</label>
                                 <select type="text" class="form-control " id="curator_id" name="curator_id">
                                     <option value="0" disabled selected> Выберите куратора</option>
 
                                     @foreach($users as $user)
-
                                         <option value="{{ $user->id }}"
                                                 @if($track->curator_id == $user->id) selected
-                                            @endif> {{ $user->first_and_last_names }}</option>
+                                            @endif> {{ $user->firstAndLastNames }}</option>
                                     @endforeach
+
                                 </select>
                                 @error('curator_id')
                                 <div class="text-danger">{{$message}}</div>
@@ -113,13 +113,13 @@
                             </div>
 
                             <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-                                <label for="teacher_id">Преподаватель направления (все пользователи с ролью 3)</label>
+                                <label for="teacher_id">Преподаватель направления (все пользователи с ролью "преподаватель")</label>
                                 <select class="select2" name="teacher_id[]" multiple="multiple"
                                         data-placeholder="Выберите преподавателя" style="width: 100%;">
 
                                     @foreach($users as $user)
                                         <option {{ is_array($teachers_ids) &&
-                                                in_array($user->id, $teachers_ids)?'selected':''}}
+                                                in_array($user->id, $teachers_ids) ? 'selected':''}}
                                                 value="{{$user->id}}">{{$user->first_and_last_names}}</option>
                                     @endforeach
                                 </select>
@@ -127,18 +127,22 @@
 
 
                             <div class="form-group w-50">
+
                                 <label for="title">Место работы куратора<span class="text-secondary">(Информация будет отображена в карточке направления)</span></label>
-                                <input type="text" class="form-control " id="title" name="curator_job" placeholder="Место работы куратора" value="{{$curator->curator_job}}">
+                                <input type="text" class="form-control " id="title" name="curator_job" placeholder="Место работы куратора" value="{{$track->curator->curator_job}}">
                                 @error('curator_job')
-                                <div class="text-danger">{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                 @enderror
+
                             </div>
                             <div class="form-group w-50 mb-5">
+
                                 <label for="body">О кураторе<span class="text-secondary">(Информация будет отображена в карточке направления)</span></label>
-                                <textarea type="text" class="form-control" id="body" name="curator_about" placeholder="О кураторе"> {{$curator->curator_about}} </textarea>
+                                <textarea type="text" class="form-control" id="body" name="curator_about" placeholder="О кураторе"> {{$track->curator->curator_about}} </textarea>
                                 @error('curator_about')
-                                <div class="text-danger">{{$message}}</div>
+                                    <div class="text-danger">{{$message}}</div>
                                 @enderror
+
                             </div>
                             <input type="submit" class="btn btn-primary" value="Изменить">
                         </form>

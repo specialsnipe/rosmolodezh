@@ -152,6 +152,10 @@
                         @if(request()->routeIs('admin.settings.partnership.*') ) active @endif">
                            <i class="nav-icon fa fa-users"></i> Партнёрство
                         </a>
+                        <a href="{{route('admin.settings.about.index')}}" class="nav-link
+                        @if(request()->routeIs('admin.settings.about.*') ) active @endif">
+                           <i class="nav-icon fa fa-users"></i> О проекте
+                        </a>
                     </div>
                 </li>
                 <script type="text/javascript" defer>

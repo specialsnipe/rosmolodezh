@@ -19,14 +19,14 @@ class UpdateTrackRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            'title' => ['nullable', 'unique:tracks,title,' . $this->track->id],
+            'title' => ['nullable', 'unique:tracks,title,' . $this->track],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'icon' => '',
+            'icon' => [''],
             'body' => ['required'],
             'tg_url' => ['required','url'],
             'curator_id' => ['required'],

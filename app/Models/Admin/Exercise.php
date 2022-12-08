@@ -6,7 +6,10 @@ use App\Models\Exercise as ClientExercise;
 
 class Exercise extends ClientExercise
 {
-    public function getRouteKeyName()
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
     {
         return 'id';
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Track\StoreTrackRequest;
 use App\Http\Requests\Track\UpdateTrackRequest;
-use App\Models\Admin\Block;
 use App\Models\Admin\Track;
 use App\Models\Admin\User;
 use App\Services\AverageMark\AverageMarkTrack;
@@ -13,7 +12,9 @@ use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class TrackController extends Controller
@@ -26,12 +27,9 @@ class TrackController extends Controller
     public function index(): View|Factory|Application
     {
         $tracks = Track::with('blocks')->get();
-        $allAverageMark = [];
-        foreach ($tracks as $track) {
-            $allAverageMark[] = AverageMarkTrack::getMark($track);
-        }
+
         return view('admin.tracks.index', [
-            'tracks' => $tracks, 'allAverageMark' => $allAverageMark
+            'tracks' => $tracks
         ]);
     }
 
@@ -43,17 +41,17 @@ class TrackController extends Controller
     public function create()
     {
         return view('admin.tracks.create', [
-            'users' => User::where('role_id', 3)->orWhere('role_id', 2)->get()
+            'users' => (new User)->whereUserIsTeacherOrTeacher()->get()
         ]);
     }
 
     /**
      * Store a track in storage.
      *
-     * @param \App\Http\Requests\Track\StoreTrackRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreTrackRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreTrackRequest $request)
+    public function store(StoreTrackRequest $request): RedirectResponse
     {
         $data = $request->validated();
         if ($request->hasFile('icon')) {
@@ -74,52 +72,41 @@ class TrackController extends Controller
     /**
      * Display the track.
      *
-     * @param int $track_id
+     * @param Track $track
      * @return Application|Factory|View
      */
-    public function show($track_id)
+    public function show(Track $track)
     {
-        $track = Track::where('id', $track_id)->with('teachers')->first();
-
-        $averageMarkTrack = AverageMarkTrack::getMark($track);
         return view('admin.tracks.show', [
             'track' => $track,
-            'blocks' => Block::where('track_id', $track->id)->get(),
-            'averageMarkTrack' => $averageMarkTrack
+            'blocks' => $track->blocks,
         ]);
     }
 
     /**
      * Show the form for editing the track.
      *
-     * @param int $track_id
+     * @param Track $track
      * @return Application|Factory|View
      */
-    public function edit($track_id)
+    public function edit(Track $track): View|Factory|Application
     {
-        $track = Track::where('id', $track_id)->first();
-//        dd($track->teachers->flatten()->pluck('id'));
-
-        $curator = User::findOrFail($track->curator_id);
         return view('admin.tracks.edit', [
             'track' => $track,
-            'users' => User::where('role_id', 3)->orWhere('role_id', 2)->get(),
-            'curator' => $curator,
-            'teachers_ids' => $track->teachers->flatten()->pluck('id')->toArray(),
+            'users' => (new User)->whereUserIsTeacherOrTeacher()->get(),
+            'teachers_ids' => $track->teacherIds,
         ]);
     }
 
     /**
      * Update the track.
      *
-     * @param \App\Http\Requests\Track\UpdateTrackRequest $request
-     * @param int $track_id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param UpdateTrackRequest $request
+     * @param Track $track
+     * @return RedirectResponse
      */
-    public function update(UpdateTrackRequest $request, $track_id)
+    public function update(UpdateTrackRequest $request, Track $track): RedirectResponse
     {
-
-        $track = Track::where('id', $track_id)->first();
         $data = $request->validated();
 
 
@@ -145,7 +132,7 @@ class TrackController extends Controller
 
     /**
      * @param int $track_id
-     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     * @return Application|RedirectResponse|\Illuminate\Routing\Redirector|void
      * @throws \Throwable
      */
     public function destroy(Request $request, $track_id)

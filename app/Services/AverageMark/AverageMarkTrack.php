@@ -12,7 +12,7 @@ class AverageMarkTrack
 
         $blocks = $track->blocks->load('exercises');
 
-        if ($blocks->count() <= 0 ) return $score;
+        if ($blocks->count() <= 0 ) return BaseAverageMark::getStats();
 
         foreach($blocks as $block) {
             $exerciseData = AverageMarkBlock::getMark($block, $score, $countMarks);

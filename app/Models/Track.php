@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Collection;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,11 +16,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Services\AcademicPerformance\AcademicPerformanceTrack;
 
+/**
+ * @property-read Collection|User[] $teachers
+ * @property-read Collection|Block[] $blocks
+ *
+ * @property int[] $teacherIds
+ *
+ * @property string $nameUsersCount
+ *
+ * @property int $curator_id
+ * @property string $icon
+
+ */
 class Track extends Model
 {
     use HasFactory, SoftDeletes, HasSEO, CascadeSoftDeletes, Sluggable;
 
-    protected $cascadeDeletes = ['blocks'];
+    protected array $cascadeDeletes = ['blocks'];
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
@@ -140,6 +153,10 @@ class Track extends Model
     public function getStudentsCountAttribute()
     {
         return $this->students()->count();
+    }
+    public function getTeacherIdsAttribute()
+    {
+        return $this->teachers->flatten()->pluck('id')->toArray();
     }
     public function getAverageScoreAttribute()
     {

@@ -6,7 +6,10 @@ use App\Models\Post as ClientPost;
 
 class Post extends ClientPost
 {
-    public function getRouteKeyName()
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
     {
         return 'id';
     }
