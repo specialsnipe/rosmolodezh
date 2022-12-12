@@ -59,13 +59,13 @@ use App\Models\Information;
       <div class="d-flex justify-content-md-between justify-content-center" style="flex-wrap: wrap">
         <div class="d-none d-lg-block">
           <span class="mr-5">Присоединяйтесь к нам в социальных сетях:</span>
-          <a href="{{ $information->vk_url }}" class="me-4 icon">
+          <a target="_blank" href="{{ $information->vk_url }}" class="me-4 icon">
             <i class="fab fa-vk"></i>
           </a>
-          <a href="https://t.me/{{ $information->tg_url }}" class="me-4 icon">
+          <a target="_blank" href="https://t.me/{{ $information->tg_url }}" class="me-4 icon">
             <i class="fab fa-telegram-plane"></i>
           </a>
-          <a href="{{ $information->zen_url }}" class="me-4 icon">
+          <a target="_blank" href="{{ $information->zen_url }}" class="me-4 icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 56 56" fill="none">
                             <path
                                 d="M0 28C0 12.536 12.536 0 28 0C43.464 0 56 12.536 56 28C56 43.464 43.464 56 28 56C12.536 56 0 43.464 0 28Z"
@@ -77,7 +77,7 @@ use App\Models\Information;
           </a>
         </div>
         <div class="text-center">
-           <span>© 2022 Copyright: <a class="text-reset fw-bold" href="http://rosmolodezh.test">Росмолодежь</a></span>
+           <span>© 2022 Copyright: <a class="text-reset fw-bold" href="http://rosmolodezh.test">Nethamer.com</a></span>
         </div>
       </div>
     </div>

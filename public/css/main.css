@@ -392,7 +392,9 @@ main .carousel-inner img {
     background-color: transparent;
     pointer-events: painted;
 }
-
+.latest-posts .card-body{
+    min-height: 190px;
+}
 /*
     directions-block
 */

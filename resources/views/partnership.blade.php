@@ -80,8 +80,6 @@
                     <p class="text-about text-truncated card-text">
                         {!! $item->body !!}
                     </p>
-
-                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
                 </div>
 
                 <div class="bg-icon w-100">
@@ -99,7 +97,6 @@
                     <p class="text-about text-truncated card-text">
                     </p>
 
-                    <a class="show-more"><span class="button-text">Подробнее</span> <i class="fa fa-angle-up reverse"></i></a>
 
                 </div>
 
@@ -117,22 +114,5 @@
 
 @push('script')
 
-<script>
-    window.onload = function() {
-        let moreButtons = document.querySelectorAll('.show-more');
-        moreButtons.forEach((button) => {
-            button.addEventListener('click',(event)=>{
-                let arrow = button.querySelector("i");
-                arrow.classList.toggle('reverse');
-                let buttonText = button.querySelector("span");
-                let text = button.parentNode.querySelector('.text-about');
-                text.style.height = text.style.height.split('px')[0] == text.scrollHeight
-                    ? "70px"
-                    : text.scrollHeight + "px";
 
-                buttonText.innerHTML = buttonText.innerHTML === 'Подробнее' ? 'Скрыть' : 'Подробнее';
-            });
-        });
-    }
-</script>
 @endpush
