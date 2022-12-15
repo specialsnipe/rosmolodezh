@@ -229,6 +229,17 @@ class Track extends Model
     }
 
     /**
+     * Relation with users (many to one)
+     *
+     * @return BelongsTo
+     */
+    public function curatorWithoutTrashed(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'curator_id');
+    }
+
+
+    /**
      * Relation with blocks (one to many)
      *
      * @return HasMany

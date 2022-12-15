@@ -64,9 +64,15 @@
                                 <tr>
                                     <td>Куратор направления:</td>
                                     <td>
-                                        <a href="{{ route('admin.users.show', $track->curator_id) }}">{{
-                                        $track->curator->all_names }}</a>
+                                        @if($track->curatorWithoutTrashed)
+                                            <a href="{{ route('admin.users.show', $track->curator_id) }}">
+                                                {{$track->curatorWithoutTrashed?->all_names }}
+                                            </a>
+                                        @else
+                                            У данного направленеия нет куратора
+                                        @endif
                                     </td>
+                                </tr>
                                 </tr>
                                 <tr>
                                     <td>Количество блоков:</td>

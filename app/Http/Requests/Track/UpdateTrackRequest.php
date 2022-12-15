@@ -24,7 +24,7 @@ class UpdateTrackRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['nullable', 'unique:tracks,title,' . $this->track],
+            'title' => ['nullable', 'unique:tracks,title,' . $this->track->id],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'icon' => [''],
             'body' => ['required'],

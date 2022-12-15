@@ -91,9 +91,10 @@ class TrackController extends Controller
      */
     public function edit(Track $track): View|Factory|Application
     {
+        $users = (new User)->whereUserIsTeacherOrTeacher()->get() ?? collect();
         return view('admin.tracks.edit', [
             'track' => $track,
-            'users' => (new User)->whereUserIsTeacherOrTeacher()->get(),
+            'users' => $users,
             'teachers_ids' => $track->teacherIds,
         ]);
     }
