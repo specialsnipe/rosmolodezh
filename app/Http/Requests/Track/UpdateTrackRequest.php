@@ -51,6 +51,7 @@ class UpdateTrackRequest extends FormRequest
             'tg_url.required' => 'Ссылка на телеграмм чат направления обязательна',
             'tg_url.url' => 'Это поле должно быть ссылкой',
             'curator_id.required' => 'Выберите куратора направления',
+            'teacher_id.required' => 'Выберите куратора направления',
         ];
     }
 }

@@ -15,7 +15,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -54,11 +54,10 @@ class AboutController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\About  $about
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(About $about)
     {
-        //
     }
 
     /**

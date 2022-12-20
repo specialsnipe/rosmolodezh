@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
                     <li class="breadcrumb-item"><a href="{{route('admin.settings.index')}}">Настройки</a></li>
                     <li class="breadcrumb-item"><a href="{{route('admin.settings.partnership.index')}}">Управление
-                            страницей партнерство</a></li>
+                            страницей партнерство<$about/a></li>
                     <li class="breadcrumb-item">Изменение страницы партнёрство</li>
                 </ol>
             </div><!-- /.col -->

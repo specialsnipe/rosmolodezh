@@ -17,7 +17,6 @@ class About extends Model
         'company_image',
 
         'company_advantages_title',
-        'company_advantages_title',
         'company_advantages_image',
         'company_grant_image',
     ];

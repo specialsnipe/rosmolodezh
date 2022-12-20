@@ -110,7 +110,6 @@ class TrackController extends Controller
     {
         $data = $request->validated();
 
-
         if ($request->hasFile('icon')) {
             ImageService::deleteOld($track->icon, 'tracks');
             $filename = ImageService::make($request->file('icon'), 'tracks');
@@ -122,7 +121,6 @@ class TrackController extends Controller
             $data['image'] = $filename;
         }
         $teachers = $data['teacher_id'];
-
         $teachers[] = $data['curator_id'];
         $track->teachers()->sync($teachers);
         $track->update($data);

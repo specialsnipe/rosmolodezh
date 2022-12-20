@@ -32,7 +32,7 @@ class Track extends Model
 {
     use HasFactory, SoftDeletes, HasSEO, CascadeSoftDeletes, Sluggable;
 
-    protected array $cascadeDeletes = ['blocks'];
+    protected array $cascadeDeletes = ['blocks','curator'];
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
