@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\about\UpdateAboutRequest;
+use App\Http\Requests\aboutAdvantage\UpdateAboutGrantRequest;
 use App\Models\About;
 use App\Models\Partnership;
 use App\Http\Controllers\Controller;
@@ -23,7 +23,9 @@ class AboutController extends Controller
     public function index()
     {
         $about = About::first();
-        return view('admin.settings.about.index', compact('about'));
+        $grants = $about->grantItems;
+        $advantages = $about->advantageItems;
+        return view('admin.settings.about.index', compact(['about', 'advantages','grants']));
     }
 
     /**
@@ -76,10 +78,9 @@ class AboutController extends Controller
      * @param Partnership $partnership
      * @return RedirectResponse
      */
-    public function update(UpdateAboutRequest $request, Partnership $partnership)
+    public function update(UpdateAboutGrantRequest $request, Partnership $partnership)
     {
         $data = $request->validated();
-        dd($data);
         try{
             $partnership->update($data);
             return back()

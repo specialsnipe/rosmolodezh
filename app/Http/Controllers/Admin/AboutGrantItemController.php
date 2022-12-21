@@ -1,15 +1,20 @@
-<?phpAboutInfiItemController
+<?php
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\aboutGrant\StoreAboutGrantRequest;
+use App\Http\Requests\aboutGrant\UpdateAboutGrantRequest;
+use App\Models\AboutGrantItem;
 use App\Models\Partnership;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePartnershipRequest;
 use App\Http\Requests\UpdatePartnershipRequest;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 
 class AboutGrantItemController extends Controller
 {
@@ -20,8 +25,8 @@ class AboutGrantItemController extends Controller
      */
     public function index()
     {
-        $partnership = Partnership::first();
-        return view('admin.settings.partnership.index', compact('partnership'));
+//        $partnership = Partnership::first();
+//        return view('admin.settings.partnership.index', compact('partnership'));
     }
 
     /**
@@ -38,11 +43,14 @@ class AboutGrantItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StorePartnershipRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(StorePartnershipRequest $request)
+    public function store(StoreAboutGrantRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['about_id'] = 1;
+        AboutGrantItem::create($data);
+        return back();
     }
 
     /**
@@ -63,7 +71,7 @@ class AboutGrantItemController extends Controller
      */
     public function edit(Partnership $partnership)
     {
-        return view('admin.settings.partnership.edit', compact('partnership'));
+//        return view('admin.settings.partnership.edit', compact('partnership'));
     }
 
 
@@ -72,16 +80,17 @@ class AboutGrantItemController extends Controller
      * @param Partnership $partnership
      * @return RedirectResponse
      */
-    public function update(UpdatePartnershipRequest $request, Partnership $partnership)
+    public function update(UpdateAboutGrantRequest $request, $aboutGrantItem)
     {
         $data = $request->validated();
+        $aboutGrantItem = AboutGrantItem::find($aboutGrantItem);
         try{
-            $partnership->update($data);
+            $aboutGrantItem->update($data);
             return back()
-                ->with('success', 'Данные успешно обновлены');
+                ->with('success_advantage', 'Данные успешно обновлены');
         }catch (\Exception $e){
             return back()
-                ->with('error', 'Что-то пошло не так');
+                ->with('error_advantage', 'Что-то пошло не так');
         }
     }
 
@@ -89,10 +98,21 @@ class AboutGrantItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Partnership  $partnership
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(Partnership $partnership)
+    public function destroy(Request $request, $grantItem)
     {
-        //
+        $aboutGrantItem = AboutGrantItem::find($grantItem);
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
+        }
+        try {
+            $aboutGrantItem->deleteOrFail();
+            return back()
+                ->with('success_advantage', 'Данные успешно обновлены');
+        } catch (\Exception $exception) {
+            abort(501);
+        }
     }
 }

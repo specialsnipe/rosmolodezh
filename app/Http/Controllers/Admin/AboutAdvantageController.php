@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\aboutAdvantage\StoreAboutAdvantageRequest;
+use App\Http\Requests\aboutAdvantage\StoreAboutGrantRequest;
+use App\Http\Requests\aboutAdvantage\UpdateAboutAdvantageRequest;
+use App\Http\Requests\aboutAdvantage\UpdateAboutGrantRequest;
+use App\Models\AboutAdvantageItem;
 use App\Models\Partnership;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePartnershipRequest;
@@ -10,6 +15,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AboutAdvantageController extends Controller
 {
@@ -20,8 +27,8 @@ class AboutAdvantageController extends Controller
      */
     public function index()
     {
-        $partnership = Partnership::first();
-        return view('admin.settings.partnership.index', compact('partnership'));
+//        $partnership = Partnership::first();
+//        return view('admin.settings.partnership.index', compact('partnership'));
     }
 
     /**
@@ -38,11 +45,14 @@ class AboutAdvantageController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StorePartnershipRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(StorePartnershipRequest $request)
+    public function store(StoreAboutAdvantageRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['about_id'] = 1;
+        AboutAdvantageItem::create($data);
+        return back();
     }
 
     /**
@@ -63,25 +73,26 @@ class AboutAdvantageController extends Controller
      */
     public function edit(Partnership $partnership)
     {
-        return view('admin.settings.partnership.edit', compact('partnership'));
+//        return view('admin.settings.partnership.edit', compact('partnership'));
     }
 
 
     /**
-     * @param UpdatePartnershipRequest $request
-     * @param Partnership $partnership
+     * @param UpdateAboutAdvantageRequest $request
+     * @param AboutAdvantageItem $aboutAdvantageItem
      * @return RedirectResponse
      */
-    public function update(UpdatePartnershipRequest $request, Partnership $partnership)
+    public function update(UpdateAboutAdvantageRequest $request, $aboutAdvantageItem)
     {
         $data = $request->validated();
+        $aboutAdvantageItem = AboutAdvantageItem::find($aboutAdvantageItem);
         try{
-            $partnership->update($data);
+            $aboutAdvantageItem->update($data);
             return back()
-                ->with('success', 'Данные успешно обновлены');
+                ->with('success_advantage', 'Данные успешно обновлены');
         }catch (\Exception $e){
             return back()
-                ->with('error', 'Что-то пошло не так');
+                ->with('error_advantage', 'Что-то пошло не так');
         }
     }
 
@@ -89,10 +100,21 @@ class AboutAdvantageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Partnership  $partnership
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy(Partnership $partnership)
+    public function destroy(Request $request, $advantageItem)
     {
-        //
+        $aboutAdvantageItem = AboutAdvantageItem::find($advantageItem);
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
+            session()->flash('error', 'При удалении вы ввели неверный пароль, попробуйте снова');
+            return back();
+        }
+        try {
+            $aboutAdvantageItem->deleteOrFail();
+            return back()
+                ->with('success_advantage', 'Данные успешно обновлены');
+        } catch (\Exception $exception) {
+            abort(501);
+        }
     }
 }

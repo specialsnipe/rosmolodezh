@@ -169,32 +169,14 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-12">
-                                            <label>Атрибуты</label>
+                                            <label>Атрибуты(*меняются на странице О проекте)</label>
                                             @foreach($advantages as $advantage)
                                                 <div class="d-flex justify-content-between div-line-edit mb-3">
                                                     <p class="advantage_item_{{$loop->iteration}} ml-3">
                                                         {{$advantage->description}}
                                                     </p>
-                                                    <div class="d-flex align-items-start">
-                                                        <button class="btn btn-success btn-edit">
-                                                            <i class="fa fa-pen"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger delete-item">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </div>
                                                 </div>
-                                                <div class="d-none justify-content-between div-line-save mb-3">
-                                                    <input
-                                                        type="text"
-                                                        class="form-control advantage_item_{{$loop->iteration}} ml-3"
-                                                        value="{{$advantage->description}}">
-                                                    <div>
-                                                        <button class="btn btn-success btn-save">
-                                                            Сохранить
-                                                        </button>
-                                                    </div>
-                                                </div>
+
                                             @endforeach
 
 
