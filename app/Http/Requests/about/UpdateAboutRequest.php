@@ -29,9 +29,9 @@ class UpdateAboutRequest extends FormRequest
             'company_name' => ['required'],
             'company_desc' => ['required'],
             'company_advantages_title' => ['required'],
-//            'company_grant_image' => ['required'],
-//            'company_advantages_image' => ['required'],
-//            'company_image' => ['required'],
+            'company_grant_image' => [ 'image'],
+            'company_advantages_image' => ['image'],
+            'company_image' => ['image'],
         ];
     }
     public function messages()

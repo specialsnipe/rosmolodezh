@@ -42,6 +42,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
         Route::resource('/about', App\Http\Controllers\Admin\AboutController::class);
         Route::resource('/about-advantages', App\Http\Controllers\Admin\AboutAdvantageController::class);
         Route::resource('/about-grants', App\Http\Controllers\Admin\AboutGrantItemController::class);
+        Route::resource('/about-competitions', App\Http\Controllers\Admin\AboutCompetitionController::class);
     });
 
 

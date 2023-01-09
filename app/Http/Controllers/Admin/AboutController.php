@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\aboutAdvantage\UpdateAboutGrantRequest;
-use App\Models\About;
-use App\Models\Partnership;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\about\UpdateAboutRequest;
 use App\Http\Requests\StorePartnershipRequest;
 use App\Http\Requests\UpdatePartnershipRequest;
+use App\Models\About;
+use App\Models\Partnership;
+use App\Services\ImageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -25,7 +26,8 @@ class AboutController extends Controller
         $about = About::first();
         $grants = $about->grantItems;
         $advantages = $about->advantageItems;
-        return view('admin.settings.about.index', compact(['about', 'advantages','grants']));
+        $competitions = $about->competitionItems;
+        return view('admin.settings.about.index', compact(['about', 'advantages','grants', 'competitions']));
     }
 
     /**
@@ -69,7 +71,8 @@ class AboutController extends Controller
     {
         $grants = $about->grantItems;
         $advantages = $about->advantageItems;
-        return view('admin.settings.about.edit', compact(['about', 'advantages','grants']));
+        $competitions = $about->competitionItems;
+        return view('admin.settings.about.edit', compact(['about', 'advantages','grants', 'competitions']));
     }
 
 
@@ -78,12 +81,22 @@ class AboutController extends Controller
      * @param Partnership $partnership
      * @return RedirectResponse
      */
-    public function update(UpdateAboutGrantRequest $request, Partnership $partnership)
+    public function update(UpdateAboutRequest  $request, About $about)
     {
+
         $data = $request->validated();
+        $images['company_advantages_image'] = $data['company_advantages_image']??null;
+        $images['company_image'] = $data['company_image']??null;
+        $images['company_grant_image'] = $data['company_grant_image']??null;
+        foreach ($images as $key => $image) {
+            if ($image) {
+                $data[$key] = ImageService::make($image, 'about/images');
+            }
+        }
         try{
-            $partnership->update($data);
-            return back()
+            $about->update($data);
+
+            return redirect()->route('admin.settings.about.index')
                 ->with('success', 'Данные успешно обновлены');
         }catch (\Exception $e){
             return back()

@@ -35,7 +35,7 @@
             <div class="col-sm-12 col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('admin.settings.about.update', $about->id)}}" method="post">
+                        <form action="{{route('admin.settings.about.update', $about->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
                             <div class="card">
@@ -90,17 +90,17 @@
                                             <div class="col-sm-12 md-6 mb-3">
                                                 <input type="file" id="company_image" class="company_image-input"
                                                        name="company_image"
-                                                       value="Выберите">
+                                                       value="{{old('company_image')}}">
                                                 <label class="custom-file-label" for="company_image">Выберите
                                                     картинку</label>
                                             </div>
                                             <div class="d-flex flex-row">
                                                 <div class="col-sm-12 col-md-6 text-right mr-3">
                                                     <div class="row">
-                                                        <img src="{{ asset($about->company_image_medium_path) }}"
+                                                        <img src="{{ asset($about->company_image_medium) }}"
                                                              class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
                                                              height="100"
-                                                             alt="старый аватар пользователя">
+                                                             alt="старое изображение">
                                                         <span
                                                             class="col-12  text-muted text-align-right">* текущее изображение</span>
                                                     </div>
@@ -130,7 +130,7 @@
                                             <div class="col-sm-12 md-6 mb-3">
                                                 <input type="file" id="company_advantages_image"
                                                        class="company_advantages_input" name="company_advantages_image"
-                                                       value="Выберите">
+                                                       value="{{old('company_advantages_image')}}">
                                                 <label class="custom-file-label" for="company_advantages_image">Выберите
                                                     картинку</label>
                                             </div>
@@ -138,7 +138,7 @@
                                                 <div class="col-sm-12 col-md-6 text-right mr-3">
                                                     <div class="row">
                                                         <img
-                                                            src="{{ asset($about->company_advantages_image_medium_path) }}"
+                                                            src="{{ asset($about->company_advantages_image_medium) }}"
                                                             class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
                                                             height="100"
                                                             alt="старый аватар пользователя">
@@ -169,7 +169,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-12">
-                                            <label>Атрибуты(*меняются на странице О проекте)</label>
+                                            <label>Атрибуты(*можно изменить на главной странице "О нашем проекте")</label>
                                             @foreach($advantages as $advantage)
                                                 <div class="d-flex justify-content-between div-line-edit mb-3">
                                                     <p class="advantage_item_{{$loop->iteration}} ml-3">
@@ -195,7 +195,7 @@
                                             <div class="col-sm-12 md-6 mb-3">
                                                 <input type="file" id="company_grant_image"
                                                        class="company_grant_input" name="company_grant_image"
-                                                       value="Выберите">
+                                                       value="{{old('company_grant_image')}}">
                                                 <label class="custom-file-label" for="company_grant_image">Выберите
                                                     картинку</label>
                                             </div>
@@ -203,7 +203,7 @@
                                                 <div class="col-sm-12 col-md-6 text-right mr-3">
                                                     <div class="row">
                                                         <img
-                                                            src="{{ asset($about->company_grant_image_medium_path) }}"
+                                                            src="{{ asset($about->company_grant_image_medium) }}"
                                                             class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
                                                             height="100"
                                                             alt="старый аватар пользователя">
@@ -238,6 +238,29 @@
                                             @endforeach
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-5">
+                                <div class="card-header text-center">
+                                    <h4>Пятый блок (*можно изменить на главной странице "О нашем проекте")</h4>
+                                </div>
+                                <div class="card-body d-flex">
+                                    <div class="form-group row col-12">
+                                        @foreach($competitions as $competition)
+                                            <div class="d-flex w-100 justify-content-between div-line-edit mb-3 mr-5">
+                                                <div class="d-flex flex-column">
+                                                    <h4>{{$competition->title}}</h4>
+                                                    <p class="advantage_item_{{$loop->iteration}} ml-3">
+                                                        {{$competition->description}}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+                                        @endforeach
+                                    </div>
+
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-success  col-sm-12" value="Сохранить">

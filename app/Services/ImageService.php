@@ -18,7 +18,6 @@ class ImageService
     public static function make($file, $path, $otherCopies = true): string
     {
         $filename = $file->hashName();
-
         // Сохраняет оригинал сюда
         $destinationPath = Storage::disk('public')->path($path) . '/originals';
         $file = $file->move($destinationPath, $filename);

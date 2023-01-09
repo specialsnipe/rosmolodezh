@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\aboutAdvantage;
+namespace App\Http\Requests\AboutCompetition;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAboutAdvantageRequest extends FormRequest
+class UpdateAboutCompetitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class UpdateAboutAdvantageRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => ['required',],
             'description' => ['required',],
-            ''
         ];
     }
     public function messages()
     {
         return [
-            'description' => 'Поле "Заголовок" обязательно для заполнения.',
+            'description.required' => 'Поле обязательно для заполнения.',
+            'title.required' => 'Поле обязательно для заполнения.',
         ];
     }
 }

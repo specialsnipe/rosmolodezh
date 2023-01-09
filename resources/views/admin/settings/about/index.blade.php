@@ -63,11 +63,10 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="input-group row">
                                         <div class="d-flex flex-row">
-                                            <div class="col-sm-12 col-md-6 text-right mr-3">
+                                            <div class="col-sm-12 col-md-12 text-right mr-3">
                                                 <div class="row">
-                                                    <img src="{{ asset($about->company_image_medium_path) }}"
-                                                         class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
-                                                         height="100"
+                                                    <img src="{{ asset($about->company_image_big) }}"
+                                                         class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar h"
                                                          alt="Первая картинка">
                                                 </div>
                                             </div>
@@ -84,12 +83,11 @@
                                 <div class="col-sm-12 col-md-6">
                                     <div class="input-group row">
                                         <div class="d-flex flex-row">
-                                            <div class="col-sm-12 col-md-6 text-right mr-3">
+                                            <div class="col-sm-12 col-md-12 text-right mr-3">
                                                 <div class="row">
                                                     <img
-                                                        src="{{ asset($about->company_advantages_image_medium_path) }}"
+                                                        src="{{ asset($about->company_advantages_image_big) }}"
                                                         class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
-                                                        height="100"
                                                         alt="Второе изображение">
                                                 </div>
                                             </div>
@@ -172,12 +170,11 @@
                                     <div class="input-group row">
 
                                         <div class="d-flex flex-row">
-                                            <div class="col-sm-12 col-md-6 text-right mr-3">
+                                            <div class="col-sm-12 col-md-12 text-right mr-3">
                                                 <div class="row">
                                                     <img
-                                                        src="{{ asset($about->company_grant_image_medium_path) }}"
+                                                        src="{{ asset($about->company_grant_image_big) }}"
                                                         class="col-12 rounded img-fluid img-thumbnail mb-2 user_avatar"
-                                                        height="100"
                                                         alt="Третье изображение">
                                                 </div>
                                             </div>
@@ -258,12 +255,12 @@
                                                            class=" form-control ml-3">
                                                 </div>
                                                 <div class="d-flex align-items-start ml-5">
-                                                <button class="btn btn-success btn-save">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <div class="btn btn-primary btn-cancel">
-                                                    <i class="fa fa-minus"></i>
-                                                </div>
+                                                    <button class="btn btn-success btn-save">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+                                                    <div class="btn btn-primary btn-cancel">
+                                                        <i class="fa fa-minus"></i>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
@@ -272,15 +269,109 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
-                            <a href="{{route('admin.settings.about.edit', $about->id)}}"
-                               class="btn btn-success  col-sm-12">Изменить</a>
+
+                        <div class="card mt-5">
+                            <div class="card-header text-center">
+                                <h4>Пятый блок</h4>
+                            </div>
+                            <div class="card-body d-flex">
+                                <div class="form-group row col-12">
+                                    @foreach($competitions as $competition)
+                                        <div class="d-flex w-100 justify-content-between div-line-edit mb-3 mr-5">
+                                            <div class="d-flex flex-column">
+                                                <h4>{{$competition->title}}</h4>
+                                                <p class="advantage_item_{{$loop->iteration}} ml-3">
+                                                    {{$competition->description}}
+                                                </p>
+                                            </div>
+                                            <div class="d-flex align-items-start">
+                                                <button class="btn btn-success btn-edit">
+                                                    <i class="fa fa-pen"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modalAdvantage{{$competition->id}}"><i
+                                                        class="fa fa-trash"></i>
+                                                </button>
+                                                <x-modal name="Вы уверены что хотите удалить?" type="delete"
+                                                         action="{{ route('admin.settings.about-competitions.destroy', [$competition->id]) }}"
+                                                         targetid="modalAdvantage{{$competition->id }}">
+                                                </x-modal>
+                                            </div>
+                                        </div>
+
+
+                                        <form class="d-none w-100 justify-content-between div-line-save mb-3 mr-5"
+                                              action="{{route('admin.settings.about-competitions.update', $competition->id)}}"
+                                              method="post">
+                                            @csrf
+                                            @method('put')
+                                            <div class="d-flex flex-column w-100">
+                                                <input name="title"
+                                                       type="text"
+                                                       class="form-control advantage_item_{{$loop->iteration}} ml-3"
+                                                       value="{{$competition->title}}">
+                                                <input name="description"
+                                                       type="text"
+                                                       class=" form-control advantage_item_{{$loop->iteration}} ml-3"
+                                                       value="{{$competition->description}}">
+                                            </div>
+
+                                            <div class="d-flex align-items-start ml-5">
+                                                <button class="btn btn-success btn-save">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <div class="btn btn-primary btn-cancel">
+                                                    <i class="fa fa-minus"></i>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <hr>
+                                    @endforeach
+                                    <div class="col-12">
+                                        <button class="btn btn-success btn-add">
+                                            добавить элемент
+                                        </button>
+
+                                        <form class="d-none justify-content-between div-line-input mb-3"
+                                              action="{{route('admin.settings.about-competitions.store')}}"
+                                              method="post">
+                                            @csrf
+                                            @method('post')
+
+                                            <div class="d-flex flex-column w-100">
+                                                <input name="title"
+                                                       type="text"
+                                                       class="form-control ml-3 w-100">
+                                                <input name="description"
+                                                       type="text"
+                                                       class=" form-control ml-3 w-100">
+                                            </div>
+                                            <div class="d-flex align-items-start ml-5 mr-5">
+                                                <button class="btn btn-success btn-save">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <div class="btn btn-primary btn-cancel">
+                                                    <i class="fa fa-minus"></i>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+                    <a href="{{route('admin.settings.about.edit', $about->id)}}"
+                       class="btn btn-success  col-sm-12">Изменить</a>
+                </div>
             </div>
-
         </div>
+    </div>
+
     </div>
 
 @endsection
@@ -290,7 +381,7 @@
 
         let divEdit = document.querySelectorAll('.div-line-edit')
         let divSave = document.querySelectorAll('.div-line-save')
-        let divInput =document.querySelectorAll('.div-line-input')
+        let divInput = document.querySelectorAll('.div-line-input')
 
         let closeInputs = function (divSave) {
             divSave.forEach(function (elem) {
@@ -328,7 +419,7 @@
             })
         })
         cancelButtons.forEach(function (button) {
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', function (event) {
                 event.preventDefault()
                 closeInputs(divSave)
                 closeInputs(divInput)
@@ -337,7 +428,7 @@
             })
         })
         addButtons.forEach(function (button) {
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', function (event) {
                 event.preventDefault()
                 button.classList.remove('d-flex')
                 button.classList.add('d-none')
