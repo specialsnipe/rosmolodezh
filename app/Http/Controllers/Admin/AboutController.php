@@ -23,10 +23,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about = About::first();
-        $grants = $about->grantItems;
-        $advantages = $about->advantageItems;
-        $competitions = $about->competitionItems;
+        $about = null;
+        $grants = $about?->grantItems;
+        $advantages = $about?->advantageItems;
+        $competitions = $about?->competitionItems;
         return view('admin.settings.about.index', compact(['about', 'advantages','grants', 'competitions']));
     }
 
