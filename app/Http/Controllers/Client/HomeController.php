@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Models\About;
 use App\Models\Post;
 use App\Models\Team;
 use App\Models\Track;
@@ -92,9 +93,19 @@ class HomeController extends Controller
      */
     public function about()
     {
-
+        $about = About::first();
+        $grants = $about?->grantItems;
+        $advantages = $about?->advantageItems;
+        $competitions = $about?->competitionItems;
         $tracks = Track::all();
-        return view('about', compact('tracks'));
+        return view('about', compact([
+                'tracks',
+                'about',
+                'grants',
+                'advantages',
+                'competitions'
+            ])
+        );
     }
 
     /**
@@ -104,7 +115,7 @@ class HomeController extends Controller
     public function contacts()
     {
         return view('contacts', [
-            'settings'=>$this->settings
+            'settings' => $this->settings
         ]);
     }
 
@@ -115,8 +126,9 @@ class HomeController extends Controller
     public function teams()
     {
         $team = Team::all();
-        return view('teams',compact('team'));
+        return view('teams', compact('team'));
     }
+
     /**
      *Сontacts page
      *
@@ -128,6 +140,7 @@ class HomeController extends Controller
             'partnership' => Partnership::first(),
         ]);
     }
+
     /**
      *Сontacts page
      *
@@ -159,8 +172,8 @@ class HomeController extends Controller
             ->get()
             ->load('block')
             ->filter(function ($item) {
-            return $item->block != null;
-        });
+                return $item->block != null;
+            });
 
 
         foreach ($exercises as $exercise) {
