@@ -23,7 +23,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about = null;
+        $about = About::first();
         $grants = $about?->grantItems;
         $advantages = $about?->advantageItems;
         $competitions = $about?->competitionItems;
