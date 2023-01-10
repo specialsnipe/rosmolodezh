@@ -27,7 +27,7 @@ class AboutController extends Controller
         $grants = $about?->grantItems;
         $advantages = $about?->advantageItems;
         $competitions = $about?->competitionItems;
-        return view('admin.settings.about.index', compact(['about', 'advantages','grants', 'competitions']));
+        return view('admin.settings.about.index', compact(['about', 'advantages', 'grants', 'competitions']));
     }
 
     /**
@@ -43,7 +43,7 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePartnershipRequest  $request
+     * @param \App\Http\Requests\StorePartnershipRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePartnershipRequest $request)
@@ -54,7 +54,7 @@ class AboutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Partnership  $partnership
+     * @param \App\Models\Partnership $partnership
      * @return \Illuminate\Http\Response
      */
     public function show(Partnership $partnership)
@@ -72,7 +72,7 @@ class AboutController extends Controller
         $grants = $about->grantItems;
         $advantages = $about->advantageItems;
         $competitions = $about->competitionItems;
-        return view('admin.settings.about.edit', compact(['about', 'advantages','grants', 'competitions']));
+        return view('admin.settings.about.edit', compact(['about', 'advantages', 'grants', 'competitions']));
     }
 
 
@@ -81,24 +81,23 @@ class AboutController extends Controller
      * @param Partnership $partnership
      * @return RedirectResponse
      */
-    public function update(UpdateAboutRequest  $request, About $about)
+    public function update(UpdateAboutRequest $request, About $about)
     {
 
         $data = $request->validated();
-        $images['company_advantages_image'] = $data['company_advantages_image']??null;
-        $images['company_image'] = $data['company_image']??null;
-        $images['company_grant_image'] = $data['company_grant_image']??null;
+        $images['company_advantages_image'] = $data['company_advantages_image'] ?? null;
+        $images['company_image'] = $data['company_image'] ?? null;
+        $images['company_grant_image'] = $data['company_grant_image'] ?? null;
         foreach ($images as $key => $image) {
             if ($image) {
                 $data[$key] = ImageService::make($image, 'about/images');
             }
         }
-        try{
+        try {
             $about->update($data);
-
             return redirect()->route('admin.settings.about.index')
                 ->with('success', 'Данные успешно обновлены');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return back()
                 ->with('error', 'Что-то пошло не так');
         }
@@ -107,7 +106,7 @@ class AboutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Partnership  $partnership
+     * @param \App\Models\Partnership $partnership
      * @return \Illuminate\Http\Response
      */
     public function destroy(Partnership $partnership)

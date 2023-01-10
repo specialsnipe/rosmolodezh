@@ -15,7 +15,8 @@ class About extends Model
         'company_name',
         'company_desc',
         'company_image',
-
+        "footer_title",
+        "footer_description",
         'company_advantages_title',
         'company_advantages_image',
         'company_grant_image',

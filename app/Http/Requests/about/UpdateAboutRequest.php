@@ -24,14 +24,15 @@ class UpdateAboutRequest extends FormRequest
     public function rules()
     {
         return [
-            'footer_title' => ['required',],
-            'footer_description' => ['required'],
+            'footer_title' => ['nullable'],
+            'footer_description' => ['nullable'],
             'company_name' => ['required'],
             'company_desc' => ['required'],
             'company_advantages_title' => ['required'],
             'company_grant_image' => [ 'image'],
             'company_advantages_image' => ['image'],
             'company_image' => ['image'],
+
         ];
     }
     public function messages()
