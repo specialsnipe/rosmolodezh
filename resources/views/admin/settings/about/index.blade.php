@@ -57,7 +57,7 @@
                                     <div class="form-group col-12 md-6">
                                         {{$about->company_name}}
                                     </div>
-                                    <div class="form-group col-12 md-6">{{ $about->company_desc }}
+                                    <div class="form-group col-12 md-6">{!! $about->company_desc !!}
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
