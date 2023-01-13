@@ -9,7 +9,7 @@
     <div class="container mb-5 mt-5">
         <h1 class="h1-content mt-0 mb-4">О нашем проекте</h1>
         <div class="row d-flex justify-content-center">
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12">
                 <div class="card content-info">
                     <div class="card-body content-body">
                         <h5 class="card-title">{{ $about->footer_title }}</h5>
@@ -20,27 +20,27 @@
                     </div>
                 </div>
             </div>
+            <div class="row fix-adaptiv-one col-md-12">
+                <div class="col-md-6 h-100">
+                    <div class="card content-info h-100">
+                        <div class="card-body content-body">
+                            <h5 class="card-title">{{$about->company_name}}</h5>
+                            <p class="card-text">{!! $about->company_desc !!}</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="col-md-6 h-100">
-                <div class="card content-info h-100">
-                    <div class="card-body content-body">
-                        <h5 class="card-title">{{$about->company_name}}</h5>
-                        <p class="card-text">{!! $about->company_desc !!}</p>
+                <div class="col-md-6 h-100">
+                    <div class="h-100 mt-3">
+                        <img src="{{ $about->company_image_medium }}" class="w-100 rounded" alt="">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 h-100">
-                <div class="h-100 mt-3">
-                    <img src="{{ $about->company_image_medium }}" class="w-100 rounded" alt=""
-                         style="object-fit: contain; max-height: 650px">
-                </div>
-            </div>
-            <section class="row fix-adaptiv mt-3 col-md-12">
-                <div class="col-md-6 mt-3">
-                    <div class="h-100">
-                        <img src="{{ $about->company_advantages_image_medium }}" class="w-100 rounded" alt=""
-                             style="object-fit: contain; max-height: 650px">
+            <div class="row fix-adaptiv mt-3 col-md-12">
+                <div class="col-md-6 h-100">
+                    <div class="h-100 mt-3">
+                        <img src="{{ $about->company_advantages_image_medium }}" class="w-100 rounded" alt="">
                     </div>
                 </div>
 
@@ -55,20 +55,25 @@
                         </div>
                     </div>
                 </div>
-            </section>
-            <div class="col-md-6">
-                <img src="{{ $about->company_grant_image_medium }}" class="w-100 rounded mt-3" alt=""
-                     style="object-fit: contain; max-height: 650px">
             </div>
 
-            <div class="col-md-6">
-                <div class="card content-info-2">
-                    <div class="card-body content-body">
-                        @forelse($grants as $grant)
-                            <h5 class="card-title">{{ $grant->title }}</h5>
-                            <p class="card-text">{{ $grant->description }}</p>
-                        @empty
-                        @endforelse
+            <div class="row fix-adaptiv-two col-md-12 mb-3">
+
+            <div class="col-md-6 h-100">
+                    <div class="h-100">
+                        <img src="{{ $about->company_grant_image_medium }}" class="w-100 rounded mt-3" alt="">
+                    </div>
+                </div>
+               
+                <div class="col-md-6">
+                    <div class="card content-info-2">
+                        <div class="card-body content-body">
+                            @forelse($grants as $grant)
+                                <h5 class="card-title">{{ $grant->title }}</h5>
+                                <p class="card-text">{{ $grant->description }}</p>
+                            @empty
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>

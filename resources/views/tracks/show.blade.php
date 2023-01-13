@@ -113,6 +113,7 @@
                                         <div class="col-sm-12 col-lg-8">
                                                 <p class="fs-5 mb-0">
                                                     {{ $block->title }}
+                                                    <!-- <div class="line-header"></div> -->
                                                 </p>
                                                 <p class="fs-6 mt-2 mb-0 d-flex align-items-center">
                                                 Заданий: 
