@@ -2059,7 +2059,6 @@ header form .btn {
     -ms-transition: 200ms;
     -o-transition: 200ms;
 }
-
 .fix-adaptiv-one img, .fix-adaptiv img, .fix-adaptiv-two img{
     object-fit: cover;
     height: 100%;

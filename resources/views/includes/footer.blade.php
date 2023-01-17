@@ -10,7 +10,7 @@ use App\Models\Information;
   <section>
     <div class="container text-center pt-4 text-md-start">
       <div class="row mt-3">
-        <div class="col-md-12 col-lg-4 col-xl-3 mb-4">
+        <div class="col-md-12 col-lg-4 col-xl-3 mb-3">
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fa-solid fa-book-open-reader me-3 text-secondary"></i>Росмолодежь
           </h6>
@@ -50,15 +50,19 @@ use App\Models\Information;
             <i class="fas fa-envelope me-3"></i>
             {{ $information->emails->first()->email }}
           </p>
+          <p>
+          <a href="" target="_blank"> <i class="fas fa-book-reader me-3"></i>
+            Правила пользования</a>
+          </p>
         </div>
       </div>
     </div>
   </section>
-  <section class="d-flex justify-content-center justify-content-lg-between p-4">
+  <section class="p-4">
     <div class="container">
-      <div class="d-flex justify-content-md-between justify-content-center" style="flex-wrap: wrap">
-        <div class="d-none d-lg-block">
-          <span class="mr-5">Присоединяйтесь к нам в социальных сетях:</span>
+      <div class="row" style="flex-wrap: wrap">
+        <div class="d-lg-flex col-md-8 col-sm-12 mb-4">
+          <span class="me-4">Присоединяйтесь к нам в социальных сетях:</span>
           <a target="_blank" href="{{ $information->vk_url }}" class="me-4 icon">
             <i class="fab fa-vk"></i>
           </a>
@@ -76,8 +80,8 @@ use App\Models\Information;
                         </svg>
           </a>
         </div>
-        <div class="text-center">
-           <span>© 2022 Copyright: <a class="text-reset fw-bold" href="http://rosmolodezh.test">Nethamer.com</a></span>
+        <div class="col-md-4 mx-auto ">
+           <span>© 2023 Copyright: <a  class="text-reset fw-bold" href="http://rosmolodezh.test">Nethammer.com</a></span>
         </div>
       </div>
     </div>
