@@ -28,8 +28,11 @@ class AcademicPerformanceBlock
 
         if ($studentsCount <= 0) return BasePerformance::getStats();
 
-        $performance = $performance / $exercisesCount;
-
+        if ($exercisesCount == 0) {
+            return BasePerformance::getStats($studentsCount);
+        }
+//        Закомментил(Alex),потому что деление дважды: при присваивании и в ответе
+//        $performance = $performance / $exercisesCount;
         return BasePerformance::getStats(
             $studentsCount,
             round($performance / $exercisesCount, 2)
