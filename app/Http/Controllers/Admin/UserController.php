@@ -84,7 +84,7 @@ class UserController extends Controller
         unset($data['track_id']);
 
         if (!$request->hasFile('file')) {
-            $user= User::firstOrCreate($data);
+            $user = User::firstOrCreate($data);
             $user->tracks()->attach($trackId);
             if (isset($data['tg_name'])) {
                 event(new UserTelegramUpdate($user, $data['tg_name']));
@@ -98,9 +98,8 @@ class UserController extends Controller
         unset($data['file']);
 
         $data['avatar'] = $filename;
+        $user = User::firstOrCreate($data);
         $user->tracks()->attach($trackId);
-        $user = User::create($data);
-
         if (isset($data['tg_name'])) {
             event(new UserTelegramUpdate($user, $data['tg_name']));
         }
