@@ -140,12 +140,12 @@
                                         class="fa fa-pen"></i></a>
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#modalBlock">Удалить
+                                        data-target="#modalBlock{{$block->id}}">Удалить
                                 </button>
 
                                 <x-modal name="Вы уверены что хотите удалить этот блок?" type="delete"
                                          action="{{ route('admin.tracks.blocks.destroy', [$track->id, $block->id]) }}"
-                                         targetid="modalBlock">
+                                         targetid="modalBlock{{$block->id}}">
                                 </x-modal>
                             </div>
                         </div>
