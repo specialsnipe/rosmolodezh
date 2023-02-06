@@ -89,7 +89,7 @@ class UserController extends Controller
             if (isset($data['tg_name'])) {
                 event(new UserTelegramUpdate($user, $data['tg_name']));
             }
-//                event(new Registered($user));
+                event(new Registered($user));
 
             return redirect()->route('admin.users.show', $user->id);
         }
