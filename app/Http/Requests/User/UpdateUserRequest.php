@@ -28,8 +28,9 @@ class UpdateUserRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
+            'father_name' => 'nullable',
             'gender_id' => ['required', 'min:1'],
-            'email' => ['required',  'unique:users,email,'.$this->user->id, 'email:dns'],
+            'email' => ['required',  'unique:users,email,'.$this->user, 'email:dns'],
             'occupation_id' => ['required', 'min:1'],
             'role_id' => ['required', 'min:1'],
             'age' => ['nullable','numeric'],
