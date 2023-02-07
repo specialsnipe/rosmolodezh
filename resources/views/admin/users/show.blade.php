@@ -2,6 +2,11 @@
 
 
 @section('content')
+    <style>
+        table tr td:nth-child(2) {
+            word-break: break-all;
+        }
+    </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -31,12 +36,12 @@
 
         <section class="content m-3">
             <div class="card ">
-                <div class="card-body row">
+                <div class="card-body row ">
                     <div class="col-sm-12 col-md-4">
                         <img class="card-img-top" src="{{ asset($user->avatar_medium_path) }}"
                              alt="Аватарка пользователя">
                     </div>
-                    <table class="table table-head-fixed text-nowrap col-sm-12 col-md-8 ">
+                    <table class=" table table-head-fixed text-wrap col-sm-12 col-md-8 ">
                         <tbody>
                         <tr>
                             <th class="col-sm-4 col-md-2">Статус:</th>
@@ -137,12 +142,12 @@
                                 <td>не является куратором</td>
                             @endif
                         </tr>
-                        <tr>
+                        <tr class="">
                             <th>О кураторе</th>
 
                             @if($isCurator)
                                 @if($user->curator_about)
-                                    <td>{{$user->curator_about}}</td>
+                                    <td class="text-wrap" >{{$user->curator_about}}</td>
                                 @else
                                     <td>не указано</td>
                                 @endif
