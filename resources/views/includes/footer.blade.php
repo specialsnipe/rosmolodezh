@@ -87,7 +87,7 @@ use App\Models\Information;
           </a>
         </div>
         <div class="col-md-4 mx-auto ">
-           <span>© 2023 Copyright: <a  class="text-reset fw-bold" href="http://rosmolodezh.test">Nethammer.ru</a></span>
+           <span>© 2023 Copyright: <a  class="text-reset fw-bold" href="https://nethammer.ru/">Nethammer.ru</a></span>
         </div>
       </div>
     </div>
