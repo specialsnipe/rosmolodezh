@@ -38,7 +38,7 @@ use App\Models\Information;
           </h6>
           @foreach ($tracks as $track)
             <p>
-                <a target="_blank" href="{{ route('tracks.show', $track->id) }}" class="text-reset">{{ $track->title }}</a>
+                <a target="_blank" href="{{ route('tracks.show', $track->slug) }}" class="text-reset">{{ $track->title }}</a>
             </p>
           @endforeach
         </div>
