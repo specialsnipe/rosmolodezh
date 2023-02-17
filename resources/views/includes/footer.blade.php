@@ -51,8 +51,14 @@ use App\Models\Information;
             {{ $information->emails->first()->email }}
           </p>
           <p>
-          <a href="" target="_blank"> <i class="fas fa-book-reader me-3"></i>
-            Правила пользования</a>
+              <a href="{{ asset('rules/rules.pdf') }}" target="_blank">
+                  <i class="fas fa-book-reader me-3"></i> Правила проекта
+              </a>
+          </p>
+          <p>
+              <a href="{{ asset('rules/policy.pdf') }}" target="_blank">
+                  <i class="fas fa-book-reader me-3"></i> Политика конфиденциальности
+              </a>
           </p>
         </div>
       </div>
