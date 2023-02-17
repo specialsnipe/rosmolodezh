@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire;
 use App\Models\Answer;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
-use App\Models\Exercise;
 use App\Models\AnswerFile;
 use Livewire\WithFileUploads;
 use App\Events\AnswerToExerciseSended;
@@ -20,7 +23,7 @@ class SendAnswerToExerciseComponent extends Component
     public $bodyDefault;
     public $file;
     public $files = [];
-    public $modalDeleteAnswer = false;
+    public bool $modalDeleteAnswer = false;
 
     public function uploadFile()
     {
@@ -29,26 +32,29 @@ class SendAnswerToExerciseComponent extends Component
         ],[
             'file.required' => 'Поле обязательно для заполнения',
             'file.file' => 'Это должно быть файлом',
-            'file.file' => 'Файл слишком много весит',
+            'file.max' => 'Слишком большой файл',
         ]);
-        AnswerFile::create([
-            'answer_id' => $this->answer->id,
-            'user_id' => auth()->user()->id,
-            'file_name' => $this->file->hashName(),
-            'file_size' => $this->file->getSize() / 1024,
-            'file_type' => $this->file->getClientOriginalExtension(),
-            'original_file_name' => $this->file->getClientOriginalName(),
-        ]);
-        $this->file->storeAs('public/users/answers/uploaded_files', $this->file->hashName());
 
+        AnswerFile::query()
+            ->create([
+                'answer_id' => $this->answer->id,
+                'user_id' => auth()->user()->id,
+                'file_name' => $this->file->hashName(),
+                'file_size' => $this->file->getSize() / 1024,
+                'file_type' => $this->file->getClientOriginalExtension(),
+                'original_file_name' => $this->file->getClientOriginalName(),
+            ]);
+
+        $this->file->store('users/answers', 'public', $this->file->hashName());
         $this->file = null;
 
-        $this->files = AnswerFile::where('user_id', auth()->user()->id)
-                                    ->where('answer_id', $this->answer->id)->get();
-        if($this->files->count() < 0) {
-            $this->files = [];
-        }
+        $this->files = AnswerFile::query()
+            ->where('user_id', auth()->user()->id)
+            ->where('answer_id', $this->answer->id)->get();
+
+        if($this->files->count() < 0) $this->files = [];
     }
+
     public function deleteFile($file_id)
     {
 
@@ -58,7 +64,7 @@ class SendAnswerToExerciseComponent extends Component
         }
         $file->delete();
 
-        $this->file = '';
+        $this->file = null;
 
         $this->files = AnswerFile::where('user_id', auth()->user()->id)
                                     ->where('answer_id', $this->answer->id)->get();
@@ -88,7 +94,8 @@ class SendAnswerToExerciseComponent extends Component
             'body.required' => 'Обязательно оставьте коментарий к задаче'
         ]);
     }
-    public function saveAnswer()
+
+    public function saveAnswer(): RedirectResponse
     {
         $this->validate([
             'body' => 'required'
@@ -108,7 +115,7 @@ class SendAnswerToExerciseComponent extends Component
         return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);
     }
 
-    public function outWithoutSave()
+    public function outWithoutSave(): RedirectResponse
     {
         $this->answer->forceDelete();
         return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);
@@ -116,30 +123,34 @@ class SendAnswerToExerciseComponent extends Component
 
     public function mount()
     {
-        $this->answer = Answer::where('exercise_id', $this->exercise->id)
-                                ->where('user_id', auth()->user()->id)->first();
+        $this->answer = Answer::query()
+            ->where('exercise_id', $this->exercise->id)
+            ->where('user_id', auth()->user()->id)->first();
 
 
         $this->bodyDefault = $this->answer->body ?? '';
         $this->body = $this->answer->body ?? '';
 
         if($this->answer == null) {
-            $this->answer = Answer::create([
-                'body' => '',
-                'exercise_id' => $this->exercise->id,
-                'mark' => null,
-                'user_id' => auth()->user()->id
-            ]);
+            $this->answer = Answer::query()
+                ->create([
+                    'body' => '',
+                    'exercise_id' => $this->exercise->id,
+                    'mark' => null,
+                    'user_id' => auth()->user()->id
+                ]);
         }
 
-        $this->files = AnswerFile::where('user_id', auth()->user()->id)
-                                ->where('answer_id', $this->answer->id)->get();
+        $this->files = AnswerFile::query()
+            ->where('user_id', auth()->user()->id)
+            ->where('answer_id', $this->answer->id)->get();
+
         if($this->files->count() < 0) {
             $this->files = [];
         }
     }
 
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('livewire.send-answer-to-exercise-component');
     }

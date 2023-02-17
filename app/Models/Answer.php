@@ -8,11 +8,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Ramsey\Collection\Collection;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $mark
+ *
+ * @property string $title
+ * @property string $body
+ * @property bool $sended
+ *
+ * @property-read User $user
+ * @property-read Exercise $exercise
+ * @property-read Collection|AnswerFile[] $answerFiles
+ */
 class Answer extends Model
 {
     use HasFactory, SoftDeletes;
-
 
     protected $fillable = [
         'title',
@@ -27,6 +40,7 @@ class Answer extends Model
     /**
      * Relation with users (one to many)
      * @return BelongsTo
+     * @noinspection PhpUnused
      */
     public function user(): BelongsTo
     {
@@ -36,6 +50,7 @@ class Answer extends Model
     /**
      * Relation with exercises (one to many)
      * @return BelongsTo
+     * @noinspection PhpUnused
      */
     public function exercise(): BelongsTo
     {
@@ -44,6 +59,7 @@ class Answer extends Model
     /**
      *  Relation with answer_files (one to many)
      * @return HasMany
+     * @noinspection PhpUnused
      */
     public function answerFiles(): HasMany
     {

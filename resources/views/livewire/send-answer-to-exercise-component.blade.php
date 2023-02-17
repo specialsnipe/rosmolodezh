@@ -37,10 +37,21 @@
                     });
                 </script>
                 <div class="col-sm-12 col-md-8 ">
-                    <input type="file" name="file" class="form-control w-100 @error('file') is-invalid @enderror" wire:model='file'>
-                    @error('file')
-                        <span class='text-danger'> {{ $message }}</span>
-                    @enderror
+                    <div
+                        x-data="{ isUploading: false, progress: 0 }"
+                        x-on:livewire-upload-start="isUploading = true"
+                        x-on:livewire-upload-finish="isUploading = false"
+                        x-on:livewire-upload-error="isUploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress"
+                    >
+                        <input type="file" name="file" class="form-control w-100 @error('file') is-invalid @enderror" wire:model='file'>
+                        @error('file')
+                            <span class='text-danger'> {{ $message }}</span>
+                        @enderror
+                        <div x-show="isUploading">
+                            <progress max="100" x-bind:value="progress"></progress>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-12 col-md-4 mb-4">
                     <button type="button" name="file" class="btn btn-primary w-100" wire:click='uploadFile'> Добавить

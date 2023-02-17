@@ -66,7 +66,7 @@ use App\Models\Information;
           <a target="_blank" href="{{ $information->vk_url }}" class="me-4 icon">
             <i class="fab fa-vk"></i>
           </a>
-          <a target="_blank" href="https://t.me/{{ $information->tg_url }}" class="me-4 icon">
+          <a target="_blank" href="{{ $information->tg_url }}" class="me-4 icon">
             <i class="fab fa-telegram-plane"></i>
           </a>
           <a target="_blank" href="{{ $information->zen_url }}" class="me-4 icon">
@@ -81,7 +81,7 @@ use App\Models\Information;
           </a>
         </div>
         <div class="col-md-4 mx-auto ">
-           <span>© 2023 Copyright: <a  class="text-reset fw-bold" href="http://rosmolodezh.test">Nethammer.com</a></span>
+           <span>© 2023 Copyright: <a  class="text-reset fw-bold" href="http://rosmolodezh.test">Nethammer.ru</a></span>
         </div>
       </div>
     </div>

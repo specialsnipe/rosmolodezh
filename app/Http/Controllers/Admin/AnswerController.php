@@ -11,6 +11,11 @@ use App\Models\Block;
 use App\Models\Exercise;
 use App\Models\Track;
 use App\Models\User;
+use App\Services\Answers\AnswerFileStore;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,10 +23,8 @@ class AnswerController extends Controller
 {
 
     /**
-     * @param Track $track
-     * @param Block $block
      * @param Exercise $exercise
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index(Exercise $exercise)
     {
@@ -34,7 +37,7 @@ class AnswerController extends Controller
 
     /**
      * @param Exercise $exercise
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create(Exercise $exercise)
     {
@@ -45,41 +48,27 @@ class AnswerController extends Controller
     /**
      * @param StoreAnswerRequest $request
      * @param Exercise $exercise
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store (StoreAnswerRequest $request, Exercise $exercise)
+    public function store(StoreAnswerRequest $request, Exercise $exercise)
     {
         $data = $request->validated();
-        $files = $data['file'];
-
-        unset($data['file']);
-
         $data['user_id'] = auth()->user()->id;
         $data['exercise_id'] = $exercise->id;
+
+        $files = $data['file'];
+        unset($data['file']);
+
         $answer = Answer::firstOrCreate($data);
-
-
 
         if ($files) {
             foreach ($files as $file) {
-                $fileName = $file->hashName();
-
-                $fileExtension = $file->extension();
-                $originalFileName = $file->getClientOriginalName();
-
-                $path = Storage::disk('public')->path('users/answers');
-                $file->move($path, $fileName);
-
-                $fileData['answer_id'] = $answer->id;
-                $fileData['file_name'] = $fileName;
-                $fileData['type'] = $fileExtension;
-                $fileData['original_file_name'] = $originalFileName;
-                AnswerFile::firstOrCreate($fileData);
+                AnswerFileStore::store($file, $answer);
             }
         }
 
-
         $block = $exercise->block;
+
         return redirect()->route('admin.blocks.exercises.show', [$block->id, $exercise->id]);
     }
 
@@ -89,7 +78,7 @@ class AnswerController extends Controller
      * @param Block $block
      * @param Exercise $exercise
      * @param Answer $answer
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show(Exercise $exercise, Answer $answer)
     {

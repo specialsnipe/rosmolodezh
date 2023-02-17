@@ -11,6 +11,7 @@ use App\Jobs\RegisterUserJob;
 use App\Mail\RegistrationMail;
 use App\Events\UserRegistration;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
@@ -34,12 +35,15 @@ class RegisterController extends Controller
         $data['avatar'] = 'default_avatar.jpg';
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
+
         TrackUser::create([
             'track_id' => $data['track_id'],
             'user_id' => $user->id,
         ]);
 
-         event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (Exception $e) { }
 
         auth()->login($user);
 

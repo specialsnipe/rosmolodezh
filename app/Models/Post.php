@@ -14,6 +14,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
+    //...
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
     use HasFactory, SoftDeletes, Filterable, HasSEO, Sluggable;
 
     protected $guarded = false;

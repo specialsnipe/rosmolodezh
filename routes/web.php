@@ -62,8 +62,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], f
     // manage exercises of the block
     Route::resource('blocks.exercises', \App\Http\Controllers\Admin\ExerciseController::class);
     // index, show and delete the answers of the exercise
-    Route::put('exercises/{exercise}/answers/{answer}', [\App\Http\Controllers\Admin\AnswerController::class, 'changeMark'])->name('exercises.answers.changeMark');
     Route::resource('exercises.answers', \App\Http\Controllers\Admin\AnswerController::class)->except(['edit', 'update']);
+    Route::put('exercises/{exercise}/answers/{answer}', [\App\Http\Controllers\Admin\AnswerController::class, 'changeMark'])->name('exercises.answers.changeMark');
 });
 
 // Authorization user
