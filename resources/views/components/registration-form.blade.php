@@ -29,19 +29,19 @@ $tracks = Track::all();
         <div class="form-group row">
             {{-- f name --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
-                    id="first_name" placeholder="Фамилия" value="{{ old('first_name') }}">
-                <label for="first_name">Фамилия</label>
-                @error('first_name')
+                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
+                    id="last_name" placeholder="Фамилия" value="{{ old('last_name') }}">
+                <label for="last_name">Фамилия</label>
+                @error('last_name')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
             </div>
             {{-- s name --}}
             <div class="form-floating mb-3 col-sm-12  col-lg-4">
-                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror "
-                    id="last_name" placeholder="Имя" value="{{ old('last_name') }}">
-                <label for="last_name">Имя</label>
-                @error('last_name')
+                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror "
+                    id="first_name" placeholder="Имя" value="{{ old('first_name') }}">
+                <label for="first_name">Имя</label>
+                @error('first_name')
                 <span class="ml-2 text-danger"> {{ $message }}</span>
                 @enderror
             </div>
@@ -145,7 +145,7 @@ $tracks = Track::all();
                     <div class="checkbox">
                         <input name="allowed" class="form-check-input @error('allowed') is-invalid @enderror"
                             type="checkbox" id="checkboxNoLabel" aria-label="..." checked>
-                        Согласен с <a href="{{ route('rules') }}">правилами пользования</a>
+                        Согласен с <a href="{{ asset('rules/policy.pdf') }}" target="_blank"> правилами пользования </a>
                     </div>
 
                     @error('allowed')

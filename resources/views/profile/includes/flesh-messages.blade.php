@@ -35,7 +35,7 @@
 
     <div class="alert alert-light border alert-dismissible fade show w-100 m-0 mt-4" role="alert">
         @if(!isset(auth()->user()->tg_name))
-        Вы не указали в личном кабинете ваш Телеграм username, мы не сможем отправлять вам сообщения если вы этого не сделаете, пожалуйста укажите его в <a target="_blank" href="{{ route('profile.data') }}">персональных данных</a>
+        Вы не указали в личном кабинете ваш Телеграм username, мы не сможем отправлять вам сообщения если вы этого не сделаете, пожалуйста укажите его в <a target="_blank" href="{{ route('profile.data') }}">в настройках профиля</a>
         @else
         @php
         $information = Information::all()->first();

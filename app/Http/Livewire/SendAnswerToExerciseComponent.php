@@ -95,7 +95,7 @@ class SendAnswerToExerciseComponent extends Component
         ]);
     }
 
-    public function saveAnswer(): RedirectResponse
+    public function saveAnswer()
     {
         $this->validate([
             'body' => 'required'
@@ -108,11 +108,13 @@ class SendAnswerToExerciseComponent extends Component
             $message .= "\nВы успешно отправили ответ на задание, ждите оценку от преподавателя!";
             event(new AnswerToExerciseSended($this->answer->user->tg_id, $message));
         }
+
         $this->answer->update([
             'body' => $this->body,
             'sended' => true
         ]);
-        return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);
+
+        return redirect()->route('profile.tracks.blocks.show', [ $this->block->track->slug, $this->block->slug ]);
     }
 
     public function outWithoutSave(): RedirectResponse

@@ -41,9 +41,11 @@
                                     </div>
                                     <div class="info-track">
                                         <span class="info-track__title">Телеграм куратора</span>
-                                        <span>{{ auth()->user()->tracks[0]->curator->tg_name
+                                        <span>{!!
+                                            auth()->user()->tracks[0]->curator->tg_name
                                                 ? "<a href='http://t.me/" . auth()->user()->tracks[0]->curator->tg_name . "'>@" . auth()->user()->tracks[0]->curator->tg_name ."</a>"
-                                                : "не найдено" }}</span>
+                                                : "не найдено"
+                                        !!}</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6" style="padding:0 10px 0 10px">

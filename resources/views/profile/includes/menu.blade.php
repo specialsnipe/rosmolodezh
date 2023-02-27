@@ -8,7 +8,7 @@
         <li class="nav-item">
             <a href="{{ route('profile.data') }}" class="nav-link
             @if(request()->routeIs('profile.data')) active @endif
-            ">Персональные данные</a>
+            ">Настройки профиля</a>
         </li>
     </ul>
     <h4 class="h4 col-12 ">Ваши направления:</h4>

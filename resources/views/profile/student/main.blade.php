@@ -24,8 +24,8 @@
                                     <div class="info-track">
                                         <div class="info-track__title">Средний балл</div>
                                         <div>{{$user->getAverageMarkTrackAttribute($track->id)}}
-                                            <img style="object-fit: contain; width: 100%"
-                                                src="https://raw.githubusercontent.com/NikitaMurugov/PortfolioDex/04f8384659f5129d660ed56aaeab0679a495c02b/Images/star_group.svg" alt="stars">
+{{--                                            <img style="object-fit: contain; width: 100%"--}}
+{{--                                                src="https://raw.githubusercontent.com/NikitaMurugov/PortfolioDex/04f8384659f5129d660ed56aaeab0679a495c02b/Images/star_group.svg" alt="stars">--}}
                                         </div>
                                     </div>
                                 </div>

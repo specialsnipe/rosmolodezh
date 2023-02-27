@@ -23,7 +23,7 @@
         <form action="{{ route('profile.user.update') }}" method="post" class="form-content mb-4 col-xs-12 col-md-12 col-lg-8">
             @csrf
             @method('PATCH')
-            <div class="text-header mb-4">Ваши персональные данные</div>
+            <div class="text-header mb-4">Ваши настройки профиля</div>
 
         <div class="form-group row">
             <div class="mb-3 col-sm-12">
@@ -124,20 +124,20 @@
                     </div>
                 </div>
 
-                <div class="mb-3 col-sm-12">
-                    <div class="form-floating">
-                        <select name="gender_id" class="form-select @error('gender_id') is-invalid @enderror"
-                                id="floatingSelect" aria-label="Floating label select example">
-                            @foreach ($genders as $gender)
-                                <option value="{{ $gender->id }}" @if($user->gender_id == $gender->id) selected @endif >{{
-                            $gender->name
-                            }}</option>
-                            @endforeach
-                        </select>
-                        <label for="floatingSelect">Ваш пол:</label>
-                        @error('gender_id') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+{{--                <div class="mb-3 col-sm-12">--}}
+{{--                    <div class="form-floating">--}}
+{{--                        <select name="gender_id" class="form-select @error('gender_id') is-invalid @enderror"--}}
+{{--                                id="floatingSelect" aria-label="Floating label select example">--}}
+{{--                            @foreach ($genders as $gender)--}}
+{{--                                <option value="{{ $gender->id }}" @if($user->gender_id == $gender->id) selected @endif >{{--}}
+{{--                            $gender->name--}}
+{{--                            }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        <label for="floatingSelect">Ваш пол:</label>--}}
+{{--                        @error('gender_id') <span class="text-danger">{{ $message }}</span> @enderror--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="mb-3 col-sm-12">
                     <div class="form-floating">
                         <select name="occupation_id" class="form-select @error('occupation_id') is-invalid @enderror"
