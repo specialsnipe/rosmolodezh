@@ -30,7 +30,7 @@ class AcademicPerformanceTrack
             $performance += $tmpPerformance;
         }
 
-        if ($blocksCount <= 0) $midStatPerformance = $performance / $blocksCount;
+        if ($blocksCount > 0) $midStatPerformance = $performance / $blocksCount;
 
         return BasePerformance::getStats(
             $studentsCount,
