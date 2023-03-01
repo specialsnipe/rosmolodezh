@@ -21,17 +21,17 @@ class AcademicPerformanceTrack
         $studentsCount = $track->studentsCount;
 
         $performance = 0;
+        $midStatPerformance = 0;
 
-        if ($studentsCount === 0) {
-            return BasePerformance::getStats();
-        }
+        if ($studentsCount <= 0) return BasePerformance::getStats();
 
         foreach ($blocks as $block) {
             [ "performance" => $tmpPerformance ] = AcademicPerformanceBlock::getPerformance($block);
             $performance += $tmpPerformance;
         }
 
-        $midStatPerformance = $performance / $blocksCount;
+        if ($blocksCount <= 0) $midStatPerformance = $performance / $blocksCount;
+
         return BasePerformance::getStats(
             $studentsCount,
             round($midStatPerformance / $studentsCount, 2)
