@@ -40,7 +40,7 @@
         @php
         $information = Information::all()->first();
         @endphp
-        Вы не зашли в бота. Для того чтобы иметь возможность получать сообщения от учителей и кураторов. <a target="_blank" href="{{ $information->tg_url }}"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i> Перейти на бота</a>
+        Вы не зашли в бота. Для того чтобы иметь возможность получать сообщения от учителей и кураторов. <a target="_blank" href="{{ $information->tg_bot_url }}"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i> Перейти на бота</a>
         @endif
 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

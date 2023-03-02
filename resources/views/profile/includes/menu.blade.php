@@ -11,7 +11,7 @@
             ">Настройки профиля</a>
         </li>
     </ul>
-    <h4 class="h4 col-12 ">Ваши направления:</h4>
+    <h4 class="h4 col-12 mt-3">Ваши направления:</h4>
     <ul class="nav nav-pills nav-sidebar flex-column">
 
         @if(auth()->user()->role->name === 'tutor' || auth()->user()->role->name === 'teacher' )

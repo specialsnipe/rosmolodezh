@@ -17,7 +17,7 @@
             </h1>
         </div>
         <div class="row">
-            <div class="col d-none d-lg-block d-md-none d-sm-none">
+            <div class="col-sm-12 col-lg-3 d-none d-lg-block d-md-none d-sm-none">
                 @include('profile.includes.menu')
             </div>
             <div class="col-sm-12 col-lg-9">

@@ -23,8 +23,9 @@
                 <h1 class="col-12 text-center mb-5">Прогресс развития</h1>
             </div>
             <div class="row">
-
-                @include('profile.includes.menu')
+                <div class="col-sm-12 col-md-3">
+                    @include('profile.includes.menu')
+                </div>
                 <article class="col-sm-12 col-md-9">
                     <div class="row">
                         <h4 class="h4 col-12 text-center mb-5">Направление "{{ $track->title }}"</h4>

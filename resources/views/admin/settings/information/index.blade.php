@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+
 @push('style')
 @livewireScripts
 @endpush
@@ -47,10 +48,26 @@
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
+
                 <div class="form-group col-sm-12 col-md-8 ">
                     <label for="tg_description">Краткое описание</label>
                     <textarea type="text" class="form-control " name="tg_description" >{{$information->tg_description}}</textarea>
                     @error('tg_description')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <hr class="col-12" style="padding: 0">
+                <div class="form-group  col-sm-12 col-md-4 ">
+                    <label for="tg_bot_url">Телеграм бот url</label>
+                    <input type="text" class="form-control" name="tg_bot_url" value="{{$information->tg_bot_url}}">
+                    @error('tg_bot_url')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="form-group col-sm-12 col-md-8 ">
+                    <label for="tg_bot_description">Краткое описание</label>
+                    <textarea type="text" class="form-control " name="tg_bot_description" >{{$information->tg_bot_description}}</textarea>
+                    @error('tg_bot_description')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>

@@ -7,7 +7,6 @@
 @endpush
 @extends('layouts.main')
 
-
 @section('content')
     <div class="screen screen-directions">
         <div class="container">

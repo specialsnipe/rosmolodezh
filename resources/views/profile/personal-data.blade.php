@@ -1,3 +1,9 @@
+@php
+    use App\Models\Information;
+    $information = Information::all()->first();
+@endphp
+
+
 @extends('profile.layouts.main')
 
 @push('styles')
@@ -97,7 +103,11 @@
                     </span>
                 @else
                     @if(!$errors->has('tg_name'))
-                        <span class="text-danger" title="Вы не запустили бота"><i class="fa fa-times"></i> Телеграм не подтвержден</span>
+                        <span class="text-danger" title="Вы не запустили бота">
+                            <i class="fa fa-times"></i>
+                            Телеграм не подтвержден
+                            <a href="{{ $information->tg_bot_url }}"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i> телеграм бот</a>
+                        </span>
                     @endif
                 @endif
                 </div>
