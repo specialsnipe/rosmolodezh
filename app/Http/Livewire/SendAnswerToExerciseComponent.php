@@ -117,7 +117,7 @@ class SendAnswerToExerciseComponent extends Component
         return redirect()->route('profile.tracks.blocks.show', [ $this->block->track->slug, $this->block->slug ]);
     }
 
-    public function outWithoutSave(): RedirectResponse
+    public function outWithoutSave()
     {
         $this->answer->forceDelete();
         return redirect()->route('profile.tracks.blocks.show', [$this->block->track->slug,$this->block->slug]);

@@ -12,8 +12,6 @@ $user = auth()->user();
 @section('content')
 
 <div class="container">
-
-
     @include('profile.includes.flesh-messages')
     <div class="main-container-directions">
 
@@ -31,8 +29,10 @@ $user = auth()->user();
             @endif
         </div>
         <div class="row">
+            <div class="col-sm-12 col-md-3">
 
-            @include('profile.includes.menu')
+                @include('profile.includes.menu')
+            </div>
             <article class="col-sm-12 col-md-9">
                 <div class="row">
                     <div class="col-12 mb-3">
