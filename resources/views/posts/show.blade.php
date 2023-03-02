@@ -1,3 +1,7 @@
+@php
+use Carbon\Carbon;
+@endphp
+
 @extends('layouts.main')
 
 @push('styles')
@@ -48,12 +52,13 @@
                             <div class="line mt-3 mb-0"></div>
                             <div class="link-content">
                                 @foreach ($posts as $postx)
-                                    <a href="{{ route('posts.show', $postx->slug) }}" class="">
+                                    <a href="{{ route('posts.show', $postx->slug) }}" class="" style="text-decoration: none">
                                         <div class="card mt-3">
                                             <div class="card-body">
-                                                <p class="h5"><i class="fas fa-external-link-alt"
+                                                <p class="h5 mb-2" style="text-decoration: none"><i class="fas fa-external-link-alt"
                                                                  style="font-size: 16px;"></i> {{ $postx->title }} </p>
-                                                <p class="text-truncat-1 ">{{ $postx->excerpt }} </p>
+                                                <span class="text-truncat-1 text-black">{{ $postx->excerpt }} </span>
+                                                <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
                                             </div>
                                         </div>
                                     </a>
@@ -65,6 +70,7 @@
                 </div>
 
                 <div class="col-12 mt-3 body">
+                    <p class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($post->created_at)->format("Y/m/d") }}</p>
                     <span class="h2">{{ $post->title }}</span>
                     <p class="mt-3">{!! $post->body !!}</p>
                     {{-- <div class="line mt-2 mb-2"></div> --}}
@@ -87,6 +93,8 @@
                                 <a href="{{ route('posts.show', $postx->slug) }}" class="">
                                     <div class="card mt-3">
                                         <div class="card-body">
+                                            <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
+
                                             <p class="h5"><i class="fas fa-external-link-alt"
                                                              style="font-size: 16px;"></i> {{ $postx->title }} </p>
                                             <p class="text-truncat-1 ">{{ $postx->excerpt }} </p>

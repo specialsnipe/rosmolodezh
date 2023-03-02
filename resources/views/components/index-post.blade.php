@@ -2,10 +2,10 @@
 
 @php
 use App\Models\Post;
+use Carbon\Carbon;
 if (!isset($posts)) {
     $posts = Post::latest()->limit(4)->get();
 }
-
 @endphp
 
 <div class="row">
@@ -17,7 +17,8 @@ if (!isset($posts)) {
                     style="min-height: 200px; max-height:200px"
                     alt="Изображение поста '{{ $post->title }}'" height="100">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($post->created_at)->format("Y/m/d") }}</span>
+                    <h5 class="card-title">{{ $post->title}}</h5>
                     <p class="card-text post__card-text">{{ $post->excerpt }}</p>
                 </div>
             </div>

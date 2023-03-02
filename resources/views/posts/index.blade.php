@@ -1,3 +1,7 @@
+@php
+use Carbon\Carbon;
+@endphp
+
 @extends('layouts.main')
 
 @push('styles')
@@ -19,6 +23,7 @@
                                     style="min-height: 200px; max-height:200px"
                                     alt="Изображение поста '{{ $post->title }}'" height="100">
                                 <div class="card-body">
+                                    <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($post->created_at)->format("Y/m/d") }}</span>
                                     <h5 class="card-title">{{ $post->title }}</h5>
                                     <p class="card-text post__card-text">{{ $post->excerpt }}</p>
                                 </div>
