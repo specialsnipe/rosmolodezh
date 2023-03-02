@@ -82,21 +82,22 @@
                                         @endif
                                     </ul>
                                 @endif
+                                @if($track->curator->vk_url || $track->curator->tg_name)
                                 <div class="line mt-3 mb-3"></div>
-
-                                <h2 class="h2">Социальные сети куратора:</h2>
-                                <div class="link-row">
-                                    <a href="{{ $track->curator->vk_url }}" class="icon">
-                                        <i class="fab fa-vk"></i>
-                                    </a>
-
-                                    <a href="{{ 'https://t.me/'. $track->curator->tg_name }}" class="icon">
-                                        <i class="fab fa-telegram-plane"></i>
-                                    </a>
-                                    <a href="" class="icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                </div>
+                                    <h2 class="h2">Социальные сети куратора:</h2>
+                                    <div class="link-row">
+                                        @if($track->curator->vk_url)
+                                            <a href="{{ $track->curator->vk_url }}" class="icon">
+                                                <i class="fab fa-vk"></i>
+                                            </a>
+                                        @endif
+                                        @if($track->curator->tg_name)
+                                                <a href="{{ 'https://t.me/'. $track->curator->tg_name }}" class="icon">
+                                                    <i class="fab fa-telegram-plane"></i>
+                                                </a>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
                         <h2 class="d-flex justify-content-center w-100 mt-2 mb-4">Содержание направления:</h2>
                             @foreach ($track->blocks as $block)
                             <div class="card mb-2">
-                            
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-8">
@@ -116,12 +117,12 @@
                                                     <!-- <div class="line-header"></div> -->
                                                 </p>
                                                 <p class="fs-6 mt-2 mb-0 d-flex align-items-center">
-                                                Заданий: 
+                                                Заданий:
                                                 <span
                                                     class="badge large bg-primary" style="margin-left:6px;">{{ $block->exercises_count }}</span>
-                                                    
+
                                                 </p>
-                                                
+
                                                 <ol>
                                                     @foreach($block->exercises as $exercise)
                                                         <li>{{ $exercise->title }} </li>
@@ -130,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             @endforeach
                     </div>
