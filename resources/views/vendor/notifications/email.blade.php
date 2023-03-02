@@ -47,7 +47,7 @@
 @isset($actionText)
     @slot('subcopy')
         @lang(
-        "Если кнопка \":actionText\" не работает, скопируйте и вставтье ссылку\n".
+        "Если кнопка \":actionText\" не работает, скопируйте и вставьте ссылку\n".
         'В ваш браузер:',
         [
         'actionText' => $actionText,
