@@ -1,3 +1,5 @@
+
+
 @push('styles')
 <link rel="stylesheet" href="{{ asset('css/media.css') }}">
 @endpush
@@ -14,7 +16,7 @@
                 <div class="container row m-0 p-0">
                     <div class="col-sm-12 col-md-6 pl-0">
                         <h1 class="h1">{{ $track->title }}</h1>@auth
-                            @if( auth()->user()->tracks->where('id', $track->id)->first() ? true : false)
+                            @if($userIsParticipant)
                                 <span class="badge fs-8 bg-secondary mb-2"> Вы являетесь участником</span>
                             @endif
                             @endauth
@@ -111,15 +113,42 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-8">
+                                            @if ($userIsParticipant)
+                                                <p class="fs-5 mb-0">
+                                                    <a class="text-decoration-none" href="{{ route('profile.tracks.blocks.show', [$track->slug, $block->slug]) }}">{{ $block->title }}</a>
+                                                    <!-- <div class="line-header"></div> -->
+                                                </p>
+                                                <p class="fs-6 mt-2 mb-0 d-flex align-items-center">
+                                                    Заданий:
+                                                    <span
+                                                        class="badge large bg-primary"
+                                                        style="margin-left:6px;"
+                                                    >
+                                                        {{ $block->exercises_count }}
+                                                    </span>
+                                                </p>
+
+                                                <ol>
+                                                    @foreach($block->exercises as $exercise)
+                                                        <li>
+                                                            <a
+                                                                class="text-decoration-none"
+                                                                href="{{ route('profile.blocks.exercises.show', [$block->slug, $exercise->slug]) }}"
+                                                            >
+                                                                {{ $exercise->title }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ol>
+                                            @else
                                                 <p class="fs-5 mb-0">
                                                     {{ $block->title }}
                                                     <!-- <div class="line-header"></div> -->
                                                 </p>
                                                 <p class="fs-6 mt-2 mb-0 d-flex align-items-center">
-                                                Заданий:
-                                                <span
-                                                    class="badge large bg-primary" style="margin-left:6px;">{{ $block->exercises_count }}</span>
-
+                                                    Заданий:
+                                                    <span
+                                                        class="badge large bg-primary" style="margin-left:6px;">{{ $block->exercises_count }}</span>
                                                 </p>
 
                                                 <ol>
@@ -127,6 +156,7 @@
                                                         <li>{{ $exercise->title }} </li>
                                                     @endforeach
                                                 </ol>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

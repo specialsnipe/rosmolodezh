@@ -64,11 +64,18 @@ class TrackController extends Controller
                 }
             }
         }
+        $userIsParticipant = !!auth()->user()?->tracks->where('id', $track->id)->first();
         $track = $track->load('blocks');
 
 
 
-        return view('tracks.show', compact('track','tracks', 'requestToJoinSended', 'requestToRefuseSended'));
+        return view('tracks.show', compact(
+            'track',
+            'tracks',
+            'requestToJoinSended',
+            'requestToRefuseSended',
+            'userIsParticipant')
+        );
     }
 
     /**
