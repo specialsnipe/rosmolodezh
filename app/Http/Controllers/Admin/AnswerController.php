@@ -80,8 +80,12 @@ class AnswerController extends Controller
      * @param Answer $answer
      * @return Application|Factory|View
      */
-    public function show(Exercise $exercise, Answer $answer)
+    public function show($exercise, $answer)
     {
+        $exercise = Exercise::query()
+            ->find($exercise);
+        $answer = Answer::query()
+            ->find($answer);
         $block = $exercise->block;
         $track = $block->track;
         $user = $answer->user;

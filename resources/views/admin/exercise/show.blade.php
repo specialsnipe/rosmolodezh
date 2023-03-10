@@ -233,8 +233,12 @@
 
                                                 @if($user->getAnswer($exercise))
                                                 <td>
-                                                    <a class="btn btn-info mr-2"
-                                                        href="{{route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id])}}">Посмотреть</a>
+                                                    <a
+                                                        class="btn btn-info mr-2"
+                                                        href="{{ route('admin.exercises.answers.show', [$exercise->id, $user->getAnswer($exercise)->id]) }}"
+                                                    >
+                                                        Посмотреть
+                                                    </a>
                                                 </td>
                                                 @else
                                                 <td>
