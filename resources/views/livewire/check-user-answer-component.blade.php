@@ -81,7 +81,7 @@
                     >
                     <div class="card-body" style="font-size: .8rem">
 
-                        <a target="_blank" href="{{ route('profile.user.show', $student->id) }}">{{
+                        <a target="_blank" href="{{ route('profile.user.show', $student->slug) }}">{{
                             $student->first_and_last_names }}</a>
                         @if($student->getAnswer($exercise) != null)
 
@@ -122,7 +122,7 @@
 
         <div class="answer-modal card">
             <div class="card-body p-4">
-                <h3>Ответ пользователя <a target="_blank" href="{{ route('profile.user.show', $answerUser->id) }}"> {{ $answerUser->firstAndLastNames }} </a>
+                <h3>Ответ пользователя <a target="_blank" href="{{ route('profile.user.show', $answerUser->slug) }}"> {{ $answerUser->firstAndLastNames }} </a>
                 </h3>
                 <div class="card-text">
                     <span class="fs-4"> Текст ответа: </span>

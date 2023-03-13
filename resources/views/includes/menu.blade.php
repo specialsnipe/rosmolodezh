@@ -49,7 +49,9 @@
                     <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
 
                     @if(auth()->user()->role->name == 'admin')
-                        <li><a class="dropdown-item" aria-current="page" href="{{ route('admin.main.index') }}">Администрирование</a></li>
+                        <li>
+                            <a class="dropdown-item" aria-current="page" href="{{ route('admin.main.index') }}">Администрирование</a>
+                        </li>
                     @else
 
                         <li><a class="dropdown-item" aria-current="page" href="{{ route('profile.data') }}">Персональные данные</a></li>
@@ -61,7 +63,13 @@
                 </li>
                 @else
                 <li class="nav-item ">
-                    <a class="nav-link d-flex align-items-center  @if(Request::route()->getName() == 'auth.login') active @endif" aria-current="page" href="{{ route('auth.login') }}">Войти <i class="fas fa-sign-in"></i></a>
+                    <a class="nav-link d-flex align-items-center  @if(Request::route()->getName() == 'auth.login') active @endif"
+                       aria-current="page"
+                       href="{{ route('auth.login') }}"
+                    >
+                        Войти
+                        <i class="fas fa-sign-in"></i>
+                    </a>
                 </li>
 
                 @endauth

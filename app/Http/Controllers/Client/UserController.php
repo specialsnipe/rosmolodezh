@@ -51,9 +51,11 @@ class UserController extends Controller
 
     public function show($user)
     {
-        $user = User::withTrashed()->find($user);
-        if (in_array('user_view', auth()->user()->role->permissions->flatten()->pluck('title')->toArray())) {
-            return view('profile.users.show', compact('user'));
+        if (in_array('user_view', auth()->user()->role->permissions->flatten()->pluck('title')->toArray()) || $user == auth()->user()->id) {
+            $user = User::withTrashed()->where('login', $user)->first();
+            $isDeleted = !!$user->deleted_at;
+            $isStudent = $user->role->name === 'student';
+            return view('profile.users.show', compact('user',  'isDeleted','isStudent'));
         } else {
             abort(403);
         }

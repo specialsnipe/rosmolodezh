@@ -90,8 +90,6 @@ Route::group(['as' => 'auth.'], function () {
             Route::post('/{user}/change-password', [\App\Http\Controllers\Auth\ForgetPasswordController::class, 'submit'])->name('submit.change-password');
         });
 
-
-
     });
     // logout
     Route::group(['middleware' => 'auth'], function () {
@@ -109,7 +107,7 @@ Route::group(['middleware' => 'auth', 'as' => 'verification.', 'prefix' => 'emai
 
 
 //Update slug
-Route::get('/update_slug', [\App\Http\Controllers\UpdateController::class, 'update']);
+//Route::get('/update_slug', [\App\Http\Controllers\UpdateController::class, 'update']);
 
 
 // Client side
