@@ -21,8 +21,12 @@
     @endif
 
     <div class=" w-100 content d-flex justify-content-between align-items-center mb-3">
-        <div class="h5">Создание нового упражнения к блоку "{{ $block->title }}" | Шаг <span class="badge bg-primary">{{
-            $stepFrame }}/2</span> </div>
+        <div class="h5">
+            Создание нового упражнения к блоку "{{ $block->title }}" | Шаг
+            <span class="badge bg-primary">
+                {{ $stepFrame }}/2
+            </span>
+        </div>
         <a href="{{ route('profile.tracks.blocks.show', [$block->track->slug, $block->slug]) }}"
            class="btn btn-secondary"
         >
