@@ -26,10 +26,17 @@
             </div>
 
             <div class="form-content mb-4 col-xs-12 col-md-12 col-lg-9">
-                <a href="{{ url()->previous() }}" class="btn btn-secondary d-block d-lg-none d-md-none d-sm-block mb-5">< Назад</a>
+                <a href="{{ url()->previous() }}" class="btn btn-secondary d-block d-lg-none d-md-none d-sm-block mb-5"> Назад ></a>
                 <div class="text-header mb-4 d-flex align-items-center justify-content-between">
-                    Личные данные "{{ $user->firstAndLastNames }}"
-                    <a href="{{ url()->previous() }}" class="btn btn-secondary d-none d-lg-block d-md-block d-sm-none">< Назад</a>
+                    <div class="d-flex justify-content-center">
+                        <span>Личные данные "{{ $user->firstAndLastNames }}"</span>
+                        @if($isDeleted)
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-black fs-6 d-block">удален</span>
+                            </div>
+                        @endif
+                    </div>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary d-none d-lg-block d-md-block d-sm-none"> Назад ></a>
                 </div>
 
                 <div class="form-group row">
@@ -98,6 +105,31 @@
 
                 </div>
             </div>
+        </div>
+        <div class="row">
+            @forelse($tracks as $track)
+                <div class="card track_item">
+                    <div class="card-body">
+                        <div class="row"><h4 class="mb-0">{{ $track->title }}</h4></div>
+                        <hr>
+
+                        <div class="row"><h5 class="mb-3">Блоки:</h5></div>
+                        <div class="row">
+                            @foreach($track->blocks as $block)
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="btn w-100" style="background: none !important;color: #515151 !important;border: 2px solid #515151 !important;">{{$block->title}}</div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="row exercises">
+
+                            <div class="col-12"><h5 class="mb-3 mt-3">Упражнения блока <span>::выбранный блок::</span>:</h5></div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                Нет направлений
+            @endforelse
         </div>
     </div>
 </div>

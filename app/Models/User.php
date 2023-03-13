@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
 use Ramsey\Collection\Collection;
 
@@ -392,6 +393,23 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Track::class, 'track_user',
         'user_id', 'track_id', 'id', 'id')->withTimestamps();
+    }
+/**
+     * Relation with tracks (many to many)
+     *
+     * @return BelongsToMany
+     */
+    public function tracksWithAnswers(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Track::class, 'track_user',
+        'user_id', 'track_id', 'id', 'id')
+            ->with([
+                'blocks',
+                'blocks.exercises',
+                'blocks.exercises.answers',
+            ])
+            ->withTimestamps();
     }
 
     public function tracksWhereTeacher()

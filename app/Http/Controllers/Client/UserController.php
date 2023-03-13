@@ -52,10 +52,29 @@ class UserController extends Controller
     public function show($user)
     {
         if (in_array('user_view', auth()->user()->role->permissions->flatten()->pluck('title')->toArray()) || $user == auth()->user()->id) {
-            $user = User::withTrashed()->where('login', $user)->first();
-            $isDeleted = !!$user->deleted_at;
-            $isStudent = $user->role->name === 'student';
-            return view('profile.users.show', compact('user',  'isDeleted','isStudent'));
+            $user = User::withTrashed()
+                ->where('login', $user)
+                ->with(['tracksWithAnswers'])
+                ->first();
+//            $tracks = [];
+            foreach ($user->tracksWithAnswers as $track) {
+                foreach ($track->blocks as $block) {
+                    foreach ($block->exercises as $exercise) {
+                        foreach ($exercise->answers as $key => $answer) {
+                            if ($answer->user_id !== $user->id) {
+                                $exercise->answers->forget($key);
+                            }
+                        }
+                    }
+                }
+            }
+            $data = [
+                'user' => $user,
+                'isDeleted' => !!$user->deleted_at,
+                'isStudent' => $user->role->name === 'student',
+                'tracks' => $user->tracksWithAnswers,
+            ];
+            return view('profile.users.show', $data);
         } else {
             abort(403);
         }
