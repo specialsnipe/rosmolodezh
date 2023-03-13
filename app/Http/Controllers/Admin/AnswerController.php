@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Answer\StoreAnswerRequest;
 use App\Http\Requests\Answer\UpdateAnswerRequest;
 use App\Models\Answer;
-use App\Models\AnswerFile;
 use App\Models\Block;
 use App\Models\Exercise;
 use App\Models\Track;
@@ -17,7 +16,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AnswerController extends Controller
 {

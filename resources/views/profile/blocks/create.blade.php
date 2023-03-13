@@ -3,7 +3,7 @@
 @section('title') Создание блока, для направления "{{ $track->title }}" @endsection
 
 @section('profile_content')
-<form action="{{route('profile.tracks.blocks.store',$track->id)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('profile.tracks.blocks.store',$track->slug)}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="form-group col-sm-12 col-md-6 flex-column">
