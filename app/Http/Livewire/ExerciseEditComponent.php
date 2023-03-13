@@ -188,7 +188,7 @@ class ExerciseEditComponent extends Component
 
     public function completeExerciseEdit()
     {
-        return redirect()->route('profile.blocks.exercises.show', [$this->block->id, $this->exercise->id]);
+        return redirect()->route('profile.blocks.exercises.show', [$this->block->slug, $this->exercise->slug]);
     }
 
     // public function mount()
