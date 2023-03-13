@@ -20,7 +20,7 @@
     <div class="main-container-directions">
         <div class="row">
             <div class="col-xs-12 col-md-6 col-lg-3 d-flex flex-column upload-image">
-                <img src="{{ asset($user->avatarBigPath) }}" class="img-fluid rounded mb-2 img-bordered"
+                <img src="{{ asset($user->avatar_original_path) }}" class="img-fluid rounded mb-2 img-bordered"
                      style="object-fit: contain"
                     alt="">
             </div>

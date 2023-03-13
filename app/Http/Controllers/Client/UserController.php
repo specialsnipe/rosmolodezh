@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Events\UserTelegramUpdate;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpdateUserRequest;
@@ -48,10 +49,14 @@ class UserController extends Controller
         return view('profile.student.main', compact('data', 'user'));
     }
 
-    public function show(User $user)
+    public function show($user)
     {
-        // dd($user, $user->checkStudentIs);
-        return view('profile.users.show', compact('user'));
+        $user = User::withTrashed()->find($user);
+        if (in_array('user_view', auth()->user()->role->permissions->flatten()->pluck('title')->toArray())) {
+            return view('profile.users.show', compact('user'));
+        } else {
+            abort(403);
+        }
     }
 
     public function data()

@@ -30,7 +30,7 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                <div class="col-sm-12 ml-2 mb-3">
                     <label>Выберите доступы</label>
                     <select class="select2" name="permission_id[]" multiple="multiple"
                             data-placeholder="Выберите " style="width: 100%;">
@@ -39,12 +39,12 @@
 
                                 @if(($role->permissions->contains($permission))) selected
                                 @endif
-                                    value="{{$permission->id}}">{{$permission->title}}</option>
+                                    value="{{$permission->id}}">{{$permission->readable_title}}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Изменить">
+                <input type="submit" class="btn btn-primary w-50 ml-3 col-sm-12" value="Сохранить">
             </form>
         </div>
     </div>

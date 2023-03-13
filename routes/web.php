@@ -148,8 +148,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['put', 'patch'], 'user/changePassword', [\App\Http\Controllers\Client\UserController::class, 'changePassword'])->name('user.change_password');
         Route::match(['put', 'patch'], 'user/updateAvatar', [\App\Http\Controllers\Client\UserController::class, 'updateAvatar'])->name('user.update_avatar');
         Route::get('user/{user}', [\App\Http\Controllers\Client\UserController::class, 'show'])
-            ->name('user.show')
-            ->can('view', 'user');
+            ->name('user.show');
         Route::resource('tracks.blocks', \App\Http\Controllers\Client\BlockController::class);
         Route::resource('blocks.exercises', \App\Http\Controllers\Client\ExerciseController::class);
     });

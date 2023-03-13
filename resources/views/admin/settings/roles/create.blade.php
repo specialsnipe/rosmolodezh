@@ -29,7 +29,7 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
+                <div class="col-sm-12 mb-3">
                     <label>Выберите доступы</label>
                     <select class="select2" name="permission_id[]" multiple="multiple"
                             data-placeholder="Выберите " style="width: 100%;">
@@ -38,7 +38,7 @@
 
                                 @if((is_array(request()->permission_id)&& in_array($permission->id,request()->permission_id))) selected
                                 @endif
-                                value="{{$permission->id}}">{{$permission->title}}</option>
+                                value="{{$permission->id}}">{{$permission->readable_title}}</option>
                         @endforeach
                     </select>
                 </div>
