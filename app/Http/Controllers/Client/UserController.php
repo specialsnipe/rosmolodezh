@@ -56,14 +56,19 @@ class UserController extends Controller
                 ->where('login', $user)
                 ->with(['tracksWithAnswers'])
                 ->first();
-//            $tracks = [];
-            foreach ($user->tracksWithAnswers as $track) {
+            $tracks = $user->tracksWithAnswers;
+            foreach ($tracks as $track) {
                 foreach ($track->blocks as $block) {
                     foreach ($block->exercises as $exercise) {
                         foreach ($exercise->answers as $key => $answer) {
                             if ($answer->user_id !== $user->id) {
                                 $exercise->answers->forget($key);
                             }
+                        }
+                        if ($exercise->answers->count()) {
+                            $block->hasAnswers = true;
+                        } else {
+                            $block->hasAnswers = false;
                         }
                     }
                 }
@@ -72,7 +77,7 @@ class UserController extends Controller
                 'user' => $user,
                 'isDeleted' => !!$user->deleted_at,
                 'isStudent' => $user->role->name === 'student',
-                'tracks' => $user->tracksWithAnswers,
+                'tracks' => $tracks,
             ];
             return view('profile.users.show', $data);
         } else {

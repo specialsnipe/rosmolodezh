@@ -36,7 +36,29 @@ class Answer extends Model
         'user_id'
     ];
 
+    protected $appends = [
+        'markColor'
+    ];
 
+
+    public function getMarkColorAttribute() {
+        if ($this->mark) {
+            switch ($this->mark) {
+                case 1:
+                    return 'bg-dark';
+                case 2:
+                    return 'bg-danger';
+                case 3:
+                    return 'bg-warning';
+                case 4||5:
+                    return 'bg-success';
+                default:
+                    return 'bg-dark';
+            }
+        } else {
+            return 'bg-dark';
+        }
+    }
     /**
      * Relation with users (one to many)
      * @return BelongsTo

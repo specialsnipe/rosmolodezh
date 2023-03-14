@@ -10,6 +10,9 @@
     --main-primary-ligh-1: #6936c8;
     --main-primary-ligh-2: #a78adb;
     --main-primary-ligh-3: #5a27bb;
+    --main-primary-light-bg: #f5f0ff;
+    --main-success-bg: #fbfff9;
+    --main-success: #a3c798;
 }
 
 * {

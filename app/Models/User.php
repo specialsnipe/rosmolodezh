@@ -408,6 +408,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 'blocks',
                 'blocks.exercises',
                 'blocks.exercises.answers',
+                'blocks.exercises.answers.answerFiles',
             ])
             ->withTimestamps();
     }
