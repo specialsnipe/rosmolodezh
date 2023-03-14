@@ -1,6 +1,35 @@
 @extends('admin.layouts.main')
 
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <style>
+        .btn-outline-secondary {
+            background: none !important;
+            color: #515151 !important;
+            border: 1px solid #ababab !important;
+        }
+        .btn-outline-secondary:hover {
+            background: none !important;
+            color: #515151 !important;
+            border: 1px solid #515151 !important;
+        }
+        .btn-outline-secondary.active {
+            background: inherit;
+        }
+        .outline-sended-answer {
+            border: 1px solid var(--main-success) !important;
+            background: var(--main-success-bg) !important;
+        }
+        .outline-sended-answer-block {
+            border: 1px solid var(--main-success) !important;
+            background: var(--main-success-bg) !important;
+            background: inherit;
+        }
+    </style>
+
+@endpush
+
 @section('content')
     <style>
         table tr td:nth-child(2) {
@@ -195,50 +224,91 @@
                                 </a>
                             </div>
 
-                            <div class="col-sm-6 col-xl-4">
-                                <a class="btn btn-info col-12" data-toggle="collapse" data-parent="#accordion"
-                                   href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    Ответы ученика <i class="fa fa-eye"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="card-block">
-
-                            <div class="card-body table-responsive ">
-                                <table class="table_sort table table-hover table-head-fixed text-nowrap">
-
-                                    @forelse($user->tracks as $track)
-                                        <div class="card" id="{{'accordion'. $track->id }}" role="tablist"
-                                             aria-multiselectable="true">
-                                            <div class="card-header row align-items-center" role="tab"
-                                                 style="padding:20px; display: flex; justify-content: space-between">
-
-                                                <h5 class="mb-0 col-sm-12 col-lg-8 header-of-card ">
-                                            <span data-toggle="collapse" data-parent="{{'#accordion'. $track->id }}"
-                                                  aria-expanded="true" aria-controls="collapseOne">
-                                                {{ $loop->index + 1 }} | Траектория - "{{ $track->title }}"
-                                                (id:{{$track->id}})
-                                            </span>
-                                                </h5>
-                                            </div>
-
-
-                                        </div>
-                                    @empty
-                                        направление не выбрано
-                                    @endforelse
-
-                                </table>
-
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @if($isStudent)
+            <div class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="mb-3">Ответы ученика</h1>
+                            @forelse($tracks as $track)
+                                <div class="card track_item mb-3 w">
+                                    <div class="card-body">
+                                        <div class="row"><h4 class="mb-0">{{ $track->title }}</h4></div>
+                                        <hr>
 
+                                        <div class="row"><h5 class="mb-3">Блоки:</h5></div>
+                                        <div class="row">
+                                            @foreach($track->blocks as $block)
+                                                <div class="col-sm-12 col-md-6 col-lg-3
+
+                                    ">
+                                                    <div
+                                                        class="btn btn-outline-secondary w-100  h-100 d-flex justify-content-center align-items-center show-exercises
+                                                @if($block->hasAnswers) btn-outline-success outline-sended-answer-block @endif
+                                            "
+                                                        data-track-id="{{$track->id}}"
+                                                        data-block-id="{{$block->id}}"
+                                                        data-block-name="{{$block->title}}"
+                                                    >
+                                                        {{$block->title}}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="row exercises exercises-track-{{$track->id}} d-none">
+
+                                            <div class="col-12">
+                                                <h5 class="mb-3 mt-3">
+                                                    Упражнения блока
+                                                    "<span class="track-{{$track->id}}-block-name" id="block-name">::выбранный блок::</span>":
+                                                </h5>
+                                            </div>
+                                            @foreach($track->blocks as $block)
+                                                <div class="col-12 track-{{$track->id}}-block-item d-none" id="{{$track->id}}-{{ $block->id }}">
+                                                    <div class="row">
+                                                        @foreach($block->exercises as $exercise)
+                                                            <div class="col-sm-12 col-md-6 col-lg-3 mb-2 ">
+                                                                <div
+                                                                    class="btn btn-outline-secondary w-100 exercise h-100 d-flex justify-content-center align-items-center
+                                                                    @if($exercise->answers->count()) btn-outline-success outline-sended-answer exercise-with-answer @endif"
+                                                                    data-block-id="{{$block->id}}"
+                                                                    data-exercise-id="{{$exercise->id}}"
+                                                                >
+                                                                    {{$exercise->title}}
+                                                                    @if($exercise->answers->count())
+                                                                        <div class="custom-checkbox mr-2" style="pointer-events: none" >
+                                                                            <i class="fa fa-check"></i>
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
+                                                                @if($block->hasAnswers)
+                                                                    <x-modal-answer
+                                                                        :exercise="$exercise"
+                                                                        :answers="$exercise->answers"
+                                                                    />
+                                                                @endif
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                Нет направлений
+                            @endforelse
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-sm-6 col-xl-4 mt-3">
                     <a href="{{ url()->previous() }}" class="btn btn-primary col-12"> Назад</a>
@@ -250,3 +320,36 @@
     </div>
 
 @endsection
+
+@push('script')
+    <script defer>
+        window.onload = () => {
+            $('.show-exercises').click((ev) => {
+                const trackId = ev.target.dataset.trackId;
+                const blockId = ev.target.dataset.blockId;
+                document.querySelector(`.track-${trackId}-block-name`).innerText = ev.target.dataset.blockName;
+                const parent = document.querySelector(`.exercises-track-${trackId}`);
+                parent.classList.remove('d-none');
+                const items = parent.querySelectorAll(`.track-${trackId}-block-item`);
+                console.log(items);
+                items.forEach((item) => {
+                    item.classList.add('d-none')
+                    if (item.id === `${trackId}-${blockId}`) {
+                        item.classList.remove('d-none')
+                    }
+                })
+            })
+
+            $('.exercise-with-answer').click((ev) => {
+                const exerciseId = ev.target.dataset.exerciseId;
+                document.querySelector(`.exercise-${exerciseId}-answer`)?.classList.remove('d-none')
+            })
+
+            $('.modal_bg').click((ev) => {
+                const exerciseId = ev.target.dataset.exerciseId;
+                document.querySelector(`.exercise-${exerciseId}-answer`)?.classList.add('d-none')
+            })
+        }
+
+    </script>
+@endpush

@@ -199,81 +199,84 @@
             </div>
         </div>
         <hr class="line">
-        <h1 class="mb-3">Ответы ученика</h1>
-        <div class="row">
-            @forelse($tracks as $track)
-                <div class="card track_item mb-3">
-                    <div class="card-body">
-                        <div class="row"><h4 class="mb-0">{{ $track->title }}</h4></div>
-                        <hr>
+        @if($isStudent)
+            <h1 class="mb-3">Ответы ученика</h1>
+            <div class="row">
+                @forelse($tracks as $track)
+                    <div class="card track_item mb-3">
+                        <div class="card-body">
+                            <div class="row"><h4 class="mb-0">{{ $track->title }}</h4></div>
+                            <hr>
 
-                        <div class="row"><h5 class="mb-3">Блоки:</h5></div>
-                        <div class="row">
-                            @foreach($track->blocks as $block)
-                                <div class="col-sm-12 col-md-6 col-lg-3
+                            <div class="row"><h5 class="mb-3">Блоки:</h5></div>
+                            <div class="row">
+                                @foreach($track->blocks as $block)
+                                    <div class="col-sm-12 col-md-6 col-lg-3
 
-                                ">
-                                    <div
-                                        class="btn btn-outline-secondary w-100  h-100 d-flex justify-content-center align-items-center show-exercises
-                                            @if($block->hasAnswers) outline-sended-answer-block @endif
-                                        "
-                                        data-track-id="{{$track->id}}"
-                                        data-block-id="{{$block->id}}"
-                                        data-block-name="{{$block->title}}"
-                                    >
-                                        {{$block->title}}
+                                    ">
+                                        <div
+                                            class="btn btn-outline-secondary w-100  h-100 d-flex justify-content-center align-items-center show-exercises
+                                                @if($block->hasAnswers) outline-sended-answer-block @endif
+                                            "
+                                            data-track-id="{{$track->id}}"
+                                            data-block-id="{{$block->id}}"
+                                            data-block-name="{{$block->title}}"
+                                        >
+                                            {{$block->title}}
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="row exercises exercises-track-{{$track->id}} d-none">
-
-                            <div class="col-12">
-                                <h5 class="mb-3 mt-3">
-                                    Упражнения блока
-                                    "<span class="track-{{$track->id}}-block-name" id="block-name">::выбранный блок::</span>":
-                                </h5>
+                                @endforeach
                             </div>
-                            @foreach($track->blocks as $block)
-                                <div class="col-12 track-{{$track->id}}-block-item d-none" id="{{$track->id}}-{{ $block->id }}">
-                                    <div class="row">
-                                    @foreach($block->exercises as $exercise)
-                                        <div class="col-sm-12 col-md-6 col-lg-3 mb-2 ">
-                                            <div
-                                                class="btn btn-outline-secondary w-100 exercise h-100 d-flex justify-content-center align-items-center
-                                            @if($exercise->answers->count()) outline-sended-answer exercise-with-answer @endif"
-                                                 data-block-id="{{$block->id}}"
-                                                 data-exercise-id="{{$exercise->id}}"
-                                            >
-                                                {{$exercise->title}}
-                                                @if($exercise->answers->count())
-                                                    <div class="custom-checkbox mr-2" style="pointer-events: none" >
-                                                        <i class="fa fa-check"></i>
-                                                    </div>
+                            <div class="row exercises exercises-track-{{$track->id}} d-none">
+
+                                <div class="col-12">
+                                    <h5 class="mb-3 mt-3">
+                                        Упражнения блока
+                                        "<span class="track-{{$track->id}}-block-name" id="block-name">::выбранный блок::</span>":
+                                    </h5>
+                                </div>
+                                @foreach($track->blocks as $block)
+                                    <div class="col-12 track-{{$track->id}}-block-item d-none" id="{{$track->id}}-{{ $block->id }}">
+                                        <div class="row">
+                                        @foreach($block->exercises as $exercise)
+                                            <div class="col-sm-12 col-md-6 col-lg-3 mb-2 ">
+                                                <div
+                                                    class="btn btn-outline-secondary w-100 exercise h-100 d-flex justify-content-center align-items-center
+                                                @if($exercise->answers->count()) outline-sended-answer exercise-with-answer @endif"
+                                                     data-block-id="{{$block->id}}"
+                                                     data-exercise-id="{{$exercise->id}}"
+                                                >
+                                                    {{$exercise->title}}
+                                                    @if($exercise->answers->count())
+                                                        <div class="custom-checkbox mr-2" style="pointer-events: none" >
+                                                            <i class="fa fa-check"></i>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                @if($block->hasAnswers)
+                                                    <x-modal-answer
+                                                        :exercise="$exercise"
+                                                        :answers="$exercise->answers"
+                                                    />
                                                 @endif
                                             </div>
-                                            @if($block->hasAnswers)
-                                                <x-modal-answer
-                                                    :exercise="$exercise"
-                                                    :answers="$exercise->answers"
-                                                />
-                                            @endif
+                                        @endforeach
                                         </div>
-                                    @endforeach
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
 
-                        <div class="row">
+                            <div class="row">
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            @empty
-                Нет направлений
-            @endforelse
-        </div>
+                @empty
+                    Нет направлений
+                @endforelse
+            </div>
+
+        @endif
     </div>
 </div>
 @endsection

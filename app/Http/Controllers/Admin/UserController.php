@@ -6,13 +6,11 @@ use App\Models\Role;
 use App\Models\Admin\User;
 use App\Models\Admin\Track;
 use App\Models\Gender;
-use App\Models\TrackUser;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
 use App\Http\Filters\UsersFilter;
 use App\Events\UserTelegramUpdate;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 
 use App\Http\Controllers\Controller;
@@ -114,9 +112,40 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::withTrashed()->find($id);
-        $isCurator = Track::where('curator_id', $user->id)->first();
-        return view('admin.users.show', compact('user', 'isCurator'));
+        $user = User::withTrashed()
+            ->where('id', $id)
+            ->with(['tracksWithAnswers'])
+            ->first();
+
+        $tracks = $user->tracksWithAnswers;
+        $isStudent = $user->role->name === 'student';
+        if ($isStudent) {
+            foreach ($tracks as $track) {
+                foreach ($track->blocks as $block) {
+                    foreach ($block->exercises as $exercise) {
+                        foreach ($exercise->answers as $key => $answer) {
+                            if ($answer->user_id !== $user->id) {
+                                $exercise->answers->forget($key);
+                            }
+                        }
+                        if ($exercise->answers->count()) {
+                            $block->hasAnswers = true;
+                        } else {
+                            $block->hasAnswers = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        $data = [
+            'user' => $user,
+            'isDeleted' => !!$user->deleted_at,
+            'isStudent' => $user->role->name === 'student',
+            'isCurator' =>  Track::where('curator_id', $user->id)->first(),
+            'tracks' => $tracks,
+        ];
+        return view('admin.users.show', $data);
     }
 
     /**

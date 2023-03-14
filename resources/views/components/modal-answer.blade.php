@@ -3,6 +3,74 @@
 @php
 $answer = $answers->values()->get(0);
 @endphp
+<style>
+    .modal_bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        background: hsl(0 0% 0%/0.2)
+    }
+
+    .answer-modal {
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        background: white;
+        z-index: 1001;
+        max-height: 90%;
+        overflow-y: auto;
+    }
+
+    .close-answer-modal {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 1002;
+
+    }
+    .alert {
+        position: fixed;
+        z-index: 1002;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    .close-answer-modal.btn-danger{
+        padding: 5px 11px;
+    }
+    .btn.btn-success{
+        padding: .7rem 0;
+    }
+    @media (min-width:280px) and (max-width: 767px) {
+        .answer-modal{
+            width: 90%;
+        }
+        .close-answer-modal{
+            top: 55px;
+            right: 32px;
+
+        }
+        h3{
+            margin-top: 2rem;
+        }
+        button.btn{
+            margin-top: 1rem;
+        }
+        .fs-3{
+            margin-bottom: 0;
+        }
+        .btn.btn-primary{
+            width: 100%;
+        }
+
+    }
+</style>
 
 <div class="exercise-answer-modal exercise-{{ $exercise->id }}-answer d-none" data-exercise-id="{{ $exercise->id }}">
     <div class="modal_bg" data-exercise-id="{{ $exercise->id }}"></div>
