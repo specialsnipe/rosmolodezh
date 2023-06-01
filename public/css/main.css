@@ -463,6 +463,10 @@ main .carousel-inner img {
     -ms-transition: 200ms;
     -o-transition: 200ms;
 }
+.post__video {
+    width: 100%;
+    border-radius:10px;
+}
 
 .post_card:hover {
     transform: scale(1.1);

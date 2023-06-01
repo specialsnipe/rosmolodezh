@@ -1,5 +1,10 @@
 @php
-use Carbon\Carbon;
+    use Carbon\Carbon;
+    use app\Models\Post;
+
+    /**
+    * @var Post $post
+    */
 @endphp
 
 @extends('layouts.main')
@@ -27,22 +32,22 @@ use Carbon\Carbon;
                                         @foreach ($post->images as $image)
                                             <div class="slider__item" style="max-height: 500px">
                                                 <img src="{{ $image->imageMedium }}" class="w-100 rounded" alt=""
-                                                     style="object-fit: contain; max-height: 650px">
+                                                    style="object-fit: contain; max-height: 650px">
                                             </div>
                                         @endforeach
                                     </div>
 
                                     <a class="slider__control slider__control_prev" href="#" role="button"
-                                       data-slide="prev"></a>
+                                        data-slide="prev"></a>
                                     <a class="slider__control slider__control_next" href="#" role="button"
-                                       data-slide="next"></a>
+                                        data-slide="next"></a>
                                 </div>
                             </div>
 
                         @else
                             <div class="d-flex justify-content-center">
                                 <img src="{{ asset($post->images[0]->imageMedium) }}" class="rounded single-image"
-                                     alt="" style="object-fit: contain; max-height: 650px; max-width: 100%">
+                                    alt="" style="object-fit: contain; max-height: 650px; max-width: 100%">
                             </div>
                         @endif
                     </div>
@@ -52,13 +57,16 @@ use Carbon\Carbon;
                             <div class="line mt-3 mb-0"></div>
                             <div class="link-content">
                                 @foreach ($posts as $postx)
-                                    <a href="{{ route('posts.show', $postx->slug) }}" class="" style="text-decoration: none">
+                                    <a href="{{ route('posts.show', $postx->slug) }}" class=""
+                                        style="text-decoration: none">
                                         <div class="card mt-3">
                                             <div class="card-body">
-                                                <p class="h5 mb-2" style="text-decoration: none"><i class="fas fa-external-link-alt"
-                                                                 style="font-size: 16px;"></i> {{ $postx->title }} </p>
+                                                <p class="h5 mb-2" style="text-decoration: none"><i
+                                                        class="fas fa-external-link-alt"
+                                                        style="font-size: 16px;"></i> {{ $postx->title }} </p>
                                                 <span class="text-truncat-1 text-black">{{ $postx->excerpt }} </span>
-                                                <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
+                                                <span class="card-text post__card-text"
+                                                    style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
                                             </div>
                                         </div>
                                     </a>
@@ -70,19 +78,13 @@ use Carbon\Carbon;
                 </div>
 
                 <div class="col-12 mt-3 body">
-                    <p class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($post->created_at)->format("Y/m/d") }}</p>
+                    <p class="card-text post__card-text" style="font-size: 13px; color: #ababab">
+                        дата: {{ Carbon::parse($post->created_at)->format("Y/m/d") }}</p>
                     <span class="h2">{{ $post->title }}</span>
-                    <p class="mt-3">{!! $post->body !!}</p>
-                    {{-- <div class="line mt-2 mb-2"></div> --}}
-
-                    {{-- <p class="h2">Полезные ссылки:</p>
-                    <div class="row">
-                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
-                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
-                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
-                        <a href="" class="col-12 link-text">https://habr.com/ru/post/675130/</a>
-                    </div> --}}
-
+                    <p class="mt-3 mb-3">{!! $post->body !!}</p>
+                    @if($post->video)
+                        <video src="{{ $post->video_src }}" controls class="post__video" style="width: 100%"></video>
+                    @endif
                 </div>
                 <div class="col-sm-12  d-lg-none d-md-block">
                     <div class="">
@@ -93,10 +95,11 @@ use Carbon\Carbon;
                                 <a href="{{ route('posts.show', $postx->slug) }}" class="">
                                     <div class="card mt-3">
                                         <div class="card-body">
-                                            <span class="card-text post__card-text" style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
+                                            <span class="card-text post__card-text"
+                                                style="font-size: 13px; color: #ababab">дата: {{ Carbon::parse($postx->created_at)->format("Y/m/d") }}</span>
 
                                             <p class="h5"><i class="fas fa-external-link-alt"
-                                                             style="font-size: 16px;"></i> {{ $postx->title }} </p>
+                                                    style="font-size: 16px;"></i> {{ $postx->title }} </p>
                                             <p class="text-truncat-1 ">{{ $postx->excerpt }} </p>
                                         </div>
                                     </div>
@@ -114,9 +117,9 @@ use Carbon\Carbon;
                     </div>
 
                     <a class="slider__control slider__control_prev" href="#" role="button"
-                       data-slide="prev"></a>
+                        data-slide="prev"></a>
                     <a class="slider__control slider__control_next" href="#" role="button"
-                       data-slide="next"></a>
+                        data-slide="next"></a>
                 </div>
             </div>
             <div class="new_overlay" id="overlay-modal"></div>

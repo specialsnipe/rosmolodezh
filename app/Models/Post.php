@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property string @video
+ * @property string @video_src
+ */
 class Post extends Model
 {
     //...
@@ -25,6 +29,10 @@ class Post extends Model
      *
      * @return array
      */
+    protected $appends = [
+        'video_src'
+    ];
+
     public function sluggable(): array
     {
         return [
@@ -38,17 +46,22 @@ class Post extends Model
         return 'slug';
     }
 
+    /** @noinspection PhpUnused */
     public function getDynamicSEOData(): SEOData
     {
-        // Override only the properties you want:
-
         return new SEOData(
             title: 'Новость | '. $this->title . '. Росмолодежь, Стирай границы',
-            tags: explode(', ', $this->keywords),
             description: $this->excerpt,
             image: $this->images[0]->thumbnail_image,
+            tags: explode(', ', $this->keywords),
         );
     }
+
+    public function getVideoSrcAttribute(): string
+    {
+        return $this->video ? asset('storage/posts/videos/' . $this->video) : '';
+    }
+
     /**
      * Relation with images (many to many)
      * @return HasMany
